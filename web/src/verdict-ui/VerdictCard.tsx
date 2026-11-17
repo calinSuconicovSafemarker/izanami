@@ -171,7 +171,9 @@ function RuleList({
       <ul aria-labelledby={id} className="flex flex-col gap-1">
         {rules.map((r) => (
           <li key={r.id} className="grid grid-cols-[5ch_1fr] gap-x-3">
-            <span className="text-right tabular-nums text-zinc-400">{formatWeight(r.weight)}</span>
+            <span className="text-right tabular-nums text-zinc-400">
+              {r.status === 'not-applicable' ? 'n/a' : formatWeight(r.weight)}
+            </span>
             <span>
               <span className="text-zinc-200">{RULE_LABELS[r.id]}</span>
               {pending ? (
@@ -196,7 +198,10 @@ export function VerdictCard({ facts, done }: VerdictCardProps) {
   const checking = results.filter((r) => !done && isPending(r, facts));
   const unknown = results.filter((r) => r.status === 'unknown' && !checking.includes(r));
   const notFired = results.filter(
-    (r) => r.status === 'not-fired' || (r.status === 'fired' && r.weight === 0),
+    (r) =>
+      r.status === 'not-fired' ||
+      r.status === 'not-applicable' ||
+      (r.status === 'fired' && r.weight === 0),
   );
 
   return (
@@ -213,7 +218,7 @@ export function VerdictCard({ facts, done }: VerdictCardProps) {
       {notFired.length > 0 && (
         <details>
           <summary className="cursor-pointer text-xs uppercase tracking-wide text-zinc-500">
-            Not fired ({notFired.length})
+            Not fired or not applicable ({notFired.length})
           </summary>
           <RuleList title="Not fired" rules={notFired} />
         </details>

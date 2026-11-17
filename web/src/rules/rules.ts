@@ -105,7 +105,8 @@ const brandLookalike: Rule = (v) => {
     case 'official':
       return result(id, 'not-fired', w, `${v.unicode} is an official domain.`);
     case 'unrelated':
-      return result(id, 'not-fired', w, `${v.unicode} is not a lookalike of ${v.orgName}.`);
+      // SPEC: an unrelated variant is scored without the brand-lookalike rule.
+      return result(id, 'not-applicable', w, `${v.unicode} is not a lookalike of ${v.orgName}.`);
   }
 };
 

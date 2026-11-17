@@ -85,7 +85,11 @@ export type RuleId =
   | 'registered-not-resolving'
   | 'odd-tld';
 
-export type RuleStatus = 'fired' | 'not-fired' | 'unknown';
+/**
+ * `not-applicable`: the rule does not apply to this variant (e.g. `brand-lookalike` for a domain
+ * that is not a lookalike at all); it is left out of the score and of the unknown share.
+ */
+export type RuleStatus = 'fired' | 'not-fired' | 'unknown' | 'not-applicable';
 
 export interface RuleResult {
   id: RuleId;

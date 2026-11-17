@@ -136,7 +136,7 @@ table('brand-lookalike', [
   {
     name: 'unrelated',
     variant: sim('unrelated', { editDistance: 9 }),
-    status: 'not-fired',
+    status: 'not-applicable',
     says: ['not a lookalike', 'Delft University of Technology'],
   },
 ]);

@@ -2,6 +2,7 @@ import { render, screen, within } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { PENDING } from '../rules';
 import { caseFacts, cases } from '../rules/fixtures/cases';
+import { officialFacts, variantFacts } from '../rules/test-facts';
 import { VerdictCard } from './VerdictCard';
 
 const card = () => screen.getByRole('region', { name: /verdict/i });
@@ -72,5 +73,14 @@ describe('VerdictCard rule groups', () => {
     expect(notFired).toHaveTextContent(
       "tudelft.online is not one of Delft University of Technology's known official domains.",
     );
+  });
+
+  it('lists a rule that does not apply (unrelated domain) as n/a among the not-fired rules', () => {
+    render(
+      <VerdictCard facts={{ variantFacts: variantFacts(), officialFacts: officialFacts() }} done />,
+    );
+    const notFired = group(/not fired/i);
+    expect(notFired).toHaveTextContent('n/a');
+    expect(notFired).toHaveTextContent('example-unrelated.nl is not a lookalike');
   });
 });

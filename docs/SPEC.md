@@ -21,7 +21,7 @@ Terms are defined in [GLOSSARY.md](GLOSSARY.md).
 - Always normalise to the **registrable domain** via the Public Suffix List (`tudelft.nl.evil.com` → `evil.com`, flagged as subdomain trick).
 - Show the variant in both Unicode and punycode.
 - If the variant matches any **known official domain** → verdict **Official**, no further scoring.
-- If the variant bears no similarity to the brand → "not a lookalike of <Org>" (lookup still allowed, scored without the `brand-lookalike` rule).
+- If the variant bears no similarity to the brand → "not a lookalike of <Org>" (lookup still allowed, scored without the `brand-lookalike` rule: it is reported *not applicable* and left out of the score and the unknown share).
 
 ## Lookup pipeline (all from the browser)
 

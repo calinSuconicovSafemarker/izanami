@@ -12,10 +12,15 @@ export interface Verdict {
   unknownShare: number;
 }
 
-/** Combine rule results per ADR-0003. Every rule except `official-match` is applicable. */
+/**
+ * Combine rule results per ADR-0003. Every rule except `official-match` and rules reported
+ * `not-applicable` counts towards the score and the unknown share.
+ */
 export function verdict(results: readonly RuleResult[]): Verdict {
   const official = results.some((r) => r.id === 'official-match' && r.status === 'fired');
-  const applicable = results.filter((r) => r.id !== 'official-match');
+  const applicable = results.filter(
+    (r) => r.id !== 'official-match' && r.status !== 'not-applicable',
+  );
   const score = applicable.filter((r) => r.status === 'fired').reduce((s, r) => s + r.weight, 0);
   const total = applicable.reduce((s, r) => s + Math.abs(r.weight), 0);
   const unknown = applicable

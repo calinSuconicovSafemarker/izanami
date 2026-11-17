@@ -102,4 +102,14 @@ describe('verdict', () => {
       verdict([r('young-domain', 'unknown', 40), r('same-nameservers', 'fired', -40)]).unknownShare,
     ).toBe(0.5);
   });
+
+  it('leaves not-applicable rules out of the score and the unknown share', () => {
+    const v = verdict([
+      r('brand-lookalike', 'not-applicable', 25),
+      r('young-domain', 'unknown', 40),
+      r('same-nameservers', 'fired', -40),
+    ]);
+    expect(v.unknownShare).toBe(0.5);
+    expect(v.verdict).toBe('Likely legit');
+  });
 });
