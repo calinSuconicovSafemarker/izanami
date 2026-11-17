@@ -33,7 +33,7 @@ export interface SelectInput {
  * domain, top `limit` by rank, with stable slugs.
  */
 export function selectOrgs({ entities, tranco, psl, limit, confirmedAt }: SelectInput): Org[] {
-  const byPrimary = new Map<string, { org: Org; sitelinks: number }>();
+  const byPrimary = new Map<string, { org: Org; entity: WikidataEntity }>();
   for (const entity of entities.values()) {
     const domains = [...new Set(entity.websites.map((w) => officialDomainOf(psl, w)))]
       .filter((d): d is string => d !== null)
@@ -55,8 +55,8 @@ export function selectOrgs({ entities, tranco, psl, limit, confirmedAt }: Select
       confirmedAt,
     };
     const current = byPrimary.get(primary);
-    if (!current || isPreferred(entity.sitelinks, org, current.sitelinks, current.org)) {
-      byPrimary.set(primary, { org, sitelinks: entity.sitelinks });
+    if (!current || isPreferred(entity, org, current.entity, current.org)) {
+      byPrimary.set(primary, { org, entity });
     }
   }
   const orgs = [...byPrimary.values()]
@@ -66,9 +66,21 @@ export function selectOrgs({ entities, tranco, psl, limit, confirmedAt }: Select
   return assignSlugs(orgs);
 }
 
-function isPreferred(sitelinks: number, org: Org, otherSitelinks: number, other: Org): boolean {
-  if (sitelinks !== otherSitelinks) return sitelinks > otherSitelinks;
-  return qNumber(org.wikidataId) < qNumber(other.wikidataId);
+/**
+ * Organisations with at least this many sitelinks are notable enough to win a shared domain from
+ * a product or service (Google over "Google Search"); obscure organisations that merely list a
+ * platform as their website (a sports club with `instagram.com`) are not.
+ */
+export const NOTABLE_ORG_SITELINKS = 10;
+
+const isNotableOrg = (e: WikidataEntity) =>
+  e.isOrganisation && e.sitelinks >= NOTABLE_ORG_SITELINKS;
+
+/** Notable organisations first, then most sitelinks, then lowest Q-number. */
+function isPreferred(entity: WikidataEntity, org: Org, other: WikidataEntity, otherOrg: Org) {
+  if (isNotableOrg(entity) !== isNotableOrg(other)) return isNotableOrg(entity);
+  if (entity.sitelinks !== other.sitelinks) return entity.sitelinks > other.sitelinks;
+  return qNumber(org.wikidataId) < qNumber(otherOrg.wikidataId);
 }
 
 function qNumber(id: string): number {

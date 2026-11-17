@@ -7,7 +7,16 @@ const psl = parsePsl('com\nnl\norg\n');
 const NOW = '2026-11-17';
 
 function entity(id: string, name: string, websites: string[], extra: Partial<WikidataEntity> = {}) {
-  return { wikidataId: id, name, sitelinks: 10, countries: [], websites, ...extra };
+  return {
+    wikidataId: id,
+    name,
+    sitelinks: 10,
+    isOrganisation: true,
+    classes: [],
+    countries: [],
+    websites,
+    ...extra,
+  };
 }
 
 function entities(...list: WikidataEntity[]): Map<string, WikidataEntity> {
@@ -98,6 +107,40 @@ describe('selectOrgs', () => {
       confirmedAt: NOW,
     });
     expect(orgs.map((o) => o.wikidataId)).toEqual(['Q95']);
+  });
+
+  it('prefers a notable organisation over a product or service with more sitelinks', () => {
+    const orgs = selectOrgs({
+      entities: entities(
+        entity('Q9366', 'Google Search', ['https://www.google.com/'], {
+          sitelinks: 130,
+          isOrganisation: false,
+        }),
+        entity('Q95', 'Google', ['https://www.google.com/'], { sitelinks: 90 }),
+      ),
+      tranco: new Map([['google.com', 1]]),
+      psl,
+      limit: 500,
+      confirmedAt: NOW,
+    });
+    expect(orgs.map((o) => o.name)).toEqual(['Google']);
+  });
+
+  it('does not let an obscure organisation that merely links the domain win', () => {
+    const orgs = selectOrgs({
+      entities: entities(
+        entity('Q209330', 'Instagram', ['https://www.instagram.com/'], {
+          sitelinks: 168,
+          isOrganisation: false,
+        }),
+        entity('Q140386630', 'JKL Dolphins Kampala', ['https://instagram.com'], { sitelinks: 0 }),
+      ),
+      tranco: new Map([['instagram.com', 5]]),
+      psl,
+      limit: 500,
+      confirmedAt: NOW,
+    });
+    expect(orgs.map((o) => o.name)).toEqual(['Instagram']);
   });
 
   it('gives colliding names distinct slugs, the better-ranked one keeping the plain slug', () => {

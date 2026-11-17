@@ -8,6 +8,8 @@ const ENTITIES: WikidataEntity[] = [
     wikidataId: 'Q95',
     name: 'Google',
     sitelinks: 150,
+    isOrganisation: false,
+    classes: ['Q4830453'],
     countries: ['US'],
     websites: ['https://www.google.com/'],
   },
@@ -15,6 +17,8 @@ const ENTITIES: WikidataEntity[] = [
     wikidataId: 'Q2',
     name: 'Unranked Org',
     sitelinks: 5,
+    isOrganisation: false,
+    classes: [],
     countries: [],
     websites: ['https://unranked.org/'],
   },
@@ -30,6 +34,8 @@ function sources(previous: Org[] | null): OrgsSources & { queried: string[][] } 
       queried.push([...domains]);
       return new Map(ENTITIES.map((e) => [e.wikidataId, e]));
     },
+    queryClassAncestors: async (classes) =>
+      new Map(classes.map((c) => [c, c === 'Q4830453' ? [c, 'Q43229'] : [c]])),
     extras: async () => [
       {
         wikidataId: 'Q752663',
@@ -45,7 +51,13 @@ function sources(previous: Org[] | null): OrgsSources & { queried: string[][] } 
   };
 }
 
-const OPTIONS = { candidateDomains: 10, limit: 500, batchSize: 1, confirmedAt: '2026-11-17' };
+const OPTIONS = {
+  candidateDomains: 10,
+  limit: 500,
+  batchSize: 1,
+  classBatchSize: 100,
+  confirmedAt: '2026-11-17',
+};
 
 describe('runOrgsPipeline', () => {
   it('queries Wikidata in batches of Tranco domains and keeps only Tranco-confirmed orgs plus extras', async () => {

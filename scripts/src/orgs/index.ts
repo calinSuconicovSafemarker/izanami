@@ -10,7 +10,12 @@ import { cached, fetchWithRetry, sha256 } from './net';
 import { runOrgsPipeline, type OrgsSources } from './pipeline';
 import type { Org } from './select';
 import { unzipFirstFile } from './tranco';
-import { buildEntityQuery, parseEntityBindings } from './wikidata';
+import {
+  buildClassQuery,
+  buildEntityQuery,
+  parseClassAncestors,
+  parseEntityBindings,
+} from './wikidata';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const REPO = join(HERE, '../../..');
@@ -22,6 +27,28 @@ const PSL_URL = 'https://publicsuffix.org/list/public_suffix_list.dat';
 const TRANCO_URL = 'https://tranco-list.eu/top-1m.csv.zip';
 const SPARQL_URL = 'https://query.wikidata.org/sparql';
 
+/**
+ * Pause before each uncached WDQS request. 1 s is polite normally; set
+ * `BUILD_DATA_SPARQL_DELAY_MS=61000` when WDQS is rate-limiting to 1 request/minute.
+ */
+const SPARQL_DELAY_MS = Number(process.env.BUILD_DATA_SPARQL_DELAY_MS) || 1000;
+
+/** Runs a SPARQL query (cached by its hash) and returns the parsed JSON. */
+async function sparql(query: string): Promise<unknown> {
+  const body = await cached(`sparql-${sha256(query).slice(0, 16)}.json`, async () => {
+    await sleep(SPARQL_DELAY_MS);
+    return fetchWithRetry(SPARQL_URL, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/sparql-results+json',
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams({ query }).toString(),
+    });
+  });
+  return JSON.parse(body.toString('utf8'));
+}
+
 /** Real (network + filesystem) sources; downloads are cached under `scripts/.cache/orgs`. */
 const liveSources: OrgsSources = {
   async pslText() {
@@ -32,19 +59,10 @@ const liveSources: OrgsSources = {
     return unzipFirstFile(zip).toString('utf8');
   },
   async queryEntities(domains) {
-    const query = buildEntityQuery(domains);
-    const body = await cached(`sparql-${sha256(query).slice(0, 16)}.json`, async () => {
-      await sleep(1000); // be polite between uncached requests
-      return fetchWithRetry(SPARQL_URL, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/sparql-results+json',
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({ query }).toString(),
-      });
-    });
-    return parseEntityBindings(JSON.parse(body.toString('utf8')));
+    return parseEntityBindings(await sparql(buildEntityQuery(domains)));
+  },
+  async queryClassAncestors(classes) {
+    return parseClassAncestors(await sparql(buildClassQuery(classes)));
   },
   async extras() {
     return parseExtras(JSON.parse(await readFile(EXTRAS_JSON, 'utf8')));
@@ -62,6 +80,7 @@ export async function buildOrgs(): Promise<void> {
     candidateDomains: 10_000,
     limit: 500,
     batchSize: 500,
+    classBatchSize: 200,
     confirmedAt: new Date().toISOString().slice(0, 10),
   });
   await mkdir(dirname(ORGS_JSON), { recursive: true });

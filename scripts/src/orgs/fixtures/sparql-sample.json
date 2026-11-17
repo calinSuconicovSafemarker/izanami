@@ -1,6 +1,6 @@
 {
   "head": {
-    "vars": ["item", "label", "mulLabel", "site", "sitelinks", "iso", "hqIso"]
+    "vars": ["item", "label", "mulLabel", "site", "sitelinks", "iso", "hqIso", "class"]
   },
   "results": {
     "bindings": [
@@ -26,6 +26,10 @@
         "iso": {
           "type": "literal",
           "value": "NL"
+        },
+        "class": {
+          "type": "uri",
+          "value": "http://www.wikidata.org/entity/Q3918"
         }
       },
       {
@@ -50,6 +54,10 @@
         "iso": {
           "type": "literal",
           "value": "NL"
+        },
+        "class": {
+          "type": "uri",
+          "value": "http://www.wikidata.org/entity/Q3918"
         }
       },
       {
@@ -74,6 +82,10 @@
         "iso": {
           "type": "literal",
           "value": "US"
+        },
+        "class": {
+          "type": "uri",
+          "value": "http://www.wikidata.org/entity/Q4830453"
         }
       },
       {
@@ -107,6 +119,10 @@
         "hqIso": {
           "type": "literal",
           "value": "US"
+        },
+        "class": {
+          "type": "uri",
+          "value": "http://www.wikidata.org/entity/Q3220391"
         }
       },
       {
@@ -130,6 +146,10 @@
         "hqIso": {
           "type": "literal",
           "value": "IE"
+        },
+        "class": {
+          "type": "uri",
+          "value": "http://www.wikidata.org/entity/Q3220391"
         }
       }
     ]
