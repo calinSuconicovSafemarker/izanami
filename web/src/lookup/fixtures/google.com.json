@@ -1,0 +1,461 @@
+{
+  "description": "google.com (Verisign RDAP, IPv4+IPv6 ASN)",
+  "recordedAt": "2026-11-17T21:59:32.099Z",
+  "responses": {
+    "https://cloudflare-dns.com/dns-query?name=google.com&type=A": {
+      "status": 200,
+      "json": {
+        "Status": 0,
+        "TC": false,
+        "RD": true,
+        "RA": true,
+        "AD": false,
+        "CD": false,
+        "Question": [
+          {
+            "name": "google.com",
+            "type": 1
+          }
+        ],
+        "Answer": [
+          {
+            "name": "google.com",
+            "type": 1,
+            "TTL": 29,
+            "data": "192.178.24.142"
+          }
+        ]
+      }
+    },
+    "https://cloudflare-dns.com/dns-query?name=google.com&type=AAAA": {
+      "status": 200,
+      "json": {
+        "Status": 0,
+        "TC": false,
+        "RD": true,
+        "RA": true,
+        "AD": false,
+        "CD": false,
+        "Question": [
+          {
+            "name": "google.com",
+            "type": 28
+          }
+        ],
+        "Answer": [
+          {
+            "name": "google.com",
+            "type": 28,
+            "TTL": 48,
+            "data": "2a00:1450:400e:804::200e"
+          }
+        ]
+      }
+    },
+    "https://cloudflare-dns.com/dns-query?name=google.com&type=NS": {
+      "status": 200,
+      "json": {
+        "Status": 0,
+        "TC": false,
+        "RD": true,
+        "RA": true,
+        "AD": false,
+        "CD": false,
+        "Question": [
+          {
+            "name": "google.com",
+            "type": 2
+          }
+        ],
+        "Answer": [
+          {
+            "name": "google.com",
+            "type": 2,
+            "TTL": 325725,
+            "data": "ns3.google.com."
+          },
+          {
+            "name": "google.com",
+            "type": 2,
+            "TTL": 325725,
+            "data": "ns2.google.com."
+          },
+          {
+            "name": "google.com",
+            "type": 2,
+            "TTL": 325725,
+            "data": "ns1.google.com."
+          },
+          {
+            "name": "google.com",
+            "type": 2,
+            "TTL": 325725,
+            "data": "ns4.google.com."
+          }
+        ]
+      }
+    },
+    "https://cloudflare-dns.com/dns-query?name=google.com&type=MX": {
+      "status": 200,
+      "json": {
+        "Status": 0,
+        "TC": false,
+        "RD": true,
+        "RA": true,
+        "AD": false,
+        "CD": false,
+        "Question": [
+          {
+            "name": "google.com",
+            "type": 15
+          }
+        ],
+        "Answer": [
+          {
+            "name": "google.com",
+            "type": 15,
+            "TTL": 176,
+            "data": "10 smtp.google.com."
+          }
+        ]
+      }
+    },
+    "https://cloudflare-dns.com/dns-query?name=google.com&type=TXT": {
+      "status": 200,
+      "json": {
+        "Status": 0,
+        "TC": false,
+        "RD": true,
+        "RA": true,
+        "AD": false,
+        "CD": false,
+        "Question": [
+          {
+            "name": "google.com",
+            "type": 16
+          }
+        ],
+        "Answer": [
+          {
+            "name": "google.com",
+            "type": 16,
+            "TTL": 288,
+            "data": "\"facebook-domain-verification=22rm551cu4k0ab0bxsw536tlds4h95\""
+          },
+          {
+            "name": "google.com",
+            "type": 16,
+            "TTL": 288,
+            "data": "\"google-site-verification=TV9-DBe4R80X4v0M4U_bd_J9cpOJM0nikft0jAgjmsQ\""
+          },
+          {
+            "name": "google.com",
+            "type": 16,
+            "TTL": 288,
+            "data": "\"MS=E4A68B9AB2BB9670BCE15412F62916164C0B20BB\""
+          },
+          {
+            "name": "google.com",
+            "type": 16,
+            "TTL": 288,
+            "data": "\"google-site-verification=4ibFUgB-wXLQ_S7vsXVomSTVamuOXBiVAzpR5IZ87D0\""
+          },
+          {
+            "name": "google.com",
+            "type": 16,
+            "TTL": 288,
+            "data": "\"Z29vZ2xl\""
+          },
+          {
+            "name": "google.com",
+            "type": 16,
+            "TTL": 288,
+            "data": "\"docusign=1b0a6754-49b1-4db5-8540-d2c12664b289\""
+          },
+          {
+            "name": "google.com",
+            "type": 16,
+            "TTL": 288,
+            "data": "\"globalsign-smime-dv=CDYX+XFHUw2wml6/Gb8+59BsH31KzUr6c1l2BPvqKX8=\""
+          },
+          {
+            "name": "google.com",
+            "type": 16,
+            "TTL": 288,
+            "data": "\"work-accounts-domain-verification=Tcj6JjIMZOw2KsSEw2Nt2rLae89tN6\""
+          },
+          {
+            "name": "google.com",
+            "type": 16,
+            "TTL": 288,
+            "data": "\"arcules-domain-verification=2R4t5G7nI6tRCo61lpxxbLksPYstxhGmtV75cpr8x9K\""
+          },
+          {
+            "name": "google.com",
+            "type": 16,
+            "TTL": 288,
+            "data": "\"onetrust-domain-verification=0d477fe608074e6f9c12bca7826035cc\""
+          },
+          {
+            "name": "google.com",
+            "type": 16,
+            "TTL": 288,
+            "data": "\"google-site-verification=wD8N7i1JTNTkezJ49swvWW48f8_9xveREV4oB-0Hf5o\""
+          },
+          {
+            "name": "google.com",
+            "type": 16,
+            "TTL": 288,
+            "data": "\"v=spf1 include:_spf.google.com ~all\""
+          },
+          {
+            "name": "google.com",
+            "type": 16,
+            "TTL": 288,
+            "data": "\"cisco-ci-domain-verification=47c38bc8c4b74b7233e9053220c1bbe76bcc1cd33c7acf7acd36cd6a5332004b\""
+          },
+          {
+            "name": "google.com",
+            "type": 16,
+            "TTL": 288,
+            "data": "\"docusign=05958488-4752-4ef2-95eb-aa7ba8a3bd0e\""
+          },
+          {
+            "name": "google.com",
+            "type": 16,
+            "TTL": 288,
+            "data": "\"apple-domain-verification=30afIBcvSuDV2PLX\""
+          },
+          {
+            "name": "google.com",
+            "type": 16,
+            "TTL": 288,
+            "data": "\"onetrust-domain-verification=6d685f1d41a94696ad7ef771f68993e0\""
+          },
+          {
+            "name": "google.com",
+            "type": 16,
+            "TTL": 288,
+            "data": "\"_r4rd1pvwyrpi7sw4a3hzmw8e51yh9td\""
+          }
+        ]
+      }
+    },
+    "https://cloudflare-dns.com/dns-query?name=142.24.178.192.origin.asn.cymru.com&type=TXT": {
+      "status": 200,
+      "json": {
+        "Status": 0,
+        "TC": false,
+        "RD": true,
+        "RA": true,
+        "AD": false,
+        "CD": false,
+        "Question": [
+          {
+            "name": "142.24.178.192.origin.asn.cymru.com",
+            "type": 16
+          }
+        ],
+        "Answer": [
+          {
+            "name": "142.24.178.192.origin.asn.cymru.com",
+            "type": 16,
+            "TTL": 12407,
+            "data": "\"15169 | 192.178.0.0/15 | US | arin | 2012-07-12\""
+          }
+        ]
+      }
+    },
+    "https://cloudflare-dns.com/dns-query?name=e.0.0.2.0.0.0.0.0.0.0.0.0.0.0.0.4.0.8.0.e.0.0.4.0.5.4.1.0.0.a.2.origin6.asn.cymru.com&type=TXT": {
+      "status": 200,
+      "json": {
+        "Status": 0,
+        "TC": false,
+        "RD": true,
+        "RA": true,
+        "AD": false,
+        "CD": false,
+        "Question": [
+          {
+            "name": "e.0.0.2.0.0.0.0.0.0.0.0.0.0.0.0.4.0.8.0.e.0.0.4.0.5.4.1.0.0.a.2.origin6.asn.cymru.com",
+            "type": 16
+          }
+        ],
+        "Answer": [
+          {
+            "name": "e.0.0.2.0.0.0.0.0.0.0.0.0.0.0.0.4.0.8.0.e.0.0.4.0.5.4.1.0.0.a.2.origin6.asn.cymru.com",
+            "type": 16,
+            "TTL": 14400,
+            "data": "\"15169 | 2a00:1450:400e::/48 | IE | ripencc | 2009-10-05\""
+          }
+        ]
+      }
+    },
+    "https://rdap.verisign.com/com/v1/domain/google.com": {
+      "status": 200,
+      "json": {
+        "objectClassName": "domain",
+        "handle": "2138514_DOMAIN_COM-VRSN",
+        "ldhName": "GOOGLE.COM",
+        "links": [
+          {
+            "value": "https://rdap.verisign.com/com/v1/domain/google.com",
+            "rel": "self",
+            "href": "https://rdap.verisign.com/com/v1/domain/google.com",
+            "type": "application/rdap+json"
+          },
+          {
+            "value": "https://rdap.verisign.com/com/v1/domain/google.com",
+            "rel": "related",
+            "href": "https://rdap.markmonitor.com/rdap/domain/GOOGLE.COM",
+            "type": "application/rdap+json"
+          }
+        ],
+        "status": [
+          "client delete prohibited",
+          "client transfer prohibited",
+          "client update prohibited",
+          "server delete prohibited",
+          "server transfer prohibited",
+          "server update prohibited"
+        ],
+        "entities": [
+          {
+            "objectClassName": "entity",
+            "handle": "292",
+            "roles": ["registrar"],
+            "links": [
+              {
+                "href": "http://www.markmonitor.com",
+                "type": "text/html",
+                "value": "https://rdap.markmonitor.com/rdap/",
+                "rel": "about"
+              }
+            ],
+            "publicIds": [
+              {
+                "type": "IANA Registrar ID",
+                "identifier": "292"
+              }
+            ],
+            "vcardArray": [
+              "vcard",
+              [
+                ["version", {}, "text", "4.0"],
+                ["fn", {}, "text", "MarkMonitor Inc."]
+              ]
+            ],
+            "entities": [
+              {
+                "objectClassName": "entity",
+                "roles": ["abuse"],
+                "vcardArray": [
+                  "vcard",
+                  [
+                    ["version", {}, "text", "4.0"],
+                    ["fn", {}, "text", ""],
+                    [
+                      "tel",
+                      {
+                        "type": "voice"
+                      },
+                      "uri",
+                      "tel:+1.2086851750"
+                    ],
+                    ["email", {}, "text", "abusecomplaints@markmonitor.com"]
+                  ]
+                ]
+              }
+            ]
+          }
+        ],
+        "events": [
+          {
+            "eventAction": "registration",
+            "eventDate": "1997-09-15T04:00:00Z"
+          },
+          {
+            "eventAction": "expiration",
+            "eventDate": "2028-09-14T04:00:00Z"
+          },
+          {
+            "eventAction": "last changed",
+            "eventDate": "2019-09-09T15:39:04Z"
+          },
+          {
+            "eventAction": "last update of RDAP database",
+            "eventDate": "2026-11-17T21:59:09Z"
+          }
+        ],
+        "secureDNS": {
+          "delegationSigned": false
+        },
+        "nameservers": [
+          {
+            "objectClassName": "nameserver",
+            "ldhName": "NS1.GOOGLE.COM"
+          },
+          {
+            "objectClassName": "nameserver",
+            "ldhName": "NS2.GOOGLE.COM"
+          },
+          {
+            "objectClassName": "nameserver",
+            "ldhName": "NS3.GOOGLE.COM"
+          },
+          {
+            "objectClassName": "nameserver",
+            "ldhName": "NS4.GOOGLE.COM"
+          }
+        ],
+        "rdapConformance": [
+          "rdap_level_0",
+          "icann_rdap_technical_implementation_guide_1",
+          "icann_rdap_response_profile_1"
+        ],
+        "notices": [
+          {
+            "title": "Terms of Service",
+            "description": ["Service subject to Terms of Use."],
+            "links": [
+              {
+                "href": "https://www.verisign.com/domain-names/registration-data-access-protocol/terms-service/index.xhtml",
+                "type": "text/html",
+                "value": "https://rdap.verisign.com/com/v1/domain/google.com",
+                "rel": "terms-of-service"
+              }
+            ]
+          },
+          {
+            "title": "Status Codes",
+            "description": [
+              "For more information on domain status codes, please visit https://icann.org/epp"
+            ],
+            "links": [
+              {
+                "href": "https://icann.org/epp",
+                "type": "text/html",
+                "value": "https://rdap.verisign.com/com/v1/domain/google.com",
+                "rel": "glossary"
+              }
+            ]
+          },
+          {
+            "title": "RDDS Inaccuracy Complaint Form",
+            "description": [
+              "URL of the ICANN RDDS Inaccuracy Complaint Form: https://icann.org/wicf"
+            ],
+            "links": [
+              {
+                "href": "https://icann.org/wicf",
+                "type": "text/html",
+                "value": "https://rdap.verisign.com/com/v1/domain/google.com",
+                "rel": "help"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

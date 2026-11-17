@@ -1,0 +1,938 @@
+{
+  "description": "tudelft.nl (redacted .nl RDAP; crt.sh trimmed to the 5 oldest and 5 newest of 3958 entries)",
+  "recordedAt": "2026-11-17T21:59:31.910Z",
+  "responses": {
+    "https://cloudflare-dns.com/dns-query?name=tudelft.nl&type=A": {
+      "status": 200,
+      "json": {
+        "Status": 0,
+        "TC": false,
+        "RD": true,
+        "RA": true,
+        "AD": true,
+        "CD": false,
+        "Question": [
+          {
+            "name": "tudelft.nl",
+            "type": 1
+          }
+        ],
+        "Answer": [
+          {
+            "name": "tudelft.nl",
+            "type": 1,
+            "TTL": 508,
+            "data": "130.161.128.82"
+          }
+        ]
+      }
+    },
+    "https://cloudflare-dns.com/dns-query?name=tudelft.nl&type=AAAA": {
+      "status": 200,
+      "json": {
+        "Status": 0,
+        "TC": false,
+        "RD": true,
+        "RA": true,
+        "AD": true,
+        "CD": false,
+        "Question": [
+          {
+            "name": "tudelft.nl",
+            "type": 28
+          }
+        ],
+        "Authority": [
+          {
+            "name": "tudelft.nl",
+            "type": 6,
+            "TTL": 3600,
+            "data": "ns1.tudelft.nl. hostmaster.tudelft.nl. 2024594348 36000 3600 2419200 3600"
+          }
+        ]
+      }
+    },
+    "https://cloudflare-dns.com/dns-query?name=tudelft.nl&type=NS": {
+      "status": 200,
+      "json": {
+        "Status": 0,
+        "TC": false,
+        "RD": true,
+        "RA": true,
+        "AD": true,
+        "CD": false,
+        "Question": [
+          {
+            "name": "tudelft.nl",
+            "type": 2
+          }
+        ],
+        "Answer": [
+          {
+            "name": "tudelft.nl",
+            "type": 2,
+            "TTL": 3600,
+            "data": "ns1.zurich.surf.net."
+          },
+          {
+            "name": "tudelft.nl",
+            "type": 2,
+            "TTL": 3600,
+            "data": "ns1.surfnet.nl."
+          },
+          {
+            "name": "tudelft.nl",
+            "type": 2,
+            "TTL": 3600,
+            "data": "ns1.tudelft.nl."
+          },
+          {
+            "name": "tudelft.nl",
+            "type": 2,
+            "TTL": 3600,
+            "data": "ns2.surfnet.nl."
+          },
+          {
+            "name": "tudelft.nl",
+            "type": 2,
+            "TTL": 3600,
+            "data": "ns2.tudelft.nl."
+          }
+        ]
+      }
+    },
+    "https://cloudflare-dns.com/dns-query?name=tudelft.nl&type=MX": {
+      "status": 200,
+      "json": {
+        "Status": 0,
+        "TC": false,
+        "RD": true,
+        "RA": true,
+        "AD": true,
+        "CD": false,
+        "Question": [
+          {
+            "name": "tudelft.nl",
+            "type": 15
+          }
+        ],
+        "Answer": [
+          {
+            "name": "tudelft.nl",
+            "type": 15,
+            "TTL": 3600,
+            "data": "10 tudelft-nl.mail.protection.outlook.com."
+          }
+        ]
+      }
+    },
+    "https://cloudflare-dns.com/dns-query?name=tudelft.nl&type=TXT": {
+      "status": 200,
+      "json": {
+        "Status": 0,
+        "TC": false,
+        "RD": true,
+        "RA": true,
+        "AD": true,
+        "CD": false,
+        "Question": [
+          {
+            "name": "tudelft.nl",
+            "type": 16
+          }
+        ],
+        "Answer": [
+          {
+            "name": "tudelft.nl",
+            "type": 16,
+            "TTL": 3600,
+            "data": "\"MS=ms66592311\""
+          },
+          {
+            "name": "tudelft.nl",
+            "type": 16,
+            "TTL": 3600,
+            "data": "\"HARICA-9s6oKKJ124kmU6v3f6A\""
+          },
+          {
+            "name": "tudelft.nl",
+            "type": 16,
+            "TTL": 3600,
+            "data": "\"HARICA-aXJ2Kuvqc5hU8cVsyIR\""
+          },
+          {
+            "name": "tudelft.nl",
+            "type": 16,
+            "TTL": 3600,
+            "data": "\"HARICA-m4AKDQIClJcGMtRZ4j2\""
+          },
+          {
+            "name": "tudelft.nl",
+            "type": 16,
+            "TTL": 3600,
+            "data": "\"HARICA-svOKy8ChPYfvbMCCCgv\""
+          },
+          {
+            "name": "tudelft.nl",
+            "type": 16,
+            "TTL": 3600,
+            "data": "\"EYCG94TF05LGAIXGKNS3B4SXZ796W7SPSHUPP1E3M\""
+          },
+          {
+            "name": "tudelft.nl",
+            "type": 16,
+            "TTL": 3600,
+            "data": "\"apple-domain-verification=TWilLuVqEqmPHPlP\""
+          },
+          {
+            "name": "tudelft.nl",
+            "type": 16,
+            "TTL": 3600,
+            "data": "\"jamf-site-verification=Ddcd23-bTSJECc10j2URmw\""
+          },
+          {
+            "name": "tudelft.nl",
+            "type": 16,
+            "TTL": 3600,
+            "data": "\"sendinblue-code:ef5755c78c2226424706a65a2413f0a1\""
+          },
+          {
+            "name": "tudelft.nl",
+            "type": 16,
+            "TTL": 3600,
+            "data": "\"amazonses:iyPCyEjMv6YpdMhVuagmzM+6PIiSZt+kj9J0DnmImnQ=\""
+          },
+          {
+            "name": "tudelft.nl",
+            "type": 16,
+            "TTL": 3600,
+            "data": "\"miro-verification=034228b8046d801ff6579bb93100816ce0fac54f\""
+          },
+          {
+            "name": "tudelft.nl",
+            "type": 16,
+            "TTL": 3600,
+            "data": "\"miro-verification=19371c38bfc06be58d667cbb59a02508a880607d\""
+          },
+          {
+            "name": "tudelft.nl",
+            "type": 16,
+            "TTL": 3600,
+            "data": "\"google-site-verification=_nk7k44TtWKQJSgLYer_J68BmKIY83V9Heax6u7oRRA\""
+          },
+          {
+            "name": "tudelft.nl",
+            "type": 16,
+            "TTL": 3600,
+            "data": "\"google-site-verification=vlPyHrqp8W5EwG3sBPAoZXrMFzyYmVJeDlDshyLCrzk\""
+          },
+          {
+            "name": "tudelft.nl",
+            "type": 16,
+            "TTL": 3600,
+            "data": "\"google-site-verification=xwRqT1z_-EE597mEH4Qfh_TQTFYhTS-bWoYM009P-E8\""
+          },
+          {
+            "name": "tudelft.nl",
+            "type": 16,
+            "TTL": 3600,
+            "data": "\"L4Rcgp2aufV3yNQT7HZ7nmdmW+S8VVsOkBuh2Rk4Z7WKyHrLcd/aKCgVE+sihdcNsi/LkDeS8otItlX8kSURUA==\""
+          },
+          {
+            "name": "tudelft.nl",
+            "type": 16,
+            "TTL": 3600,
+            "data": "\"adobe-idp-site-verification=6c308adba5fba6d4295d8d092b40f332747dd3b7896740e9ee3a9c87e8691bb1\""
+          },
+          {
+            "name": "tudelft.nl",
+            "type": 16,
+            "TTL": 3600,
+            "data": "\"openatts a=dns-did; p=did:ethr:0x49264cd8041010adf43a926436e0ac38c053c066#controller; v=1.0;\""
+          },
+          {
+            "name": "tudelft.nl",
+            "type": 16,
+            "TTL": 3600,
+            "data": "\"figma-domain-verification=608b37abc404e00a10b2771e20c76b415cd1832b5faf4e3c500a545808eb4803-1775651511\""
+          },
+          {
+            "name": "tudelft.nl",
+            "type": 16,
+            "TTL": 3600,
+            "data": "\"successfactors-site-verification=NGMxMTBlMzQ5ZmFiZWRiMTU1ZWVkZDk4MTczYzE5ZDhhZTVhNzI4NTI4OGZjYjI4OTc2YjYyM2RhNGNhZWI4Zg==\""
+          },
+          {
+            "name": "tudelft.nl",
+            "type": 16,
+            "TTL": 3600,
+            "data": "\"v=spf1 ip4:130.161.131.0/24 ip4:131.180.77.44 ip4:52.59.111.152 include:spf.protection.outlook.com ip4:46.31.188.52 ip4:212.83.209.198 ip4:212.83.209.204 include:spf.afas.online ip4:94.143.211.206 ip4:94.143.211.207 include:spf.recruitmail.com \" \"ip4:46.31.48.0/21 include:spf.topdesk.net include:spf.faqtory.nl include:a._spf.brightspace.com ip4:136.144.199.28 ip4:136.144.226.32 ip4:77.74.54.216 ip4:213.206.232.0/27 ip4:185.136.64.128/27 ip4:185.136.65.128/27 include:spf-x-tudelft-nl.dataduiker.app\" \" ~all\""
+          }
+        ]
+      }
+    },
+    "https://dns.google/resolve?name=tudelft.nl&type=A": {
+      "status": 200,
+      "json": {
+        "Status": 0,
+        "TC": false,
+        "RD": true,
+        "RA": true,
+        "AD": true,
+        "CD": false,
+        "Question": [
+          {
+            "name": "tudelft.nl.",
+            "type": 1
+          }
+        ],
+        "Answer": [
+          {
+            "name": "tudelft.nl.",
+            "type": 1,
+            "TTL": 576,
+            "data": "130.161.128.82"
+          }
+        ]
+      }
+    },
+    "https://cloudflare-dns.com/dns-query?name=82.128.161.130.origin.asn.cymru.com&type=TXT": {
+      "status": 200,
+      "json": {
+        "Status": 0,
+        "TC": false,
+        "RD": true,
+        "RA": true,
+        "AD": false,
+        "CD": false,
+        "Question": [
+          {
+            "name": "82.128.161.130.origin.asn.cymru.com",
+            "type": 16
+          }
+        ],
+        "Answer": [
+          {
+            "name": "82.128.161.130.origin.asn.cymru.com",
+            "type": 16,
+            "TTL": 14400,
+            "data": "\"1128 | 130.161.0.0/16 | NL | ripencc | 1988-08-26\""
+          }
+        ]
+      }
+    },
+    "https://rdap.sidn.nl/domain/tudelft.nl": {
+      "status": 200,
+      "json": {
+        "rdapConformance": [
+          "rdap_level_0",
+          "icann_rdap_response_profile_1",
+          "icann_rdap_technical_implementation_guide_1",
+          "redacted"
+        ],
+        "objectClassName": "domain",
+        "notices": [
+          {
+            "title": "Status Codes",
+            "description": [
+              "Meer informatie over domeinstatuscodes vind je op https://icann.org/epp",
+              "For more information on domain status codes, please visit https://icann.org/epp"
+            ],
+            "links": [
+              {
+                "value": "https://rdap.sidn.nl/domain/tudelft.nl",
+                "rel": "glossary",
+                "href": "https://icann.org/epp",
+                "type": "text/html"
+              }
+            ]
+          },
+          {
+            "title": "Privacy notice",
+            "description": [
+              "De houdergegevens kunnen afgeschermd zijn. Meer informatie hierover vind je op: https://www.sidn.nl/nl-domeinnaam/sidn-en-privacy",
+              "The registrant's details can be withheld from public view. For more information, see https://www.sidn.nl/en/nl-domain-name/sidn-and-privacy"
+            ]
+          },
+          {
+            "title": "Maintainer",
+            "description": ["Administratie door: SIDN BV", "Record maintained by: SIDN BV"]
+          },
+          {
+            "title": "RDDS Inaccuracy Complaint Form",
+            "description": [
+              "URL of the ICANN RDDS Inaccuracy Complaint Form: https://www.icann.org/wicf"
+            ],
+            "links": [
+              {
+                "value": "https://rdap.sidn.nl/domain/tudelft.nl",
+                "rel": "help",
+                "href": "https://icann.org/wicf",
+                "type": "text/html"
+              }
+            ]
+          }
+        ],
+        "lang": "nl-NL",
+        "events": [
+          {
+            "eventAction": "registration",
+            "eventDate": "1987-07-23T00:00:00Z"
+          },
+          {
+            "eventAction": "last changed",
+            "eventDate": "2026-10-03T12:28:19Z"
+          },
+          {
+            "eventAction": "last update of RDAP database",
+            "eventDate": "2026-11-17T21:59:27Z"
+          }
+        ],
+        "status": ["active"],
+        "handle": "REDACTED-BY-SIDN",
+        "ldhName": "tudelft.nl",
+        "secureDNS": {
+          "delegationSigned": true,
+          "dsData": [
+            {
+              "keyTag": 26510,
+              "algorithm": 8,
+              "digestType": 2,
+              "digest": "F6EE1BBCDA785F38FADDCE6A43DCB09EA32323F537739E9F819EBC3B2FE50D08"
+            }
+          ]
+        },
+        "entities": [
+          {
+            "objectClassName": "entity",
+            "handle": "EEL003484-TUNID",
+            "vcardArray": [
+              "vcard",
+              [
+                ["version", {}, "text", "4.0"],
+                ["fn", {}, "text", "REDACTED FOR PRIVACY"]
+              ]
+            ],
+            "links": [
+              {
+                "value": "https://rdap.sidn.nl/entity/EEL003484-TUNID",
+                "rel": "about",
+                "href": "https://rdap.sidn.nl/entity/EEL003484-TUNID",
+                "type": "application/rdap+json"
+              }
+            ],
+            "roles": ["technical"]
+          },
+          {
+            "objectClassName": "entity",
+            "handle": "TEC001630-TUNID",
+            "vcardArray": [
+              "vcard",
+              [
+                ["version", {}, "text", "4.0"],
+                ["fn", {}, "text", "REDACTED FOR PRIVACY"]
+              ]
+            ],
+            "links": [
+              {
+                "value": "https://rdap.sidn.nl/entity/TEC001630-TUNID",
+                "rel": "about",
+                "href": "https://rdap.sidn.nl/entity/TEC001630-TUNID",
+                "type": "application/rdap+json"
+              }
+            ],
+            "roles": ["registrant"]
+          },
+          {
+            "objectClassName": "entity",
+            "handle": "VAN026166-TUNID",
+            "vcardArray": [
+              "vcard",
+              [
+                ["version", {}, "text", "4.0"],
+                ["fn", {}, "text", "REDACTED FOR PRIVACY"]
+              ]
+            ],
+            "links": [
+              {
+                "value": "https://rdap.sidn.nl/entity/VAN026166-TUNID",
+                "rel": "about",
+                "href": "https://rdap.sidn.nl/entity/VAN026166-TUNID",
+                "type": "application/rdap+json"
+              }
+            ],
+            "roles": ["technical"]
+          },
+          {
+            "objectClassName": "entity",
+            "handle": "TER033989-TUNID",
+            "vcardArray": [
+              "vcard",
+              [
+                ["version", {}, "text", "4.0"],
+                ["fn", {}, "text", "REDACTED FOR PRIVACY"]
+              ]
+            ],
+            "links": [
+              {
+                "value": "https://rdap.sidn.nl/entity/TER033989-TUNID",
+                "rel": "about",
+                "href": "https://rdap.sidn.nl/entity/TER033989-TUNID",
+                "type": "application/rdap+json"
+              }
+            ],
+            "roles": ["administrative"]
+          },
+          {
+            "objectClassName": "entity",
+            "handle": "0000",
+            "vcardArray": [
+              "vcard",
+              [
+                ["version", {}, "text", "4.0"],
+                ["fn", {}, "text", "Technische Universiteit Delft"],
+                [
+                  "adr",
+                  {
+                    "cc": "NL"
+                  },
+                  "text",
+                  ["", "", "Landbergstraat 15", "Delft", "", "2628CE", ""]
+                ]
+              ]
+            ],
+            "entities": [
+              {
+                "objectClassName": "entity",
+                "handle": "ABUSE-SIDN",
+                "vcardArray": [
+                  "vcard",
+                  [
+                    ["version", {}, "text", "4.0"],
+                    ["fn", {}, "text", "abuse@tudelft.nl"],
+                    ["email", {}, "text", "abuse@tudelft.nl"]
+                  ]
+                ],
+                "roles": ["abuse"]
+              }
+            ],
+            "publicIds": [
+              {
+                "identifier": "0000",
+                "type": "IANA Registrar ID"
+              }
+            ],
+            "roles": ["registrar"]
+          }
+        ],
+        "nameservers": [
+          {
+            "ldhName": "ns1.surfnet.nl",
+            "unicodeName": "ns1.surfnet.nl",
+            "objectClassName": "nameserver",
+            "links": [
+              {
+                "value": "https://rdap.sidn.nl/nameserver/ns1.surfnet.nl",
+                "rel": "about",
+                "href": "https://rdap.sidn.nl/nameserver/ns1.surfnet.nl",
+                "type": "application/rdap+json"
+              }
+            ]
+          },
+          {
+            "ldhName": "ns2.surfnet.nl",
+            "unicodeName": "ns2.surfnet.nl",
+            "objectClassName": "nameserver",
+            "links": [
+              {
+                "value": "https://rdap.sidn.nl/nameserver/ns2.surfnet.nl",
+                "rel": "about",
+                "href": "https://rdap.sidn.nl/nameserver/ns2.surfnet.nl",
+                "type": "application/rdap+json"
+              }
+            ]
+          },
+          {
+            "ldhName": "ns1.tudelft.nl",
+            "unicodeName": "ns1.tudelft.nl",
+            "objectClassName": "nameserver",
+            "ipAddresses": {
+              "v4": ["130.161.180.1"]
+            },
+            "links": [
+              {
+                "value": "https://rdap.sidn.nl/nameserver/ns1.tudelft.nl",
+                "rel": "about",
+                "href": "https://rdap.sidn.nl/nameserver/ns1.tudelft.nl",
+                "type": "application/rdap+json"
+              }
+            ]
+          },
+          {
+            "ldhName": "ns2.tudelft.nl",
+            "unicodeName": "ns2.tudelft.nl",
+            "objectClassName": "nameserver",
+            "ipAddresses": {
+              "v4": ["130.161.180.65"]
+            },
+            "links": [
+              {
+                "value": "https://rdap.sidn.nl/nameserver/ns2.tudelft.nl",
+                "rel": "about",
+                "href": "https://rdap.sidn.nl/nameserver/ns2.tudelft.nl",
+                "type": "application/rdap+json"
+              }
+            ]
+          },
+          {
+            "ldhName": "ns1.zurich.surf.net",
+            "unicodeName": "ns1.zurich.surf.net",
+            "objectClassName": "nameserver",
+            "links": [
+              {
+                "value": "https://rdap.sidn.nl/nameserver/ns1.zurich.surf.net",
+                "rel": "about",
+                "href": "https://rdap.sidn.nl/nameserver/ns1.zurich.surf.net",
+                "type": "application/rdap+json"
+              }
+            ]
+          }
+        ],
+        "links": [
+          {
+            "value": "https://rdap.sidn.nl/domain/tudelft.nl",
+            "rel": "self",
+            "href": "https://rdap.sidn.nl/domain/tudelft.nl",
+            "type": "application/rdap+json"
+          }
+        ],
+        "redacted": [
+          {
+            "name": {
+              "description": "Domain handle"
+            },
+            "postPath": "$.handle",
+            "pathLang": "jsonpath",
+            "method": "replacementValue",
+            "reason": {
+              "description": "Server policy"
+            }
+          },
+          {
+            "name": {
+              "description": "Registrant phone number"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[0]=='tel')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server policy"
+            }
+          },
+          {
+            "name": {
+              "description": "Registrant email"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[0]=='email')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server policy"
+            }
+          },
+          {
+            "name": {
+              "description": "Registrant name"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[0]=='fn')][3]",
+            "pathLang": "jsonpath",
+            "method": "replacementValue",
+            "reason": {
+              "description": "Server policy"
+            }
+          },
+          {
+            "name": {
+              "description": "Registrant address"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[0]=='adr')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server policy"
+            }
+          },
+          {
+            "name": {
+              "description": "Administrative name"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[0]=='fn')][3]",
+            "pathLang": "jsonpath",
+            "method": "replacementValue",
+            "reason": {
+              "description": "Server policy"
+            }
+          },
+          {
+            "name": {
+              "description": "Administrative address"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[0]=='adr')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server policy"
+            }
+          },
+          {
+            "name": {
+              "description": "Administrative email"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[0]=='email')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server policy"
+            }
+          },
+          {
+            "name": {
+              "description": "Administrative phone number"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[0]=='tel')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server policy"
+            }
+          },
+          {
+            "name": {
+              "description": "Administrative organisation"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[0]=='org')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server policy"
+            }
+          },
+          {
+            "name": {
+              "description": "Registrar handle"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='registrar')].handle",
+            "pathLang": "jsonpath",
+            "method": "replacementValue",
+            "reason": {
+              "description": "Server policy"
+            }
+          },
+          {
+            "name": {
+              "description": "Public id"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='registrar')].publicIds[@LAST].identifier",
+            "pathLang": "jsonpath",
+            "method": "replacementValue",
+            "reason": {
+              "description": "Server policy"
+            }
+          },
+          {
+            "name": {
+              "description": "Registrar email"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='registrar')].vcardArray[1][?(@[0]=='email')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server policy"
+            }
+          },
+          {
+            "name": {
+              "description": "Registrar phone number"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='registrar')].vcardArray[1][?(@[0]=='tel')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server policy"
+            }
+          },
+          {
+            "name": {
+              "description": "Technical name"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[0]=='fn')][3]",
+            "pathLang": "jsonpath",
+            "method": "replacementValue",
+            "reason": {
+              "description": "Server policy"
+            }
+          },
+          {
+            "name": {
+              "description": "Technical address"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[0]=='adr')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server policy"
+            }
+          },
+          {
+            "name": {
+              "description": "Technical email"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[0]=='email')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server policy"
+            }
+          },
+          {
+            "name": {
+              "description": "Technical phone number"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[0]=='tel')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server policy"
+            }
+          },
+          {
+            "name": {
+              "description": "Technical organisation"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[0]=='org')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server policy"
+            }
+          }
+        ]
+      }
+    },
+    "https://crt.sh/?q=tudelft.nl&output=json": {
+      "status": 200,
+      "json": [
+        {
+          "issuer_ca_id": 973,
+          "issuer_name": "C=BE, O=Cybertrust, OU=Educational CA, CN=Cybertrust Educational CA",
+          "common_name": "gatekeeper.tudelft.nl",
+          "name_value": "gatekeeper.tudelft.nl",
+          "id": 2379200419,
+          "not_before": "2006-07-17T14:53:54",
+          "not_after": "2009-07-17T14:53:54",
+          "serial_number": "0100000000010c7cfa9db1",
+          "result_count": 2
+        },
+        {
+          "issuer_ca_id": 973,
+          "issuer_name": "C=BE, O=Cybertrust, OU=Educational CA, CN=Cybertrust Educational CA",
+          "common_name": "webdata.tudelft.nl",
+          "name_value": "webdata.tudelft.nl",
+          "id": 2370764123,
+          "not_before": "2006-08-25T12:42:54",
+          "not_after": "2009-08-25T12:42:54",
+          "serial_number": "0100000000010d455ab329",
+          "result_count": 2
+        },
+        {
+          "issuer_ca_id": 973,
+          "issuer_name": "C=BE, O=Cybertrust, OU=Educational CA, CN=Cybertrust Educational CA",
+          "common_name": "weblogin.tudelft.nl",
+          "name_value": "weblogin.tudelft.nl",
+          "id": 2370764353,
+          "not_before": "2006-09-26T08:38:01",
+          "not_after": "2009-09-26T08:38:01",
+          "serial_number": "0100000000010de945ff88",
+          "result_count": 2
+        },
+        {
+          "issuer_ca_id": 973,
+          "issuer_name": "C=BE, O=Cybertrust, OU=Educational CA, CN=Cybertrust Educational CA",
+          "common_name": "webprint.tudelft.nl",
+          "name_value": "webprint.tudelft.nl",
+          "id": 2379200541,
+          "not_before": "2006-09-29T14:30:02",
+          "not_after": "2009-09-29T14:30:02",
+          "serial_number": "0100000000010df9fb5aea",
+          "result_count": 2
+        },
+        {
+          "issuer_ca_id": 973,
+          "issuer_name": "C=BE, O=Cybertrust, OU=Educational CA, CN=Cybertrust Educational CA",
+          "common_name": "webmail.tudelft.nl",
+          "name_value": "webmail.tudelft.nl",
+          "id": 2370357693,
+          "not_before": "2006-10-06T10:28:08",
+          "not_after": "2009-10-06T10:28:08",
+          "serial_number": "0100000000010e1d2a6819",
+          "result_count": 2
+        },
+        {
+          "issuer_ca_id": 16418,
+          "issuer_name": "C=US, O=Let's Encrypt, CN=Let's Encrypt Authority X3",
+          "common_name": "annotatie01.io.tudelft.nl",
+          "name_value": "annotatie01.io.tudelft.nl",
+          "id": 1945318273,
+          "not_before": "2019-10-01T16:10:25",
+          "not_after": "2019-12-30T16:10:25",
+          "serial_number": "03a7d8645bbf964ea40813218d62eec8d6b8",
+          "result_count": 2
+        },
+        {
+          "issuer_ca_id": 16418,
+          "issuer_name": "C=US, O=Let's Encrypt, CN=Let's Encrypt Authority X3",
+          "common_name": "elearning-libaccp.tudelft.nl",
+          "name_value": "elearning-libaccp.tudelft.nl",
+          "id": 1965440020,
+          "not_before": "2019-10-02T23:35:45",
+          "not_after": "2019-12-31T23:35:45",
+          "serial_number": "03b704dee79ee2f65015b37e2a7679ae7e4d",
+          "result_count": 2
+        },
+        {
+          "issuer_ca_id": 16418,
+          "issuer_name": "C=US, O=Let's Encrypt, CN=Let's Encrypt Authority X3",
+          "common_name": "elearning-libaccp.tudelft.nl",
+          "name_value": "elearning-libaccp.tudelft.nl",
+          "id": 1950984784,
+          "not_before": "2019-10-02T23:35:45",
+          "not_after": "2019-12-31T23:35:45",
+          "serial_number": "03b704dee79ee2f65015b37e2a7679ae7e4d",
+          "result_count": 2
+        },
+        {
+          "issuer_ca_id": 16418,
+          "issuer_name": "C=US, O=Let's Encrypt, CN=Let's Encrypt Authority X3",
+          "common_name": "rdnl-libaccp.tudelft.nl",
+          "name_value": "rdnl-libaccp.tudelft.nl",
+          "id": 1996591945,
+          "not_before": "2019-10-02T23:35:55",
+          "not_after": "2019-12-31T23:35:55",
+          "serial_number": "038a163767e44a9329ed5c8070397198ad0a",
+          "result_count": 2
+        },
+        {
+          "issuer_ca_id": 16418,
+          "issuer_name": "C=US, O=Let's Encrypt, CN=Let's Encrypt Authority X3",
+          "common_name": "rdnl-libaccp.tudelft.nl",
+          "name_value": "rdnl-libaccp.tudelft.nl",
+          "id": 1950984788,
+          "not_before": "2019-10-02T23:35:55",
+          "not_after": "2019-12-31T23:35:55",
+          "serial_number": "038a163767e44a9329ed5c8070397198ad0a",
+          "result_count": 2
+        }
+      ]
+    }
+  }
+}
