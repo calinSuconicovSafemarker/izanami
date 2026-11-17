@@ -1,5 +1,7 @@
 # 05 — Org list & org page UI
 
+**Status:** Done (76e0820)
+
 **Depends on:** 00, 01
 
 ## Goal
