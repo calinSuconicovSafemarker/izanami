@@ -1,5 +1,7 @@
 # 09 — AWS infrastructure (CDK)
 
+**Status:** Done (6b6a643) — deploy-only checks pending: site loads, live lookup without CSP errors, Observatory A+, direct S3 URL 403
+
 **Depends on:** 00, 02 (`rdap-hosts.json` for CSP)
 
 ## Goal
