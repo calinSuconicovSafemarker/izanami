@@ -1,5 +1,7 @@
 # 07 — Rules engine & verdict
 
+**Status:** Done (b16c144)
+
 **Depends on:** 02, 03, 04 (result types + fixtures)
 
 ## Goal

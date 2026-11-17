@@ -1,0 +1,191 @@
+{
+  "description": "Real-world style verdict cases. Facts are hand-built; a value of \"?\" means the lookup was unavailable. firstCertDate null = no certificate ever logged. Similarity is computed from `variant` with the real domain module.",
+  "checkedAt": "2026-11-17T12:00:00Z",
+  "orgs": {
+    "tudelft": {
+      "slug": "tu-delft",
+      "name": "Delft University of Technology",
+      "country": "NL",
+      "primaryDomain": "tudelft.nl",
+      "officialDomains": ["tudelft.nl"],
+      "brandLabel": "tudelft",
+      "facts": {
+        "registrationDate": "1987-03-17T00:00:00Z",
+        "registrar": "SURF B.V.",
+        "nameservers": ["ns1.surfnet.nl", "ns2.surfnet.nl", "ns1.zurich.surf.net"],
+        "mx": ["tudelft-nl.mail.protection.outlook.com"],
+        "asns": [1128]
+      }
+    },
+    "google": {
+      "slug": "google",
+      "name": "Google",
+      "country": "US",
+      "primaryDomain": "google.com",
+      "officialDomains": ["google.com"],
+      "brandLabel": "google",
+      "facts": {
+        "registrationDate": "1997-09-15T04:00:00Z",
+        "registrar": "MarkMonitor Inc.",
+        "nameservers": ["ns1.google.com", "ns2.google.com", "ns3.google.com", "ns4.google.com"],
+        "mx": ["smtp.google.com"],
+        "asns": [15169]
+      }
+    }
+  },
+  "cases": [
+    {
+      "name": "official domain",
+      "org": "tudelft",
+      "variant": "tudelft.nl",
+      "facts": {
+        "existence": "resolving",
+        "inTranco": true,
+        "registrationDate": "1987-03-17T00:00:00Z",
+        "registrar": "SURF B.V.",
+        "nameservers": ["ns1.surfnet.nl", "ns2.surfnet.nl"],
+        "mx": ["tudelft-nl.mail.protection.outlook.com"],
+        "spf": true,
+        "asns": [1128],
+        "firstCertDate": "2006-07-17T14:53:54Z"
+      },
+      "expected": "Official"
+    },
+    {
+      "name": "defensive registration sharing NS, registrar, MX and ASN",
+      "org": "tudelft",
+      "variant": "tudelft.com",
+      "facts": {
+        "existence": "resolving",
+        "inTranco": false,
+        "registrationDate": "1999-02-11T00:00:00Z",
+        "registrar": "SURF B.V.",
+        "nameservers": ["ns1.surfnet.nl", "ns2.surfnet.nl"],
+        "mx": ["tudelft-nl.mail.protection.outlook.com"],
+        "spf": true,
+        "asns": [1128],
+        "firstCertDate": "2012-05-02T00:00:00Z"
+      },
+      "expected": "Likely legit"
+    },
+    {
+      "name": "defensive typo registration at a brand-protection registrar",
+      "org": "google",
+      "variant": "gooogle.com",
+      "facts": {
+        "existence": "resolving",
+        "inTranco": true,
+        "registrationDate": "1999-01-08T05:00:00Z",
+        "registrar": "MarkMonitor, Inc.",
+        "nameservers": ["ns1.google.com", "ns2.google.com"],
+        "mx": [],
+        "spf": true,
+        "asns": [15169],
+        "firstCertDate": "2014-03-01T00:00:00Z"
+      },
+      "expected": "Likely legit"
+    },
+    {
+      "name": "fresh combo-squat with mail set up and a new certificate",
+      "org": "tudelft",
+      "variant": "tudelft-login.com",
+      "facts": {
+        "existence": "resolving",
+        "inTranco": false,
+        "registrationDate": "2026-11-05T09:12:00Z",
+        "registrar": "NameCheap, Inc.",
+        "nameservers": ["dana.ns.cloudflare.com", "rob.ns.cloudflare.com"],
+        "mx": ["mx1.privateemail.com", "mx2.privateemail.com"],
+        "spf": true,
+        "asns": [13335],
+        "firstCertDate": "2026-11-06T00:00:00Z"
+      },
+      "expected": "Likely fraud"
+    },
+    {
+      "name": "parked typo-squat, years old, no mail",
+      "org": "tudelft",
+      "variant": "tudeflt.nl",
+      "facts": {
+        "existence": "resolving",
+        "inTranco": false,
+        "registrationDate": "2019-04-02T00:00:00Z",
+        "registrar": "Key-Systems GmbH",
+        "nameservers": ["ns1.sedoparking.com", "ns2.sedoparking.com"],
+        "mx": [],
+        "spf": false,
+        "asns": [47846],
+        "firstCertDate": null
+      },
+      "expected": "Likely fraud"
+    },
+    {
+      "name": "homoglyph (Cyrillic e) registered last month, crt.sh down",
+      "org": "tudelft",
+      "variant": "tudеlft.com",
+      "facts": {
+        "existence": "resolving",
+        "inTranco": false,
+        "registrationDate": "2026-10-01T00:00:00Z",
+        "registrar": "PDR Ltd. d/b/a PublicDomainRegistry.com",
+        "nameservers": ["ns1.bulletproof.example"],
+        "mx": [],
+        "spf": false,
+        "asns": [9009],
+        "firstCertDate": "?"
+      },
+      "expected": "Likely fraud"
+    },
+    {
+      "name": "registered but not resolving",
+      "org": "tudelft",
+      "variant": "tudelft-portal.nl",
+      "facts": {
+        "existence": "registered-not-resolving",
+        "inTranco": false,
+        "registrationDate": "2026-06-01T00:00:00Z",
+        "registrar": "Hostnet B.V.",
+        "nameservers": [],
+        "mx": [],
+        "spf": false,
+        "asns": [],
+        "firstCertDate": null
+      },
+      "expected": "Likely fraud"
+    },
+    {
+      "name": "old student-team combo site on shared hosting",
+      "org": "tudelft",
+      "variant": "tudelftracing.nl",
+      "facts": {
+        "existence": "resolving",
+        "inTranco": false,
+        "registrationDate": "1991-06-20T00:00:00Z",
+        "registrar": "TransIP B.V.",
+        "nameservers": ["ns0.transip.net", "ns1.transip.nl"],
+        "mx": [],
+        "spf": true,
+        "asns": [20857],
+        "firstCertDate": "2016-01-10T00:00:00Z"
+      },
+      "expected": "Suspicious"
+    },
+    {
+      "name": "all lookups unavailable",
+      "org": "tudelft",
+      "variant": "tudelft.online",
+      "facts": {
+        "existence": "?",
+        "inTranco": false,
+        "registrationDate": "?",
+        "registrar": "?",
+        "nameservers": "?",
+        "mx": "?",
+        "spf": "?",
+        "asns": "?",
+        "firstCertDate": "?"
+      },
+      "expected": "Insufficient data"
+    }
+  ]
+}
