@@ -114,7 +114,7 @@ function RuleList({
   const id = useId();
   return (
     <div>
-      <h3 id={id} className="mb-1 text-xs uppercase tracking-wide text-zinc-500">
+      <h3 id={id} className="mb-1 text-xs uppercase tracking-wide text-zinc-400">
         {title} ({rules.length})
       </h3>
       <ul aria-labelledby={id} className="flex flex-col gap-1">
@@ -126,7 +126,7 @@ function RuleList({
             <span>
               <span className="text-zinc-200">{RULE_LABELS[r.id]}</span>
               {pending ? (
-                <span className="animate-pulse text-zinc-500"> — still checking…</span>
+                <span className="animate-pulse text-zinc-400"> — still checking…</span>
               ) : (
                 <span className="text-zinc-400"> — {r.explanation}</span>
               )}
@@ -158,7 +158,7 @@ export function VerdictCard({ facts, done }: VerdictCardProps) {
       {final ? (
         <VerdictHeader v={final} text={summary(final, facts)} />
       ) : (
-        <p className="animate-pulse text-zinc-500">Verdict: still checking…</p>
+        <p className="animate-pulse text-zinc-400">Verdict: still checking…</p>
       )}
       {risk.length > 0 && <RuleList title="Risk signals fired" rules={risk} />}
       {legit.length > 0 && <RuleList title="Legit signals fired" rules={legit} />}
@@ -166,7 +166,7 @@ export function VerdictCard({ facts, done }: VerdictCardProps) {
       {unknown.length > 0 && <RuleList title="Couldn't check" rules={unknown} />}
       {notFired.length > 0 && (
         <details>
-          <summary className="cursor-pointer text-xs uppercase tracking-wide text-zinc-500">
+          <summary className="cursor-pointer text-xs uppercase tracking-wide text-zinc-400">
             Not fired or not applicable ({notFired.length})
           </summary>
           <RuleList title="Not fired" rules={notFired} />

@@ -9,7 +9,7 @@ import type { Lookup, LookupState } from './useLookup';
 
 const toneClass: Record<TerminalLine['tone'], string> = {
   ok: 'text-zinc-200',
-  muted: 'text-zinc-500',
+  muted: 'text-zinc-400',
   warn: 'text-amber-400',
 };
 
@@ -27,7 +27,7 @@ function ExistenceLine({ existence, done }: { existence: Fact<Existence>; done: 
       </p>
     );
   }
-  if (!done) return <p className="mt-2 animate-pulse text-zinc-500">Checking…</p>;
+  if (!done) return <p className="mt-2 animate-pulse text-zinc-400">Checking…</p>;
   return (
     <p data-existence="unknown" className="mt-2 font-semibold text-amber-400">
       Couldn&apos;t tell whether this domain exists — some lookups couldn&apos;t be checked.
@@ -53,13 +53,13 @@ function Output({ state }: { state: LookupState }) {
       const registrableUnicode = toUnicode(variant.registrableDomain);
       return (
         <>
-          <p className="text-zinc-500">
+          <p className="text-zinc-400">
             <span className="text-emerald-400">&gt; </span>lookup {registrableUnicode}
           </p>
           <dl className="grid grid-cols-[6ch_1fr] gap-x-3">
-            <dt className="text-zinc-500">unicode</dt>
+            <dt className="text-zinc-400">unicode</dt>
             <dd className="break-all text-zinc-200">{registrableUnicode}</dd>
-            <dt className="text-zinc-500">puny</dt>
+            <dt className="text-zinc-400">puny</dt>
             <dd className="break-all text-zinc-200">{variant.registrableDomain}</dd>
           </dl>
           {variant.unicode !== registrableUnicode && (
@@ -72,7 +72,7 @@ function Output({ state }: { state: LookupState }) {
           <ul aria-label="Lookup results" className="mt-1">
             {state.lines.map((line, i) => (
               <li key={i} className="grid grid-cols-[6ch_1fr] gap-x-3">
-                <span className="text-zinc-500">{line.source}</span>
+                <span className="text-zinc-400">{line.source}</span>
                 <span className={`break-all ${toneClass[line.tone]}`}>{line.text}</span>
               </li>
             ))}
@@ -108,7 +108,7 @@ export function LookupTerminal({ org, lookup, initialInput, onSubmit }: LookupTe
       aria-labelledby="lookup-terminal-heading"
       className="flex flex-col gap-3 rounded-lg border border-zinc-800 bg-black/60 p-4 font-mono text-sm"
     >
-      <h2 id="lookup-terminal-heading" className="text-xs uppercase tracking-wide text-zinc-500">
+      <h2 id="lookup-terminal-heading" className="text-xs uppercase tracking-wide text-zinc-400">
         Lookup terminal
       </h2>
       <form onSubmit={submit} className="flex items-center gap-2">
@@ -125,7 +125,7 @@ export function LookupTerminal({ org, lookup, initialInput, onSubmit }: LookupTe
           autoComplete="off"
           autoCapitalize="none"
           spellCheck={false}
-          className="min-w-0 flex-1 bg-transparent text-zinc-100 caret-emerald-400 outline-none placeholder:text-zinc-600"
+          className="min-w-0 flex-1 bg-transparent text-zinc-100 caret-emerald-400 outline-none placeholder:text-zinc-400"
         />
         <button
           type="submit"

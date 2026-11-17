@@ -3,8 +3,9 @@ import axe from 'axe-core';
 import { describe, expect, it } from 'vitest';
 import { renderRoute } from './test/render-route';
 
-// jsdom has no layout, so colour-contrast can't be computed here; contrast is checked by hand
-// (Tailwind zinc-400 or lighter on zinc-950/900 is >= 4.5:1).
+// jsdom has no layout and no Tailwind CSS, so axe's colour-contrast rule cannot run here. The
+// static check below stands in for it: on the dark theme (zinc-950/900 and bg-black/60
+// surfaces) text must be zinc-400 or lighter (zinc-400 on zinc-900 ≈ 7:1; zinc-500 ≈ 4:1 fails AA).
 async function violations() {
   const result = await axe.run(document.body, {
     rules: { 'color-contrast': { enabled: false } },
@@ -31,5 +32,24 @@ describe('accessibility (axe)', () => {
     renderRoute('/org/tu-delft');
     fireEvent.click(screen.getByRole('link', { name: /skip to content/i }));
     expect(document.activeElement).toContainElement(screen.getByRole('main'));
+  });
+});
+
+const sources = import.meta.glob<string>(['./**/*.tsx', '!./**/*.test.tsx'], {
+  eager: true,
+  query: '?raw',
+  import: 'default',
+});
+
+describe('colour contrast (static)', () => {
+  it('uses no text colour darker than zinc-400 on the dark theme', () => {
+    const lowContrast = Object.entries(sources).flatMap(([file, src]) =>
+      [
+        ...src.matchAll(
+          /(?:^|[\s"'`:])((?:placeholder:)?text-(?:zinc|gray|neutral|slate)-(?:[5-9]00|950))\b/g,
+        ),
+      ].map((m) => `${file}: ${m[1]}`),
+    );
+    expect(lowContrast).toEqual([]);
   });
 });
