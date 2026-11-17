@@ -1,5 +1,7 @@
 # 00 — Scaffold monorepo
 
+**Status:** Done (0ac027d)
+
 **Depends on:** —
 
 ## Goal
