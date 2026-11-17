@@ -1,5 +1,7 @@
 # 04 — LookupClient
 
+**Status:** Done (922ed02)
+
 **Depends on:** 00
 
 ## Goal
