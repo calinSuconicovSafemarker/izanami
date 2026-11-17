@@ -1,5 +1,7 @@
 # 06 — Lookup terminal & existence states
 
+**Status:** Done (6249e74)
+
 **Depends on:** 03, 04, 05
 
 ## Goal
