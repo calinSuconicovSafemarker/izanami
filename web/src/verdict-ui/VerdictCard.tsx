@@ -1,0 +1,248 @@
+import { useId, type ReactNode } from 'react';
+import {
+  evaluate,
+  verdict,
+  type Facts,
+  type RuleId,
+  type RuleResult,
+  type Verdict,
+  type VerdictLabel,
+} from '../rules';
+
+export interface VerdictCardProps {
+  /** Latest facts snapshot (may contain pending facts while `done` is false). */
+  facts: Facts;
+  /** Every lookup settled: the verdict is final. */
+  done: boolean;
+}
+
+const RULE_LABELS: Record<RuleId, string> = {
+  'official-match': 'Official domain',
+  'young-domain': 'Young domain',
+  'much-newer': 'Much newer than the official domain',
+  'brand-lookalike': 'Brand lookalike',
+  'not-in-tranco': 'Not a popular domain',
+  'same-nameservers': 'Same nameservers',
+  'same-registrar': 'Same registrar',
+  'same-mx': 'Same mail provider',
+  'same-asn': 'Same hosting network',
+  'no-mx': 'No mail setup',
+  'mail-ready': 'Set up to send mail',
+  'fresh-cert': 'Fresh TLS certificate',
+  'registered-not-resolving': 'Registered but not live',
+  'odd-tld': 'Unusual TLD',
+};
+
+type FactKey =
+  | 'existence'
+  | 'registrationDate'
+  | 'registrar'
+  | 'nameservers'
+  | 'mx'
+  | 'spf'
+  | 'asns'
+  | 'firstCertDate';
+
+type FactState = { state: string } | undefined;
+const factState = (facts: object, key: FactKey) => (facts as Record<string, FactState>)[key]?.state;
+
+/** Facts each rule reads (variant and/or official side); used to spot rules awaiting a lookup. */
+const RULE_INPUTS: Record<RuleId, FactKey[]> = {
+  'official-match': [],
+  'young-domain': ['existence', 'registrationDate'],
+  'much-newer': ['existence', 'registrationDate'],
+  'brand-lookalike': [],
+  'not-in-tranco': [],
+  'same-nameservers': ['nameservers'],
+  'same-registrar': ['existence', 'registrar'],
+  'same-mx': ['mx'],
+  'same-asn': ['asns'],
+  'no-mx': ['existence', 'mx', 'spf'],
+  'mail-ready': ['existence', 'mx', 'spf', 'nameservers', 'registrar', 'asns'],
+  'fresh-cert': ['firstCertDate'],
+  'registered-not-resolving': ['existence'],
+  'odd-tld': [],
+};
+
+const isPending = (r: RuleResult, { variantFacts, officialFacts }: Facts) =>
+  r.status === 'unknown' &&
+  RULE_INPUTS[r.id].some(
+    (k) => factState(variantFacts, k) === 'pending' || factState(officialFacts, k) === 'pending',
+  );
+
+/** Which lookup a fact comes from, to name failed sources. */
+const FACT_SOURCES: [FactKey, string][] = [
+  ['existence', 'DNS'],
+  ['nameservers', 'DNS'],
+  ['mx', 'DNS'],
+  ['spf', 'DNS'],
+  ['registrationDate', 'RDAP'],
+  ['registrar', 'RDAP'],
+  ['asns', 'ASN'],
+  ['firstCertDate', 'Certificate Transparency (crt.sh)'],
+];
+
+/** e.g. `DNS, RDAP and ASN for tudelft.online; RDAP for tudelft.nl`. */
+function failedSources({ variantFacts, officialFacts }: Facts): string {
+  const forDomain = (facts: object, domain: string) => {
+    const names = [
+      ...new Set(
+        FACT_SOURCES.filter(([key]) => factState(facts, key) === 'unknown').map(([, s]) => s),
+      ),
+    ];
+    return names.length ? `${joinAnd(names)} for ${domain}` : undefined;
+  };
+  return [
+    forDomain(variantFacts, variantFacts.domain),
+    forDomain(officialFacts, officialFacts.domain),
+  ]
+    .filter(Boolean)
+    .join('; ');
+}
+
+const joinAnd = (xs: string[]) =>
+  xs.length <= 1 ? (xs[0] ?? '') : `${xs.slice(0, -1).join(', ')} and ${xs[xs.length - 1]}`;
+
+const VERDICT_STYLE: Record<VerdictLabel, { icon: string; className: string }> = {
+  Official: { icon: '✓', className: 'border-emerald-500/60 text-emerald-400' },
+  'Likely legit': { icon: '✓', className: 'border-emerald-500/60 text-emerald-400' },
+  Suspicious: { icon: '!', className: 'border-amber-500/60 text-amber-400' },
+  'Likely fraud': { icon: '✕', className: 'border-red-500/60 text-red-400' },
+  'Insufficient data': { icon: '?', className: 'border-zinc-600 text-zinc-300' },
+};
+
+function summary(v: Verdict, facts: Facts): string {
+  const { variantFacts: vf, officialFacts: of } = facts;
+  switch (v.verdict) {
+    case 'Official':
+      return `${vf.unicode} is a known official domain of ${vf.orgName}.`;
+    case 'Likely legit':
+      return `Legit signals outweigh risk signals: ${vf.unicode} looks like a legitimate or defensive registration, often by ${vf.orgName} itself.`;
+    case 'Suspicious':
+      return `Some risk signals fired and too little ties ${vf.unicode} to ${of.domain}: treat it with care.`;
+    case 'Likely fraud':
+      return `Strong risk signals and nothing tying ${vf.unicode} to ${of.domain}: do not trust it.`;
+    case 'Insufficient data':
+      return `Too much couldn't be checked to give a verdict — unavailable: ${failedSources(facts) || 'several lookups'}.`;
+  }
+}
+
+function VerdictHeader({ v, text }: { v: Verdict; text: string }) {
+  const style = VERDICT_STYLE[v.verdict];
+  return (
+    <div className={`flex flex-col gap-1 border-l-4 pl-3 ${style.className}`}>
+      <p className="flex items-center gap-2 text-base font-semibold">
+        <span
+          aria-hidden="true"
+          className="inline-flex size-6 items-center justify-center rounded-full border border-current text-sm"
+        >
+          {style.icon}
+        </span>
+        {v.verdict}
+        {v.verdict !== 'Official' && (
+          <span className="ml-auto text-sm font-normal tabular-nums text-zinc-400">
+            Score {formatWeight(v.score)}
+          </span>
+        )}
+      </p>
+      <p className="text-zinc-300">{text}</p>
+    </div>
+  );
+}
+
+/** `+40`, `−25` (true minus sign), `0`. */
+const formatWeight = (w: number) => (w > 0 ? `+${w}` : w < 0 ? `−${-w}` : '0');
+
+function RuleList({
+  title,
+  rules,
+  pending = false,
+}: {
+  title: string;
+  rules: RuleResult[];
+  pending?: boolean;
+}) {
+  const id = useId();
+  return (
+    <div>
+      <h3 id={id} className="mb-1 text-xs uppercase tracking-wide text-zinc-500">
+        {title} ({rules.length})
+      </h3>
+      <ul aria-labelledby={id} className="flex flex-col gap-1">
+        {rules.map((r) => (
+          <li key={r.id} className="grid grid-cols-[5ch_1fr] gap-x-3">
+            <span className="text-right tabular-nums text-zinc-400">{formatWeight(r.weight)}</span>
+            <span>
+              <span className="text-zinc-200">{RULE_LABELS[r.id]}</span>
+              {pending ? (
+                <span className="animate-pulse text-zinc-500"> — still checking…</span>
+              ) : (
+                <span className="text-zinc-400"> — {r.explanation}</span>
+              )}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+/** Verdict and every rule's outcome for one lookup. */
+export function VerdictCard({ facts, done }: VerdictCardProps) {
+  const results = evaluate(facts);
+  const final = done ? verdict(results) : undefined;
+  const risk = results.filter((r) => r.status === 'fired' && r.weight > 0);
+  const legit = results.filter((r) => r.status === 'fired' && r.weight < 0);
+  const checking = results.filter((r) => !done && isPending(r, facts));
+  const unknown = results.filter((r) => r.status === 'unknown' && !checking.includes(r));
+  const notFired = results.filter(
+    (r) => r.status === 'not-fired' || (r.status === 'fired' && r.weight === 0),
+  );
+
+  return (
+    <CardFrame announcement={final && `Verdict: ${final.verdict}`}>
+      {final ? (
+        <VerdictHeader v={final} text={summary(final, facts)} />
+      ) : (
+        <p className="animate-pulse text-zinc-500">Verdict: still checking…</p>
+      )}
+      {risk.length > 0 && <RuleList title="Risk signals fired" rules={risk} />}
+      {legit.length > 0 && <RuleList title="Legit signals fired" rules={legit} />}
+      {checking.length > 0 && <RuleList title="Still checking" rules={checking} pending />}
+      {unknown.length > 0 && <RuleList title="Couldn't check" rules={unknown} />}
+      {notFired.length > 0 && (
+        <details>
+          <summary className="cursor-pointer text-xs uppercase tracking-wide text-zinc-500">
+            Not fired ({notFired.length})
+          </summary>
+          <RuleList title="Not fired" rules={notFired} />
+        </details>
+      )}
+    </CardFrame>
+  );
+}
+
+/** For a known official domain: no lookups or scoring, just the verdict. */
+export function OfficialVerdictCard({ domain, orgName }: { domain: string; orgName: string }) {
+  const v: Verdict = { verdict: 'Official', score: 0, unknownShare: 0 };
+  return (
+    <CardFrame announcement="Verdict: Official">
+      <VerdictHeader v={v} text={`${domain} is a known official domain of ${orgName}.`} />
+    </CardFrame>
+  );
+}
+
+/** The card's region; `announcement` goes to a polite live region for screen readers. */
+function CardFrame({ announcement, children }: { announcement?: string; children: ReactNode }) {
+  return (
+    <section
+      aria-label="Verdict"
+      className="flex flex-col gap-3 rounded-lg border border-zinc-800 bg-black/60 p-4 font-mono text-sm"
+    >
+      <p role="status" aria-live="polite" className="sr-only">
+        {announcement}
+      </p>
+      {children}
+    </section>
+  );
+}

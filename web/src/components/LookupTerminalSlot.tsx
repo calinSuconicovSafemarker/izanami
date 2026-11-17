@@ -2,12 +2,13 @@ import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import type { Org } from '../orgs';
 import { LookupTerminal } from '../lookup-ui/LookupTerminal';
-import { useLookup } from '../lookup-ui/useLookup';
+import { useLookup, type LookupState } from '../lookup-ui/useLookup';
+import { OfficialVerdictCard, VerdictCard } from '../verdict-ui';
 
 /**
  * The org page's lookup area. Owns the lookup state (`useLookup`) and syncs it with the
  * `?d=<variant>` deep link: the URL is the source of truth, so opening a link auto-runs
- * and submitting updates the URL. Ticket 08 renders its verdict card here from `lookup.state`.
+ * and submitting updates the URL. The verdict card renders below the terminal from `lookup.state`.
  */
 export function LookupTerminalSlot({ org }: { org: Org }) {
   const lookup = useLookup(org);
@@ -26,6 +27,25 @@ export function LookupTerminalSlot({ org }: { org: Org }) {
 
   // Keyed on the deep link so a changed `?d=` re-prefills the input.
   return (
-    <LookupTerminal key={d ?? ''} org={org} lookup={lookup} initialInput={d} onSubmit={submit} />
+    <div className="flex flex-col gap-4">
+      <LookupTerminal key={d ?? ''} org={org} lookup={lookup} initialInput={d} onSubmit={submit} />
+      <Verdict state={lookup.state} orgName={org.name} />
+    </div>
   );
+}
+
+function Verdict({ state, orgName }: { state: LookupState; orgName: string }) {
+  switch (state.phase) {
+    case 'official':
+      return <OfficialVerdictCard domain={state.variant.unicode} orgName={orgName} />;
+    case 'running':
+    case 'done': {
+      // An unregistered variant gets the terminal's "no active threat" line instead of a verdict.
+      const { existence } = state;
+      if (existence.state === 'known' && existence.value === 'not-registered') return null;
+      return <VerdictCard facts={state.facts} done={state.phase === 'done'} />;
+    }
+    default:
+      return null;
+  }
 }

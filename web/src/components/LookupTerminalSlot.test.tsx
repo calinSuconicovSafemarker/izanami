@@ -118,3 +118,30 @@ describe('lookup terminal', () => {
     expect(await within(output()).findByText(/not a valid domain/)).toBeInTheDocument();
   });
 });
+
+describe('verdict card', () => {
+  const verdictCard = () => screen.queryByRole('region', { name: /^verdict$/i });
+
+  it('announces the final verdict once every lookup settles', async () => {
+    renderRoute('/org/tu-delft?d=google.com');
+    const status = within((await screen.findByRole('region', { name: /^verdict$/i }))!).getByRole(
+      'status',
+    );
+    expect(await within(status).findByText(/^Verdict: /)).toBeInTheDocument();
+    // google.com has no crt.sh recording: the CT check is listed as couldn't-check.
+    const unknown = within(verdictCard()!).getByRole('list', { name: /couldn.t check/i });
+    expect(unknown).toHaveTextContent('Certificate Transparency history (crt.sh) unavailable.');
+  });
+
+  it('shows no verdict for an unregistered variant', async () => {
+    renderRoute('/org/tu-delft?d=tudelft-lookalike-xq7z.nl');
+    expect(await within(output()).findByText(/^Not registered/)).toBeInTheDocument();
+    expect(verdictCard()).not.toBeInTheDocument();
+  });
+
+  it('shows Official for a known official domain', async () => {
+    renderRoute('/org/tu-delft?d=tudelft.nl', new FixtureLookupClient([]));
+    const card = await screen.findByRole('region', { name: /^verdict$/i });
+    expect(within(card).getByRole('status')).toHaveTextContent('Verdict: Official');
+  });
+});
