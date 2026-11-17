@@ -76,7 +76,7 @@ Outputs committed to `web/src/data/`:
 
 - `orgs.json` — ~500 orgs: `{ slug, name, wikidataId, country, primaryDomain, officialDomains[], wikidataDomain, trancoRank, confirmedAt }`. Generated from Wikidata entities with P856 whose registrable domain is in Tranco top ~10k; top 500 by rank. An org is included only when **both** sources agree ([ADR-0002](adr/0002-build-time-resolution.md)).
 - `extras.json` (hand-curated input, e.g. TU Delft `Q752663`) — exempt from the Tranco check, each entry must cite a source.
-- `tranco-top100k` — compact set (sorted hash array or Bloom filter).
+- `tranco-top100k` — compact set: sorted 32-bit FNV-1a hashes, Golomb-Rice coded (~207 KB gzipped). No false negatives; false-positive rate ≈ n/2³² ≈ 2.3e-5.
 - `confusables.json` — Latin/Cyrillic/Greek subset of Unicode `confusables.txt`.
 - `rdap-hosts.json` — RDAP server hosts from the IANA bootstrap, used for the CSP `connect-src` allowlist.
 - `data-diff.md` — human-reviewed report of official domains that changed since the last build.

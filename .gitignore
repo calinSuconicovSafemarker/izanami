@@ -13,3 +13,5 @@ infra/cdk.out/
 .DS_Store
 Thumbs.db
 *.log
+# Build-data download cache
+scripts/.cache/
