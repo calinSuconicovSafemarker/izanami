@@ -1,6 +1,14 @@
 // Pure rule functions (ADR-0003). No network, DOM or clock access: ages are
 // measured from `variant.checkedAt`.
-import type { Fact, OfficialFacts, Rule, RuleId, RuleResult, VariantFacts } from './types';
+import type {
+  Fact,
+  LookupFact,
+  OfficialFacts,
+  Rule,
+  RuleId,
+  RuleResult,
+  VariantFacts,
+} from './types';
 import { isNotRegistered as notRegistered } from './types';
 import { getDomain } from 'tldts';
 import { ABUSE_HEAVY_TLDS, AGES, BRAND_REGISTRARS, COMMON_GTLDS, WEIGHTS } from './weights';
@@ -436,4 +444,25 @@ export const RULES: Record<RuleId, Rule> = {
   'fresh-cert': freshCert,
   'registered-not-resolving': registeredNotResolving,
   'odd-tld': oddTld,
+};
+
+/**
+ * Looked-up facts each rule reads (on the variant and/or the official side), so callers can tell
+ * a rule that is still waiting for a lookup from one whose lookup failed.
+ */
+export const RULE_INPUTS: Record<RuleId, readonly LookupFact[]> = {
+  'official-match': [],
+  'young-domain': ['existence', 'registrationDate'],
+  'much-newer': ['existence', 'registrationDate'],
+  'brand-lookalike': [],
+  'not-in-tranco': [],
+  'same-nameservers': ['nameservers'],
+  'same-registrar': ['existence', 'registrar'],
+  'same-mx': ['mx'],
+  'same-asn': ['asns'],
+  'no-mx': ['existence', 'mx', 'spf', 'nameservers', 'registrar'],
+  'mail-ready': ['existence', 'mx', 'spf', 'nameservers', 'registrar', 'asns'],
+  'fresh-cert': ['firstCertDate'],
+  'registered-not-resolving': ['existence'],
+  'odd-tld': [],
 };

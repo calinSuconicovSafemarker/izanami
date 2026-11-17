@@ -1,6 +1,8 @@
 import { useId, type ReactNode } from 'react';
 import {
   evaluate,
+  isAwaitingLookup,
+  unknownSources,
   verdict,
   type Facts,
   type RuleId,
@@ -33,63 +35,10 @@ const RULE_LABELS: Record<RuleId, string> = {
   'odd-tld': 'Unusual TLD',
 };
 
-type FactKey =
-  | 'existence'
-  | 'registrationDate'
-  | 'registrar'
-  | 'nameservers'
-  | 'mx'
-  | 'spf'
-  | 'asns'
-  | 'firstCertDate';
-
-type FactState = { state: string } | undefined;
-const factState = (facts: object, key: FactKey) => (facts as Record<string, FactState>)[key]?.state;
-
-/** Facts each rule reads (variant and/or official side); used to spot rules awaiting a lookup. */
-const RULE_INPUTS: Record<RuleId, FactKey[]> = {
-  'official-match': [],
-  'young-domain': ['existence', 'registrationDate'],
-  'much-newer': ['existence', 'registrationDate'],
-  'brand-lookalike': [],
-  'not-in-tranco': [],
-  'same-nameservers': ['nameservers'],
-  'same-registrar': ['existence', 'registrar'],
-  'same-mx': ['mx'],
-  'same-asn': ['asns'],
-  'no-mx': ['existence', 'mx', 'spf'],
-  'mail-ready': ['existence', 'mx', 'spf', 'nameservers', 'registrar', 'asns'],
-  'fresh-cert': ['firstCertDate'],
-  'registered-not-resolving': ['existence'],
-  'odd-tld': [],
-};
-
-const isPending = (r: RuleResult, { variantFacts, officialFacts }: Facts) =>
-  r.status === 'unknown' &&
-  RULE_INPUTS[r.id].some(
-    (k) => factState(variantFacts, k) === 'pending' || factState(officialFacts, k) === 'pending',
-  );
-
-/** Which lookup a fact comes from, to name failed sources. */
-const FACT_SOURCES: [FactKey, string][] = [
-  ['existence', 'DNS'],
-  ['nameservers', 'DNS'],
-  ['mx', 'DNS'],
-  ['spf', 'DNS'],
-  ['registrationDate', 'RDAP'],
-  ['registrar', 'RDAP'],
-  ['asns', 'ASN'],
-  ['firstCertDate', 'Certificate Transparency (crt.sh)'],
-];
-
 /** e.g. `DNS, RDAP and ASN for tudelft.online; RDAP for tudelft.nl`. */
 function failedSources({ variantFacts, officialFacts }: Facts): string {
-  const forDomain = (facts: object, domain: string) => {
-    const names = [
-      ...new Set(
-        FACT_SOURCES.filter(([key]) => factState(facts, key) === 'unknown').map(([, s]) => s),
-      ),
-    ];
+  const forDomain = (facts: Parameters<typeof unknownSources>[0], domain: string) => {
+    const names = unknownSources(facts);
     return names.length ? `${joinAnd(names)} for ${domain}` : undefined;
   };
   return [
@@ -195,7 +144,7 @@ export function VerdictCard({ facts, done }: VerdictCardProps) {
   const final = done ? verdict(results) : undefined;
   const risk = results.filter((r) => r.status === 'fired' && r.weight > 0);
   const legit = results.filter((r) => r.status === 'fired' && r.weight < 0);
-  const checking = results.filter((r) => !done && isPending(r, facts));
+  const checking = results.filter((r) => !done && isAwaitingLookup(r, facts));
   const unknown = results.filter((r) => r.status === 'unknown' && !checking.includes(r));
   const notFired = results.filter(
     (r) =>

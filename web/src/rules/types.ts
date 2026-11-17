@@ -68,6 +68,11 @@ export interface VariantFacts extends InfraFacts {
 
 export type OfficialFacts = InfraFacts;
 
+/** Variant facts that come from a lookup (and can therefore be pending or unknown). */
+export type LookupFact = {
+  [K in keyof VariantFacts]: VariantFacts[K] extends Fact<unknown> ? K : never;
+}[keyof VariantFacts];
+
 export interface Facts {
   variantFacts: VariantFacts;
   officialFacts: OfficialFacts;
