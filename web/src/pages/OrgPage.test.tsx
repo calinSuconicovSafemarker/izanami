@@ -36,6 +36,13 @@ describe('organisation page', () => {
     expect(evidence).toHaveTextContent('Tranco rank 5,404 — heavily used');
   });
 
+  it('carries the disclaimer in the page content', () => {
+    renderRoute('/org/tu-delft');
+    expect(screen.getByRole('main')).toHaveTextContent(
+      'Heuristic, not a guarantee. Passive public lookups only.',
+    );
+  });
+
   it('never claims proof of ownership', () => {
     renderRoute('/org/tu-delft');
     expect(document.body).not.toHaveTextContent(/proven|verified owner/i);
