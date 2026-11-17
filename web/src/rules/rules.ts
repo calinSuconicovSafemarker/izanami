@@ -295,7 +295,11 @@ function existenceUnknown(id: RuleId, w: number, v: VariantFacts): RuleResult | 
   return undefined;
 }
 
-const noMx: Rule = (v) => {
+/**
+ * A parked defensive registration (sharing nameservers or registrar with the official domain)
+ * is expected to have no mail, so `no-mx` does not fire for it (ADR-0003 amendment).
+ */
+const noMx: Rule = (v, o) => {
   const id = 'no-mx';
   const w = WEIGHTS.noMx;
   const early = existenceUnknown(id, w, v);
@@ -304,6 +308,24 @@ const noMx: Rule = (v) => {
   const spf = value(v.spf);
   if (mx?.length) return result(id, 'not-fired', w, `${v.domain} has MX: ${list(mx)}.`);
   if (spf === true) return result(id, 'not-fired', w, `${v.domain} publishes an SPF record.`);
+  if (nameserverOverlap(v, o).state === 'shared') {
+    const why = `shares nameservers with ${o.domain}`;
+    return result(
+      id,
+      'not-fired',
+      w,
+      `${v.domain} ${why}: no mail is expected on a parked domain.`,
+    );
+  }
+  if (registrarOverlap(v, o).state === 'shared') {
+    const why = `shares the registrar of ${o.domain}`;
+    return result(
+      id,
+      'not-fired',
+      w,
+      `${v.domain} ${why}: no mail is expected on a parked domain.`,
+    );
+  }
   if (!mx || spf === undefined) {
     return result(id, 'unknown', w, `MX or SPF lookup for ${v.domain} unavailable.`);
   }

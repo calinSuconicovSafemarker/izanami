@@ -14,12 +14,13 @@ describe('VerdictCard', () => {
   });
 });
 
-const byName = (name: string) => cases.cases.find((c) => c.name === name)!;
+const byName = (name: string) => cases.cases.find((c) => c.name.startsWith(name))!;
+const DEFENSIVE = 'defensive registration sharing nameservers and hosting';
 const group = (name: RegExp) => within(card()).getByRole('list', { name });
 
 describe('VerdictCard while lookups are in flight', () => {
   it('lists rules awaiting slow sources as still checking, and announces no verdict yet', () => {
-    const facts = caseFacts(byName('defensive registration sharing NS, registrar, MX and ASN'));
+    const facts = caseFacts(byName(DEFENSIVE));
     facts.variantFacts = { ...facts.variantFacts, firstCertDate: PENDING, asns: PENDING };
     render(<VerdictCard facts={facts} done={false} />);
     const checking = group(/still checking/i);
@@ -34,14 +35,9 @@ describe('VerdictCard while lookups are in flight', () => {
 
 describe('VerdictCard header', () => {
   it('shows the total score and a one-sentence summary', () => {
-    render(
-      <VerdictCard
-        facts={caseFacts(byName('defensive registration sharing NS, registrar, MX and ASN'))}
-        done
-      />,
-    );
-    // +25 tld-swap +10 tranco +15 much-newer −40 NS −25 registrar −15 MX −15 ASN
-    expect(card()).toHaveTextContent('Score −45');
+    render(<VerdictCard facts={caseFacts(byName(DEFENSIVE))} done />);
+    // +25 tld-swap +10 tranco +15 much-newer −40 NS −15 ASN (no-mx suppressed by shared NS)
+    expect(card()).toHaveTextContent('Score −5');
     expect(within(card()).getByText(/legit signals outweigh/i)).toBeInTheDocument();
   });
 
@@ -56,12 +52,7 @@ describe('VerdictCard header', () => {
 
 describe('VerdictCard rule groups', () => {
   it('splits fired rules into risk and legit signals, each with weight and explanation', () => {
-    render(
-      <VerdictCard
-        facts={caseFacts(byName('defensive registration sharing NS, registrar, MX and ASN'))}
-        done
-      />,
-    );
+    render(<VerdictCard facts={caseFacts(byName(DEFENSIVE))} done />);
     const legit = group(/legit signals fired/i);
     expect(legit).toHaveTextContent('−40');
     expect(legit).toHaveTextContent('tudelft.com shares nameservers with tudelft.nl');

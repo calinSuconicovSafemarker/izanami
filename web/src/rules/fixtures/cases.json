@@ -12,7 +12,13 @@
       "facts": {
         "registrationDate": "1987-03-17T00:00:00Z",
         "registrar": "SURF B.V.",
-        "nameservers": ["ns1.surfnet.nl", "ns2.surfnet.nl", "ns1.zurich.surf.net"],
+        "nameservers": [
+          "ns1.surfnet.nl",
+          "ns2.surfnet.nl",
+          "ns1.tudelft.nl",
+          "ns2.tudelft.nl",
+          "ns1.zurich.surf.net"
+        ],
         "mx": ["tudelft-nl.mail.protection.outlook.com"],
         "asns": [1128]
       }
@@ -52,19 +58,19 @@
       "expected": "Official"
     },
     {
-      "name": "defensive registration sharing NS, registrar, MX and ASN",
+      "name": "defensive registration sharing nameservers and hosting, no mail (live tudelft.com, 2026-11)",
       "org": "tudelft",
       "variant": "tudelft.com",
       "facts": {
         "existence": "resolving",
         "inTranco": false,
-        "registrationDate": "1999-02-11T00:00:00Z",
-        "registrar": "SURF B.V.",
-        "nameservers": ["ns1.surfnet.nl", "ns2.surfnet.nl"],
-        "mx": ["tudelft-nl.mail.protection.outlook.com"],
-        "spf": true,
+        "registrationDate": "2001-07-01T10:48:54Z",
+        "registrar": "Hosting Concepts B.V. d/b/a Registrar.eu",
+        "nameservers": ["ns1.tudelft.nl", "ns2.tudelft.nl"],
+        "mx": [],
+        "spf": false,
         "asns": [1128],
-        "firstCertDate": "2012-05-02T00:00:00Z"
+        "firstCertDate": "2024-09-13T00:00:00Z"
       },
       "expected": "Likely legit"
     },

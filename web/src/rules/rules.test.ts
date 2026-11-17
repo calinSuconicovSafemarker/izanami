@@ -300,6 +300,23 @@ table('no-mx', [
   { name: 'MX unknown', variant: { mx: UNKNOWN, spf: known(false) }, status: 'unknown' },
   { name: 'SPF unknown', variant: { mx: known([]), spf: UNKNOWN }, status: 'unknown' },
   { name: 'existence unknown', variant: { existence: UNKNOWN }, status: 'unknown' },
+  {
+    name: 'no MX/SPF but shares nameservers (parked defensive registration)',
+    variant: { mx: known([]), spf: known(false), nameservers: known(['ns1.surfnet.nl']) },
+    status: 'not-fired',
+    says: ['shares nameservers', 'tudelft.nl'],
+  },
+  {
+    name: 'no MX/SPF but same registrar',
+    variant: { mx: known([]), spf: known(false), registrar: known('SURF BV') },
+    status: 'not-fired',
+    says: ['shares the registrar'],
+  },
+  {
+    name: 'MX unknown but shares nameservers',
+    variant: { mx: UNKNOWN, spf: known(false), nameservers: known(['ns1.surfnet.nl']) },
+    status: 'not-fired',
+  },
 ]);
 
 table('mail-ready', [

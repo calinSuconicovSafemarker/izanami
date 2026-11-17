@@ -41,8 +41,8 @@ All network access goes through one `LookupClient` interface so rules and UI are
 | State | Condition | Wording |
 |---|---|---|
 | **Not registered** | DoH NXDOMAIN **and** RDAP 404 | "Not registered — no active threat right now." |
-| **Registered, not resolving** | RDAP finds it, DNS has no usable records | "Registered but not live yet — worth watching." (scored, see `registered-not-resolving`) |
-| **Resolving** | DNS answers | Full details + scoring |
+| **Registered, not resolving** | RDAP finds it, DNS has no usable records (A, AAAA or MX; NS-only delegation does not count) | "Registered but not live yet — worth watching." (scored, see `registered-not-resolving`) |
+| **Resolving** | DNS answers with A, AAAA or MX | Full details + scoring |
 
 ## Rules engine
 
@@ -60,7 +60,7 @@ Each rule is a pure function `(variant: VariantFacts, official: OfficialFacts) �
 | `same-registrar` | same registrar as official (brand registrars like MarkMonitor/CSC weigh extra) | −25 |
 | `same-mx` | shares MX provider with official | −15 |
 | `same-asn` | shares hosting ASN with official | −15 |
-| `no-mx` | resolves but no MX and no SPF | +10 |
+| `no-mx` | resolves but no MX and no SPF — not when it shares nameservers or registrar with official (parked defensive registration) | +10 |
 | `mail-ready` | has MX + SPF but no shared infra | +15 |
 | `fresh-cert` | first CT cert < 30 days ago (optional) | +20 |
 | `registered-not-resolving` | watch state | +20 |
