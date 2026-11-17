@@ -1,5 +1,7 @@
 # 01 — Org list generator
 
+**Status:** Done (9a158f6)
+
 **Depends on:** 00
 
 ## Goal
