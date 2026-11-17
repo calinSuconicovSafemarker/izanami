@@ -1,5 +1,7 @@
 # 03 — Domain parsing & similarity
 
+**Status:** Done (9704260)
+
 **Depends on:** 00, 02 (confusables data)
 
 ## Goal
