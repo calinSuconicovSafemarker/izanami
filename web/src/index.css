@@ -1,0 +1,14 @@
+@import 'tailwindcss';
+
+/* Dark by default (SPEC: UI). The `dark` class on <html> drives the dark: variant. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply min-h-screen bg-zinc-950 font-sans text-zinc-100 antialiased;
+  }
+}
