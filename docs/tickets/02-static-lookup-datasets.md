@@ -1,5 +1,7 @@
 # 02 — Static lookup datasets
 
+**Status:** Done (3351eab)
+
 **Depends on:** 00
 
 ## Goal
