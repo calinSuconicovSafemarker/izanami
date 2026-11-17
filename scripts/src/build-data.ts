@@ -1,8 +1,9 @@
 import { pathToFileURL } from 'node:url';
+import { buildOrgs } from './orgs';
 
-/** Build-time data generator. Filled in by tickets 01 and 02. */
+/** Build-time data generator. Each ticket adds one step. */
 export async function buildData(): Promise<void> {
-  // Intentionally empty for the scaffold.
+  await buildOrgs();
 }
 
 const isEntryPoint = process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href;

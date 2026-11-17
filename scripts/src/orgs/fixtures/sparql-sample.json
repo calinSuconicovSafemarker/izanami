@@ -1,0 +1,137 @@
+{
+  "head": {
+    "vars": ["item", "label", "mulLabel", "site", "sitelinks", "iso", "hqIso"]
+  },
+  "results": {
+    "bindings": [
+      {
+        "item": {
+          "type": "uri",
+          "value": "http://www.wikidata.org/entity/Q752663"
+        },
+        "label": {
+          "xml:lang": "en",
+          "type": "literal",
+          "value": "Delft University of Technology"
+        },
+        "site": {
+          "type": "uri",
+          "value": "https://www.tudelft.nl/"
+        },
+        "sitelinks": {
+          "datatype": "http://www.w3.org/2001/XMLSchema#integer",
+          "type": "literal",
+          "value": "70"
+        },
+        "iso": {
+          "type": "literal",
+          "value": "NL"
+        }
+      },
+      {
+        "item": {
+          "type": "uri",
+          "value": "http://www.wikidata.org/entity/Q752663"
+        },
+        "label": {
+          "xml:lang": "en",
+          "type": "literal",
+          "value": "Delft University of Technology"
+        },
+        "site": {
+          "type": "uri",
+          "value": "https://www.tudelft.nl/en/"
+        },
+        "sitelinks": {
+          "datatype": "http://www.w3.org/2001/XMLSchema#integer",
+          "type": "literal",
+          "value": "70"
+        },
+        "iso": {
+          "type": "literal",
+          "value": "NL"
+        }
+      },
+      {
+        "item": {
+          "type": "uri",
+          "value": "http://www.wikidata.org/entity/Q95"
+        },
+        "label": {
+          "xml:lang": "en",
+          "type": "literal",
+          "value": "Google"
+        },
+        "site": {
+          "type": "uri",
+          "value": "https://www.google.com/"
+        },
+        "sitelinks": {
+          "datatype": "http://www.w3.org/2001/XMLSchema#integer",
+          "type": "literal",
+          "value": "150"
+        },
+        "iso": {
+          "type": "literal",
+          "value": "US"
+        }
+      },
+      {
+        "item": {
+          "type": "uri",
+          "value": "http://www.wikidata.org/entity/Q12345"
+        },
+        "site": {
+          "type": "uri",
+          "value": "https://unlabelled.example/"
+        }
+      },
+      {
+        "item": {
+          "type": "uri",
+          "value": "http://www.wikidata.org/entity/Q209330"
+        },
+        "mulLabel": {
+          "xml:lang": "mul",
+          "type": "literal",
+          "value": "Instagram"
+        },
+        "site": {
+          "type": "uri",
+          "value": "https://www.instagram.com/"
+        },
+        "sitelinks": {
+          "type": "literal",
+          "value": "168"
+        },
+        "hqIso": {
+          "type": "literal",
+          "value": "US"
+        }
+      },
+      {
+        "item": {
+          "type": "uri",
+          "value": "http://www.wikidata.org/entity/Q209330"
+        },
+        "mulLabel": {
+          "xml:lang": "mul",
+          "type": "literal",
+          "value": "Instagram"
+        },
+        "site": {
+          "type": "uri",
+          "value": "https://www.instagram.com/"
+        },
+        "sitelinks": {
+          "type": "literal",
+          "value": "168"
+        },
+        "hqIso": {
+          "type": "literal",
+          "value": "IE"
+        }
+      }
+    ]
+  }
+}

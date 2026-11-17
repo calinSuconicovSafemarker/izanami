@@ -1,0 +1,507 @@
+# Data diff
+
+Review before committing (ADR-0002).
+
+## Added (501)
+
+- Google Search (Q9366): google.be, google.ca, google.ch, google.co.in, google.co.jp, google.co.uk, google.com, google.com.bd, google.com.tr, google.es, google.fr, google.gl, google.ie, google.it, google.nl
+- Cloudflare (Q4778915): cloudflare.com
+- Facebook (Q355): facebook.com
+- Microsoft (Q2283): microsoft.com
+- YouTube (Q866): youtube.com
+- Apple Inc. (Q312): apple.com, apple.com.cn
+- Instagram (Q209330): instagram.com
+- Snowflake ID (Q104889222): twitter.com
+- LinkedIn (Q213660): linkedin.com
+- Mail.ru (Q42232): mail.ru, xn--i1aeb2e.xn--p1ai
+- Amazon (Q3884): amazon.com
+- Microsoft Office (Q11255): office.com
+- Windows Live (Q841814): live.com
+- GitHub (Q364): github.com
+- Dzen (Q29223522): dzen.ru
+- Wikipedia (Q52): wikipedia.org
+- Netflix (Q907311): netflix.com
+- Microsoft Bing (Q182496): bing.com
+- X (Q918): x.com
+- Pinterest (Q255381): pinterest.com
+- iCloud (Q283469): icloud.com
+- Adobe (Q11463): adobe.com
+- TikTok (Q48938223): tiktok.com
+- WhatsApp (Q1049511): whatsapp.com
+- Gandi (Q3095097): gandi.net
+- WordPress (Q13166): wordpress.org
+- Skype (Q40984): skype.com
+- Yahoo (Q37093): yahoo.com
+- DigiCert (Q3027764): digicert.com
+- Spotify (Q689141): spotify.com
+- Epic Games (Q739711): epicgames.com
+- Opera (Q41242): opera.com
+- Roblox (Q692989): roblox.com
+- Vimeo (Q156376): vimeo.com
+- Network Time Protocol (Q217491): ntp.org
+- Baidu (Q14772): baidu.com
+- QQ.com (Q15912288): qq.com
+- Mozilla Corporation (Q169925): mozilla.org
+- nginx (Q306144): nginx.org
+- T-Online (Q590940): t-online.de
+- MSN (Q192845): msn.com
+- Intuit (Q1318848): intuit.com
+- WordPress.com (Q2001888): wordpress.com
+- F5, Inc. (Q3029296): f5.com
+- Ubiquiti (Q7876533): ui.com
+- Reddit (Q1136): reddit.com
+- Europa (Q2717314): europa.eu
+- ChatGPT (Q115564437): chatgpt.com
+- Samsung Group (Q20716): samsung.com
+- Webex by Cisco (Q498944): webex.com
+- OpenAI (Q21708200): openai.com
+- United States National Institutes of Health (Q390551): nih.gov
+- Dropbox (Q142539): dropbox.com
+- Android (Q94): android.com
+- Microsoft Windows (Q1406): windows.com
+- Microsoft Web Services (Q6840254): outlook.com
+- Apache Software Foundation (Q489709): apache.org
+- Internet Archive (Q461): archive.org
+- Discord (Q22907849): discord.com, discord.gg, discord.new
+- Tumblr (Q384060): tumblr.com
+- Crashlytics (Q28446474): crashlytics.com
+- The New York Times (Q9684): nytimes.com
+- Snapchat (Q333618): snapchat.com
+- Ubuntu (Q381): ubuntu.com
+- Telegram (Q15616276): telegram.org
+- Gravatar (Q1187349): gravatar.com
+- Shopify (Q7501150): shopify.com
+- VK (Q116933): vk.ru
+- GoDaddy (Q1416215): godaddy.com
+- PayPal (Q483959): paypal.com
+- Reg.ru (Q4047834): reg.ru, xn--c1ad6a.xn--p1ai
+- Creative Commons (Q43449): creativecommons.org
+- Flickr (Q103204): flickr.com
+- World Wide Web Consortium (Q37033): w3.org
+- Forter (Q20988642): forter.com
+- example.com (Q306656): example.com
+- CNN (Q48340): cnn.com
+- Google Trust Services (Q140459892): pki.goog
+- Kaspersky Lab (Q489943): kaspersky.com
+- Macromedia (Q234946): macromedia.com
+- eBay (Q58024): ebay.com
+- Brave (Q22906900): brave.com
+- SoundCloud (Q568769): soundcloud.com
+- The Guardian (Q11148): theguardian.com
+- International DOI Foundation (Q11713409): doi.org
+- Medium (Q16186120): medium.com
+- hCaptcha (Q90832975): hcaptcha.com
+- Roku (Q15995436): roku.com
+- Stripe (Q7624104): stripe.com
+- Mobile TeleSystems (Q1368919): mts.ru
+- Wikimedia movement (Q3568028): wikimedia.org
+- Oracle Corporation (Q19900): oracle.com
+- British Broadcasting Corporation (Q9531): bbc.co.uk, bbc.com
+- Criteo (Q2814507): criteo.com
+- The Weather Channel (Q2043935): weather.com
+- Forbes (Q25161472): forbes.com
+- Namecheap (Q6544704): namecheap.com
+- Amplitude (Q81969219): amplitude.com
+- ScienceDirect (Q2571518): sciencedirect.com
+- Twitch (Q4555537): twitch.tv
+- Xiaomi Mi 1 (Q869349): xiaomi.com
+- National Institute of Standards and Technology (Q176691): nist.gov
+- Massachusetts Institute of Technology (Q49108): mit.edu
+- ResearchGate (Q754454): researchgate.net
+- London Sounds Eastern (Q6670790): bbc.co.uk
+- Cisco (Q173395): cisco.com
+- AppLovin (Q27150212): applovin.com
+- DNS Made Easy (Q27043898): dnsmadeeasy.com
+- SourceForge (Q165400): sourceforge.net
+- Salesforce (Q941127): salesforce.com
+- Aruba Networks (Q2866017): arubanetworks.com
+- cPanel (Q283637): cpanel.net
+- HubSpot (Q5926631): hubspot.com
+- IMDb (Q37312): imdb.com
+- Linktree (Q96177589): linktr.ee
+- World Health Organization (Q7817): who.int
+- Datadog (Q16248637): datadoghq.com
+- launchdarkly-server-sdk (Q107385185): launchdarkly.com
+- Slack (Q17130715): slack.com
+- IBM (Q37156): ibm.com
+- Hewlett-Packard (Q80978): hp.com
+- Reuters (Q130879): reuters.com
+- Ozon (Q2365235): ozon.ru
+- Nature (Q180445): nature.com
+- booking.com (Q4035313): booking.com
+- Canva (Q23498528): canva.com
+- United Kingdom (Q145): www.gov.uk
+- Launchpad (Q845271): launchpad.net
+- Grammarly (Q16840770): grammarly.com
+- Springer Science+Business Media (Q176916): springer.com
+- Zendesk (Q15401349): zendesk.co.jp, zendesk.com
+- MIUI (Q1187721): miui.com
+- Wiley (Q1479654): wiley.com
+- Anthropic (Q116758847): anthropic.com
+- Avast (Q136007681): avast.com
+- Debian (Q7715973): debian.org
+- Weibo (Q92526): weibo.com
+- alibaba.com (Q513307): alibaba.com
+- amazon.co.uk (Q131856981): amazon.co.uk
+- ESPN (Q217776): espn.com
+- Harvard University (Q13371): harvard.edu
+- Trustpilot (Q7848226): trustpilot.com
+- PHP (Q59): php.net
+- Autodesk (Q628051): autodesk.com
+- Etsy (Q1353939): etsy.com
+- Palo Alto Networks (Q7128508): paloaltonetworks.com
+- Unisys (Q518016): unisys.com
+- TP-Link (Q1852050): tp-link.com
+- Naver (Q485639): naver.com
+- Okta (Q55627388): okta.com
+- Electronic Arts (Q173941): ea.com
+- Odnoklassniki (Q1123836): ok.ru
+- Bilibili (Q3077586): bilibili.com
+- Nvidia (Q182477): nvidia.com
+- Branch Metrics (Q20800435): branch.io
+- Dynatrace (Q25048844): dynatrace.com
+- TradingView (Q24884021): tradingview.com
+- GNU (Q44571): gnu.org
+- Dell Inc. (Q30873): dell.com
+- The Wall Street Journal (Q164746): wsj.com
+- United States Centers for Disease Control and Prevention (Q583725): cdc.gov
+- Check Point (Q176587): checkpoint.com
+- Weebly (Q2705110): weebly.com
+- Bluesky (Q78194383): bsky.app
+- Xiaomi (Q1636958): mi.com
+- United Nations (Q1065): un.org
+- Amazon (Germany) (Q56583594): amazon.de
+- Stanford University (Q41506): stanford.edu
+- Globo.com (Q5571068): globo.com
+- go.com (Q3109525): go.com
+- Name.com (Q16954918): name.com
+- WPS Office (Q1629164): wps.cn, wps.com, wpsoffice.com
+- Amazon Trust Services (Q120979360): amazontrust.com
+- Issuu (Q1982075): issuu.com
+- Bloomberg L.P. (Q13977): bloomberg.com
+- Taobao (Q2117484): taobao.com
+- National Aeronautics and Space Administration (Q23548): nasa.gov
+- OpenDNS (Q1121892): opendns.com
+- The Washington Post (Q166032): washingtonpost.com
+- Claude (Q118876059): claude.ai
+- Plesk (Q2099390): plesk.com
+- Yandex (Q5281): yandex.com
+- Calendly (Q111946817): calendly.com
+- AppsFlyer (Q20050673): appsflyer.com
+- DuckDuckGo (Q12805): duckduckgo.com
+- Substack (Q63435709): substack.com
+- NetEase (Q196259): 163.com
+- Temu (Q114258161): temu.com
+- LINE (Q602471): line.me
+- AOL (Q27585): aol.com
+- Unsplash (Q28233552): unsplash.com
+- Indeed (Q1045367): indeed.com
+- Telekom Deutschland (Q2401704): telekom.de
+- Dailymotion (Q769222): dailymotion.com
+- arXiv (Q118398): arxiv.org
+- McAfee, LLC (Q267313): mcafee.com
+- Intel (Q248): intel.com
+- Bluehost (Q4930366): bluehost.com
+- Yahoo Japan (Q1146428): yahoo.co.jp
+- Duolingo Inc (Q124637557): duolingo.com
+- Pixabay (Q1746538): pixabay.com
+- Braze (Q20880554): braze.com
+- Trend Micro (Q700974): trendmicro.com
+- Speedtest (Q7575658): speedtest.net
+- Shein (Q107377209): shein.com
+- Goodreads (Q2359213): goodreads.com
+- Walmart (Q483551): walmart.com
+- Taboola (Q18154756): taboola.com
+- Huawei (Q160120): huawei.com
+- CNBC (Q1023912): cnbc.com
+- Internet Engineering Task Force (Q217082): ietf.org
+- MarkMonitor (Q892898): markmonitor.com
+- OpenStreetMap (Q936): openstreetmap.org
+- HostGator (Q3595393): hostgator.com
+- Business Insider (Q286707): businessinsider.com, businessinsider.com.pl, businessinsider.es, businessinsider.nl
+- Amazon.co.jp (Q10846439): amazon.co.jp
+- Eventbrite (Q5416738): eventbrite.co.uk, eventbrite.com, eventbrite.com.au, eventbrite.it
+- Scribd (Q1467888): scribd.com
+- Fox News (Q186068): foxnews.com
+- Sina Corporation (Q938668): sina.com.cn
+- Quora (Q51711): quora.com
+- Statista (Q2333891): statista.com
+- PlayStation (Q10677): playstation.com
+- AddToAny (Q4680974): addtoany.com
+- Selectel (Q16495806): selectel.ru
+- NPR (Q671510): npr.org
+- Indiatimes (Q113974698): indiatimes.com
+- Blogger (Q171186): blogger.com
+- Klaviyo (Q106631196): klaviyo.com
+- Shop Pay (Q131418262): shop.app
+- Docker (Q15206305): docker.com
+- InMobi (Q6008783): inmobi.com
+- CapCut (Q117172093): capcut.com
+- Nordic Journal for Masculinity Studies (Q7050705): tandfonline.com
+- Ministry of Industry and Information Technology of the People's Republic of China (Q1002010): miit.gov.cn
+- Behance (Q4880667): behance.net
+- MySQL (Q850): mysql.com
+- Fandom (Q17459): fandom.com
+- Mozilla Firefox (Q698): firefox.com
+- Stack Overflow (Q549037): stackoverflow.com
+- Financial Times (Q183399): ft.com, ftchinese.com
+- Google Hong Kong (Q10847352): google.com.hk
+- FAST.com (Q100741960): fast.com
+- Cornell University (Q49115): cornell.edu
+- Conviva (Q16241261): conviva.com
+- Sophos (Q1934568): sophos.com
+- ESET (Q817209): eset.com
+- Threads (Q120281745): threads.com
+- Sohu (Q965133): sohu.com
+- Sberbank (Q205012): sberbank.ru
+- SlideShare (Q1426432): slideshare.net
+- Atlassian (Q757307): atlassian.com
+- Wired (Q520154): wired.com
+- Media.net (Q24885109): media.net
+- Maricopa County (Q58691): maricopa.gov
+- California (Q99): ca.gov
+- DeviantArt (Q46523): deviantart.com
+- Time (Q43297): time.com
+- National Oceanic and Atmospheric Administration (Q214700): noaa.gov
+- DreamHost (Q1073188): dreamhost.com
+- Squarespace (Q7582097): squarespace.com
+- MediaTek (Q699848): mediatek.com
+- Wix.com (Q420506): wix.com
+- Tripadvisor (Q1770710): tripadvisor.com
+- Institute of Electrical and Electronics Engineers (Q131566): ieee.org
+- Universo Online (Q1783492): uol.com.br
+- DigitalOcean (Q17052116): digitalocean.com
+- Target Corporation (Q1046951): target.com
+- MDPI (Q30289533): mdpi.com
+- jQuery (Q230036): jquery.com
+- Hotjar (Q141629150): hotjar.com
+- TechCrunch (Q1022366): techcrunch.com
+- Sage Publishing (Q251266): sagepub.com
+- Optimizely (Q17073302): optimizely.com
+- The Daily Telegraph (Q192621): telegraph.co.uk
+- OneTrust (Q96756948): onetrust.com
+- USA Today (Q39681): usatoday.com
+- Ring (Q5297222): ring.com
+- amazon.fr (Q133848833): amazon.fr
+- IKEA (Q54078): ikea.com
+- AccuWeather (Q2822885): accuweather.com
+- International Organization for Standardization (Q15028): iso.org
+- Merriam-Webster (Q585329): merriam-webster.com
+- University of California, Berkeley (Q168756): berkeley.edu
+- avito.ru (Q4034642): avito.ru
+- amazon.ca (Q135911213): amazon.ca
+- United Parcel Service (Q155026): ups.com
+- Box (Q4951483): box.com
+- Verisign (Q734338): verisign.com
+- Library of Congress (Q131454): loc.gov
+- Meta Platforms (Q380): meta.com
+- Flurry (Q16838692): flurry.com
+- Free (Q2467627): free.fr
+- Tencent (Q860580): tencent.com
+- Nike (Q483915): nike.com
+- Wildberries (Q24933714): wildberries.ru
+- mobile.de (Q1771581): mobile.de
+- El País (Q50009): elpais.com
+- Amazon.in (Q123036952): amazon.in
+- Nintendo of America (Q20651008): nintendo.com
+- Amazon Prime Video (Q4740856): primevideo.com
+- Red Hat (Q485593): redhat.com
+- Ivi.ru (Q4041684): ivi.ru
+- Cambridge University Press and Assessment (Q111948287): cambridge.org
+- Encyclopædia Britannica (Q455): britannica.com
+- SurveyMonkey (Q162852): surveymonkey.com
+- xHamster (Q16617922): xhamster.com
+- Uber (Q780442): uber.com
+- Der Spiegel (Q131478): spiegel.de
+- CBS News (Q861764): cbsnews.com
+- Kick (Q117084855): kick.com
+- United States Food and Drug Administration (Q204711): fda.gov
+- Le Monde (Q12461): lemonde.fr
+- RFC Editor (Q2124152): rfc-editor.org
+- Stripchat (Q76564381): stripchat.com
+- Bandcamp (Q545966): bandcamp.com
+- Gosuslugi (Q4373230): gosuslugi.ru
+- Yelp (Q2299611): yelp.co.uk, yelp.com
+- New Relic (Q7011152): newrelic.com
+- bugsnag (Q107384422): bugsnag.com
+- itch.io (Q22905933): itch.io
+- Font Awesome (Q19571791): fontawesome.com, fontawesome.io
+- Outbrain (Q17051632): outbrain.com
+- DeepL (Q43968444): deepl.com
+- Binance (Q51403327): binance.com
+- ASUS (Q152864): asus.com
+- AnyDesk (Q27926810): anydesk.com
+- Daily Mail (Q210534): dailymail.co.uk
+- Craigslist (Q788500): craigslist.org
+- MediaFire (Q1139037): mediafire.com
+- Wattpad (Q7664857): wattpad.com
+- The Independent (Q11149): independent.co.uk, the-independent.com
+- Python (Q28865): python.org
+- Zoho Corporation (Q8063247): zoho.com, zohocorp.com
+- Linode (Q6554704): linode.com
+- Qihoo 360 (Q7267707): 360.cn, 360.com
+- The Home Depot (Q864407): homedepot.com
+- Bild (Q156203): bild.de
+- CNET (Q1544247): cnet.com, cnetfrance.fr
+- Auth0 (Q56072164): auth0.com
+- Airbnb (Q63327): airbnb.com
+- APNews.com (Q138330477): apnews.com
+- Best Buy (Q533415): bestbuy.com
+- Nihon Keizai Shimbun (Q1077694): nikkei.com
+- Marriott Hotels & Resorts (Q3918608): marriott.com
+- Life360 (Q17152633): life360.com
+- Mailchimp (Q6735673): mailchimp.com
+- g.co (Q5512639): g.co
+- Viber (Q332707): viber.com
+- Google (United Kingdom) (Q56584884): google.co.uk
+- Die Welt (Q29872): welt.de
+- Charter Communications (Q2961234): charter.com, spectrum.com
+- McKinsey & Company (Q310207): mckinsey.com
+- Zillow (Q8071921): zillow.com
+- Cloudinary (Q27150151): cloudinary.com
+- Wirtualna Polska (Q380042): wp.pl
+- Imgur (Q355022): imgur.com
+- Lenovo (Q14799): lenovo.com
+- PR Newswire (Q376399): prnewswire.com
+- DeepSeek (Q131577453): deepseek.com
+- LiveJournal (Q219523): livejournal.com
+- Rakuten.com (Q7286825): rakuten.com
+- Ameba (Q2597254): ameba.jp, ameblo.jp
+- 33Across (Q85738240): 33across.com
+- EroMe (Q136937720): erome.com
+- Disney+ (Q54958752): disneyplus.com
+- People (Q33659): people.com
+- Telefónica Deutschland (Q2401561): telefonica.de
+- Fiverr (Q5410132): fiverr.com
+- Mixpanel (Q25048114): mixpanel.com
+- Focus Online (Q33108673): focus.de
+- TED (Q189021): ted.com
+- Kleinanzeigen (Q57313925): kleinanzeigen.de
+- United States Postal Service (Q668687): usps.com
+- Allegro (Q58014): allegro.cz, allegro.eu, allegro.hu, allegro.pl, allegro.sk
+- Chess.com (Q16829376): chess.com
+- Seznam.cz (Q3490485): seznam.cz
+- Brazil (Q155): www.gov.br
+- The Verge (Q2155442): theverge.com
+- Yieldmo (Q19882033): yieldmo.com
+- Instructure (Q3019900): instructure.com
+- Discogs (Q504063): discogs.com
+- Frontiers Media (Q80796): frontiersin.org
+- Academia.edu (Q2777905): academia.edu
+- Flipkart (Q1381966): flipkart.com
+- Deloitte (Q491748): deloitte.com
+- MobileMe (Q844446): me.com
+- Unruly Media (Q119585768): unruly.co
+- .mail (Q1188356): spamhaus.org
+- United States Department of Agriculture (Q501542): usda.gov
+- Myspace (Q40629): myspace.com
+- Agoda (Q395182): agoda.com
+- Pexels (Q101240504): pexels.com
+- NBC News (Q2877626): nbcnews.com
+- BibleGateway.com (Q4903069): biblegateway.com
+- Zoom Communications (Q17460900): zoom.com
+- World Bank (Q7164): worldbank.org
+- Poki (Q59659664): poki.com
+- Bank of America (Q487907): bankofamerica.com
+- Perplexity (Q123403392): perplexity.ai
+- United States Environmental Protection Agency (Q460173): epa.gov
+- Visual Studio App Center (Q84772389): appcenter.ms
+- Classlink (Q134969739): classlink.com
+- Tailscale Inc. (Q108766392): tailscale.com
+- Figma (Q96186334): figma.com
+- Harvard Business Review (Q277351): hbr.org, hbrarabic.com, hbrchina.org
+- LG Group (Q136778): lg.com
+- RuStore (Q113393136): rustore.ru
+- Princeton University (Q21578): princeton.edu
+- Los Angeles Times (Q188515): latimes.com
+- Paramount+ (Q27903045): paramountplus.com
+- Network Advertising Initiative (Q7000739): networkadvertising.org
+- NexusMods (Q7021267): nexusmods.com
+- Disqus (Q473503): disqus.com
+- Major League Baseball (Q1163715): mlb.com
+- Seedtag (Q140865485): seedtag.com
+- Pikabu (Q28667159): pikabu.ru
+- Qualtrics (Q7268803): qualtrics.com
+- Coupang (Q12620655): coupang.com
+- Patreon (Q15861362): patreon.com
+- note (Q60997044): note.com
+- La Repubblica (Q85329): repubblica.it
+- Mayo Clinic (Q1130172): mayoclinic.org
+- United States Department of State (Q789915): state.gov
+- Character.ai (Q115517493): character.ai
+- PBS (Q215616): pbs.org
+- Genius (Q3419343): genius.com
+- Youku (Q151135): youku.com, youku.tv
+- Corriere della Sera (Q309135): corriere.it
+- HuffPost (Q18049522): huffpost.com
+- onet.pl (Q495943): onet.pl
+- JetBrains (Q1688472): jetbrains.com
+- CurseForge (Q114068010): curseforge.com
+- Odoo (Q832300): odoo.com
+- Ancestry.com Inc. (Q4752572): ancestry.com
+- Twilio (Q7858039): authy.com, twilio.com
+- Lowe's (Q1373493): lowes.com
+- Change.org (Q3090589): change.org
+- University of Washington (Q219563): washington.edu
+- Caixa (Q835283): caixa.gov.br
+- XNXX (Q57013596): xnxx.com
+- JD.com (Q3598926): jd.com
+- Sofascore (Q52144548): sofascore.com
+- Playrix (Q4047081): playrix.com
+- Flightradar24 (Q1164485): flightradar24.com
+- n-tv (Q265027): n-tv.de
+- Threema (Q13512316): threema.ch
+- Hilton Hotels & Resorts (Q598884): hilton.com
+- Ecosia (Q1282139): ecosia.org
+- NTT DoCoMo (Q853958): docomo.ne.jp
+- Costco (Q715583): costco.com
+- Organization for Economic Cooperation and Development (Q41550): oecd.org
+- The Movie Database (Q20828898): themoviedb.org
+- Flashscore (Q70835280): flashscore.com
+- Kuaishou (Q47015540): kuaishou.com, kwai.com, snackvideo.com
+- University of Michigan (Q230492): umich.edu
+- Pixiv (Q306956): pixiv.net
+- Quizlet (Q7272716): quizlet.com
+- XING (Q681849): xing.com
+- Trendyol (Q20473304): trendyol.com
+- National Geographic (Q5973845): grid.id, nationalgeographic.com, nationalgeographic.it
+- Columbia University (Q49088): columbia.edu
+- bol (Q609913): bol.com
+- Hugging Face (Q108943604): huggingface.co
+- Xiaohongshu (Q55637991): xiaohongshu.com
+- infobae (Q5915760): infobae.com
+- White House (Q35525): whitehouse.gov
+- Nextcloud (Q25874683): nextcloud.com
+- T-Mobile US (Q3511885): t-mobile.com
+- Pandora (Q1196431): pandora.com
+- SIPA - Ouest-France group (Q3117551): groupe-sipa-ouest-france.fr, ouest-france.fr
+- Garmin Group (Q658789): garmin.com
+- University of Oxford (Q34433): ox.ac.uk
+- Consultant Plus (Q4231593): consultant.ru
+- World Economic Forum (Q170418): weforum.org
+- Wise (Q7833987): wise.com
+- University of Wisconsin–Madison (Q838330): wisc.edu
+- CrazyGames (Q60997830): crazygames.com
+- StatCounter (Q3497284): statcounter.com
+- Netgear (Q979690): netgear.com
+- Letterboxd (Q18709181): letterboxd.com
+- Intercom (Q48965215): intercom.com
+- Healthline (Q16983671): healthline.com
+- DataDome (Q139974106): datadome.co
+- BFM TV (Q517444): bfmtv.com
+- The Atlantic (Q1542536): theatlantic.com
+- Kohl's (Q967265): kohls.com
+- AT&T Internet Services (Q4654537): att.net
+- Moneycontrol (Q19573046): moneycontrol.com
+- Douyin (Q65924658): douyin.com
+- Redfin (Q7305846): redfin.com
+- As (Q719880): as.com
+- Archive of Our Own (Q27764876): archiveofourown.org
+- Rackspace Technology (Q2990586): rackspace.com
+- Investopedia (Q6060906): investopedia.com
+- Ministry of Public Security (Q2346285): mps.gov.cn
+- ipinfo (Q107386780): ipinfo.io
+- Alipay (Q493556): alipay.com
+- New York Post (Q211374): nypost.com
+- WebMD (Q3536160): webmd.com
+- Delft University of Technology (Q752663): tudelft.nl
