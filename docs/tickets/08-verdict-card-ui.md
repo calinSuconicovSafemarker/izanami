@@ -1,5 +1,7 @@
 # 08 — Verdict card UI
 
+**Status:** Done (9a386cb)
+
 **Depends on:** 06, 07
 
 ## Goal
