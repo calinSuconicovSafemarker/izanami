@@ -1,28 +1,31 @@
+import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import type { Org } from '../orgs';
-import { toOrgInput } from '../orgs';
+import { LookupTerminal } from '../lookup-ui/LookupTerminal';
+import { useLookup } from '../lookup-ui/useLookup';
 
 /**
- * Placeholder for the lookup terminal (ticket 06). Replace this component's body;
- * OrgPage already renders it with the organisation.
+ * The org page's lookup area. Owns the lookup state (`useLookup`) and syncs it with the
+ * `?d=<variant>` deep link: the URL is the source of truth, so opening a link auto-runs
+ * and submitting updates the URL. Ticket 08 renders its verdict card here from `lookup.state`.
  */
 export function LookupTerminalSlot({ org }: { org: Org }) {
-  const { brandLabel } = toOrgInput(org);
+  const lookup = useLookup(org);
+  const { run } = lookup;
+  const [params, setParams] = useSearchParams();
+  const d = params.get('d');
+
+  useEffect(() => {
+    if (d) run(d);
+  }, [d, run]);
+
+  const submit = (input: string) => {
+    if (input === d) run(input);
+    else setParams({ d: input });
+  };
+
+  // Keyed on the deep link so a changed `?d=` re-prefills the input.
   return (
-    <section
-      aria-labelledby="lookup-terminal-heading"
-      className="rounded-lg border border-dashed border-zinc-700 bg-black/40 p-4 font-mono text-sm"
-    >
-      <h2
-        id="lookup-terminal-heading"
-        className="mb-2 text-xs uppercase tracking-wide text-zinc-500"
-      >
-        Lookup terminal
-      </h2>
-      <p className="break-all text-zinc-300">
-        <span className="text-emerald-400">$ </span>
-        {brandLabel}.<span className="animate-pulse text-zinc-500">▌</span>
-      </p>
-      <p className="mt-2 text-xs text-zinc-500">Domain lookups are coming soon.</p>
-    </section>
+    <LookupTerminal key={d ?? ''} org={org} lookup={lookup} initialInput={d} onSubmit={submit} />
   );
 }

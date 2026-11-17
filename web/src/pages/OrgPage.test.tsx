@@ -41,10 +41,10 @@ describe('organisation page', () => {
     expect(document.body).not.toHaveTextContent(/proven|verified owner/i);
   });
 
-  it('leaves a slot for the lookup terminal, given the organisation', () => {
+  it('shows the lookup terminal prefilled with the brand label', () => {
     renderRoute('/org/tu-delft');
     const slot = screen.getByRole('region', { name: /lookup terminal/i });
-    expect(slot).toHaveTextContent('tudelft.');
+    expect(within(slot).getByRole('textbox', { name: /domain to check/i })).toHaveValue('tudelft.');
   });
 
   it('shows a friendly 404 with a link home for an unknown slug', () => {
