@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { parseVariant } from '../domain';
 import { FixtureLookupClient } from '../lookup/fixture-client';
-import type { LookupClient } from '../lookup';
+import type { DnsType, LookupClient, RdapResult } from '../lookup';
 import { evaluate } from './evaluate';
 import { gatherFacts } from './gather';
 import type { Facts, OrgInput } from './types';
@@ -29,6 +29,26 @@ function counting(inner: LookupClient) {
     certs: (d) => (calls.push(`certs ${d}`), inner.certs(d)),
   };
   return { client, calls };
+}
+
+/** A client answering every lookup from in-memory records (`unavailable` for unlisted domains). */
+function stub(
+  domains: Record<string, { dns?: Partial<Record<DnsType, string[]>>; rdap?: Partial<RdapResult> }>,
+): LookupClient {
+  return {
+    dns: async (name, type) => {
+      const d = domains[name];
+      if (!d) return { status: 'unavailable', name, type, records: [] };
+      return { status: 'ok', name, type, records: d.dns?.[type] ?? [] };
+    },
+    rdap: async (domain) => {
+      const d = domains[domain];
+      if (!d) return { status: 'unavailable', domain, nameservers: [] };
+      return { status: 'ok', domain, registered: true, nameservers: [], ...d.rdap };
+    },
+    asn: async (ip) => ({ status: 'ok', ip, asn: 1128 }),
+    certs: async (domain) => ({ status: 'ok', domain, certs: [] }),
+  };
 }
 
 describe('gatherFacts', () => {
@@ -111,5 +131,48 @@ describe('gatherFacts', () => {
     expect(snapshots.at(-1)).toEqual(final);
     // Partial facts are safe to evaluate: pending facts read as unknown.
     expect(evaluate(snapshots[0]!).find((r) => r.id === 'young-domain')?.status).toBe('unknown');
+  });
+
+  it('treats a delegated domain with only NS records as registered, not resolving', async () => {
+    const client = stub({
+      'tudelft.com': { dns: { NS: ['ns1.tudelft.nl'] }, rdap: { nameservers: ['ns1.tudelft.nl'] } },
+      'tudelft.nl': { dns: { NS: ['ns1.tudelft.nl'], A: ['130.161.128.82'] } },
+    });
+    const facts = await gatherFacts(parseVariant('tudelft.com'), TU_DELFT, client, { now });
+    expect(facts.variantFacts.existence).toEqual(known('registered-not-resolving'));
+  });
+
+  it('counts an MX-only domain as resolving', async () => {
+    const client = stub({
+      'tudelft.com': { dns: { MX: ['10 mx.example.net'] } },
+      'tudelft.nl': { dns: { A: ['130.161.128.82'] } },
+    });
+    const facts = await gatherFacts(parseVariant('tudelft.com'), TU_DELFT, client, { now });
+    expect(facts.variantFacts.existence).toEqual(known('resolving'));
+  });
+
+  it('caches official facts the registry does not publish (no registration date)', async () => {
+    const { client, calls } = counting(
+      stub({
+        'tudelft.de': {},
+        'example.de': {
+          dns: { NS: ['ns1.example.de'], A: ['192.0.2.1'], MX: ['10 mx.example.de'] },
+          rdap: { registrar: 'DENIC member' },
+        },
+      }),
+    );
+    const org = { ...TU_DELFT, slug: 'example', primaryDomain: 'example.de' };
+    const first = await gatherFacts(parseVariant('tudelft.de'), org, client, { now });
+    expect(first.officialFacts.registrationDate).toEqual(UNKNOWN);
+    await gatherFacts(parseVariant('tudelft.de'), org, client, { now });
+    expect(calls.filter((c) => c === 'rdap example.de')).toHaveLength(1);
+  });
+
+  it('retries official facts after a transient lookup failure', async () => {
+    const { client, calls } = counting(stub({ 'tudelft.de': {} }));
+    const org = { ...TU_DELFT, slug: 'example', primaryDomain: 'example.de' };
+    await gatherFacts(parseVariant('tudelft.de'), org, client, { now });
+    await gatherFacts(parseVariant('tudelft.de'), org, client, { now });
+    expect(calls.filter((c) => c === 'rdap example.de')).toHaveLength(2);
   });
 });

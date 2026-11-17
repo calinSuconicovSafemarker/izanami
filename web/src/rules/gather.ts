@@ -56,8 +56,13 @@ function dnsList(r: DnsResult, map: (s: string) => string = (s) => s.toLowerCase
   return known(r.records.map(map).filter(Boolean));
 }
 
-function existence(dns: DnsResult[], rdap: RdapResult): Fact<Existence> {
-  if (dns.some((r) => r.status === 'ok' && r.records.length > 0)) return known('resolving');
+/**
+ * SPEC existence states. Only A, AAAA or MX records are "usable": a domain that is merely
+ * delegated (NS only) is registered but not resolving.
+ */
+function existence(usable: DnsResult[], ns: DnsResult, rdap: RdapResult): Fact<Existence> {
+  if (usable.some((r) => r.status === 'ok' && r.records.length > 0)) return known('resolving');
+  const dns = [ns, ...usable];
   const dnsAnswered = dns.some(answered);
   if (rdap.registered === true && dnsAnswered) return known('registered-not-resolving');
   if (rdap.status === 'not-found' && dns.every(answered)) return known('not-registered');
@@ -72,13 +77,26 @@ function nameservers(ns: DnsResult, rdap: RdapResult): Fact<string[]> {
 }
 
 /** Origin ASNs of the first IPv4 and first IPv6 address. */
-async function asns(client: LookupClient, a: DnsResult, aaaa: DnsResult): Promise<Fact<number[]>> {
+async function asns(
+  lookupAsn: LookupClient['asn'],
+  a: DnsResult,
+  aaaa: DnsResult,
+): Promise<Fact<number[]>> {
   const ips = [a.records[0], aaaa.records[0]].filter((ip): ip is string => !!ip);
   if (ips.length === 0) return answered(a) && answered(aaaa) ? known([]) : UNKNOWN;
-  const results = await Promise.all(ips.map((ip) => client.asn(ip)));
+  const results = await Promise.all(ips.map(lookupAsn));
   if (results.every((r) => r.status === 'unavailable')) return UNKNOWN;
   const found = results.flatMap((r) => (r.asn ? [r.asn] : []));
   return known([...new Set(found)]);
+}
+
+interface Collection {
+  facts: Collected;
+  /**
+   * Some DNS/RDAP/ASN lookup failed transiently (`unavailable`). Facts that are unknown because
+   * the registry does not publish them (e.g. no registration event) do not count.
+   */
+  transientFailure: boolean;
 }
 
 /** Look up one domain's infrastructure, emitting each fact as soon as it is known. */
@@ -87,18 +105,25 @@ async function collect(
   client: LookupClient,
   emit: Emit,
   withCerts: boolean,
-): Promise<Collected> {
+): Promise<Collection> {
   const out = pendingInfra(domain);
+  let transientFailure = false;
   const set = (partial: Partial<Collected>) => {
     Object.assign(out, partial);
     emit(partial);
   };
-  const ns = client.dns(domain, 'NS');
-  const a = client.dns(domain, 'A');
-  const aaaa = client.dns(domain, 'AAAA');
-  const mx = client.dns(domain, 'MX');
-  const txt = client.dns(domain, 'TXT');
-  const rdap = client.rdap(domain);
+  const watch = <T extends { status: string }>(p: Promise<T>) =>
+    p.then((r) => {
+      if (r.status === 'unavailable') transientFailure = true;
+      return r;
+    });
+  const lookupAsn = (ip: string) => watch(client.asn(ip));
+  const ns = watch(client.dns(domain, 'NS'));
+  const a = watch(client.dns(domain, 'A'));
+  const aaaa = watch(client.dns(domain, 'AAAA'));
+  const mx = watch(client.dns(domain, 'MX'));
+  const txt = watch(client.dns(domain, 'TXT'));
+  const rdap = watch(client.rdap(domain));
 
   const tasks: Promise<unknown>[] = [
     mx.then((r) => set({ mx: dnsList(r, mxHost) })),
@@ -114,9 +139,9 @@ async function collect(
       }),
     ),
     Promise.all([ns, rdap]).then(([n, r]) => set({ nameservers: nameservers(n, r) })),
-    Promise.all([a, aaaa]).then(async ([x, y]) => set({ asns: await asns(client, x, y) })),
+    Promise.all([a, aaaa]).then(async ([x, y]) => set({ asns: await asns(lookupAsn, x, y) })),
     Promise.all([ns, a, aaaa, mx, rdap]).then(([n, x, y, m, r]) =>
-      set({ existence: existence([n, x, y, m], r) }),
+      set({ existence: existence([x, y, m], n, r) }),
     ),
   ];
   if (withCerts) {
@@ -130,7 +155,7 @@ async function collect(
     );
   }
   await Promise.all(tasks);
-  return out;
+  return { facts: out, transientFailure };
 }
 
 const infraOnly = ({ domain, registrationDate, registrar, nameservers, mx, asns }: Collected) => ({
@@ -142,9 +167,6 @@ const infraOnly = ({ domain, registrationDate, registrar, nameservers, mx, asns 
   asns,
 });
 
-const hasUnknown = (f: OfficialFacts) =>
-  [f.registrationDate, f.registrar, f.nameservers, f.mx, f.asns].some((x) => x.state !== 'known');
-
 /** Official facts per client and domain, so each official domain is looked up once per session. */
 const officialCache = new WeakMap<LookupClient, Map<string, Promise<OfficialFacts>>>();
 
@@ -153,11 +175,13 @@ function officialFacts(domain: string, client: LookupClient, emit: Emit): Promis
   if (!perClient) officialCache.set(client, (perClient = new Map()));
   const cached = perClient.get(domain);
   if (cached) return cached;
-  const p = collect(domain, client, emit, false).then(infraOnly);
+  const collection = collect(domain, client, emit, false);
+  const p = collection.then((c) => infraOnly(c.facts));
   perClient.set(domain, p);
-  // Do not pin a failed lookup for the whole session; retry on the next variant.
-  void p.then((f) => {
-    if (hasUnknown(f)) perClient.delete(domain);
+  // Do not pin a transient failure for the whole session; retry on the next variant. Facts the
+  // registry simply does not publish stay cached: asking again would not change them.
+  void collection.then((c) => {
+    if (c.transientFailure) perClient.delete(domain);
   });
   return p;
 }
@@ -188,7 +212,7 @@ export async function gatherFacts(
   const report = () => options.onProgress?.({ variantFacts: v, officialFacts: o });
   report();
 
-  const [variantInfra, official] = await Promise.all([
+  const [{ facts: variantInfra }, official] = await Promise.all([
     collect(domain, client, (p) => ((v = { ...v, ...p }), report()), true),
     officialFacts(org.primaryDomain, client, (p) => {
       o = { ...o, ...infraOnly({ ...pendingInfra(o.domain), ...o, ...p }) };
