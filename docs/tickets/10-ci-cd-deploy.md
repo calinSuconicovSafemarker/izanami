@@ -1,5 +1,7 @@
 # 10 — CI/CD deploy via OIDC
 
+**Status:** Done (9d51fcf) — pending real deploy: push-to-main deploys, fork PR refused
+
 **Depends on:** 09
 
 ## Goal
