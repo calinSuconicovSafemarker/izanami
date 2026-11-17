@@ -1,5 +1,7 @@
 # 11 — Privacy panel, disclaimer, a11y polish
 
+**Status:** Done (50054d1) — pending: Lighthouse ≥ 95 run, README screenshots, one contrast issue in LookupTerminalSlot
+
 **Depends on:** 05
 
 ## Goal
