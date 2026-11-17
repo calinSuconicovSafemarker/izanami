@@ -235,6 +235,18 @@ table('same-registrar', [
     variant: { existence: known('not-registered'), registrar: UNKNOWN },
     status: 'not-fired',
   },
+  {
+    name: 'same registrar under its d/b/a trade name',
+    variant: { registrar: known('Hosting Concepts B.V. d/b/a Registrar.eu') },
+    official: { registrar: known('Registrar.eu') },
+    status: 'fired',
+  },
+  {
+    name: 'registrar operating its own .nl domain (SIDN lists TU Delft itself)',
+    variant: { registrar: known('Technische Universiteit Delft') },
+    official: { registrar: known('Technische Universiteit Delft') },
+    status: 'fired',
+  },
   { name: 'variant registrar unknown', variant: { registrar: UNKNOWN }, status: 'unknown' },
   { name: 'official registrar unknown', official: { registrar: UNKNOWN }, status: 'unknown' },
 ]);

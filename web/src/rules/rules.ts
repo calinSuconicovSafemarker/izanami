@@ -207,6 +207,13 @@ function normaliseRegistrar(name: string): string {
   return n;
 }
 
+/** Normalised names a registrar goes by: its legal name and any `d/b/a` trade name. */
+const registrarNames = (name: string) =>
+  name
+    .split(/\s+d\/b\/a\s+/i)
+    .map(normaliseRegistrar)
+    .filter(Boolean);
+
 const isBrandRegistrar = (name: string) => {
   const n = name.toLowerCase();
   return BRAND_REGISTRARS.some((b) => n.includes(b));
@@ -217,7 +224,8 @@ function registrarOverlap(v: VariantFacts, o: OfficialFacts): Overlap {
   const vr = value(v.registrar);
   const or = value(o.registrar);
   if (!vr || !or) return { state: 'unknown', why: 'registrar unavailable' };
-  return normaliseRegistrar(vr) === normaliseRegistrar(or)
+  const officialNames = registrarNames(or);
+  return registrarNames(vr).some((n) => officialNames.includes(n))
     ? { state: 'shared', shared: [or] }
     : { state: 'none', variant: [vr], official: [or] };
 }
