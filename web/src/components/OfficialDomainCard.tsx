@@ -13,7 +13,7 @@ export function OfficialDomainCard({ org }: { org: Org }) {
       className="flex flex-col gap-4 rounded-lg border border-zinc-800 bg-zinc-900/60 p-4 sm:p-6"
     >
       <div className="flex flex-col gap-1">
-        <h2 id="official-domains-heading" className="text-xs uppercase tracking-wide text-zinc-500">
+        <h2 id="official-domains-heading" className="text-xs uppercase tracking-wide text-zinc-400">
           Official domains
         </h2>
         <p data-primary className="font-mono text-xl break-all text-emerald-400 sm:text-2xl">
@@ -67,7 +67,7 @@ export function OfficialDomainCard({ org }: { org: Org }) {
           )}
           <li>Confirmed at {org.confirmedAt}</li>
         </ul>
-        <p className="text-xs text-zinc-500">
+        <p className="text-xs text-zinc-400">
           Listed as official and heavily used. This is not proof of who owns the domain.
         </p>
       </div>

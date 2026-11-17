@@ -13,6 +13,9 @@ export function OrgPage() {
       <h1 className="text-2xl font-bold tracking-tight break-words text-zinc-100 sm:text-3xl">
         {org.name}
       </h1>
+      <p className="-mt-4 text-sm text-zinc-400">
+        Heuristic, not a guarantee. Passive public lookups only.
+      </p>
       <OfficialDomainCard org={org} />
       <LookupTerminalSlot org={org} />
     </main>
