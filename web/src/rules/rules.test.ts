@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { RULES } from './rules';
 import { officialFacts, variantFacts } from './test-facts';
 import type { OfficialFacts, RuleId, RuleStatus, VariantFacts } from './types';
-import { known, PENDING, UNKNOWN } from './types';
+import { isNotRegistered, known, PENDING, UNKNOWN } from './types';
 
 interface Row {
   name: string;
@@ -412,5 +412,14 @@ describe('RULES', () => {
         'odd-tld',
       ].sort(),
     );
+  });
+});
+
+describe('isNotRegistered', () => {
+  it('is true only for a known not-registered existence', () => {
+    expect(isNotRegistered(known('not-registered'))).toBe(true);
+    expect(isNotRegistered(known('resolving'))).toBe(false);
+    expect(isNotRegistered(UNKNOWN)).toBe(false);
+    expect(isNotRegistered(PENDING)).toBe(false);
   });
 });

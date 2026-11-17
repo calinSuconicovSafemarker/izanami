@@ -1,6 +1,7 @@
 // Pure rule functions (ADR-0003). No network, DOM or clock access: ages are
 // measured from `variant.checkedAt`.
 import type { Fact, OfficialFacts, Rule, RuleId, RuleResult, VariantFacts } from './types';
+import { isNotRegistered as notRegistered } from './types';
 import { getDomain } from 'tldts';
 import { ABUSE_HEAVY_TLDS, AGES, BRAND_REGISTRARS, COMMON_GTLDS, WEIGHTS } from './weights';
 
@@ -22,7 +23,7 @@ const year = (iso: string) => iso.slice(0, 4);
 
 const ago = (days: number) => (days === 1 ? '1 day ago' : `${days} days ago`);
 
-const isNotRegistered = (v: VariantFacts) => value(v.existence) === 'not-registered';
+const isNotRegistered = (v: VariantFacts) => notRegistered(v.existence);
 
 function officialRegistered(o: OfficialFacts): string {
   const date = value(o.registrationDate);

@@ -13,6 +13,10 @@ export const PENDING: Fact<never> = { state: 'pending' };
 /** Existence states from the SPEC. */
 export type Existence = 'not-registered' | 'registered-not-resolving' | 'resolving';
 
+/** The variant is known not to be registered (no verdict is shown: "no active threat"). */
+export const isNotRegistered = (existence: Fact<Existence>): boolean =>
+  existence.state === 'known' && existence.value === 'not-registered';
+
 /** What `gatherFacts` needs to know about the organisation (subset of an orgs.json entry). */
 export interface OrgInput {
   slug: string;
