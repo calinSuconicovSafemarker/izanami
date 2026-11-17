@@ -1,13 +1,11 @@
 import { diffOrgs, renderDiff } from './diff';
 import { mergeExtras, type Extra } from './extras';
-import { parsePsl } from './psl';
 import { selectOrgs, type Org } from './select';
-import { parseTranco } from './tranco';
+import { parseTranco } from '../lib/tranco';
 import { classifyEntities, mergeEntities, type WikidataEntity } from './wikidata';
 
 /** Everything the pipeline reads from the outside world, injected so tests can stub it. */
 export interface OrgsSources {
-  pslText(): Promise<string>;
   trancoCsv(): Promise<string>;
   queryEntities(domains: readonly string[]): Promise<Map<string, WikidataEntity>>;
   /** Class → all its superclasses (P279*), for the given P31 classes. */
@@ -37,9 +35,8 @@ export async function runOrgsPipeline(
   sources: OrgsSources,
   options: OrgsOptions,
 ): Promise<OrgsResult> {
-  const psl = parsePsl(await sources.pslText());
   const csv = await sources.trancoCsv();
-  const allRanks = parseTranco(csv, psl, Number.POSITIVE_INFINITY);
+  const allRanks = parseTranco(csv, Number.POSITIVE_INFINITY);
   const candidates = new Map([...allRanks].slice(0, options.candidateDomains));
 
   const entities = new Map<string, WikidataEntity>();
@@ -58,7 +55,6 @@ export async function runOrgsPipeline(
   const generated = selectOrgs({
     entities: classifyEntities(entities, ancestors),
     tranco: candidates,
-    psl,
     limit: options.limit,
     confirmedAt: options.confirmedAt,
   });

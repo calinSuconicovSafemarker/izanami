@@ -2,9 +2,9 @@ import { mkdtemp, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { decodeDomainSet } from '../../../web/src/lib/domain-set';
+import { zipOf } from '../lib/zip-fixture';
+import { decodeDomainSet } from '../lib/web';
 import { buildDatasets, SOURCES } from './index';
-import { zipOf } from './zip-fixture';
 
 const FIXTURES: Record<string, Uint8Array> = {
   [SOURCES.tranco]: zipOf('top-1m.csv', '1,google.com\n2,tudelft.nl\n3,third.org\n'),

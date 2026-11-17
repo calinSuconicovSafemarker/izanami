@@ -1,26 +1,12 @@
 import orgsJson from '../data/orgs.json';
 import { parseVariant } from '../domain';
 import type { OrgInput } from '../rules';
+import type { Org } from './org';
 
-/** An organisation as bundled in `orgs.json` (ticket 01). */
-export interface Org {
-  slug: string;
-  name: string;
-  wikidataId: string;
-  /** ISO 3166-1 alpha-2, or null when Wikidata has none. */
-  country: string | null;
-  primaryDomain: string;
-  /** Sorted, includes the primary domain. */
-  officialDomains: readonly string[];
-  /** Domain Wikidata P856 lists; null for curated extras. */
-  wikidataDomain: string | null;
-  trancoRank: number | null;
-  /** `YYYY-MM-DD`. */
-  confirmedAt: string;
-}
+export type { Org } from './org';
 
 /** All organisations, best Tranco rank first. */
-export const allOrgs: readonly Org[] = orgsJson as Org[];
+export const allOrgs: readonly Org[] = orgsJson;
 
 const bySlug = new Map(allOrgs.map((org) => [org.slug, org]));
 

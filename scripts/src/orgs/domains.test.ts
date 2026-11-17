@@ -1,8 +1,5 @@
 import { describe, expect, it } from 'vitest';
 import { officialDomainOf, rootUrlsFor } from './domains';
-import { parsePsl } from './psl';
-
-const psl = parsePsl('com\nnl\nuk\nco.uk\n');
 
 describe('officialDomainOf', () => {
   it.each([
@@ -12,7 +9,7 @@ describe('officialDomainOf', () => {
     ['https://shop.example.co.uk/en-gb', 'example.co.uk'],
     ['https://www.example.com/index.html', 'example.com'],
   ])('%s -> %s', (url, expected) => {
-    expect(officialDomainOf(psl, url)).toBe(expected);
+    expect(officialDomainOf(url)).toBe(expected);
   });
 
   it.each([
@@ -23,7 +20,7 @@ describe('officialDomainOf', () => {
     ['not a url'],
     ['ftp://example.com/'],
   ])('%s is not an official domain', (url) => {
-    expect(officialDomainOf(psl, url)).toBeNull();
+    expect(officialDomainOf(url)).toBeNull();
   });
 });
 

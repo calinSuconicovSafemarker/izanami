@@ -1,12 +1,12 @@
 import { inflateRawSync } from 'node:zlib';
-import { registrableDomain, type Psl } from './psl';
 
 const EOCD_SIGNATURE = 0x06054b50;
 const CENTRAL_SIGNATURE = 0x02014b50;
 const LOCAL_SIGNATURE = 0x04034b50;
 
 /** Extracts the first entry of a zip archive (stored or deflated). Enough for the Tranco zip. */
-export function unzipFirstFile(zip: Buffer): Buffer {
+export function unzipFirstFile(bytes: Uint8Array): Buffer {
+  const zip = Buffer.from(bytes.buffer, bytes.byteOffset, bytes.byteLength);
   let eocd = -1;
   for (let i = zip.length - 22; i >= Math.max(0, zip.length - 22 - 0xffff); i--) {
     if (zip.readUInt32LE(i) === EOCD_SIGNATURE) {
@@ -27,21 +27,4 @@ export function unzipFirstFile(zip: Buffer): Buffer {
   if (method === 0) return Buffer.from(data);
   if (method === 8) return inflateRawSync(data);
   throw new Error(`Unsupported zip compression method ${method}`);
-}
-
-/**
- * Parses Tranco `rank,domain` CSV into registrable domain → best rank,
- * stopping once `maxDomains` distinct registrable domains are collected.
- */
-export function parseTranco(csv: string, psl: Psl, maxDomains: number): Map<string, number> {
-  const ranks = new Map<string, number>();
-  for (const line of csv.split(/\r?\n/)) {
-    if (ranks.size >= maxDomains) break;
-    const [rankText, host] = line.split(',');
-    const rank = Number(rankText);
-    if (!host || !Number.isInteger(rank)) continue;
-    const domain = registrableDomain(psl, host);
-    if (domain && !ranks.has(domain)) ranks.set(domain, rank);
-  }
-  return ranks;
 }

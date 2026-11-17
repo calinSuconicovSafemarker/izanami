@@ -3,13 +3,12 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { setTimeout as sleep } from 'node:timers/promises';
 import { fileURLToPath } from 'node:url';
-// Root devDependency, shared by all workspaces.
 import { format, resolveConfig } from 'prettier';
 import { parseExtras } from './extras';
-import { cached, fetchWithRetry, sha256 } from './net';
+import { cached, fetchWithRetry, sha256 } from '../lib/net';
+import { trancoCsv } from '../lib/tranco';
 import { runOrgsPipeline, type OrgsSources } from './pipeline';
 import type { Org } from './select';
-import { unzipFirstFile } from './tranco';
 import {
   buildClassQuery,
   buildEntityQuery,
@@ -23,8 +22,6 @@ const ORGS_JSON = join(REPO, 'web/src/data/orgs.json');
 const DIFF_MD = join(REPO, 'web/src/data/data-diff.md');
 const EXTRAS_JSON = join(REPO, 'scripts/data/extras.json');
 
-const PSL_URL = 'https://publicsuffix.org/list/public_suffix_list.dat';
-const TRANCO_URL = 'https://tranco-list.eu/top-1m.csv.zip';
 const SPARQL_URL = 'https://query.wikidata.org/sparql';
 
 /**
@@ -35,7 +32,7 @@ const SPARQL_DELAY_MS = Number(process.env.BUILD_DATA_SPARQL_DELAY_MS) || 1000;
 
 /** Runs a SPARQL query (cached by its hash) and returns the parsed JSON. */
 async function sparql(query: string): Promise<unknown> {
-  const body = await cached(`sparql-${sha256(query).slice(0, 16)}.json`, async () => {
+  const body = await cached(`orgs/sparql-${sha256(query).slice(0, 16)}.json`, async () => {
     await sleep(SPARQL_DELAY_MS);
     return fetchWithRetry(SPARQL_URL, {
       method: 'POST',
@@ -49,15 +46,9 @@ async function sparql(query: string): Promise<unknown> {
   return JSON.parse(body.toString('utf8'));
 }
 
-/** Real (network + filesystem) sources; downloads are cached under `scripts/.cache/orgs`. */
+/** Real (network + filesystem) sources; downloads are cached under `scripts/.cache`. */
 const liveSources: OrgsSources = {
-  async pslText() {
-    return (await cached('public_suffix_list.dat', () => fetchWithRetry(PSL_URL))).toString();
-  },
-  async trancoCsv() {
-    const zip = await cached('tranco-top-1m.csv.zip', () => fetchWithRetry(TRANCO_URL));
-    return unzipFirstFile(zip).toString('utf8');
-  },
+  trancoCsv: () => trancoCsv(),
   async queryEntities(domains) {
     return parseEntityBindings(await sparql(buildEntityQuery(domains)));
   },

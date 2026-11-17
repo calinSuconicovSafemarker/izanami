@@ -1,29 +1,12 @@
 import { officialDomainOf } from './domains';
-import type { Psl } from './psl';
+import type { Org } from '../lib/web';
 import type { WikidataEntity } from './wikidata';
 
-/** One entry of `web/src/data/orgs.json`. */
-export interface Org {
-  slug: string;
-  name: string;
-  wikidataId: string;
-  /** ISO 3166-1 alpha-2, or null when Wikidata has no P17. */
-  country: string | null;
-  primaryDomain: string;
-  /** Known official domains, sorted; always contains `primaryDomain`. */
-  officialDomains: string[];
-  /** The Wikidata P856 domain confirmed by Tranco (null for extras not checked against Wikidata). */
-  wikidataDomain: string | null;
-  /** Tranco rank of `primaryDomain`, or null when unranked (extras only). */
-  trancoRank: number | null;
-  /** Build date (YYYY-MM-DD) when both sources were last checked. */
-  confirmedAt: string;
-}
+export type { Org };
 
 export interface SelectInput {
   entities: ReadonlyMap<string, WikidataEntity>;
   tranco: ReadonlyMap<string, number>;
-  psl: Psl;
   limit: number;
   confirmedAt: string;
 }
@@ -32,10 +15,10 @@ export interface SelectInput {
  * ADR-0002: keep entities whose P856 registrable domain has a Tranco rank, one per primary
  * domain, top `limit` by rank, with stable slugs.
  */
-export function selectOrgs({ entities, tranco, psl, limit, confirmedAt }: SelectInput): Org[] {
+export function selectOrgs({ entities, tranco, limit, confirmedAt }: SelectInput): Org[] {
   const byPrimary = new Map<string, { org: Org; entity: WikidataEntity }>();
   for (const entity of entities.values()) {
-    const domains = [...new Set(entity.websites.map((w) => officialDomainOf(psl, w)))]
+    const domains = [...new Set(entity.websites.map(officialDomainOf))]
       .filter((d): d is string => d !== null)
       .sort();
     const ranked = domains

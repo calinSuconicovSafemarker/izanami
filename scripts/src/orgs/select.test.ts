@@ -1,9 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { parsePsl } from './psl';
 import { selectOrgs } from './select';
 import type { WikidataEntity } from './wikidata';
 
-const psl = parsePsl('com\nnl\norg\n');
 const NOW = '2026-11-17';
 
 function entity(id: string, name: string, websites: string[], extra: Partial<WikidataEntity> = {}) {
@@ -31,7 +29,6 @@ describe('selectOrgs', () => {
         entity('Q2', 'Obscure Society', ['https://obscure-society.org/']),
       ),
       tranco: new Map([['ranked.com', 42]]),
-      psl,
       limit: 500,
       confirmedAt: NOW,
     });
@@ -59,7 +56,6 @@ describe('selectOrgs', () => {
         ['tu-delft.com', 900],
         ['tudelft.nl', 300],
       ]),
-      psl,
       limit: 500,
       confirmedAt: NOW,
     });
@@ -88,7 +84,6 @@ describe('selectOrgs', () => {
         ['b.com', 2],
         ['c.com', 3],
       ]),
-      psl,
       limit: 2,
       confirmedAt: NOW,
     });
@@ -102,7 +97,6 @@ describe('selectOrgs', () => {
         entity('Q95', 'Google', ['https://www.google.com/'], { sitelinks: 150 }),
       ),
       tranco: new Map([['google.com', 1]]),
-      psl,
       limit: 500,
       confirmedAt: NOW,
     });
@@ -119,7 +113,6 @@ describe('selectOrgs', () => {
         entity('Q95', 'Google', ['https://www.google.com/'], { sitelinks: 90 }),
       ),
       tranco: new Map([['google.com', 1]]),
-      psl,
       limit: 500,
       confirmedAt: NOW,
     });
@@ -136,7 +129,6 @@ describe('selectOrgs', () => {
         entity('Q140386630', 'JKL Dolphins Kampala', ['https://instagram.com'], { sitelinks: 0 }),
       ),
       tranco: new Map([['instagram.com', 5]]),
-      psl,
       limit: 500,
       confirmedAt: NOW,
     });
@@ -153,7 +145,6 @@ describe('selectOrgs', () => {
         ['nero.com', 5],
         ['cafenero.org', 7],
       ]),
-      psl,
       limit: 500,
       confirmedAt: NOW,
     });

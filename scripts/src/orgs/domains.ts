@@ -1,4 +1,4 @@
-import { registrableDomain, type Psl } from './psl';
+import { registrableDomain } from '../lib/domain';
 
 /**
  * Paths that still denote the site itself: `/`, a locale (`/en/`, `/en-gb`) or an index page.
@@ -7,7 +7,7 @@ import { registrableDomain, type Psl } from './psl';
 const ROOTISH_PATH = /^\/(?:[a-z]{2}(?:[-_][a-z]{2})?\/?)?(?:index\.html?)?$/i;
 
 /** Registrable domain of a Wikidata P856 URL, or null when it is not a site root. */
-export function officialDomainOf(psl: Psl, url: string): string | null {
+export function officialDomainOf(url: string): string | null {
   let parsed: URL;
   try {
     parsed = new URL(url);
@@ -16,7 +16,7 @@ export function officialDomainOf(psl: Psl, url: string): string | null {
   }
   if (parsed.protocol !== 'https:' && parsed.protocol !== 'http:') return null;
   if (!ROOTISH_PATH.test(parsed.pathname)) return null;
-  return registrableDomain(psl, parsed.hostname);
+  return registrableDomain(parsed.hostname);
 }
 
 /** P856 spellings of a domain's homepage, used to look entities up by exact IRI. */

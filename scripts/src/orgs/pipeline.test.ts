@@ -28,7 +28,6 @@ function sources(previous: Org[] | null): OrgsSources & { queried: string[][] } 
   const queried: string[][] = [];
   return {
     queried,
-    pslText: async () => 'com\nnl\norg\n',
     trancoCsv: async () => '1,google.com\n2,www.google.com\n3,tudelft.nl\n',
     queryEntities: async (domains) => {
       queried.push([...domains]);

@@ -10,7 +10,11 @@
   },
   "devDependencies": {
     "@types/node": "^24.0.0",
+    "prettier": "^3.10.1",
     "tsx": "^4.20.0",
     "vitest": "^5.1.0"
+  },
+  "dependencies": {
+    "tldts": "^7.5.4"
   }
 }
