@@ -31,6 +31,7 @@ describe('parseEntityBindings', () => {
       name: 'Delft University of Technology',
       sitelinks: 70,
       isOrganisation: false,
+      isProduct: false,
       classes: ['Q3918'],
       countries: ['NL'],
       websites: ['https://www.tudelft.nl/', 'https://www.tudelft.nl/en/'],
@@ -103,6 +104,7 @@ describe('class ancestry', () => {
     name,
     sitelinks,
     isOrganisation: false,
+    isProduct: false,
     classes,
     countries: [],
     websites: [],
@@ -126,25 +128,29 @@ describe('class ancestry', () => {
     expect(ancestors.get('Q3918')).toEqual(['Q43229']);
   });
 
-  it('marks organisations and drops software, concepts and lists that are not organisations', () => {
+  it('marks organisations and software/concept products, and drops lists', () => {
     const ancestors = new Map([
       ['Q3918', ['Q3918', 'Q43229']], // university → organisation
       ['Q341', ['Q341', 'Q7397']], // free software → software
-      ['Q3220391', ['Q3220391', 'Q35127']], // social networking service → website
+      ['Q4182287', ['Q4182287', 'Q7397', 'Q151885']], // web search engine → software, concept
+      ['Q3220391', ['Q3220391', 'Q35127', 'Q7397', 'Q151885']], // social network → website, …
       ['Q4679321c', ['Q13406463']], // Wikimedia list
     ]);
     const kept = classifyEntities(
       new Map([
         ['Q752663', entity('Q752663', 'Delft University of Technology', ['Q3918'])],
         ['Q104889222', entity('Q104889222', 'Snowflake ID', ['Q341'])],
-        ['Q209330', entity('Q209330', 'Instagram', ['Q3220391'])],
+        ['Q9366', entity('Q9366', 'Google Search', ['Q4182287'])],
+        ['Q918', entity('Q918', 'X', ['Q3220391'])],
         ['Q4679321', entity('Q4679321', 'list of Google domains', ['Q4679321c'])],
       ]),
       ancestors,
     );
-    expect([...kept.values()].map((e) => [e.name, e.isOrganisation])).toEqual([
-      ['Delft University of Technology', true],
-      ['Instagram', false],
+    expect([...kept.values()].map((e) => [e.name, e.isOrganisation, e.isProduct])).toEqual([
+      ['Delft University of Technology', true, false],
+      ['Snowflake ID', false, true],
+      ['Google Search', false, true],
+      ['X', false, false],
     ]);
   });
 });

@@ -10,6 +10,12 @@ export interface WikidataEntity {
    * website. Set by `classifyEntities`; the entity query alone leaves it false.
    */
   isOrganisation: boolean;
+  /**
+   * Software, concept or product that is neither an organisation nor a website ("Microsoft
+   * Office", "Snowflake ID", "Google Search"). Set by `classifyEntities`; such entities count half
+   * when several claim a domain.
+   */
+  isProduct: boolean;
   /** Direct P31 classes (Q-ids), sorted. */
   classes: string[];
   /**
@@ -24,11 +30,19 @@ export interface WikidataEntity {
 /** Organisation (Q43229): preferred when several entities claim the same domain. */
 export const ORGANISATION_CLASS = 'Q43229';
 
+/** Website (Q35127): a site brand people visit (YouTube, X, Netflix) is kept as an entry. */
+export const WEBSITE_CLASS = 'Q35127';
+
+/** Wikimedia list articles and humans: never an entry. */
+export const NEVER_CLASSES = ['Q13406463', 'Q5'] as const;
+
 /**
- * Classes that are never an organisation's identity even when they list a P856: software
- * ("Microsoft Office", "Snowflake ID"), concepts, Wikimedia list articles and humans.
+ * Software, concepts and products ("Microsoft Office", "Snowflake ID", "Google Search", "HTC
+ * Dream"): deprioritised unless the entity is also an organisation or a website. Not dropped:
+ * Wikidata classes many real brands (WhatsApp, Discord, DuckDuckGo) only as software, and its
+ * class tree puts almost every online service under software too.
  */
-export const EXCLUDED_CLASSES = ['Q7397', 'Q151885', 'Q13406463', 'Q5'] as const;
+export const PRODUCT_CLASSES = ['Q7397', 'Q151885', 'Q2424752'] as const;
 
 /** Statement-level P856 match that keeps normal-rank values (X lists twitter.com as normal). */
 const p856 = (value: string, n: string) =>
@@ -113,6 +127,7 @@ export function parseEntityBindings(json: unknown): Map<string, WikidataEntity> 
         name,
         sitelinks: 0,
         isOrganisation: false,
+        isProduct: false,
         classes: [],
         countries: [],
         websites: [],
@@ -168,20 +183,21 @@ export function parseClassAncestors(json: unknown): Map<string, string[]> {
 }
 
 /**
- * Sets `isOrganisation` from the class ancestry and drops entities of an excluded class unless
- * they are also organisations.
+ * Sets `isOrganisation` and `isProduct` from the class ancestry and drops Wikimedia lists and
+ * humans.
  */
 export function classifyEntities(
   entities: ReadonlyMap<string, WikidataEntity>,
   ancestors: ReadonlyMap<string, readonly string[]>,
 ): Map<string, WikidataEntity> {
-  const excluded = new Set<string>(EXCLUDED_CLASSES);
   const kept = new Map<string, WikidataEntity>();
   for (const [id, entity] of entities) {
     const supers = new Set(entity.classes.flatMap((c) => [c, ...(ancestors.get(c) ?? [])]));
+    const has = (classes: readonly string[]) => classes.some((c) => supers.has(c));
     const isOrganisation = supers.has(ORGANISATION_CLASS);
-    if (!isOrganisation && [...supers].some((c) => excluded.has(c))) continue;
-    kept.set(id, { ...entity, isOrganisation });
+    if (has(NEVER_CLASSES) && !isOrganisation) continue;
+    const isProduct = has(PRODUCT_CLASSES) && !isOrganisation && !supers.has(WEBSITE_CLASS);
+    kept.set(id, { ...entity, isOrganisation, isProduct });
   }
   return kept;
 }

@@ -23,3 +23,14 @@ Wikidata is openly editable, so a vandalised P856 could make a phishing domain l
 - No runtime dependency on Wikidata/Tranco; instant page load.
 - Data can go stale between rebuilds; `confirmedAt` is shown.
 - Organisations whose official domain is unpopular are excluded unless added as extras.
+
+## Amendment 1 — 2026-11-18: which entity names a domain
+
+Several Wikidata entities often list the same domain (Google Search, Snowflake ID, Gmail, small clubs listing `instagram.com`). The generator now:
+
+- reads every non-deprecated P856 (X keeps `twitter.com` next to its preferred `x.com`) and counts a P856 only when its host is the registrable domain or its `www.` (Gmail's `mail.google.com` does not claim google.com);
+- resolves P31 class ancestry in a separate query and drops Wikimedia lists and humans;
+- ranks claimants by sitelinks, doubled for organisations (P31/P279* Q43229) with ≥ 10 sitelinks and halved for software/concepts/products that are not also a website; the best claimant takes all its domains, so each domain belongs to one entry;
+- falls back to the country of origin (P495) when there is no country or HQ country.
+
+Google's organisation item (Q95) lists only `about.google`, so Google is a curated extra (source: Google Search's P856).

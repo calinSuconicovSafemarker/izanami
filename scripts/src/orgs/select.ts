@@ -12,21 +12,43 @@ export interface SelectInput {
 }
 
 /**
- * ADR-0002: keep entities whose P856 registrable domain has a Tranco rank, one per primary
- * domain, top `limit` by rank, with stable slugs.
+ * Organisations with at least this many sitelinks get the organisation bonus; obscure ones that
+ * merely list a platform as their website (a sports club with `instagram.com`) do not.
+ */
+export const NOTABLE_ORG_SITELINKS = 10;
+
+/**
+ * How strongly an entity claims its domains: sitelinks, doubled for notable organisations and
+ * halved for software/products. Google beats "Google Search" with somewhat more sitelinks, X beats
+ * "Snowflake ID", but the 1999 bank "X.com" does not beat X, which has eight times as many.
+ */
+function preference(e: WikidataEntity): number {
+  const notableOrg = e.isOrganisation && e.sitelinks >= NOTABLE_ORG_SITELINKS;
+  return e.sitelinks * (notableOrg ? 2 : 1) * (e.isProduct ? 0.5 : 1);
+}
+
+/**
+ * ADR-0002: keep entities whose P856 registrable domain has a Tranco rank, top `limit` by rank,
+ * with stable slugs. Entities are taken in order of preference; each claims all its official
+ * domains, and an entity whose ranked domains are all claimed already is skipped, so a domain
+ * belongs to one organisation only.
  */
 export function selectOrgs({ entities, tranco, limit, confirmedAt }: SelectInput): Org[] {
-  const byPrimary = new Map<string, { org: Org; entity: WikidataEntity }>();
-  for (const entity of entities.values()) {
+  const ordered = [...entities.values()].sort(
+    (a, b) => preference(b) - preference(a) || qNumber(a.wikidataId) - qNumber(b.wikidataId),
+  );
+  const claimed = new Set<string>();
+  const orgs: Org[] = [];
+  for (const entity of ordered) {
     const domains = [...new Set(entity.websites.map(officialDomainOf))]
-      .filter((d): d is string => d !== null)
+      .filter((d): d is string => d !== null && !claimed.has(d))
       .sort();
-    const ranked = domains
+    const primary = domains
       .filter((d) => tranco.has(d))
-      .sort((a, b) => (tranco.get(a) ?? 0) - (tranco.get(b) ?? 0));
-    const primary = ranked[0];
+      .sort((a, b) => (tranco.get(a) ?? 0) - (tranco.get(b) ?? 0))[0];
     if (!primary) continue;
-    const org: Org = {
+    domains.forEach((d) => claimed.add(d));
+    orgs.push({
       slug: '',
       name: entity.name,
       wikidataId: entity.wikidataId,
@@ -36,34 +58,9 @@ export function selectOrgs({ entities, tranco, limit, confirmedAt }: SelectInput
       wikidataDomain: primary,
       trancoRank: tranco.get(primary) ?? null,
       confirmedAt,
-    };
-    const current = byPrimary.get(primary);
-    if (!current || isPreferred(entity, org, current.entity, current.org)) {
-      byPrimary.set(primary, { org, entity });
-    }
+    });
   }
-  const orgs = [...byPrimary.values()]
-    .map((v) => v.org)
-    .sort(compareOrgs)
-    .slice(0, limit);
-  return assignSlugs(orgs);
-}
-
-/**
- * Organisations with at least this many sitelinks are notable enough to win a shared domain from
- * a product or service (Google over "Google Search"); obscure organisations that merely list a
- * platform as their website (a sports club with `instagram.com`) are not.
- */
-export const NOTABLE_ORG_SITELINKS = 10;
-
-const isNotableOrg = (e: WikidataEntity) =>
-  e.isOrganisation && e.sitelinks >= NOTABLE_ORG_SITELINKS;
-
-/** Notable organisations first, then most sitelinks, then lowest Q-number. */
-function isPreferred(entity: WikidataEntity, org: Org, other: WikidataEntity, otherOrg: Org) {
-  if (isNotableOrg(entity) !== isNotableOrg(other)) return isNotableOrg(entity);
-  if (entity.sitelinks !== other.sitelinks) return entity.sitelinks > other.sitelinks;
-  return qNumber(org.wikidataId) < qNumber(otherOrg.wikidataId);
+  return assignSlugs(orgs.sort(compareOrgs).slice(0, limit));
 }
 
 function qNumber(id: string): number {

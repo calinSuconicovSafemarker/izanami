@@ -6,8 +6,8 @@ const card = () => screen.getByRole('region', { name: /official domains/i });
 
 describe('organisation page', () => {
   it('shows the name, primary domain and other official domains', () => {
-    renderRoute('/org/google-search');
-    expect(screen.getByRole('heading', { level: 1, name: 'Google Search' })).toBeInTheDocument();
+    renderRoute('/org/google');
+    expect(screen.getByRole('heading', { level: 1, name: 'Google' })).toBeInTheDocument();
     expect(within(card()).getByText('google.com', { selector: '[data-primary]' })).toBeVisible();
     const others = within(card()).getByRole('list', { name: /other known official domains/i });
     expect(within(others).getByText('google.nl')).toBeInTheDocument();
@@ -15,12 +15,12 @@ describe('organisation page', () => {
   });
 
   it('cites Wikidata P856 with a link to the item, the Tranco rank and the confirmation date', () => {
-    renderRoute('/org/google-search');
+    renderRoute('/org/microsoft');
     const evidence = within(card()).getByRole('list', { name: /evidence/i });
     const wikidata = within(evidence).getByRole('link', { name: /wikidata/i });
-    expect(wikidata).toHaveAttribute('href', 'https://www.wikidata.org/wiki/Q9366');
+    expect(wikidata).toHaveAttribute('href', 'https://www.wikidata.org/wiki/Q2283');
     expect(evidence).toHaveTextContent('Wikidata lists this as the official website (P856)');
-    expect(evidence).toHaveTextContent('Tranco rank 1 — heavily used');
+    expect(evidence).toHaveTextContent('Tranco rank 8 — heavily used');
     expect(evidence).toHaveTextContent('Confirmed at 2026-11-17');
   });
 
@@ -33,7 +33,7 @@ describe('organisation page', () => {
       'href',
       'https://www.wikidata.org/wiki/Q752663',
     );
-    expect(evidence).toHaveTextContent('Tranco rank 5,404 — heavily used');
+    expect(evidence).toHaveTextContent('Tranco rank 5,405 — heavily used');
   });
 
   it('carries the disclaimer in the page content', () => {

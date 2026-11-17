@@ -1,5 +1,30 @@
 [
   {
+    "wikidataId": "Q95",
+    "slug": "google",
+    "name": "Google",
+    "country": "US",
+    "primaryDomain": "google.com",
+    "officialDomains": [
+      "google.be",
+      "google.ca",
+      "google.ch",
+      "google.co.in",
+      "google.co.jp",
+      "google.co.uk",
+      "google.com",
+      "google.com.bd",
+      "google.com.tr",
+      "google.es",
+      "google.fr",
+      "google.gl",
+      "google.ie",
+      "google.it",
+      "google.nl"
+    ],
+    "source": "https://www.wikidata.org/wiki/Q9366#P856"
+  },
+  {
     "wikidataId": "Q752663",
     "slug": "tu-delft",
     "name": "Delft University of Technology",

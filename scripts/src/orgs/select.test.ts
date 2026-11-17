@@ -10,6 +10,7 @@ function entity(id: string, name: string, websites: string[], extra: Partial<Wik
     name,
     sitelinks: 10,
     isOrganisation: true,
+    isProduct: false,
     classes: [],
     countries: [],
     websites,
@@ -133,6 +134,45 @@ describe('selectOrgs', () => {
       confirmedAt: NOW,
     });
     expect(orgs.map((o) => o.name)).toEqual(['Instagram']);
+  });
+
+  it('lets a much better-known service win over a minor organisation with the same domain', () => {
+    const orgs = selectOrgs({
+      entities: entities(
+        entity('Q918', 'X', ['https://twitter.com', 'https://x.com'], {
+          sitelinks: 208,
+          isOrganisation: false,
+        }),
+        entity('Q30686532', 'X.com', ['https://x.com/'], { sitelinks: 27 }),
+      ),
+      tranco: new Map([
+        ['twitter.com', 7],
+        ['x.com', 48],
+      ]),
+      limit: 500,
+      confirmedAt: NOW,
+    });
+    // X.com's only domain is already one of X's official domains, so it is not listed separately.
+    expect(orgs.map((o) => [o.name, o.primaryDomain, o.officialDomains])).toEqual([
+      ['X', 'twitter.com', ['twitter.com', 'x.com']],
+    ]);
+  });
+
+  it('counts a software product half, so a site or organisation with the domain wins', () => {
+    const orgs = selectOrgs({
+      entities: entities(
+        entity('Q104889222', 'Snowflake ID', ['https://twitter.com/'], {
+          sitelinks: 100,
+          isOrganisation: false,
+          isProduct: true,
+        }),
+        entity('Q918', 'X', ['https://twitter.com'], { sitelinks: 60, isOrganisation: false }),
+      ),
+      tranco: new Map([['twitter.com', 7]]),
+      limit: 500,
+      confirmedAt: NOW,
+    });
+    expect(orgs.map((o) => o.name)).toEqual(['X']);
   });
 
   it('gives colliding names distinct slugs, the better-ranked one keeping the plain slug', () => {
