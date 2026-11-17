@@ -1,0 +1,187 @@
+{
+  "description": "NXDOMAIN + SIDN RDAP 404 for tudelft-lookalike-xq7z.nl",
+  "recordedAt": "2026-11-17T21:59:32.216Z",
+  "responses": {
+    "https://cloudflare-dns.com/dns-query?name=tudelft-lookalike-xq7z.nl&type=A": {
+      "status": 200,
+      "json": {
+        "Status": 3,
+        "TC": false,
+        "RD": true,
+        "RA": true,
+        "AD": true,
+        "CD": false,
+        "Question": [
+          {
+            "name": "tudelft-lookalike-xq7z.nl",
+            "type": 1
+          }
+        ],
+        "Authority": [
+          {
+            "name": "nl",
+            "type": 6,
+            "TTL": 600,
+            "data": "ns1.dns.nl. dns.sidn.nl. 2026111743 3600 600 1209600 600"
+          }
+        ]
+      }
+    },
+    "https://cloudflare-dns.com/dns-query?name=tudelft-lookalike-xq7z.nl&type=AAAA": {
+      "status": 200,
+      "json": {
+        "Status": 3,
+        "TC": false,
+        "RD": true,
+        "RA": true,
+        "AD": true,
+        "CD": false,
+        "Question": [
+          {
+            "name": "tudelft-lookalike-xq7z.nl",
+            "type": 28
+          }
+        ],
+        "Authority": [
+          {
+            "name": "nl",
+            "type": 6,
+            "TTL": 600,
+            "data": "ns1.dns.nl. dns.sidn.nl. 2026111743 3600 600 1209600 600"
+          }
+        ]
+      }
+    },
+    "https://cloudflare-dns.com/dns-query?name=tudelft-lookalike-xq7z.nl&type=NS": {
+      "status": 200,
+      "json": {
+        "Status": 3,
+        "TC": false,
+        "RD": true,
+        "RA": true,
+        "AD": true,
+        "CD": false,
+        "Question": [
+          {
+            "name": "tudelft-lookalike-xq7z.nl",
+            "type": 2
+          }
+        ],
+        "Authority": [
+          {
+            "name": "nl",
+            "type": 6,
+            "TTL": 600,
+            "data": "ns1.dns.nl. dns.sidn.nl. 2026111743 3600 600 1209600 600"
+          }
+        ]
+      }
+    },
+    "https://cloudflare-dns.com/dns-query?name=tudelft-lookalike-xq7z.nl&type=MX": {
+      "status": 200,
+      "json": {
+        "Status": 3,
+        "TC": false,
+        "RD": true,
+        "RA": true,
+        "AD": true,
+        "CD": false,
+        "Question": [
+          {
+            "name": "tudelft-lookalike-xq7z.nl",
+            "type": 15
+          }
+        ],
+        "Authority": [
+          {
+            "name": "nl",
+            "type": 6,
+            "TTL": 600,
+            "data": "ns1.dns.nl. dns.sidn.nl. 2026111743 3600 600 1209600 600"
+          }
+        ]
+      }
+    },
+    "https://cloudflare-dns.com/dns-query?name=tudelft-lookalike-xq7z.nl&type=TXT": {
+      "status": 200,
+      "json": {
+        "Status": 3,
+        "TC": false,
+        "RD": true,
+        "RA": true,
+        "AD": true,
+        "CD": false,
+        "Question": [
+          {
+            "name": "tudelft-lookalike-xq7z.nl",
+            "type": 16
+          }
+        ],
+        "Authority": [
+          {
+            "name": "nl",
+            "type": 6,
+            "TTL": 600,
+            "data": "ns1.dns.nl. dns.sidn.nl. 2026111743 3600 600 1209600 600"
+          }
+        ]
+      }
+    },
+    "https://rdap.sidn.nl/domain/tudelft-lookalike-xq7z.nl": {
+      "status": 404,
+      "json": {
+        "rdapConformance": [
+          "rdap_level_0",
+          "icann_rdap_response_profile_1",
+          "icann_rdap_technical_implementation_guide_1"
+        ],
+        "objectClassName": "domain",
+        "notices": [
+          {
+            "title": "Status Codes",
+            "description": [
+              "Meer informatie over domeinstatuscodes vind je op https://icann.org/epp",
+              "For more information on domain status codes, please visit https://icann.org/epp"
+            ],
+            "links": [
+              {
+                "value": "https://rdap.sidn.nl/domain/tudelft-lookalike-xq7z.nl",
+                "rel": "glossary",
+                "href": "https://icann.org/epp",
+                "type": "text/html"
+              }
+            ]
+          },
+          {
+            "title": "Privacy notice",
+            "description": [
+              "De houdergegevens kunnen afgeschermd zijn. Meer informatie hierover vind je op: https://www.sidn.nl/nl-domeinnaam/sidn-en-privacy",
+              "The registrant's details can be withheld from public view. For more information, see https://www.sidn.nl/en/nl-domain-name/sidn-and-privacy"
+            ]
+          },
+          {
+            "title": "Maintainer",
+            "description": ["Administratie door: SIDN BV", "Record maintained by: SIDN BV"]
+          },
+          {
+            "title": "RDDS Inaccuracy Complaint Form",
+            "description": [
+              "URL of the ICANN RDDS Inaccuracy Complaint Form: https://www.icann.org/wicf"
+            ],
+            "links": [
+              {
+                "value": "https://rdap.sidn.nl/domain/tudelft-lookalike-xq7z.nl",
+                "rel": "help",
+                "href": "https://icann.org/wicf",
+                "type": "text/html"
+              }
+            ]
+          }
+        ],
+        "lang": "nl-NL",
+        "ldhName": "tudelft-lookalike-xq7z.nl",
+        "status": ["free"]
+      }
+    }
+  }
+}
