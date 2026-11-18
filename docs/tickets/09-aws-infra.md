@@ -1,6 +1,6 @@
 # 09 — AWS infrastructure (CDK)
 
-**Status:** Done (6b6a643) — deploy-only checks pending: site loads, live lookup without CSP errors, Observatory A+, direct S3 URL 403
+**Status:** Done (6b6a643). Deployed 2026-11-18 to https://d1kyj53r37y0uu.cloudfront.net/ (eu-north-1): site loads, live lookup with no CSP errors, direct S3 URL returns 403, HTTP redirects to HTTPS, all security headers present. Observatory grade not yet run.
 
 **Depends on:** 00, 02 (`rdap-hosts.json` for CSP)
 

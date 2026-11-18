@@ -74,7 +74,9 @@ npm run synth -w infra
 
 ## Deployment
 
-Live site: **https://calinsuconicovsafemarker.github.io/izanami/**
+Live site:
+- **AWS (S3 + CloudFront, full security headers):** https://d1kyj53r37y0uu.cloudfront.net/
+- **GitHub Pages (auto-deployed on every push):** https://calinsuconicovsafemarker.github.io/izanami/
 
 The site is hosted on **GitHub Pages** ([ADR-0005](docs/adr/0005-github-pages-hosting.md)). Every
 push to `main` runs `.github/workflows/pages.yml`: install, lint, test, build, then publish
@@ -92,6 +94,6 @@ One-time setup: in the repository, Settings → Pages → Build and deployment �
 
 `infra/` still contains a CDK app for S3 + CloudFront (Origin Access Control, header-based CSP via
 a CloudFront Function, HSTS) and a GitHub OIDC deploy role (`IzanamiStack`,
-`IzanamiGitHubDeploy`). It is not used for the live site; see
+`IzanamiGitHubDeploy`). It is deployed manually from a laptop (`aws login`, then `npm run build && cd infra && npx cdk deploy IzanamiStack`), not from GitHub, because the AWS account's organisation blocks GitHub OIDC; see
 [ADR-0004](docs/adr/0004-security-headers.md). To use it: `npm run build`, then
 `cd infra && npx cdk bootstrap aws://<account-id>/<region>` and `npx cdk deploy IzanamiStack`.
