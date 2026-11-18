@@ -32,6 +32,13 @@ describe('buildCsp', () => {
     expect(directive(csp, 'object-src')).toEqual(["'none'"]);
   });
 
+  it('omits frame-ancestors (ignored by browsers) in the <meta> variant, keeping the rest', () => {
+    const header = buildCsp(sample);
+    const meta = buildCsp(sample, { forMeta: true });
+    expect(directive(meta, 'frame-ancestors')).toEqual([]);
+    expect(meta).toBe(header.replace("; frame-ancestors 'none'", ''));
+  });
+
   it('allows DoH, rdap.org, IANA, crt.sh and each RDAP host exactly once', () => {
     const connect = directive(buildCsp(sample), 'connect-src');
     expect(connect).toEqual([

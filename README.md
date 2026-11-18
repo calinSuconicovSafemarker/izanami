@@ -68,55 +68,30 @@ targeted organisation.
 npm ci
 npm run lint
 npm test
-npm run build          # also builds web/dist, needed by cdk synth/deploy
+npm run build          # builds web/dist (the site GitHub Pages publishes)
 npm run synth -w infra
 ```
 
 ## Deployment
 
-Every push to `main` runs `.github/workflows/deploy.yml`: install, lint, test, build, then
-`cdk deploy IzanamiStack`. Any failing step stops the job before AWS credentials are
-requested. AWS access uses GitHub OIDC: there are no AWS keys in GitHub secrets. The deploy role
-only trusts tokens whose subject is `repo:<owner>/<name>:ref:refs/heads/main`, so pull requests
-and forks cannot assume it, and its only permission is assuming the CDK bootstrap roles.
+Live site: **https://calinsuconicovsafemarker.github.io/izanami/**
 
-### One-time setup
+The site is hosted on **GitHub Pages** ([ADR-0005](docs/adr/0005-github-pages-hosting.md)). Every
+push to `main` runs `.github/workflows/pages.yml`: install, lint, test, build, then publish
+`web/dist`. Any failing step stops the job before anything is published. No secrets are involved.
 
-Run these once with admin credentials for the target AWS account, from the repo root.
-`<owner>/<name>` is the GitHub repository (for example `my-org/izanami`).
+GitHub Pages can't set response headers, so the strict Content-Security-Policy (including the
+generated RDAP `connect-src` allowlist) is injected into `index.html` as a `<meta>` tag at build
+time, and `web/check-dist-csp.mjs` fails the build if it's missing or if any inline script or
+style appears.
 
-1. Build the site (the CDK app needs `web/dist`):
+One-time setup: in the repository, Settings → Pages → Build and deployment → Source:
+**GitHub Actions**.
 
-   ```sh
-   npm ci && npm run build
-   ```
+### Optional: AWS hosting
 
-2. Bootstrap CDK in the account and region you will deploy to:
-
-   ```sh
-   cd infra
-   npx cdk bootstrap aws://<account-id>/<region>
-   ```
-
-3. Create the GitHub OIDC provider and deploy role:
-
-   ```sh
-   npx cdk deploy IzanamiGitHubDeploy -c githubRepo=<owner>/<name>
-   ```
-
-   The repository can also be given as the `GITHUB_DEPLOY_REPO` environment variable.
-   Optional context values:
-   - `-c githubBranch=<branch>`: allow a branch other than `main`.
-   - `-c githubOidcProviderArn=<arn>`: reuse an existing
-     `token.actions.githubusercontent.com` provider (an account can have only one), instead of
-     creating it.
-   - `-c @aws-cdk/core:bootstrapQualifier=<qualifier>`: if you bootstrapped with a custom
-     qualifier.
-
-4. In GitHub, under Settings → Secrets and variables → Actions → Variables, add two
-   repository variables (variables, not secrets):
-   - `AWS_ROLE_ARN`: the `DeployRoleArn` output of step 3.
-   - `AWS_REGION`: the region you bootstrapped in step 2.
-
-After that, a push to `main` deploys. The `DistributionUrl` output of `IzanamiStack`
-is the site URL.
+`infra/` still contains a CDK app for S3 + CloudFront (Origin Access Control, header-based CSP via
+a CloudFront Function, HSTS) and a GitHub OIDC deploy role (`IzanamiStack`,
+`IzanamiGitHubDeploy`). It is not used for the live site; see
+[ADR-0004](docs/adr/0004-security-headers.md). To use it: `npm run build`, then
+`cd infra && npx cdk bootstrap aws://<account-id>/<region>` and `npx cdk deploy IzanamiStack`.

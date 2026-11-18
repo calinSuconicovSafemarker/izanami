@@ -2,7 +2,7 @@
 
 A static website that helps someone check whether a domain is the **official** domain of a well-known organisation, or a **lookalike** that might be used for phishing. It only uses passive, public lookups (DNS, RDAP, Certificate Transparency) — no probing, scanning or contacting the domain's own servers.
 
-Personal learning + CV project. TypeScript end to end. Hosted on AWS (S3 + CloudFront), **browser-only at runtime** (see [ADR-0001](adr/0001-browser-only-runtime.md)).
+Personal learning + CV project. TypeScript end to end. Hosted on GitHub Pages ([ADR-0005](adr/0005-github-pages-hosting.md); AWS S3 + CloudFront remains an optional alternative), **browser-only at runtime** (see [ADR-0001](adr/0001-browser-only-runtime.md)).
 
 Terms are defined in [GLOSSARY.md](GLOSSARY.md).
 

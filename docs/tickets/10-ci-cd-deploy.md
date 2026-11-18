@@ -1,6 +1,6 @@
 # 10 — CI/CD deploy via OIDC
 
-**Status:** Done (9d51fcf) — pending real deploy: push-to-main deploys, fork PR refused
+**Status:** Done (9d51fcf). Superseded by [ADR-0005](../adr/0005-github-pages-hosting.md): the site deploys to GitHub Pages; the AWS workflow was removed, the OIDC stack kept as optional.
 
 **Depends on:** 09
 

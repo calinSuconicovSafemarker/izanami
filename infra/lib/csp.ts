@@ -21,7 +21,11 @@ export const CLOUDFRONT_FUNCTION_MAX_BYTES = 10 * 1024;
 
 const HTTPS_ORIGIN = /^https:\/\/[a-z0-9-]+(\.[a-z0-9-]+)*(:\d{1,5})?$/;
 
-export function buildCsp(rdapHosts: readonly string[]): string {
+/**
+ * `forMeta`: build the policy for a `<meta http-equiv>` tag (GitHub Pages can't set headers).
+ * Browsers ignore `frame-ancestors` in a meta CSP and log a warning, so it is left out there.
+ */
+export function buildCsp(rdapHosts: readonly string[], opts: { forMeta?: boolean } = {}): string {
   for (const h of rdapHosts) {
     if (!HTTPS_ORIGIN.test(h)) throw new Error(`RDAP host is not a bare https origin: ${h}`);
   }
@@ -33,7 +37,7 @@ export function buildCsp(rdapHosts: readonly string[]): string {
     "img-src 'self' data:",
     `connect-src 'self' ${connect.join(' ')}`,
     "object-src 'none'",
-    "frame-ancestors 'none'",
+    ...(opts.forMeta ? [] : ["frame-ancestors 'none'"]),
     "base-uri 'none'",
     "form-action 'none'",
   ].join('; ');
