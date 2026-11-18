@@ -31,4 +31,4 @@ jobs:
           aws-region: ${{ vars.AWS_REGION }}
       - name: cdk deploy
         working-directory: infra
-        run: npx cdk deploy LookalikeCheckerStack --require-approval never --no-notices
+        run: npx cdk deploy IzanamiStack --require-approval never --no-notices

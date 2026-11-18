@@ -71,6 +71,6 @@ describe('deploy.yml', () => {
 
   it('deploys only the site stack without prompting', () => {
     const deploy = steps.find((s) => s.run?.includes('cdk deploy'));
-    expect(deploy?.run).toMatch(/cdk deploy LookalikeCheckerStack .*--require-approval never/);
+    expect(deploy?.run).toMatch(/cdk deploy IzanamiStack .*--require-approval never/);
   });
 });

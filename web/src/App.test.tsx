@@ -6,8 +6,6 @@ describe('App', () => {
   it('renders the placeholder home page at the root hash route', () => {
     window.location.hash = '#/';
     render(<App />);
-    expect(
-      screen.getByRole('heading', { level: 1, name: /lookalike checker/i }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1, name: /izanami/i })).toBeInTheDocument();
   });
 });

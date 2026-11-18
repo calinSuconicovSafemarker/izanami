@@ -25,7 +25,7 @@ export function Layout() {
             to="/"
             className={`rounded font-mono text-sm font-semibold text-emerald-400 hover:text-emerald-300 ${focusRing}`}
           >
-            lookalike-checker
+            izanami
           </Link>
         </div>
       </header>

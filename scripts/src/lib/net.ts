@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 
 /** Descriptive, personal-data-free User-Agent for every request this script makes. */
 export const USER_AGENT =
-  'lookalike-checker-build-data/0.1 (build-time dataset generator for a lookalike-domain checker; Node.js)';
+  'izanami-build-data/0.1 (build-time dataset generator for a lookalike-domain checker; Node.js)';
 
 /**
  * The one download cache for every build-data step (`scripts/.cache`, gitignored: the folder

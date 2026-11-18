@@ -1,4 +1,4 @@
-# Lookalike Domain Checker — Spec
+# Izanami — Lookalike Domain Checker Spec
 
 A static website that helps someone check whether a domain is the **official** domain of a well-known organisation, or a **lookalike** that might be used for phishing. It only uses passive, public lookups (DNS, RDAP, Certificate Transparency) — no probing, scanning or contacting the domain's own servers.
 

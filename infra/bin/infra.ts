@@ -16,16 +16,16 @@ const { hosts } = JSON.parse(
 ) as { hosts: string[] };
 
 const app = new App();
-new InfraStack(app, 'LookalikeCheckerStack', { siteDir, rdapHosts: hosts });
+new InfraStack(app, 'IzanamiStack', { siteDir, rdapHosts: hosts });
 
 // One-time CI/CD stack, only synthesised when a repo is configured:
-//   npx cdk deploy LookalikeCheckerGitHubDeploy -c githubRepo=<owner>/<name>
+//   npx cdk deploy IzanamiGitHubDeploy -c githubRepo=<owner>/<name>
 // (or set GITHUB_DEPLOY_REPO). Optional: -c githubBranch=main,
 // -c githubOidcProviderArn=<arn> to reuse an existing provider.
 const ctx = (key: string) => app.node.tryGetContext(key) as string | undefined;
 const repository = ctx('githubRepo') ?? process.env.GITHUB_DEPLOY_REPO;
 if (repository) {
-  new GitHubDeployStack(app, 'LookalikeCheckerGitHubDeploy', {
+  new GitHubDeployStack(app, 'IzanamiGitHubDeploy', {
     env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: process.env.CDK_DEFAULT_REGION },
     repository,
     branch: ctx('githubBranch'),
