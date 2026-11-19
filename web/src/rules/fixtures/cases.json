@@ -46,7 +46,7 @@
       "variant": "tudelft.nl",
       "facts": {
         "existence": "resolving",
-        "inTranco": true,
+        "inPopularTop100k": true,
         "registrationDate": "1987-03-17T00:00:00Z",
         "registrar": "SURF B.V.",
         "nameservers": ["ns1.surfnet.nl", "ns2.surfnet.nl"],
@@ -63,7 +63,7 @@
       "variant": "tudelft.com",
       "facts": {
         "existence": "resolving",
-        "inTranco": false,
+        "inPopularTop100k": false,
         "registrationDate": "2001-07-01T10:48:54Z",
         "registrar": "Hosting Concepts B.V. d/b/a Registrar.eu",
         "nameservers": ["ns1.tudelft.nl", "ns2.tudelft.nl"],
@@ -80,7 +80,7 @@
       "variant": "gooogle.com",
       "facts": {
         "existence": "resolving",
-        "inTranco": true,
+        "inPopularTop100k": true,
         "registrationDate": "1999-01-08T05:00:00Z",
         "registrar": "MarkMonitor, Inc.",
         "nameservers": ["ns1.google.com", "ns2.google.com"],
@@ -97,7 +97,7 @@
       "variant": "tudelft-login.com",
       "facts": {
         "existence": "resolving",
-        "inTranco": false,
+        "inPopularTop100k": false,
         "registrationDate": "2026-11-05T09:12:00Z",
         "registrar": "NameCheap, Inc.",
         "nameservers": ["dana.ns.cloudflare.com", "rob.ns.cloudflare.com"],
@@ -114,7 +114,7 @@
       "variant": "tudeflt.nl",
       "facts": {
         "existence": "resolving",
-        "inTranco": false,
+        "inPopularTop100k": false,
         "registrationDate": "2019-04-02T00:00:00Z",
         "registrar": "Key-Systems GmbH",
         "nameservers": ["ns1.sedoparking.com", "ns2.sedoparking.com"],
@@ -131,7 +131,7 @@
       "variant": "tudеlft.com",
       "facts": {
         "existence": "resolving",
-        "inTranco": false,
+        "inPopularTop100k": false,
         "registrationDate": "2026-10-01T00:00:00Z",
         "registrar": "PDR Ltd. d/b/a PublicDomainRegistry.com",
         "nameservers": ["ns1.bulletproof.example"],
@@ -148,7 +148,7 @@
       "variant": "tudelft-portal.nl",
       "facts": {
         "existence": "registered-not-resolving",
-        "inTranco": false,
+        "inPopularTop100k": false,
         "registrationDate": "2026-06-01T00:00:00Z",
         "registrar": "Hostnet B.V.",
         "nameservers": [],
@@ -165,7 +165,7 @@
       "variant": "tudelftracing.nl",
       "facts": {
         "existence": "resolving",
-        "inTranco": false,
+        "inPopularTop100k": false,
         "registrationDate": "1991-06-20T00:00:00Z",
         "registrar": "TransIP B.V.",
         "nameservers": ["ns0.transip.net", "ns1.transip.nl"],
@@ -182,7 +182,7 @@
       "variant": "tudelft.online",
       "facts": {
         "existence": "?",
-        "inTranco": false,
+        "inPopularTop100k": false,
         "registrationDate": "?",
         "registrar": "?",
         "nameservers": "?",

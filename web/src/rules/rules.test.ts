@@ -141,15 +141,20 @@ table('brand-lookalike', [
   },
 ]);
 
-table('not-in-tranco', [
+table('not-popular', [
   {
     name: 'absent',
-    variant: { inTranco: false },
+    variant: { inPopularTop100k: false },
     status: 'fired',
     weight: 10,
-    says: ['example-unrelated.nl', 'Tranco'],
+    says: ['example-unrelated.nl', 'popularity lists'],
   },
-  { name: 'present', variant: { inTranco: true }, status: 'not-fired', says: ['Tranco'] },
+  {
+    name: 'present',
+    variant: { inPopularTop100k: true },
+    status: 'not-fired',
+    says: ['popularity lists'],
+  },
 ]);
 
 table('listed-related', [
@@ -442,7 +447,7 @@ describe('RULES', () => {
         'young-domain',
         'much-newer',
         'brand-lookalike',
-        'not-in-tranco',
+        'not-popular',
         'same-nameservers',
         'same-registrar',
         'same-mx',

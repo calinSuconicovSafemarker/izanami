@@ -1,6 +1,6 @@
-import { has } from './tranco';
+import { has } from './popularity';
 
-describe('Tranco top-100k set', () => {
+describe('Popular top-100k set', () => {
   it('contains popular registrable domains', () => {
     expect(has('google.com')).toBe(true);
     expect(has('tudelft.nl')).toBe(true);

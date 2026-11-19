@@ -12,7 +12,10 @@ describe('credits page', () => {
   });
 
   it.each([
-    ['Data used to build the org list', ['Wikidata', 'Tranco list', 'Unicode confusables']],
+    [
+      'Data used to build the org list',
+      ['Wikidata', 'Majestic Million', 'Chrome UX Report', 'Unicode confusables'],
+    ],
     ['Live lookups', ['Cloudflare DNS over HTTPS', 'Team Cymru', 'crt.sh', 'rdap.org']],
     ['Software', ['React', 'tldts']],
   ])('groups "%s" with its entries', (title, names) => {
@@ -39,9 +42,11 @@ describe('credits page', () => {
     expect(screen.getByText(/this copyright and permission notice appear/)).toBeInTheDocument();
   });
 
-  it('says sources do not endorse Izanami and flags the non-commercial Tranco input', () => {
+  it('says sources do not endorse Izanami and credits both popularity lists under CC BY', () => {
     renderRoute('/credits');
     expect(screen.getByText(/none of these sources endorses izanami/i)).toBeVisible();
-    expect(screen.getByText(/not cleared for commercial use/i)).toBeVisible();
+    expect(screen.getByText(/^The Majestic Million by Majestic .*CC BY 3\.0/)).toBeVisible();
+    expect(screen.getByText(/^Chrome UX Report \(CrUX\) by Google .*CC BY 4\.0/)).toBeVisible();
+    expect(screen.getByText(/states no licence of its own/)).toBeVisible();
   });
 });

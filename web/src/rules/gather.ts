@@ -1,7 +1,7 @@
 // Collects facts for the rules through a LookupClient. The only module in
 // rules/ that does I/O, and only via the injected client.
 import { toASCII, toUnicode } from 'punycode/';
-import { has as inTrancoTop100k } from '../data/tranco';
+import { has as inPopularTop100k } from '../data/popularity';
 import { similarity, type ParsedVariant } from '../domain';
 import type { DnsResult, LookupClient, RdapResult } from '../lookup';
 import type {
@@ -231,7 +231,7 @@ export async function gatherFacts(
     orgCountry: org.country,
     similarity: similarity(variant, org.brandLabel, org.officialDomains, org.brandTlds),
     ...listed(org, domain),
-    inTranco: inTrancoTop100k(domain),
+    inPopularTop100k: inPopularTop100k(domain),
     checkedAt: (options.now ?? new Date()).toISOString(),
   };
   let v: VariantFacts = { ...base, ...pendingInfra(domain) };

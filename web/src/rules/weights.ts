@@ -6,7 +6,7 @@ export const WEIGHTS = {
   muchNewer: 15,
   brandLookalike: 25,
   brandHomoglyph: 35,
-  notInTranco: 10,
+  notPopular: 10,
   sameNameservers: -40,
   sameRegistrar: -25,
   sameBrandRegistrar: -35,

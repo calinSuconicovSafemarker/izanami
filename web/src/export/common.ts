@@ -29,7 +29,8 @@ export const exportOrg = (org: Org): ExportOrg => ({
 /** Sources whose data a lookup export carries (ticket 17); additive, so the schema version is unchanged. */
 const LOOKUP_SOURCE_IDS: readonly SourceId[] = [
   'wikidata',
-  'tranco',
+  'majestic-million',
+  'chrome-ux-report',
   'public-suffix-list',
   'unicode-confusables',
   'cloudflare-doh',

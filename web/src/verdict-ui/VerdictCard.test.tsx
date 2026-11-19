@@ -37,7 +37,7 @@ describe('VerdictCard while lookups are in flight', () => {
 describe('VerdictCard header', () => {
   it('shows the total score and a one-sentence summary', () => {
     render(<VerdictCard facts={caseFacts(byName(DEFENSIVE))} done />);
-    // +25 tld-swap +10 tranco +15 much-newer −40 NS −15 ASN (no-mx suppressed by shared NS)
+    // +25 tld-swap +10 not-popular +15 much-newer −40 NS −15 ASN (no-mx suppressed by shared NS)
     expect(card()).toHaveTextContent('Score −5');
     expect(within(card()).getByText(/legit signals outweigh/i)).toBeInTheDocument();
   });
@@ -59,7 +59,7 @@ describe('VerdictCard rule groups', () => {
     expect(legit).toHaveTextContent('tudelft.com shares nameservers with tudelft.nl');
     const risk = group(/risk signals fired/i);
     expect(risk).toHaveTextContent('+10');
-    expect(risk).toHaveTextContent('not in the Tranco top 100k');
+    expect(risk).toHaveTextContent('not in the top 100k of the popularity lists');
     expect(risk).not.toHaveTextContent('nameservers');
   });
 

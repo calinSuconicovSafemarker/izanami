@@ -58,7 +58,7 @@ export interface LookupExport {
     similarityPercent: number;
     homoglyphs: { text: string; looksLike: string; codePoints: string }[];
     /** `null` for an official domain (not checked). */
-    inTrancoTop100k: boolean | null;
+    inPopularTop100k: boolean | null;
   };
   /** `null`: not checked (official domain) or unknown. */
   existence: Existence | null;
@@ -139,7 +139,7 @@ export function toLookupExport(input: LookupExportInput): LookupExport {
       homoglyphs: homoglyphSegments(variant.label, brandLabel).flatMap((s) =>
         s.swapped ? [{ text: s.text, looksLike: s.looksLike, codePoints: s.codePoints }] : [],
       ),
-      inTrancoTop100k: vf ? vf.inTranco : null,
+      inPopularTop100k: vf ? vf.inPopularTop100k : null,
     },
     existence: vf ? value(vf.existence) : null,
     registration: vf

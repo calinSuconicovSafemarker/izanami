@@ -1,6 +1,6 @@
 import { toUnicode } from 'punycode/';
 import type { Org, RelatedDomain, RelatedDomainGroup } from '../orgs';
-import { isCurated, relatedDomainGroups, wikidataUrl } from '../orgs';
+import { isCurated, popularityEvidence, relatedDomainGroups, wikidataUrl } from '../orgs';
 
 const linkClass =
   'text-emerald-400 underline decoration-emerald-400/40 underline-offset-2 hover:text-emerald-300 focus-visible:outline-2 focus-visible:outline-emerald-400';
@@ -104,9 +104,7 @@ export function OfficialDomainCard({ org }: { org: Org }) {
               </a>
             </li>
           )}
-          {org.trancoRank !== null && (
-            <li>Tranco rank {org.trancoRank.toLocaleString('en-US')} — heavily used</li>
-          )}
+          {org.popularity && <li>{popularityEvidence(org.popularity)}</li>}
           <li>Confirmed at {org.confirmedAt}</li>
         </ul>
         <p className="text-xs text-zinc-400">

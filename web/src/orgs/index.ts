@@ -2,9 +2,23 @@ import orgsJson from '../data/orgs.json';
 import { normaliseTld } from '../domain';
 import type { OrgInput } from '../rules';
 import { officialContext } from './official';
-import type { Org, RelatedDomain, RelatedSource } from './org';
+import type {
+  Org,
+  Popularity,
+  PopularityBucket,
+  PopularitySource,
+  RelatedDomain,
+  RelatedSource,
+} from './org';
 
-export type { Org, RelatedDomain, RelatedSource } from './org';
+export type {
+  Org,
+  Popularity,
+  PopularityBucket,
+  PopularitySource,
+  RelatedDomain,
+  RelatedSource,
+} from './org';
 export {
   isOfficialSource,
   OFFICIAL_SOURCES,
@@ -21,11 +35,47 @@ function relatedSource(source: string): RelatedSource {
   return known;
 }
 
-/** All organisations, best Tranco rank first. */
+const POPULARITY_BUCKETS: readonly PopularityBucket[] = [1_000, 10_000, 100_000, 1_000_000];
+const POPULARITY_SOURCES: readonly PopularitySource[] = ['crux', 'majestic'];
+
+/** JSON imports widen the bucket and source unions too; check them the same way. */
+function popularity(
+  p: {
+    bucket: number;
+    sources: string[];
+    majesticRank: number | null;
+    cruxBucket: number | null;
+  } | null,
+): Popularity | null {
+  if (!p) return null;
+  const bucket = POPULARITY_BUCKETS.find((b) => b === p.bucket);
+  if (!bucket) throw new Error(`orgs.json: unknown popularity bucket ${p.bucket}`);
+  const cruxBucket = POPULARITY_BUCKETS.find((b) => b === p.cruxBucket) ?? null;
+  const sources = p.sources.map((s) => {
+    const known = POPULARITY_SOURCES.find((k) => k === s);
+    if (!known) throw new Error(`orgs.json: unknown popularity source "${s}"`);
+    return known;
+  });
+  return { bucket, sources, majesticRank: p.majesticRank, cruxBucket };
+}
+
+/** All organisations, most popular first. */
 export const allOrgs: readonly Org[] = orgsJson.map((org) => ({
   ...org,
   relatedDomains: org.relatedDomains.map((r) => ({ ...r, source: relatedSource(r.source) })),
+  popularity: popularity(org.popularity),
 }));
+
+const POPULARITY_SOURCE_NAMES: Record<PopularitySource, string> = {
+  crux: 'Chrome UX Report',
+  majestic: 'Majestic Million',
+};
+
+/** Evidence line, e.g. "Top 1,000 sites (Chrome UX Report, Majestic Million) — heavily used". */
+export function popularityEvidence(p: Popularity): string {
+  const names = p.sources.map((s) => POPULARITY_SOURCE_NAMES[s]).join(', ');
+  return `Top ${p.bucket.toLocaleString('en-US')} sites (${names}) — heavily used`;
+}
 
 const bySlug = new Map(allOrgs.map((org) => [org.slug, org]));
 
