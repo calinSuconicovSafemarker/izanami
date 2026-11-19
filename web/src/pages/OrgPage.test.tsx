@@ -65,10 +65,13 @@ describe('organisation page', () => {
   });
 
   it('looks up and scores a Wikidata-listed related domain instead of calling it Official (R1)', async () => {
-    const listed = getOrg('google')!.relatedDomains.find((r) => r.source === 'wikidata-owned')!;
+    const google = getOrg('google')!;
+    const listed = google.relatedDomains.find(
+      (r) => r.source === 'wikidata-owned' && r.domain.endsWith('.com'),
+    )!;
     renderRoute(`/org/google?d=${listed.domain}`, new FixtureLookupClient([]));
     const verdict = await screen.findByRole('region', { name: /^verdict$/i });
-    expect(await within(verdict).findByText(/Listed by Wikidata as owned by Google/)).toBeTruthy();
+    expect(await within(verdict).findByText(/Wikidata lists .* as owned by Google/)).toBeTruthy();
     expect(within(verdict).getByRole('status')).not.toHaveTextContent('Verdict: Official');
   });
 

@@ -24,10 +24,21 @@
     ],
     "relatedDomains": [
       {
+        "domain": "abc.xyz",
+        "source": "curated",
+        "url": "https://abc.xyz/investor/"
+      },
+      {
         "domain": "ai.google",
         "source": "wikidata-owned",
         "via": "Google",
         "url": "https://www.wikidata.org/wiki/Q30688088"
+      },
+      {
+        "domain": "android.com",
+        "source": "curated",
+        "via": "Android",
+        "url": "https://support.google.com/work/android/answer/10513641"
       },
       {
         "domain": "apigee.com",
@@ -120,10 +131,15 @@
         "url": "https://support.google.com/legal-help-center/answer/16673757"
       },
       {
+        "domain": "ggpht.com",
+        "source": "curated",
+        "url": "https://support.google.com/work/android/answer/10513641"
+      },
+      {
         "domain": "gmail.com",
-        "source": "wikidata-owned",
+        "source": "curated",
         "via": "Gmail",
-        "url": "https://www.wikidata.org/wiki/Q9334"
+        "url": "https://support.google.com/mail/answer/56256"
       },
       {
         "domain": "goo.gl",
@@ -516,8 +532,8 @@
       },
       {
         "domain": "google.com.hk",
-        "source": "curated",
-        "via": "Google Hong Kong",
+        "source": "published-list",
+        "via": "Google supported domains",
         "url": "https://www.google.com/supported_domains"
       },
       {
@@ -1197,12 +1213,6 @@
         "url": "https://www.wikidata.org/wiki/Q5974704"
       },
       {
-        "domain": "jaiku.com",
-        "source": "wikidata-owned",
-        "via": "Jaiku",
-        "url": "https://www.wikidata.org/wiki/Q1139551"
-      },
-      {
         "domain": "kaggle.com",
         "source": "wikidata-owned",
         "via": "Kaggle",
@@ -1233,22 +1243,10 @@
         "url": "https://www.wikidata.org/wiki/Q58508"
       },
       {
-        "domain": "metaweb.com",
-        "source": "wikidata-owned",
-        "via": "Metaweb",
-        "url": "https://www.wikidata.org/wiki/Q1575434"
-      },
-      {
         "domain": "neverware.com",
         "source": "wikidata-owned",
         "via": "Neverware",
         "url": "https://www.wikidata.org/wiki/Q17114220"
-      },
-      {
-        "domain": "nothing.tech",
-        "source": "wikidata-owned",
-        "via": "Nothing Technology Ltd.",
-        "url": "https://www.wikidata.org/wiki/Q110339215"
       },
       {
         "domain": "on2.com",
@@ -1261,18 +1259,6 @@
         "source": "wikidata-owned",
         "via": "Google Open Source",
         "url": "https://www.wikidata.org/wiki/Q111351974"
-      },
-      {
-        "domain": "orkut.com",
-        "source": "wikidata-owned",
-        "via": "Orkut",
-        "url": "https://www.wikidata.org/wiki/Q231396"
-      },
-      {
-        "domain": "panoramio.com",
-        "source": "wikidata-owned",
-        "via": "Panoramio",
-        "url": "https://www.wikidata.org/wiki/Q239516"
       },
       {
         "domain": "pki.goog",
@@ -1341,12 +1327,6 @@
         "url": "https://www.wikidata.org/wiki/Q1063970"
       },
       {
-        "domain": "webplatform.org",
-        "source": "wikidata-owned",
-        "via": "WebPlatform",
-        "url": "https://www.wikidata.org/wiki/Q7978473"
-      },
-      {
         "domain": "withgoogle.com",
         "source": "curated",
         "url": "https://publicsuffix.org/list/public_suffix_list.dat"
@@ -1358,15 +1338,20 @@
         "url": "https://www.wikidata.org/wiki/Q133928"
       },
       {
+        "domain": "youtu.be",
+        "source": "curated",
+        "url": "https://knowledge.workspace.google.com/admin/youtube/control-youtube-content-available-to-users"
+      },
+      {
         "domain": "youtube-nocookie.com",
         "source": "curated",
         "url": "https://knowledge.workspace.google.com/admin/getting-started/set-up-a-google-workspace-host-name-allowlist"
       },
       {
         "domain": "youtube.com",
-        "source": "wikidata-owned",
+        "source": "curated",
         "via": "YouTube",
-        "url": "https://www.wikidata.org/wiki/Q866"
+        "url": "https://knowledge.workspace.google.com/admin/youtube/control-youtube-content-available-to-users"
       },
       {
         "domain": "youtubekids.com",
@@ -1436,20 +1421,7 @@
       "facebook.com",
       "facebookwkhpilnemxj7asaniu7vnjjbiltxjqhye3mhbshg7kx5tfyd.onion"
     ],
-    "relatedDomains": [
-      {
-        "domain": "face.com",
-        "source": "wikidata-owned",
-        "via": "Face.com",
-        "url": "https://www.wikidata.org/wiki/Q5428298"
-      },
-      {
-        "domain": "friendfeed.com",
-        "source": "wikidata-owned",
-        "via": "FriendFeed",
-        "url": "https://www.wikidata.org/wiki/Q2341037"
-      }
-    ],
+    "relatedDomains": [],
     "brandTlds": [],
     "wikidataDomain": "facebook.com",
     "trancoRank": 5,
@@ -1506,12 +1478,6 @@
         "url": "https://www.wikidata.org/wiki/Q25024989"
       },
       {
-        "domain": "aquantive.com",
-        "source": "wikidata-owned",
-        "via": "aQuantive",
-        "url": "https://www.wikidata.org/wiki/Q296372"
-      },
-      {
         "domain": "arkane-studios.com",
         "source": "wikidata-owned",
         "via": "Arkane Studios",
@@ -1555,9 +1521,9 @@
       },
       {
         "domain": "bing.com",
-        "source": "wikidata-owned",
-        "via": "Microsoft Bing",
-        "url": "https://www.wikidata.org/wiki/Q182496"
+        "source": "published-list",
+        "via": "Microsoft 365 URLs and IP address ranges",
+        "url": "https://learn.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-ip-web-service"
       },
       {
         "domain": "bing.net",
@@ -1614,28 +1580,10 @@
         "url": "https://learn.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-ip-web-service"
       },
       {
-        "domain": "dfki.de",
-        "source": "wikidata-owned",
-        "via": "German Research Center for Artificial Intelligence",
-        "url": "https://www.wikidata.org/wiki/Q896469"
-      },
-      {
-        "domain": "docs.com",
-        "source": "wikidata-owned",
-        "via": "docs.com",
-        "url": "https://www.wikidata.org/wiki/Q5287259"
-      },
-      {
         "domain": "doublefine.com",
         "source": "wikidata-owned",
         "via": "Double Fine",
         "url": "https://www.wikidata.org/wiki/Q1251435"
-      },
-      {
-        "domain": "gamesforwindows.com",
-        "source": "wikidata-owned",
-        "via": "Games for Windows",
-        "url": "https://www.wikidata.org/wiki/Q1062711"
       },
       {
         "domain": "getmicrosoftkey.com",
@@ -1693,21 +1641,15 @@
       },
       {
         "domain": "linkedin.com",
-        "source": "curated",
-        "via": "LinkedIn",
+        "source": "published-list",
+        "via": "Microsoft 365 URLs and IP address ranges",
         "url": "https://learn.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-ip-web-service"
       },
       {
-        "domain": "lionhead.com",
-        "source": "wikidata-owned",
-        "via": "Lionhead Studios",
-        "url": "https://www.wikidata.org/wiki/Q765389"
-      },
-      {
         "domain": "live.com",
-        "source": "wikidata-owned",
-        "via": "Windows Live",
-        "url": "https://www.wikidata.org/wiki/Q841814"
+        "source": "published-list",
+        "via": "Microsoft 365 URLs and IP address ranges",
+        "url": "https://learn.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-ip-web-service"
       },
       {
         "domain": "live.net",
@@ -1776,22 +1718,10 @@
         "url": "https://www.wikidata.org/wiki/Q2107343"
       },
       {
-        "domain": "microsoftstore.com",
-        "source": "wikidata-owned",
-        "via": "Microsoft Store",
-        "url": "https://www.wikidata.org/wiki/Q1688786"
-      },
-      {
         "domain": "mileiq.com",
         "source": "wikidata-owned",
         "via": "MileIQ",
         "url": "https://www.wikidata.org/wiki/Q20539335"
-      },
-      {
-        "domain": "mixer.com",
-        "source": "wikidata-owned",
-        "via": "Mixer",
-        "url": "https://www.wikidata.org/wiki/Q27631547"
       },
       {
         "domain": "mojang.com",
@@ -1860,9 +1790,9 @@
       },
       {
         "domain": "msn.com",
-        "source": "wikidata-owned",
-        "via": "MSN",
-        "url": "https://www.wikidata.org/wiki/Q192845"
+        "source": "published-list",
+        "via": "Microsoft 365 URLs and IP address ranges",
+        "url": "https://learn.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-ip-web-service"
       },
       {
         "domain": "msocdn.com",
@@ -1908,8 +1838,8 @@
       },
       {
         "domain": "office.com",
-        "source": "curated",
-        "via": "Microsoft Office",
+        "source": "published-list",
+        "via": "Microsoft 365 URLs and IP address ranges",
         "url": "https://learn.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-ip-web-service"
       },
       {
@@ -1920,8 +1850,8 @@
       },
       {
         "domain": "office365.com",
-        "source": "curated",
-        "via": "Microsoft 365",
+        "source": "published-list",
+        "via": "Microsoft 365 URLs and IP address ranges",
         "url": "https://learn.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-ip-web-service"
       },
       {
@@ -1944,8 +1874,8 @@
       },
       {
         "domain": "outlook.com",
-        "source": "curated",
-        "via": "Microsoft Web Services",
+        "source": "published-list",
+        "via": "Microsoft 365 URLs and IP address ranges",
         "url": "https://learn.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-ip-web-service"
       },
       {
@@ -2033,12 +1963,6 @@
         "url": "https://learn.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-ip-web-service"
       },
       {
-        "domain": "skype.com",
-        "source": "wikidata-owned",
-        "via": "Skype",
-        "url": "https://www.wikidata.org/wiki/Q40984"
-      },
-      {
         "domain": "slideshare.net",
         "source": "wikidata-owned",
         "via": "SlideShare",
@@ -2124,8 +2048,8 @@
       },
       {
         "domain": "windows.com",
-        "source": "curated",
-        "via": "Microsoft Windows",
+        "source": "published-list",
+        "via": "Microsoft 365 URLs and IP address ranges",
         "url": "https://learn.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-ip-web-service"
       },
       {
@@ -2144,12 +2068,6 @@
         "source": "wikidata-owned",
         "via": "Xamarin",
         "url": "https://www.wikidata.org/wiki/Q3073996"
-      },
-      {
-        "domain": "xandr.com",
-        "source": "wikidata-owned",
-        "via": "Xandr",
-        "url": "https://www.wikidata.org/wiki/Q65091129"
       },
       {
         "domain": "xbox.com",
@@ -2199,7 +2117,7 @@
     "primaryDomain": "youtube.com",
     "officialDomains": ["youtube.com"],
     "relatedDomains": [],
-    "brandTlds": [],
+    "brandTlds": ["youtube"],
     "wikidataDomain": "youtube.com",
     "trancoRank": 10,
     "confirmedAt": "2026-11-19"
@@ -2261,12 +2179,6 @@
         "domain": "cdn-apple.com",
         "source": "curated",
         "url": "https://support.apple.com/en-us/101555"
-      },
-      {
-        "domain": "claris.com",
-        "source": "wikidata-owned",
-        "via": "Claris",
-        "url": "https://www.wikidata.org/wiki/Q1095605"
       },
       {
         "domain": "filemaker.com",
@@ -2389,7 +2301,7 @@
     "primaryDomain": "office.com",
     "officialDomains": ["office.com"],
     "relatedDomains": [],
-    "brandTlds": [],
+    "brandTlds": ["office"],
     "wikidataDomain": "office.com",
     "trancoRank": 28,
     "confirmedAt": "2026-11-19"
@@ -2451,18 +2363,6 @@
         "source": "wikidata-owned",
         "via": "AbeBooks",
         "url": "https://www.wikidata.org/wiki/Q318128"
-      },
-      {
-        "domain": "alexa.com",
-        "source": "wikidata-owned",
-        "via": "Alexa Internet",
-        "url": "https://www.wikidata.org/wiki/Q230051"
-      },
-      {
-        "domain": "amazon.cn",
-        "source": "wikidata-owned",
-        "via": "Amazon China",
-        "url": "https://www.wikidata.org/wiki/Q4740845"
       },
       {
         "domain": "amazongamestudios.com",
@@ -2567,12 +2467,6 @@
         "url": "https://www.wikidata.org/wiki/Q37312"
       },
       {
-        "domain": "justin.tv",
-        "source": "wikidata-owned",
-        "via": "Justin.tv",
-        "url": "https://www.wikidata.org/wiki/Q2369313"
-      },
-      {
         "domain": "mgm.com",
         "source": "wikidata-owned",
         "via": "Metro-Goldwyn-Mayer",
@@ -2667,12 +2561,6 @@
         "source": "wikidata-owned",
         "via": "Woot",
         "url": "https://www.wikidata.org/wiki/Q1663991"
-      },
-      {
-        "domain": "yesnetwork.com",
-        "source": "wikidata-owned",
-        "via": "YES Network",
-        "url": "https://www.wikidata.org/wiki/Q903249"
       },
       {
         "domain": "zappos.com",
@@ -2790,7 +2678,7 @@
     "primaryDomain": "bing.com",
     "officialDomains": ["bing.com"],
     "relatedDomains": [],
-    "brandTlds": [],
+    "brandTlds": ["bing"],
     "wikidataDomain": "bing.com",
     "trancoRank": 46,
     "confirmedAt": "2026-11-19"
@@ -2918,7 +2806,7 @@
         "url": "https://www.wikidata.org/wiki/Q4391517"
       }
     ],
-    "brandTlds": [],
+    "brandTlds": ["skype"],
     "wikidataDomain": "skype.com",
     "trancoRank": 64,
     "confirmedAt": "2026-11-19"
@@ -2968,12 +2856,6 @@
         "source": "wikidata-owned",
         "via": "DNS Made Easy",
         "url": "https://www.wikidata.org/wiki/Q27043898"
-      },
-      {
-        "domain": "geotrust.com",
-        "source": "wikidata-owned",
-        "via": "GeoTrust",
-        "url": "https://www.wikidata.org/wiki/Q5533927"
       },
       {
         "domain": "thawte.com",
@@ -3371,14 +3253,7 @@
     "country": "DE",
     "primaryDomain": "t-online.de",
     "officialDomains": ["t-online.de"],
-    "relatedDomains": [
-      {
-        "domain": "iwiw.hu",
-        "source": "wikidata-owned",
-        "via": "iWiW",
-        "url": "https://www.wikidata.org/wiki/Q56173"
-      }
-    ],
+    "relatedDomains": [],
     "brandTlds": [],
     "wikidataDomain": "t-online.de",
     "trancoRank": 100,
@@ -3464,12 +3339,6 @@
         "source": "wikidata-owned",
         "via": "A&R Cambridge Ltd",
         "url": "https://www.wikidata.org/wiki/Q4646786"
-      },
-      {
-        "domain": "bang-olufsen.com",
-        "source": "wikidata-owned",
-        "via": "Bang & Olufsen",
-        "url": "https://www.wikidata.org/wiki/Q790020"
       },
       {
         "domain": "bowerswilkins.com",
@@ -3726,7 +3595,7 @@
     "primaryDomain": "windows.com",
     "officialDomains": ["windows.com"],
     "relatedDomains": [],
-    "brandTlds": [],
+    "brandTlds": ["windows"],
     "wikidataDomain": "windows.com",
     "trancoRank": 133,
     "confirmedAt": "2026-11-19"
@@ -3752,7 +3621,7 @@
     "primaryDomain": "android.com",
     "officialDomains": ["android.com"],
     "relatedDomains": [],
-    "brandTlds": [],
+    "brandTlds": ["android"],
     "wikidataDomain": "android.com",
     "trancoRank": 137,
     "confirmedAt": "2026-11-19"
@@ -4012,12 +3881,6 @@
         "source": "wikidata-owned",
         "via": "ManageWP",
         "url": "https://www.wikidata.org/wiki/Q126085099"
-      },
-      {
-        "domain": "mediatemple.net",
-        "source": "wikidata-owned",
-        "via": "Media Temple",
-        "url": "https://www.wikidata.org/wiki/Q6805556"
       },
       {
         "domain": "registry.godaddy",
@@ -4471,46 +4334,16 @@
         "url": "https://www.wikidata.org/wiki/Q352773"
       },
       {
-        "domain": "bea.com",
-        "source": "wikidata-owned",
-        "via": "BEA Systems",
-        "url": "https://www.wikidata.org/wiki/Q787324"
-      },
-      {
         "domain": "hyperion.com",
         "source": "wikidata-owned",
         "via": "Hyperion Solutions Corporation",
         "url": "https://www.wikidata.org/wiki/Q1431991"
       },
       {
-        "domain": "java.net",
-        "source": "wikidata-owned",
-        "via": "java.net",
-        "url": "https://www.wikidata.org/wiki/Q4385596"
-      },
-      {
         "domain": "kenai.com",
         "source": "wikidata-owned",
         "via": "Project Kenai",
         "url": "https://www.wikidata.org/wiki/Q7249173"
-      },
-      {
-        "domain": "mysql.com",
-        "source": "wikidata-owned",
-        "via": "MySQL AB",
-        "url": "https://www.wikidata.org/wiki/Q1000428"
-      },
-      {
-        "domain": "netsuite.com",
-        "source": "wikidata-owned",
-        "via": "NetSuite",
-        "url": "https://www.wikidata.org/wiki/Q4045248"
-      },
-      {
-        "domain": "sun.com",
-        "source": "wikidata-owned",
-        "via": "Sun Microsystems",
-        "url": "https://www.wikidata.org/wiki/Q14647"
       }
     ],
     "brandTlds": ["java", "oracle"],
@@ -4527,34 +4360,10 @@
     "officialDomains": ["bbc.co.uk", "bbc.com"],
     "relatedDomains": [
       {
-        "domain": "barb.co.uk",
-        "source": "wikidata-owned",
-        "via": "Broadcasters' Audience Research Board",
-        "url": "https://www.wikidata.org/wiki/Q4972121"
-      },
-      {
-        "domain": "bbcearth.com",
-        "source": "wikidata-owned",
-        "via": "BBC Earth",
-        "url": "https://www.wikidata.org/wiki/Q4834809"
-      },
-      {
         "domain": "bbcstudios.com",
         "source": "wikidata-owned",
         "via": "BBC Studios",
         "url": "https://www.wikidata.org/wiki/Q24039192"
-      },
-      {
-        "domain": "bbcworldwide.com",
-        "source": "wikidata-owned",
-        "via": "BBC Worldwide",
-        "url": "https://www.wikidata.org/wiki/Q2071905"
-      },
-      {
-        "domain": "freely.co.uk",
-        "source": "wikidata-owned",
-        "via": "Freely",
-        "url": "https://www.wikidata.org/wiki/Q128799403"
       },
       {
         "domain": "freesat.co.uk",
@@ -4789,12 +4598,6 @@
         "url": "https://www.wikidata.org/wiki/Q4780783"
       },
       {
-        "domain": "ironport.com",
-        "source": "wikidata-owned",
-        "via": "IronPort",
-        "url": "https://www.wikidata.org/wiki/Q6072264"
-      },
-      {
         "domain": "meraki.com",
         "source": "wikidata-owned",
         "via": "Cisco Meraki",
@@ -4811,12 +4614,6 @@
         "source": "wikidata-owned",
         "via": "OpenDNS",
         "url": "https://www.wikidata.org/wiki/Q1121892"
-      },
-      {
-        "domain": "sourcefire.com",
-        "source": "wikidata-owned",
-        "via": "Sourcefire",
-        "url": "https://www.wikidata.org/wiki/Q1813510"
       },
       {
         "domain": "spamcop.net",
@@ -5094,12 +4891,6 @@
         "url": "https://www.wikidata.org/wiki/Q485593"
       },
       {
-        "domain": "softlayer.com",
-        "source": "wikidata-owned",
-        "via": "SoftLayer",
-        "url": "https://www.wikidata.org/wiki/Q7553838"
-      },
-      {
         "domain": "strongloop.com",
         "source": "wikidata-owned",
         "via": "StrongLoop",
@@ -5150,28 +4941,10 @@
         "url": "https://www.wikidata.org/wiki/Q436492"
       },
       {
-        "domain": "compaq.com",
-        "source": "wikidata-owned",
-        "via": "Compaq",
-        "url": "https://www.wikidata.org/wiki/Q324603"
-      },
-      {
-        "domain": "eds.com",
-        "source": "wikidata-owned",
-        "via": "Q691126",
-        "url": "https://www.wikidata.org/wiki/Q691126"
-      },
-      {
         "domain": "hyperxgaming.com",
         "source": "wikidata-owned",
         "via": "HyperX",
         "url": "https://www.wikidata.org/wiki/Q28610155"
-      },
-      {
-        "domain": "palm.com",
-        "source": "wikidata-owned",
-        "via": "Palm, Inc.",
-        "url": "https://www.wikidata.org/wiki/Q854437"
       },
       {
         "domain": "poly.com",
@@ -5252,20 +5025,13 @@
     "confirmedAt": "2026-11-19"
   },
   {
-    "slug": "united-kingdom",
-    "name": "United Kingdom",
-    "wikidataId": "Q145",
-    "country": "GB",
+    "slug": "gov-uk",
+    "name": "gov.uk",
+    "wikidataId": "Q16982369",
+    "country": null,
     "primaryDomain": "www.gov.uk",
     "officialDomains": ["www.gov.uk"],
-    "relatedDomains": [
-      {
-        "domain": "bankofengland.co.uk",
-        "source": "wikidata-owned",
-        "via": "Bank of England",
-        "url": "https://www.wikidata.org/wiki/Q183231"
-      }
-    ],
+    "relatedDomains": [],
     "brandTlds": [],
     "wikidataDomain": "www.gov.uk",
     "trancoRank": 294,
@@ -5278,14 +5044,7 @@
     "country": "GB",
     "primaryDomain": "booking.com",
     "officialDomains": ["booking.com"],
-    "relatedDomains": [
-      {
-        "domain": "ebuddy.com",
-        "source": "wikidata-owned",
-        "via": "eBuddy",
-        "url": "https://www.wikidata.org/wiki/Q286317"
-      }
-    ],
+    "relatedDomains": [],
     "brandTlds": ["booking"],
     "wikidataDomain": "booking.com",
     "trancoRank": 296,
@@ -5338,12 +5097,6 @@
     "primaryDomain": "springer.com",
     "officialDomains": ["springer.com"],
     "relatedDomains": [
-      {
-        "domain": "birkhauser.com",
-        "source": "wikidata-owned",
-        "via": "Birkhäuser",
-        "url": "https://www.wikidata.org/wiki/Q370287"
-      },
       {
         "domain": "bsl.nl",
         "source": "wikidata-owned",
@@ -5490,12 +5243,6 @@
     "officialDomains": ["espn.com"],
     "relatedDomains": [
       {
-        "domain": "coolspotters.com",
-        "source": "wikidata-owned",
-        "via": "Coolspotters",
-        "url": "https://www.wikidata.org/wiki/Q5167534"
-      },
-      {
         "domain": "espn.com.ar",
         "source": "wikidata-owned",
         "via": "ESPN+ (Latin America)",
@@ -5512,12 +5259,6 @@
         "source": "wikidata-owned",
         "via": "ESPN FC",
         "url": "https://www.wikidata.org/wiki/Q3046181"
-      },
-      {
-        "domain": "grantland.com",
-        "source": "wikidata-owned",
-        "via": "Grantland",
-        "url": "https://www.wikidata.org/wiki/Q16911414"
       },
       {
         "domain": "jayski.com",
@@ -5638,12 +5379,6 @@
         "source": "wikidata-owned",
         "via": "amap",
         "url": "https://www.wikidata.org/wiki/Q15927531"
-      },
-      {
-        "domain": "amblin.com",
-        "source": "wikidata-owned",
-        "via": "Amblin Partners",
-        "url": "https://www.wikidata.org/wiki/Q22079339"
       },
       {
         "domain": "autonavi.com",
@@ -5852,14 +5587,7 @@
     "country": "US",
     "primaryDomain": "etsy.com",
     "officialDomains": ["etsy.com"],
-    "relatedDomains": [
-      {
-        "domain": "alittlemarket.com",
-        "source": "wikidata-owned",
-        "via": "alittleMarket.com",
-        "url": "https://www.wikidata.org/wiki/Q29115431"
-      }
-    ],
+    "relatedDomains": [],
     "brandTlds": [],
     "wikidataDomain": "etsy.com",
     "trancoRank": 341,
@@ -5933,12 +5661,6 @@
     "officialDomains": ["ea.com"],
     "relatedDomains": [
       {
-        "domain": "bioware.com",
-        "source": "wikidata-owned",
-        "via": "Bioware",
-        "url": "https://www.wikidata.org/wiki/Q219758"
-      },
-      {
         "domain": "dice.se",
         "source": "wikidata-owned",
         "via": "DICE",
@@ -5949,12 +5671,6 @@
         "source": "wikidata-owned",
         "via": "Glu Mobile",
         "url": "https://www.wikidata.org/wiki/Q2450081"
-      },
-      {
-        "domain": "origin.com",
-        "source": "wikidata-owned",
-        "via": "Origin",
-        "url": "https://www.wikidata.org/wiki/Q31708"
       },
       {
         "domain": "playfirst.com",
@@ -5979,18 +5695,6 @@
         "source": "wikidata-owned",
         "via": "Respawn Entertainment",
         "url": "https://www.wikidata.org/wiki/Q7884447"
-      },
-      {
-        "domain": "thesims.com",
-        "source": "wikidata-owned",
-        "via": "The Sims Studio",
-        "url": "https://www.wikidata.org/wiki/Q2081220"
-      },
-      {
-        "domain": "westwood.com",
-        "source": "wikidata-owned",
-        "via": "Westwood Studios",
-        "url": "https://www.wikidata.org/wiki/Q267949"
       }
     ],
     "brandTlds": [],
@@ -6169,22 +5873,10 @@
         "url": "https://www.wikidata.org/wiki/Q108782488"
       },
       {
-        "domain": "emc.com",
-        "source": "wikidata-owned",
-        "via": "Dell EMC",
-        "url": "https://www.wikidata.org/wiki/Q877536"
-      },
-      {
         "domain": "sonicwall.com",
         "source": "wikidata-owned",
         "via": "SonicWall",
         "url": "https://www.wikidata.org/wiki/Q616855"
-      },
-      {
-        "domain": "wyse.com",
-        "source": "wikidata-owned",
-        "via": "Dell Wyse",
-        "url": "https://www.wikidata.org/wiki/Q2595760"
       }
     ],
     "brandTlds": ["dell"],
@@ -6326,12 +6018,6 @@
         "url": "https://www.wikidata.org/wiki/Q48192"
       },
       {
-        "domain": "icty.org",
-        "source": "wikidata-owned",
-        "via": "International Criminal Tribunal for the former Yugoslavia",
-        "url": "https://www.wikidata.org/wiki/Q183219"
-      },
-      {
         "domain": "imf.org",
         "source": "wikidata-owned",
         "via": "International Monetary Fund",
@@ -6444,12 +6130,6 @@
         "source": "wikidata-owned",
         "via": "United Nations Global Pulse",
         "url": "https://www.wikidata.org/wiki/Q18395004"
-      },
-      {
-        "domain": "ungsc.org",
-        "source": "wikidata-owned",
-        "via": "United Nations Global Service Centre",
-        "url": "https://www.wikidata.org/wiki/Q54954145"
       },
       {
         "domain": "unhabitat.org",
@@ -6957,7 +6637,7 @@
     "primaryDomain": "gmail.com",
     "officialDomains": ["gmail.com"],
     "relatedDomains": [],
-    "brandTlds": [],
+    "brandTlds": ["gmail"],
     "wikidataDomain": "gmail.com",
     "trancoRank": 409,
     "confirmedAt": "2026-11-19"
@@ -7107,12 +6787,6 @@
         "url": "https://www.wikidata.org/wiki/Q4826178"
       },
       {
-        "domain": "dmoz.org",
-        "source": "wikidata-owned",
-        "via": "DMOZ",
-        "url": "https://www.wikidata.org/wiki/Q41226"
-      },
-      {
         "domain": "gamedaily.biz",
         "source": "wikidata-owned",
         "via": "GameDaily",
@@ -7203,12 +6877,6 @@
         "url": "https://www.wikidata.org/wiki/Q18049522"
       },
       {
-        "domain": "joystiq.com",
-        "source": "wikidata-owned",
-        "via": "Joystiq",
-        "url": "https://www.wikidata.org/wiki/Q977889"
-      },
-      {
         "domain": "mapquest.com",
         "source": "wikidata-owned",
         "via": "MapQuest Inc.",
@@ -7219,12 +6887,6 @@
         "source": "wikidata-owned",
         "via": "Moviefone",
         "url": "https://www.wikidata.org/wiki/Q6926887"
-      },
-      {
-        "domain": "nullsoft.com",
-        "source": "wikidata-owned",
-        "via": "Nullsoft",
-        "url": "https://www.wikidata.org/wiki/Q385572"
       },
       {
         "domain": "oreilly.com",
@@ -8404,9 +8066,9 @@
     "confirmedAt": "2026-11-19"
   },
   {
-    "slug": "maricopa-county",
-    "name": "Maricopa County",
-    "wikidataId": "Q58691",
+    "slug": "government-of-maricopa-county",
+    "name": "government of Maricopa County",
+    "wikidataId": "Q140234369",
     "country": "US",
     "primaryDomain": "maricopa.gov",
     "officialDomains": ["maricopa.gov"],
@@ -8527,18 +8189,828 @@
     "confirmedAt": "2026-11-19"
   },
   {
-    "slug": "california",
-    "name": "California",
-    "wikidataId": "Q99",
+    "slug": "state-of-california",
+    "name": "State of California",
+    "wikidataId": "Q5589189",
     "country": "US",
     "primaryDomain": "ca.gov",
     "officialDomains": ["ca.gov"],
     "relatedDomains": [
       {
-        "domain": "lacoliseum.com",
+        "domain": "avc.edu",
         "source": "wikidata-owned",
-        "via": "Los Angeles Memorial Coliseum",
-        "url": "https://www.wikidata.org/wiki/Q849784"
+        "via": "Antelope Valley College",
+        "url": "https://www.wikidata.org/wiki/Q4771201"
+      },
+      {
+        "domain": "bakersfieldcollege.edu",
+        "source": "wikidata-owned",
+        "via": "Bakersfield College",
+        "url": "https://www.wikidata.org/wiki/Q4849288"
+      },
+      {
+        "domain": "barstow.edu",
+        "source": "wikidata-owned",
+        "via": "Barstow Community College",
+        "url": "https://www.wikidata.org/wiki/Q4865029"
+      },
+      {
+        "domain": "berkeley.edu",
+        "source": "wikidata-owned",
+        "via": "University of California, Berkeley",
+        "url": "https://www.wikidata.org/wiki/Q168756"
+      },
+      {
+        "domain": "butte.edu",
+        "source": "wikidata-owned",
+        "via": "Butte College",
+        "url": "https://www.wikidata.org/wiki/Q5002793"
+      },
+      {
+        "domain": "cabrillo.edu",
+        "source": "wikidata-owned",
+        "via": "Cabrillo College",
+        "url": "https://www.wikidata.org/wiki/Q1024969"
+      },
+      {
+        "domain": "calbright.edu",
+        "source": "wikidata-owned",
+        "via": "Calbright College",
+        "url": "https://www.wikidata.org/wiki/Q126082776"
+      },
+      {
+        "domain": "calpoly.edu",
+        "source": "wikidata-owned",
+        "via": "California Polytechnic State University",
+        "url": "https://www.wikidata.org/wiki/Q1026846"
+      },
+      {
+        "domain": "calstate.edu",
+        "source": "wikidata-owned",
+        "via": "California State University",
+        "url": "https://www.wikidata.org/wiki/Q815352"
+      },
+      {
+        "domain": "calstatela.edu",
+        "source": "wikidata-owned",
+        "via": "California State University, Los Angeles",
+        "url": "https://www.wikidata.org/wiki/Q1026932"
+      },
+      {
+        "domain": "calstrs.com",
+        "source": "wikidata-owned",
+        "via": "CalSTRS",
+        "url": "https://www.wikidata.org/wiki/Q14681677"
+      },
+      {
+        "domain": "canadacollege.edu",
+        "source": "wikidata-owned",
+        "via": "Cañada College",
+        "url": "https://www.wikidata.org/wiki/Q5055561"
+      },
+      {
+        "domain": "canyons.edu",
+        "source": "wikidata-owned",
+        "via": "College of the Canyons",
+        "url": "https://www.wikidata.org/wiki/Q5146881"
+      },
+      {
+        "domain": "capradio.org",
+        "source": "wikidata-owned",
+        "via": "KUOP",
+        "url": "https://www.wikidata.org/wiki/Q14682779"
+      },
+      {
+        "domain": "cccco.edu",
+        "source": "wikidata-owned",
+        "via": "California Community Colleges",
+        "url": "https://www.wikidata.org/wiki/Q2460112"
+      },
+      {
+        "domain": "ccsf.edu",
+        "source": "wikidata-owned",
+        "via": "City College of San Francisco",
+        "url": "https://www.wikidata.org/wiki/Q2974556"
+      },
+      {
+        "domain": "cdlib.org",
+        "source": "wikidata-owned",
+        "via": "California Digital Library",
+        "url": "https://www.wikidata.org/wiki/Q5020447"
+      },
+      {
+        "domain": "cerritos.edu",
+        "source": "wikidata-owned",
+        "via": "Cerritos College",
+        "url": "https://www.wikidata.org/wiki/Q5064834"
+      },
+      {
+        "domain": "cerrocoso.edu",
+        "source": "wikidata-owned",
+        "via": "Cerro Coso Community College",
+        "url": "https://www.wikidata.org/wiki/Q5064897"
+      },
+      {
+        "domain": "chabotcollege.edu",
+        "source": "wikidata-owned",
+        "via": "Chabot College",
+        "url": "https://www.wikidata.org/wiki/Q5066011"
+      },
+      {
+        "domain": "chaffey.edu",
+        "source": "wikidata-owned",
+        "via": "Chaffey College",
+        "url": "https://www.wikidata.org/wiki/Q5066795"
+      },
+      {
+        "domain": "citris-uc.org",
+        "source": "wikidata-owned",
+        "via": "Center for Information Technology Research in the Interest of Society",
+        "url": "https://www.wikidata.org/wiki/Q5059688"
+      },
+      {
+        "domain": "citruscollege.edu",
+        "source": "wikidata-owned",
+        "via": "Citrus College",
+        "url": "https://www.wikidata.org/wiki/Q5122883"
+      },
+      {
+        "domain": "cmccd.edu",
+        "source": "wikidata-owned",
+        "via": "Copper Mountain College",
+        "url": "https://www.wikidata.org/wiki/Q5168753"
+      },
+      {
+        "domain": "coastline.edu",
+        "source": "wikidata-owned",
+        "via": "Coastline Community College",
+        "url": "https://www.wikidata.org/wiki/Q5138391"
+      },
+      {
+        "domain": "collegeofsanmateo.edu",
+        "source": "wikidata-owned",
+        "via": "College of San Mateo",
+        "url": "https://www.wikidata.org/wiki/Q18409139"
+      },
+      {
+        "domain": "collegeofthedesert.edu",
+        "source": "wikidata-owned",
+        "via": "College of the Desert",
+        "url": "https://www.wikidata.org/wiki/Q5146883"
+      },
+      {
+        "domain": "compton.edu",
+        "source": "wikidata-owned",
+        "via": "Compton College",
+        "url": "https://www.wikidata.org/wiki/Q5350877"
+      },
+      {
+        "domain": "contracosta.edu",
+        "source": "wikidata-owned",
+        "via": "Contra Costa College",
+        "url": "https://www.wikidata.org/wiki/Q5165598"
+      },
+      {
+        "domain": "cos.edu",
+        "source": "wikidata-owned",
+        "via": "College of the Sequoias",
+        "url": "https://www.wikidata.org/wiki/Q5146897"
+      },
+      {
+        "domain": "coveredca.com",
+        "source": "wikidata-owned",
+        "via": "Covered California",
+        "url": "https://www.wikidata.org/wiki/Q5020530"
+      },
+      {
+        "domain": "cpp.edu",
+        "source": "wikidata-owned",
+        "via": "California State Polytechnic University, Pomona",
+        "url": "https://www.wikidata.org/wiki/Q1026868"
+      },
+      {
+        "domain": "craftonhills.edu",
+        "source": "wikidata-owned",
+        "via": "Crafton Hills College",
+        "url": "https://www.wikidata.org/wiki/Q5180556"
+      },
+      {
+        "domain": "csub.edu",
+        "source": "wikidata-owned",
+        "via": "California State University, Bakersfield",
+        "url": "https://www.wikidata.org/wiki/Q1026902"
+      },
+      {
+        "domain": "csuchico.edu",
+        "source": "wikidata-owned",
+        "via": "California State University, Chico",
+        "url": "https://www.wikidata.org/wiki/Q1026912"
+      },
+      {
+        "domain": "csuci.edu",
+        "source": "wikidata-owned",
+        "via": "California State University, Channel Islands",
+        "url": "https://www.wikidata.org/wiki/Q1026905"
+      },
+      {
+        "domain": "csudh.edu",
+        "source": "wikidata-owned",
+        "via": "California State University, Dominguez Hills",
+        "url": "https://www.wikidata.org/wiki/Q1026909"
+      },
+      {
+        "domain": "csueastbay.edu",
+        "source": "wikidata-owned",
+        "via": "California State University, East Bay",
+        "url": "https://www.wikidata.org/wiki/Q1026916"
+      },
+      {
+        "domain": "csulb.edu",
+        "source": "wikidata-owned",
+        "via": "California State University, Long Beach",
+        "url": "https://www.wikidata.org/wiki/Q1026926"
+      },
+      {
+        "domain": "csumb.edu",
+        "source": "wikidata-owned",
+        "via": "California State University, Monterey Bay",
+        "url": "https://www.wikidata.org/wiki/Q624686"
+      },
+      {
+        "domain": "csun.edu",
+        "source": "wikidata-owned",
+        "via": "California State University, Northridge",
+        "url": "https://www.wikidata.org/wiki/Q1026939"
+      },
+      {
+        "domain": "csus.edu",
+        "source": "wikidata-owned",
+        "via": "California State University, Sacramento",
+        "url": "https://www.wikidata.org/wiki/Q1026941"
+      },
+      {
+        "domain": "csusb.edu",
+        "source": "wikidata-owned",
+        "via": "California State University, San Bernardino",
+        "url": "https://www.wikidata.org/wiki/Q1026944"
+      },
+      {
+        "domain": "csusm.edu",
+        "source": "wikidata-owned",
+        "via": "California State University San Marcos",
+        "url": "https://www.wikidata.org/wiki/Q624691"
+      },
+      {
+        "domain": "csustan.edu",
+        "source": "wikidata-owned",
+        "via": "California State University, Stanislaus",
+        "url": "https://www.wikidata.org/wiki/Q624564"
+      },
+      {
+        "domain": "cuesta.edu",
+        "source": "wikidata-owned",
+        "via": "Cuesta College",
+        "url": "https://www.wikidata.org/wiki/Q5192620"
+      },
+      {
+        "domain": "cuyamaca.edu",
+        "source": "wikidata-owned",
+        "via": "Cuyamaca College",
+        "url": "https://www.wikidata.org/wiki/Q5197087"
+      },
+      {
+        "domain": "cypresscollege.edu",
+        "source": "wikidata-owned",
+        "via": "Cypress College",
+        "url": "https://www.wikidata.org/wiki/Q5200315"
+      },
+      {
+        "domain": "deanza.edu",
+        "source": "wikidata-owned",
+        "via": "De Anza College",
+        "url": "https://www.wikidata.org/wiki/Q928272"
+      },
+      {
+        "domain": "deltacollege.edu",
+        "source": "wikidata-owned",
+        "via": "San Joaquin Delta College",
+        "url": "https://www.wikidata.org/wiki/Q17066372"
+      },
+      {
+        "domain": "dvc.edu",
+        "source": "wikidata-owned",
+        "via": "Diablo Valley College",
+        "url": "https://www.wikidata.org/wiki/Q5270173"
+      },
+      {
+        "domain": "elac.edu",
+        "source": "wikidata-owned",
+        "via": "East Los Angeles College",
+        "url": "https://www.wikidata.org/wiki/Q5328880"
+      },
+      {
+        "domain": "elcamino.edu",
+        "source": "wikidata-owned",
+        "via": "El Camino College",
+        "url": "https://www.wikidata.org/wiki/Q5350875"
+      },
+      {
+        "domain": "evc.edu",
+        "source": "wikidata-owned",
+        "via": "Evergreen Valley College",
+        "url": "https://www.wikidata.org/wiki/Q5417253"
+      },
+      {
+        "domain": "foothill.edu",
+        "source": "wikidata-owned",
+        "via": "Foothill College",
+        "url": "https://www.wikidata.org/wiki/Q5466480"
+      },
+      {
+        "domain": "frc.edu",
+        "source": "wikidata-owned",
+        "via": "Feather River College",
+        "url": "https://www.wikidata.org/wiki/Q5439587"
+      },
+      {
+        "domain": "fresnocitycollege.edu",
+        "source": "wikidata-owned",
+        "via": "Fresno City College",
+        "url": "https://www.wikidata.org/wiki/Q2587006"
+      },
+      {
+        "domain": "fresnostate.edu",
+        "source": "wikidata-owned",
+        "via": "California State University, Fresno",
+        "url": "https://www.wikidata.org/wiki/Q1026919"
+      },
+      {
+        "domain": "fullcoll.edu",
+        "source": "wikidata-owned",
+        "via": "Fullerton College",
+        "url": "https://www.wikidata.org/wiki/Q5508288"
+      },
+      {
+        "domain": "fullerton.edu",
+        "source": "wikidata-owned",
+        "via": "California State University, Fullerton",
+        "url": "https://www.wikidata.org/wiki/Q1026925"
+      },
+      {
+        "domain": "gavilan.edu",
+        "source": "wikidata-owned",
+        "via": "Gavilan College",
+        "url": "https://www.wikidata.org/wiki/Q5528065"
+      },
+      {
+        "domain": "glendale.edu",
+        "source": "wikidata-owned",
+        "via": "Glendale Community College",
+        "url": "https://www.wikidata.org/wiki/Q5568357"
+      },
+      {
+        "domain": "goldenwestcollege.edu",
+        "source": "wikidata-owned",
+        "via": "Golden West College",
+        "url": "https://www.wikidata.org/wiki/Q5579962"
+      },
+      {
+        "domain": "grossmont.edu",
+        "source": "wikidata-owned",
+        "via": "Grossmont College",
+        "url": "https://www.wikidata.org/wiki/Q5610609"
+      },
+      {
+        "domain": "hancockcollege.edu",
+        "source": "wikidata-owned",
+        "via": "Allan Hancock College",
+        "url": "https://www.wikidata.org/wiki/Q4730667"
+      },
+      {
+        "domain": "hartnell.edu",
+        "source": "wikidata-owned",
+        "via": "Hartnell College",
+        "url": "https://www.wikidata.org/wiki/Q5675100"
+      },
+      {
+        "domain": "humboldt.edu",
+        "source": "wikidata-owned",
+        "via": "California State Polytechnic University, Humboldt",
+        "url": "https://www.wikidata.org/wiki/Q624560"
+      },
+      {
+        "domain": "imperial.edu",
+        "source": "wikidata-owned",
+        "via": "Imperial Valley College",
+        "url": "https://www.wikidata.org/wiki/Q14682464"
+      },
+      {
+        "domain": "ivc.edu",
+        "source": "wikidata-owned",
+        "via": "Irvine Valley College",
+        "url": "https://www.wikidata.org/wiki/Q6074403"
+      },
+      {
+        "domain": "lacitycollege.edu",
+        "source": "wikidata-owned",
+        "via": "Los Angeles City College",
+        "url": "https://www.wikidata.org/wiki/Q1727138"
+      },
+      {
+        "domain": "lahc.edu",
+        "source": "wikidata-owned",
+        "via": "Los Angeles Harbor College",
+        "url": "https://www.wikidata.org/wiki/Q12061371"
+      },
+      {
+        "domain": "lamission.edu",
+        "source": "wikidata-owned",
+        "via": "Los Angeles Mission College",
+        "url": "https://www.wikidata.org/wiki/Q6682269"
+      },
+      {
+        "domain": "laney.edu",
+        "source": "wikidata-owned",
+        "via": "Laney College",
+        "url": "https://www.wikidata.org/wiki/Q6485557"
+      },
+      {
+        "domain": "lasc.edu",
+        "source": "wikidata-owned",
+        "via": "Los Angeles Southwest College",
+        "url": "https://www.wikidata.org/wiki/Q6682339"
+      },
+      {
+        "domain": "laspositascollege.edu",
+        "source": "wikidata-owned",
+        "via": "Las Positas College",
+        "url": "https://www.wikidata.org/wiki/Q6492422"
+      },
+      {
+        "domain": "lattc.edu",
+        "source": "wikidata-owned",
+        "via": "Los Angeles Trade–Technical College",
+        "url": "https://www.wikidata.org/wiki/Q9091546"
+      },
+      {
+        "domain": "lavc.edu",
+        "source": "wikidata-owned",
+        "via": "Los Angeles Valley College",
+        "url": "https://www.wikidata.org/wiki/Q6682369"
+      },
+      {
+        "domain": "lbcc.edu",
+        "source": "wikidata-owned",
+        "via": "Long Beach City College",
+        "url": "https://www.wikidata.org/wiki/Q10863001"
+      },
+      {
+        "domain": "marin.edu",
+        "source": "wikidata-owned",
+        "via": "College of Marin",
+        "url": "https://www.wikidata.org/wiki/Q5146760"
+      },
+      {
+        "domain": "mccd.edu",
+        "source": "wikidata-owned",
+        "via": "Merced College",
+        "url": "https://www.wikidata.org/wiki/Q6818062"
+      },
+      {
+        "domain": "miracosta.edu",
+        "source": "wikidata-owned",
+        "via": "MiraCosta College",
+        "url": "https://www.wikidata.org/wiki/Q6872180"
+      },
+      {
+        "domain": "missioncollege.edu",
+        "source": "wikidata-owned",
+        "via": "Mission College",
+        "url": "https://www.wikidata.org/wiki/Q6878561"
+      },
+      {
+        "domain": "mjc.edu",
+        "source": "wikidata-owned",
+        "via": "Modesto Junior College",
+        "url": "https://www.wikidata.org/wiki/Q6889228"
+      },
+      {
+        "domain": "mpc.edu",
+        "source": "wikidata-owned",
+        "via": "Monterey Peninsula College",
+        "url": "https://www.wikidata.org/wiki/Q6905338"
+      },
+      {
+        "domain": "msjc.edu",
+        "source": "wikidata-owned",
+        "via": "Mt. San Jacinto College",
+        "url": "https://www.wikidata.org/wiki/Q6930337"
+      },
+      {
+        "domain": "mtsac.edu",
+        "source": "wikidata-owned",
+        "via": "Mt. San Antonio College",
+        "url": "https://www.wikidata.org/wiki/Q6930336"
+      },
+      {
+        "domain": "mvc.edu",
+        "source": "wikidata-owned",
+        "via": "Moreno Valley College",
+        "url": "https://www.wikidata.org/wiki/Q6911396"
+      },
+      {
+        "domain": "napavalley.edu",
+        "source": "wikidata-owned",
+        "via": "Napa Valley College",
+        "url": "https://www.wikidata.org/wiki/Q6964796"
+      },
+      {
+        "domain": "ohlone.edu",
+        "source": "wikidata-owned",
+        "via": "Ohlone College",
+        "url": "https://www.wikidata.org/wiki/Q7081084"
+      },
+      {
+        "domain": "orangecoastcollege.edu",
+        "source": "wikidata-owned",
+        "via": "Orange Coast College",
+        "url": "https://www.wikidata.org/wiki/Q7099536"
+      },
+      {
+        "domain": "palomar.edu",
+        "source": "wikidata-owned",
+        "via": "Palomar College",
+        "url": "https://www.wikidata.org/wiki/Q7128599"
+      },
+      {
+        "domain": "pasadena.edu",
+        "source": "wikidata-owned",
+        "via": "Pasadena City College",
+        "url": "https://www.wikidata.org/wiki/Q7141532"
+      },
+      {
+        "domain": "peralta.edu",
+        "source": "wikidata-owned",
+        "via": "College of Alameda",
+        "url": "https://www.wikidata.org/wiki/Q5146625"
+      },
+      {
+        "domain": "portervillecollege.edu",
+        "source": "wikidata-owned",
+        "via": "Porterville College",
+        "url": "https://www.wikidata.org/wiki/Q7231703"
+      },
+      {
+        "domain": "redwoods.edu",
+        "source": "wikidata-owned",
+        "via": "College of the Redwoods",
+        "url": "https://www.wikidata.org/wiki/Q2465519"
+      },
+      {
+        "domain": "reedleycollege.edu",
+        "source": "wikidata-owned",
+        "via": "Reedley College",
+        "url": "https://www.wikidata.org/wiki/Q7306738"
+      },
+      {
+        "domain": "riohondo.edu",
+        "source": "wikidata-owned",
+        "via": "Rio Hondo College",
+        "url": "https://www.wikidata.org/wiki/Q7335261"
+      },
+      {
+        "domain": "rsccd.edu",
+        "source": "wikidata-owned",
+        "via": "Rancho Santiago Community College District",
+        "url": "https://www.wikidata.org/wiki/Q7291321"
+      },
+      {
+        "domain": "sac.edu",
+        "source": "wikidata-owned",
+        "via": "Santa Ana College",
+        "url": "https://www.wikidata.org/wiki/Q7419158"
+      },
+      {
+        "domain": "saddleback.edu",
+        "source": "wikidata-owned",
+        "via": "Saddleback College",
+        "url": "https://www.wikidata.org/wiki/Q7397744"
+      },
+      {
+        "domain": "santarosa.edu",
+        "source": "wikidata-owned",
+        "via": "Santa Rosa Junior College",
+        "url": "https://www.wikidata.org/wiki/Q7419896"
+      },
+      {
+        "domain": "sbcc.edu",
+        "source": "wikidata-owned",
+        "via": "Santa Barbara City College",
+        "url": "https://www.wikidata.org/wiki/Q7419214"
+      },
+      {
+        "domain": "sdcity.edu",
+        "source": "wikidata-owned",
+        "via": "San Diego City College",
+        "url": "https://www.wikidata.org/wiki/Q7413611"
+      },
+      {
+        "domain": "sdmesa.edu",
+        "source": "wikidata-owned",
+        "via": "San Diego Mesa College",
+        "url": "https://www.wikidata.org/wiki/Q7413692"
+      },
+      {
+        "domain": "sdmiramar.edu",
+        "source": "wikidata-owned",
+        "via": "San Diego Miramar College",
+        "url": "https://www.wikidata.org/wiki/Q5390871"
+      },
+      {
+        "domain": "sdsu.edu",
+        "source": "wikidata-owned",
+        "via": "San Diego State University",
+        "url": "https://www.wikidata.org/wiki/Q913861"
+      },
+      {
+        "domain": "sfsu.edu",
+        "source": "wikidata-owned",
+        "via": "San Francisco State University",
+        "url": "https://www.wikidata.org/wiki/Q1256981"
+      },
+      {
+        "domain": "shastacollege.edu",
+        "source": "wikidata-owned",
+        "via": "Shasta College",
+        "url": "https://www.wikidata.org/wiki/Q7490593"
+      },
+      {
+        "domain": "sierracollege.edu",
+        "source": "wikidata-owned",
+        "via": "Sierra College",
+        "url": "https://www.wikidata.org/wiki/Q7511366"
+      },
+      {
+        "domain": "siskiyous.edu",
+        "source": "wikidata-owned",
+        "via": "College of the Siskiyous",
+        "url": "https://www.wikidata.org/wiki/Q5146898"
+      },
+      {
+        "domain": "sjsu.edu",
+        "source": "wikidata-owned",
+        "via": "San José State University",
+        "url": "https://www.wikidata.org/wiki/Q498526"
+      },
+      {
+        "domain": "skylinecollege.edu",
+        "source": "wikidata-owned",
+        "via": "Skyline College",
+        "url": "https://www.wikidata.org/wiki/Q7537896"
+      },
+      {
+        "domain": "smc.edu",
+        "source": "wikidata-owned",
+        "via": "Santa Monica College",
+        "url": "https://www.wikidata.org/wiki/Q1033692"
+      },
+      {
+        "domain": "solano.edu",
+        "source": "wikidata-owned",
+        "via": "Solano Community College",
+        "url": "https://www.wikidata.org/wiki/Q7555714"
+      },
+      {
+        "domain": "sonoma.edu",
+        "source": "wikidata-owned",
+        "via": "Sonoma State University",
+        "url": "https://www.wikidata.org/wiki/Q624571"
+      },
+      {
+        "domain": "swccd.edu",
+        "source": "wikidata-owned",
+        "via": "Southwestern College",
+        "url": "https://www.wikidata.org/wiki/Q7571404"
+      },
+      {
+        "domain": "taftcollege.edu",
+        "source": "wikidata-owned",
+        "via": "Taft College",
+        "url": "https://www.wikidata.org/wiki/Q7675030"
+      },
+      {
+        "domain": "ucanr.edu",
+        "source": "wikidata-owned",
+        "via": "University of California, Agriculture and Natural Resources",
+        "url": "https://www.wikidata.org/wiki/Q30253620"
+      },
+      {
+        "domain": "ucdavis.edu",
+        "source": "wikidata-owned",
+        "via": "University of California, Davis",
+        "url": "https://www.wikidata.org/wiki/Q129421"
+      },
+      {
+        "domain": "uci.edu",
+        "source": "wikidata-owned",
+        "via": "University of California, Irvine",
+        "url": "https://www.wikidata.org/wiki/Q868421"
+      },
+      {
+        "domain": "ucla.edu",
+        "source": "wikidata-owned",
+        "via": "University of California, Los Angeles",
+        "url": "https://www.wikidata.org/wiki/Q174710"
+      },
+      {
+        "domain": "ucmerced.edu",
+        "source": "wikidata-owned",
+        "via": "University of California, Merced",
+        "url": "https://www.wikidata.org/wiki/Q1728622"
+      },
+      {
+        "domain": "ucnrs.org",
+        "source": "wikidata-owned",
+        "via": "University of California Natural Reserve System",
+        "url": "https://www.wikidata.org/wiki/Q7895200"
+      },
+      {
+        "domain": "ucop.edu",
+        "source": "wikidata-owned",
+        "via": "University of California Office of the President",
+        "url": "https://www.wikidata.org/wiki/Q117405654"
+      },
+      {
+        "domain": "ucr.edu",
+        "source": "wikidata-owned",
+        "via": "University of California, Riverside",
+        "url": "https://www.wikidata.org/wiki/Q1075148"
+      },
+      {
+        "domain": "ucsb.edu",
+        "source": "wikidata-owned",
+        "via": "University of California, Santa Barbara",
+        "url": "https://www.wikidata.org/wiki/Q263064"
+      },
+      {
+        "domain": "ucsc.edu",
+        "source": "wikidata-owned",
+        "via": "University of California, Santa Cruz",
+        "url": "https://www.wikidata.org/wiki/Q1047293"
+      },
+      {
+        "domain": "ucsd.edu",
+        "source": "wikidata-owned",
+        "via": "University of California, San Diego",
+        "url": "https://www.wikidata.org/wiki/Q622664"
+      },
+      {
+        "domain": "ucsf.edu",
+        "source": "wikidata-owned",
+        "via": "University of California, San Francisco",
+        "url": "https://www.wikidata.org/wiki/Q1061104"
+      },
+      {
+        "domain": "uctv.tv",
+        "source": "wikidata-owned",
+        "via": "University of California Television",
+        "url": "https://www.wikidata.org/wiki/Q7864132"
+      },
+      {
+        "domain": "universityofcalifornia.edu",
+        "source": "wikidata-owned",
+        "via": "University of California",
+        "url": "https://www.wikidata.org/wiki/Q184478"
+      },
+      {
+        "domain": "valleycollege.edu",
+        "source": "wikidata-owned",
+        "via": "San Bernardino Valley College",
+        "url": "https://www.wikidata.org/wiki/Q7413443"
+      },
+      {
+        "domain": "venturacollege.edu",
+        "source": "wikidata-owned",
+        "via": "Ventura College",
+        "url": "https://www.wikidata.org/wiki/Q7920365"
+      },
+      {
+        "domain": "vvc.edu",
+        "source": "wikidata-owned",
+        "via": "Victor Valley College",
+        "url": "https://www.wikidata.org/wiki/Q7926413"
+      },
+      {
+        "domain": "westvalley.edu",
+        "source": "wikidata-owned",
+        "via": "West Valley College",
+        "url": "https://www.wikidata.org/wiki/Q7986758"
+      },
+      {
+        "domain": "wlac.edu",
+        "source": "wikidata-owned",
+        "via": "West Los Angeles College",
+        "url": "https://www.wikidata.org/wiki/Q7985808"
       }
     ],
     "brandTlds": [],
@@ -8661,18 +9133,6 @@
         "source": "wikidata-owned",
         "via": "Rakuten Kobo Inc.",
         "url": "https://www.wikidata.org/wiki/Q389251"
-      },
-      {
-        "domain": "mytolino.com",
-        "source": "wikidata-owned",
-        "via": "Tolino",
-        "url": "https://www.wikidata.org/wiki/Q15955248"
-      },
-      {
-        "domain": "mytolino.de",
-        "source": "wikidata-owned",
-        "via": "Tolino",
-        "url": "https://www.wikidata.org/wiki/Q15955248"
       },
       {
         "domain": "rakuten-bank.co.jp",
@@ -9711,18 +10171,6 @@
         "url": "https://www.wikidata.org/wiki/Q111659155"
       },
       {
-        "domain": "ada-music.com",
-        "source": "wikidata-owned",
-        "via": "Alternative Distribution Alliance",
-        "url": "https://www.wikidata.org/wiki/Q4736435"
-      },
-      {
-        "domain": "atlanticrecords.com",
-        "source": "wikidata-owned",
-        "via": "Atlantic Records",
-        "url": "https://www.wikidata.org/wiki/Q202440"
-      },
-      {
         "domain": "capitolrecords.com",
         "source": "wikidata-owned",
         "via": "Capitol Records",
@@ -9753,12 +10201,6 @@
         "url": "https://www.wikidata.org/wiki/Q311439"
       },
       {
-        "domain": "elektra.com",
-        "source": "wikidata-owned",
-        "via": "Elektra",
-        "url": "https://www.wikidata.org/wiki/Q726251"
-      },
-      {
         "domain": "emirecords.com",
         "source": "wikidata-owned",
         "via": "EMI Records",
@@ -9771,12 +10213,6 @@
         "url": "https://www.wikidata.org/wiki/Q212699"
       },
       {
-        "domain": "hiphopdx.com",
-        "source": "wikidata-owned",
-        "via": "HipHopDX",
-        "url": "https://www.wikidata.org/wiki/Q15134008"
-      },
-      {
         "domain": "ingrooves.com",
         "source": "wikidata-owned",
         "via": "Ingrooves",
@@ -9787,12 +10223,6 @@
         "source": "wikidata-owned",
         "via": "Interscope Records",
         "url": "https://www.wikidata.org/wiki/Q231694"
-      },
-      {
-        "domain": "islanddefjam.com",
-        "source": "wikidata-owned",
-        "via": "The Island Def Jam Music Group",
-        "url": "https://www.wikidata.org/wiki/Q947109"
       },
       {
         "domain": "islandrecords.co.uk",
@@ -9849,18 +10279,6 @@
         "url": "https://www.wikidata.org/wiki/Q43327"
       },
       {
-        "domain": "musicchoice.com",
-        "source": "wikidata-owned",
-        "via": "Music Choice",
-        "url": "https://www.wikidata.org/wiki/Q747557"
-      },
-      {
-        "domain": "nonesuch.com",
-        "source": "wikidata-owned",
-        "via": "Nonesuch Records",
-        "url": "https://www.wikidata.org/wiki/Q1849138"
-      },
-      {
         "domain": "pengyou.com",
         "source": "wikidata-owned",
         "via": "Pengyou",
@@ -9891,12 +10309,6 @@
         "url": "https://www.wikidata.org/wiki/Q4413456"
       },
       {
-        "domain": "rhino.com",
-        "source": "wikidata-owned",
-        "via": "Rhino Entertainment Company",
-        "url": "https://www.wikidata.org/wiki/Q627091"
-      },
-      {
         "domain": "riotforgegames.com",
         "source": "wikidata-owned",
         "via": "Riot Forge",
@@ -9907,12 +10319,6 @@
         "source": "wikidata-owned",
         "via": "Riot Games",
         "url": "https://www.wikidata.org/wiki/Q1060165"
-      },
-      {
-        "domain": "roadrunnerrecords.com",
-        "source": "wikidata-owned",
-        "via": "Roadrunner Records",
-        "url": "https://www.wikidata.org/wiki/Q18628"
       },
       {
         "domain": "rotana.net",
@@ -9927,12 +10333,6 @@
         "url": "https://www.wikidata.org/wiki/Q13021988"
       },
       {
-        "domain": "sinatra.com",
-        "source": "wikidata-owned",
-        "via": "Frank Sinatra Enterprises",
-        "url": "https://www.wikidata.org/wiki/Q5489620"
-      },
-      {
         "domain": "sogou.com",
         "source": "wikidata-owned",
         "via": "Sogou",
@@ -9945,28 +10345,10 @@
         "url": "https://www.wikidata.org/wiki/Q3491353"
       },
       {
-        "domain": "spinninrecords.com",
-        "source": "wikidata-owned",
-        "via": "Spinnin' Records",
-        "url": "https://www.wikidata.org/wiki/Q2310883"
-      },
-      {
-        "domain": "subpop.com",
-        "source": "wikidata-owned",
-        "via": "Sub Pop",
-        "url": "https://www.wikidata.org/wiki/Q778673"
-      },
-      {
         "domain": "supercell.com",
         "source": "wikidata-owned",
         "via": "Supercell",
         "url": "https://www.wikidata.org/wiki/Q1438774"
-      },
-      {
-        "domain": "telltale.com",
-        "source": "wikidata-owned",
-        "via": "Telltale Games",
-        "url": "https://www.wikidata.org/wiki/Q1383563"
       },
       {
         "domain": "tencentcloud.com",
@@ -9985,12 +10367,6 @@
         "source": "wikidata-owned",
         "via": "Q1193116",
         "url": "https://www.wikidata.org/wiki/Q1193116"
-      },
-      {
-        "domain": "umusic.com",
-        "source": "wikidata-owned",
-        "via": "PolyGram",
-        "url": "https://www.wikidata.org/wiki/Q700359"
       },
       {
         "domain": "universal-music.co.jp",
@@ -10017,36 +10393,6 @@
         "url": "https://www.wikidata.org/wiki/Q1124849"
       },
       {
-        "domain": "warnerchappell.com",
-        "source": "wikidata-owned",
-        "via": "Warner Chappell Music Italiana S.r.l.",
-        "url": "https://www.wikidata.org/wiki/Q4018222"
-      },
-      {
-        "domain": "warnerclassics.com",
-        "source": "wikidata-owned",
-        "via": "Teldec",
-        "url": "https://www.wikidata.org/wiki/Q456999"
-      },
-      {
-        "domain": "warnermusic.de",
-        "source": "wikidata-owned",
-        "via": "Warner Music Germany",
-        "url": "https://www.wikidata.org/wiki/Q9371062"
-      },
-      {
-        "domain": "warnermusic.it",
-        "source": "wikidata-owned",
-        "via": "Warner Music Italy",
-        "url": "https://www.wikidata.org/wiki/Q4018224"
-      },
-      {
-        "domain": "warnerrecords.com",
-        "source": "wikidata-owned",
-        "via": "Warner Records Inc.",
-        "url": "https://www.wikidata.org/wiki/Q67030918"
-      },
-      {
         "domain": "webank.com",
         "source": "wikidata-owned",
         "via": "WeBank",
@@ -10069,18 +10415,6 @@
         "source": "wikidata-owned",
         "via": "Tencent Video",
         "url": "https://www.wikidata.org/wiki/Q28136991"
-      },
-      {
-        "domain": "wmg.com",
-        "source": "wikidata-owned",
-        "via": "Warner Music Group",
-        "url": "https://www.wikidata.org/wiki/Q21077"
-      },
-      {
-        "domain": "wmg.jp",
-        "source": "wikidata-owned",
-        "via": "Warner Music Japan",
-        "url": "https://www.wikidata.org/wiki/Q874433"
       },
       {
         "domain": "yinxiang.com",
@@ -10158,12 +10492,6 @@
         "source": "wikidata-owned",
         "via": "Ansible",
         "url": "https://www.wikidata.org/wiki/Q2852503"
-      },
-      {
-        "domain": "gluster.org",
-        "source": "wikidata-owned",
-        "via": "Gluster",
-        "url": "https://www.wikidata.org/wiki/Q12014467"
       }
     ],
     "brandTlds": [],
@@ -10786,14 +11114,7 @@
     "country": "GB",
     "primaryDomain": "independent.co.uk",
     "officialDomains": ["independent.co.uk", "the-independent.com"],
-    "relatedDomains": [
-      {
-        "domain": "exiledonline.com",
-        "source": "wikidata-owned",
-        "via": "The eXile",
-        "url": "https://www.wikidata.org/wiki/Q4038428"
-      }
-    ],
+    "relatedDomains": [],
     "brandTlds": [],
     "wikidataDomain": "independent.co.uk",
     "trancoRank": 747,
@@ -11010,12 +11331,6 @@
         "url": "https://www.wikidata.org/wiki/Q634831"
       },
       {
-        "domain": "starwoodhotels.com",
-        "source": "wikidata-owned",
-        "via": "Starwood",
-        "url": "https://www.wikidata.org/wiki/Q552363"
-      },
-      {
         "domain": "whotels.com",
         "source": "wikidata-owned",
         "via": "W Hotels",
@@ -11177,14 +11492,7 @@
     "country": "US",
     "primaryDomain": "mckinsey.com",
     "officialDomains": ["mckinsey.com"],
-    "relatedDomains": [
-      {
-        "domain": "gojek.com",
-        "source": "wikidata-owned",
-        "via": "Gojek",
-        "url": "https://www.wikidata.org/wiki/Q20426955"
-      }
-    ],
+    "relatedDomains": [],
     "brandTlds": ["mckinsey"],
     "wikidataDomain": "mckinsey.com",
     "trancoRank": 794,
@@ -11222,12 +11530,6 @@
         "source": "wikidata-owned",
         "via": "Q934853",
         "url": "https://www.wikidata.org/wiki/Q934853"
-      },
-      {
-        "domain": "zumodrive.com",
-        "source": "wikidata-owned",
-        "via": "ZumoDrive",
-        "url": "https://www.wikidata.org/wiki/Q4053619"
       }
     ],
     "brandTlds": [],
@@ -11496,13 +11798,230 @@
     "confirmedAt": "2026-11-19"
   },
   {
-    "slug": "brazil",
-    "name": "Brazil",
-    "wikidataId": "Q155",
+    "slug": "federal-government-of-brazil",
+    "name": "Federal Government of Brazil",
+    "wikidataId": "Q5440531",
     "country": "BR",
     "primaryDomain": "www.gov.br",
     "officialDomains": ["www.gov.br"],
-    "relatedDomains": [],
+    "relatedDomains": [
+      {
+        "domain": "anp.gov.br",
+        "source": "wikidata-owned",
+        "via": "National Agency of Petroleum, Natural Gas and Biofuels",
+        "url": "https://www.wikidata.org/wiki/Q4314919"
+      },
+      {
+        "domain": "arquivonacional.gov.br",
+        "source": "wikidata-owned",
+        "via": "Brazilian National Archives",
+        "url": "https://www.wikidata.org/wiki/Q2860546"
+      },
+      {
+        "domain": "bancoamazonia.com.br",
+        "source": "wikidata-owned",
+        "via": "Bank of Amazon",
+        "url": "https://www.wikidata.org/wiki/Q16496429"
+      },
+      {
+        "domain": "bancopatagonia.com.ar",
+        "source": "wikidata-owned",
+        "via": "Patagonia Bank",
+        "url": "https://www.wikidata.org/wiki/Q2882078"
+      },
+      {
+        "domain": "bb.com.br",
+        "source": "wikidata-owned",
+        "via": "Bank of Brazil",
+        "url": "https://www.wikidata.org/wiki/Q610817"
+      },
+      {
+        "domain": "bnb.gov.br",
+        "source": "wikidata-owned",
+        "via": "Bank of the Northeast",
+        "url": "https://www.wikidata.org/wiki/Q4854137"
+      },
+      {
+        "domain": "bndes.gov.br",
+        "source": "wikidata-owned",
+        "via": "Brazilian Development Bank",
+        "url": "https://www.wikidata.org/wiki/Q796822"
+      },
+      {
+        "domain": "caixa.gov.br",
+        "source": "wikidata-owned",
+        "via": "Caixa",
+        "url": "https://www.wikidata.org/wiki/Q835283"
+      },
+      {
+        "domain": "casaruibarbosa.gov.br",
+        "source": "wikidata-owned",
+        "via": "Museu Casa de Rui Barbosa",
+        "url": "https://www.wikidata.org/wiki/Q56693872"
+      },
+      {
+        "domain": "cbtu.gov.br",
+        "source": "wikidata-owned",
+        "via": "Companhia Brasileira de Trens Urbanos",
+        "url": "https://www.wikidata.org/wiki/Q1121190"
+      },
+      {
+        "domain": "codevasf.gov.br",
+        "source": "wikidata-owned",
+        "via": "Companhia de Desenvolvimento dos Vales do São Francisco e do Parnaíba",
+        "url": "https://www.wikidata.org/wiki/Q19609170"
+      },
+      {
+        "domain": "correios.com.br",
+        "source": "wikidata-owned",
+        "via": "Correios do Brasil",
+        "url": "https://www.wikidata.org/wiki/Q3375004"
+      },
+      {
+        "domain": "cultura.gov.br",
+        "source": "wikidata-owned",
+        "via": "Ministry of Culture of Brazil",
+        "url": "https://www.wikidata.org/wiki/Q1154004"
+      },
+      {
+        "domain": "defesa.gov.br",
+        "source": "wikidata-owned",
+        "via": "Ministry of Defense of Brazil",
+        "url": "https://www.wikidata.org/wiki/Q1153972"
+      },
+      {
+        "domain": "desenvolvimento.gov.br",
+        "source": "wikidata-owned",
+        "via": "Ministry of Development, Industry, and Trade",
+        "url": "https://www.wikidata.org/wiki/Q10330414"
+      },
+      {
+        "domain": "eb.mil.br",
+        "source": "wikidata-owned",
+        "via": "Brazilian Army",
+        "url": "https://www.wikidata.org/wiki/Q2292358"
+      },
+      {
+        "domain": "ebc.com.br",
+        "source": "wikidata-owned",
+        "via": "Empresa Brasil de Comunicação",
+        "url": "https://www.wikidata.org/wiki/Q10272499"
+      },
+      {
+        "domain": "eletronuclear.gov.br",
+        "source": "wikidata-owned",
+        "via": "Eletronuclear",
+        "url": "https://www.wikidata.org/wiki/Q4119019"
+      },
+      {
+        "domain": "embratur.com.br",
+        "source": "wikidata-owned",
+        "via": "Embratur",
+        "url": "https://www.wikidata.org/wiki/Q166782"
+      },
+      {
+        "domain": "fiocruz.br",
+        "source": "wikidata-owned",
+        "via": "Oswaldo Cruz Foundation",
+        "url": "https://www.wikidata.org/wiki/Q2474815"
+      },
+      {
+        "domain": "funasa.gov.br",
+        "source": "wikidata-owned",
+        "via": "Fundação Nacional de Saúde",
+        "url": "https://www.wikidata.org/wiki/Q10286373"
+      },
+      {
+        "domain": "ibama.gov.br",
+        "source": "wikidata-owned",
+        "via": "Brazilian Institute of Environment and Renewable Natural Resources",
+        "url": "https://www.wikidata.org/wiki/Q2743129"
+      },
+      {
+        "domain": "ibge.gov.br",
+        "source": "wikidata-owned",
+        "via": "Instituto Brasileiro de Geografia e Estatística",
+        "url": "https://www.wikidata.org/wiki/Q268072"
+      },
+      {
+        "domain": "icmbio.gov.br",
+        "source": "wikidata-owned",
+        "via": "Chico Mendes Institute for Biodiversity Conservation",
+        "url": "https://www.wikidata.org/wiki/Q3151725"
+      },
+      {
+        "domain": "inb.gov.br",
+        "source": "wikidata-owned",
+        "via": "Indústrias Nucleares do Brasil",
+        "url": "https://www.wikidata.org/wiki/Q10302064"
+      },
+      {
+        "domain": "inpi.gov.br",
+        "source": "wikidata-owned",
+        "via": "National Institute of Industrial Property",
+        "url": "https://www.wikidata.org/wiki/Q10302591"
+      },
+      {
+        "domain": "itamaraty.gov.br",
+        "source": "wikidata-owned",
+        "via": "Itamaraty Palace",
+        "url": "https://www.wikidata.org/wiki/Q3020254"
+      },
+      {
+        "domain": "jbrj.gov.br",
+        "source": "wikidata-owned",
+        "via": "Rio de Janeiro Botanical Garden",
+        "url": "https://www.wikidata.org/wiki/Q45242"
+      },
+      {
+        "domain": "mdic.gov.br",
+        "source": "wikidata-owned",
+        "via": "Ministry of Development, Industry, and Trade",
+        "url": "https://www.wikidata.org/wiki/Q10330414"
+      },
+      {
+        "domain": "mma.gov.br",
+        "source": "wikidata-owned",
+        "via": "Ministry of the Environment",
+        "url": "https://www.wikidata.org/wiki/Q10330425"
+      },
+      {
+        "domain": "mte.gov.br",
+        "source": "wikidata-owned",
+        "via": "Ministry of Labour and Employment",
+        "url": "https://www.wikidata.org/wiki/Q10330434"
+      },
+      {
+        "domain": "planalto.gov.br",
+        "source": "wikidata-owned",
+        "via": "Palácio do Planalto",
+        "url": "https://www.wikidata.org/wiki/Q496950"
+      },
+      {
+        "domain": "portodesantos.com.br",
+        "source": "wikidata-owned",
+        "via": "Port of Santos",
+        "url": "https://www.wikidata.org/wiki/Q16460"
+      },
+      {
+        "domain": "suframa.gov.br",
+        "source": "wikidata-owned",
+        "via": "Superintendência da Zona Franca de Manaus",
+        "url": "https://www.wikidata.org/wiki/Q10374961"
+      },
+      {
+        "domain": "trabalho.gov.br",
+        "source": "wikidata-owned",
+        "via": "Ministry of Labour and Employment",
+        "url": "https://www.wikidata.org/wiki/Q10330434"
+      },
+      {
+        "domain": "turismo.gov.br",
+        "source": "wikidata-owned",
+        "via": "Ministry of Tourism",
+        "url": "https://www.wikidata.org/wiki/Q1193732"
+      }
+    ],
     "brandTlds": [],
     "wikidataDomain": "www.gov.br",
     "trancoRank": 844,
@@ -11846,12 +12365,6 @@
         "url": "https://www.wikidata.org/wiki/Q3719120"
       },
       {
-        "domain": "earlywarning.com",
-        "source": "wikidata-owned",
-        "via": "Early Warning Services",
-        "url": "https://www.wikidata.org/wiki/Q30295146"
-      },
-      {
         "domain": "merrilledge.com",
         "source": "wikidata-owned",
         "via": "Merrill",
@@ -11862,12 +12375,6 @@
         "source": "wikidata-owned",
         "via": "Merrill",
         "url": "https://www.wikidata.org/wiki/Q334122"
-      },
-      {
-        "domain": "zellepay.com",
-        "source": "wikidata-owned",
-        "via": "Zelle",
-        "url": "https://www.wikidata.org/wiki/Q22907300"
       }
     ],
     "brandTlds": ["bofa"],
@@ -12035,24 +12542,6 @@
         "source": "wikidata-owned",
         "via": "Hermes Germany",
         "url": "https://www.wikidata.org/wiki/Q105702759"
-      },
-      {
-        "domain": "mytoys.de",
-        "source": "wikidata-owned",
-        "via": "myToys.de",
-        "url": "https://www.wikidata.org/wiki/Q1956320"
-      },
-      {
-        "domain": "neckermann.de",
-        "source": "wikidata-owned",
-        "via": "Neckermann",
-        "url": "https://www.wikidata.org/wiki/Q450034"
-      },
-      {
-        "domain": "quelle.de",
-        "source": "wikidata-owned",
-        "via": "Quelle-Versandhaus",
-        "url": "https://www.wikidata.org/wiki/Q268275"
       },
       {
         "domain": "shopping24.de",
@@ -12435,362 +12924,6 @@
     "confirmedAt": "2026-11-19"
   },
   {
-    "slug": "germany",
-    "name": "Germany",
-    "wikidataId": "Q183",
-    "country": "DE",
-    "primaryDomain": "bund.de",
-    "officialDomains": ["bund.de", "deutschland.de"],
-    "relatedDomains": [
-      {
-        "domain": "arriva.co.uk",
-        "source": "wikidata-owned",
-        "via": "Arriva",
-        "url": "https://www.wikidata.org/wiki/Q680991"
-      },
-      {
-        "domain": "arriva.cz",
-        "source": "wikidata-owned",
-        "via": "Arriva",
-        "url": "https://www.wikidata.org/wiki/Q680991"
-      },
-      {
-        "domain": "arriva.it",
-        "source": "wikidata-owned",
-        "via": "Arriva",
-        "url": "https://www.wikidata.org/wiki/Q680991"
-      },
-      {
-        "domain": "arriva.nl",
-        "source": "wikidata-owned",
-        "via": "Arriva",
-        "url": "https://www.wikidata.org/wiki/Q680991"
-      },
-      {
-        "domain": "autobahn.de",
-        "source": "wikidata-owned",
-        "via": "Die Autobahn GmbH des Bundes",
-        "url": "https://www.wikidata.org/wiki/Q31840061"
-      },
-      {
-        "domain": "bahn.de",
-        "source": "wikidata-owned",
-        "via": "Deutsche Bahn",
-        "url": "https://www.wikidata.org/wiki/Q9322"
-      },
-      {
-        "domain": "bahnhof.de",
-        "source": "wikidata-owned",
-        "via": "Essen Central Station",
-        "url": "https://www.wikidata.org/wiki/Q135607"
-      },
-      {
-        "domain": "bge.de",
-        "source": "wikidata-owned",
-        "via": "Bundesgesellschaft für Endlagerung",
-        "url": "https://www.wikidata.org/wiki/Q26794436"
-      },
-      {
-        "domain": "bundesanzeiger.de",
-        "source": "wikidata-owned",
-        "via": "Bundesanzeiger",
-        "url": "https://www.wikidata.org/wiki/Q1005565"
-      },
-      {
-        "domain": "bundesdruckerei.de",
-        "source": "wikidata-owned",
-        "via": "Bundesdruckerei",
-        "url": "https://www.wikidata.org/wiki/Q317215"
-      },
-      {
-        "domain": "bundesstiftung-aufarbeitung.de",
-        "source": "wikidata-owned",
-        "via": "Federal Foundation for the Reappraisal of the SED Dictatorship",
-        "url": "https://www.wikidata.org/wiki/Q317601"
-      },
-      {
-        "domain": "bwi.de",
-        "source": "wikidata-owned",
-        "via": "BWI GmbH",
-        "url": "https://www.wikidata.org/wiki/Q34561213"
-      },
-      {
-        "domain": "cispa.saarland",
-        "source": "wikidata-owned",
-        "via": "CISPA – Helmholtz Center for Information Security",
-        "url": "https://www.wikidata.org/wiki/Q55436361"
-      },
-      {
-        "domain": "dbcargo.com",
-        "source": "wikidata-owned",
-        "via": "DB Cargo",
-        "url": "https://www.wikidata.org/wiki/Q44353"
-      },
-      {
-        "domain": "dbfz.de",
-        "source": "wikidata-owned",
-        "via": "Deutsches Biomasseforschungszentrum",
-        "url": "https://www.wikidata.org/wiki/Q1205569"
-      },
-      {
-        "domain": "dbregio.de",
-        "source": "wikidata-owned",
-        "via": "DB Regio",
-        "url": "https://www.wikidata.org/wiki/Q18853"
-      },
-      {
-        "domain": "dbschenker.com",
-        "source": "wikidata-owned",
-        "via": "DB Schenker Logistics",
-        "url": "https://www.wikidata.org/wiki/Q31341"
-      },
-      {
-        "domain": "dena.de",
-        "source": "wikidata-owned",
-        "via": "Deutsche Energie-Agentur",
-        "url": "https://www.wikidata.org/wiki/Q1202384"
-      },
-      {
-        "domain": "deutsche-finanzagentur.de",
-        "source": "wikidata-owned",
-        "via": "German Finance Agency",
-        "url": "https://www.wikidata.org/wiki/Q1202537"
-      },
-      {
-        "domain": "deutschebahn.com",
-        "source": "wikidata-owned",
-        "via": "Deutsche Bahn",
-        "url": "https://www.wikidata.org/wiki/Q9322"
-      },
-      {
-        "domain": "deval.org",
-        "source": "wikidata-owned",
-        "via": "Deutsches Evaluierungsinstitut der Entwicklungszusammenarbeit",
-        "url": "https://www.wikidata.org/wiki/Q41791404"
-      },
-      {
-        "domain": "dfs.de",
-        "source": "wikidata-owned",
-        "via": "Deutsche Flugsicherung",
-        "url": "https://www.wikidata.org/wiki/Q636838"
-      },
-      {
-        "domain": "dpz.eu",
-        "source": "wikidata-owned",
-        "via": "German Primate Centre",
-        "url": "https://www.wikidata.org/wiki/Q1205899"
-      },
-      {
-        "domain": "dzhw.eu",
-        "source": "wikidata-owned",
-        "via": "DZHW - German Centre for Higher Education Research and Science Studies",
-        "url": "https://www.wikidata.org/wiki/Q15805617"
-      },
-      {
-        "domain": "engagement-global.de",
-        "source": "wikidata-owned",
-        "via": "Engagement Global",
-        "url": "https://www.wikidata.org/wiki/Q43302028"
-      },
-      {
-        "domain": "eon.se",
-        "source": "wikidata-owned",
-        "via": "E.ON Sverige",
-        "url": "https://www.wikidata.org/wiki/Q5321644"
-      },
-      {
-        "domain": "futurium.de",
-        "source": "wikidata-owned",
-        "via": "Futurium",
-        "url": "https://www.wikidata.org/wiki/Q20829682"
-      },
-      {
-        "domain": "fz-juelich.de",
-        "source": "wikidata-owned",
-        "via": "Forschungszentrum Jülich",
-        "url": "https://www.wikidata.org/wiki/Q697111"
-      },
-      {
-        "domain": "gematik.de",
-        "source": "wikidata-owned",
-        "via": "gematik",
-        "url": "https://www.wikidata.org/wiki/Q1499925"
-      },
-      {
-        "domain": "giz.de",
-        "source": "wikidata-owned",
-        "via": "Deutsche Gesellschaft für Internationale Zusammenarbeit",
-        "url": "https://www.wikidata.org/wiki/Q462763"
-      },
-      {
-        "domain": "gsi.de",
-        "source": "wikidata-owned",
-        "via": "GSI Helmholtz Centre for Heavy Ion Research",
-        "url": "https://www.wikidata.org/wiki/Q703993"
-      },
-      {
-        "domain": "gtai.de",
-        "source": "wikidata-owned",
-        "via": "GTAI",
-        "url": "https://www.wikidata.org/wiki/Q1514244"
-      },
-      {
-        "domain": "helmholtz-berlin.de",
-        "source": "wikidata-owned",
-        "via": "Helmholtz-Zentrum Berlin",
-        "url": "https://www.wikidata.org/wiki/Q314578"
-      },
-      {
-        "domain": "helmholtz-hzi.de",
-        "source": "wikidata-owned",
-        "via": "Helmholtz Centre for Infection Research",
-        "url": "https://www.wikidata.org/wiki/Q1603242"
-      },
-      {
-        "domain": "helmholtz-munich.de",
-        "source": "wikidata-owned",
-        "via": "Helmholtz Zentrum München",
-        "url": "https://www.wikidata.org/wiki/Q878592"
-      },
-      {
-        "domain": "hilgmbh.de",
-        "source": "wikidata-owned",
-        "via": "Heeresinstandsetzungslogistik",
-        "url": "https://www.wikidata.org/wiki/Q1593565"
-      },
-      {
-        "domain": "hzg.de",
-        "source": "wikidata-owned",
-        "via": "Helmholtz Centre Hereon",
-        "url": "https://www.wikidata.org/wiki/Q1290544"
-      },
-      {
-        "domain": "idos-research.de",
-        "source": "wikidata-owned",
-        "via": "German Institute of Development and Sustainability",
-        "url": "https://www.wikidata.org/wiki/Q317284"
-      },
-      {
-        "domain": "ismaning.de",
-        "source": "wikidata-owned",
-        "via": "Ismaning",
-        "url": "https://www.wikidata.org/wiki/Q254897"
-      },
-      {
-        "domain": "landkreis-muenchen.de",
-        "source": "wikidata-owned",
-        "via": "Landratsamt München",
-        "url": "https://www.wikidata.org/wiki/Q1519239"
-      },
-      {
-        "domain": "lebensmittelwarnung.de",
-        "source": "wikidata-owned",
-        "via": "lebensmittelwarnung.de",
-        "url": "https://www.wikidata.org/wiki/Q126722889"
-      },
-      {
-        "domain": "meyerturku.fi",
-        "source": "wikidata-owned",
-        "via": "Meyer Turku",
-        "url": "https://www.wikidata.org/wiki/Q21927194"
-      },
-      {
-        "domain": "meyerwerft.de",
-        "source": "wikidata-owned",
-        "via": "Meyer Werft",
-        "url": "https://www.wikidata.org/wiki/Q705377"
-      },
-      {
-        "domain": "now-gmbh.de",
-        "source": "wikidata-owned",
-        "via": "National Organisation Hydrogen and Fuel Cell Technology",
-        "url": "https://www.wikidata.org/wiki/Q1449899"
-      },
-      {
-        "domain": "oberhaching.de",
-        "source": "wikidata-owned",
-        "via": "Oberhaching",
-        "url": "https://www.wikidata.org/wiki/Q504891"
-      },
-      {
-        "domain": "pfandbriefbank.com",
-        "source": "wikidata-owned",
-        "via": "Deutsche Pfandbriefbank",
-        "url": "https://www.wikidata.org/wiki/Q15857244"
-      },
-      {
-        "domain": "ptj.de",
-        "source": "wikidata-owned",
-        "via": "Q19965692",
-        "url": "https://www.wikidata.org/wiki/Q19965692"
-      },
-      {
-        "domain": "stiftungsfamilie.de",
-        "source": "wikidata-owned",
-        "via": "Stiftung Bahn-Sozialwerk",
-        "url": "https://www.wikidata.org/wiki/Q1560325"
-      },
-      {
-        "domain": "toll-collect.de",
-        "source": "wikidata-owned",
-        "via": "Toll Collect",
-        "url": "https://www.wikidata.org/wiki/Q314055"
-      },
-      {
-        "domain": "ufz.de",
-        "source": "wikidata-owned",
-        "via": "Helmholtz Centre for Environmental Research",
-        "url": "https://www.wikidata.org/wiki/Q880999"
-      },
-      {
-        "domain": "uniper.energy",
-        "source": "wikidata-owned",
-        "via": "Uniper",
-        "url": "https://www.wikidata.org/wiki/Q19839259"
-      },
-      {
-        "domain": "unipro.energy",
-        "source": "wikidata-owned",
-        "via": "Unipro",
-        "url": "https://www.wikidata.org/wiki/Q188087"
-      },
-      {
-        "domain": "unterschleissheim.de",
-        "source": "wikidata-owned",
-        "via": "Unterschleißheim",
-        "url": "https://www.wikidata.org/wiki/Q59096"
-      },
-      {
-        "domain": "vebeg.de",
-        "source": "wikidata-owned",
-        "via": "Vebeg GmbH",
-        "url": "https://www.wikidata.org/wiki/Q1670690"
-      },
-      {
-        "domain": "verkehrsverbund-warnow.de",
-        "source": "wikidata-owned",
-        "via": "Verkehrsverbund Warnow",
-        "url": "https://www.wikidata.org/wiki/Q2516492"
-      },
-      {
-        "domain": "wik.org",
-        "source": "wikidata-owned",
-        "via": "Wissenschaftliches Institut für Infrastruktur und Kommunikationsdienste",
-        "url": "https://www.wikidata.org/wiki/Q77077617"
-      },
-      {
-        "domain": "wzb.eu",
-        "source": "wikidata-owned",
-        "via": "WZB Berlin Social Science Center",
-        "url": "https://www.wikidata.org/wiki/Q475602"
-      }
-    ],
-    "brandTlds": [],
-    "wikidataDomain": "bund.de",
-    "trancoRank": 938,
-    "confirmedAt": "2026-11-19"
-  },
-  {
     "slug": "pbs",
     "name": "PBS",
     "wikidataId": "Q215616",
@@ -12922,12 +13055,6 @@
         "source": "wikidata-owned",
         "via": "plejada.pl",
         "url": "https://www.wikidata.org/wiki/Q25408641"
-      },
-      {
-        "domain": "zumi.pl",
-        "source": "wikidata-owned",
-        "via": "Zumi.pl",
-        "url": "https://www.wikidata.org/wiki/Q9392135"
       }
     ],
     "brandTlds": [],
@@ -12948,18 +13075,6 @@
         "source": "wikidata-owned",
         "via": "Ay Yildiz",
         "url": "https://www.wikidata.org/wiki/Q121744991"
-      },
-      {
-        "domain": "blau.de",
-        "source": "wikidata-owned",
-        "via": "Blau Mobilfunk",
-        "url": "https://www.wikidata.org/wiki/Q882326"
-      },
-      {
-        "domain": "fonic.de",
-        "source": "wikidata-owned",
-        "via": "Fonic",
-        "url": "https://www.wikidata.org/wiki/Q1377104"
       }
     ],
     "brandTlds": [],
@@ -13020,14 +13135,7 @@
     "country": "US",
     "primaryDomain": "lowes.com",
     "officialDomains": ["lowes.com"],
-    "relatedDomains": [
-      {
-        "domain": "renodepot.com",
-        "source": "wikidata-owned",
-        "via": "Reno-Depot",
-        "url": "https://www.wikidata.org/wiki/Q3456209"
-      }
-    ],
+    "relatedDomains": [],
     "brandTlds": [],
     "wikidataDomain": "lowes.com",
     "trancoRank": 961,
@@ -13199,14 +13307,7 @@
     "country": "BR",
     "primaryDomain": "caixa.gov.br",
     "officialDomains": ["caixa.gov.br"],
-    "relatedDomains": [
-      {
-        "domain": "elo.com.br",
-        "source": "wikidata-owned",
-        "via": "Elo",
-        "url": "https://www.wikidata.org/wiki/Q10272036"
-      }
-    ],
+    "relatedDomains": [],
     "brandTlds": [],
     "wikidataDomain": "caixa.gov.br",
     "trancoRank": 973,
@@ -13357,12 +13458,6 @@
         "url": "https://www.wikidata.org/wiki/Q138566353"
       },
       {
-        "domain": "goo.ne.jp",
-        "source": "wikidata-owned",
-        "via": "goo",
-        "url": "https://www.wikidata.org/wiki/Q249044"
-      },
-      {
         "domain": "netbk.co.jp",
         "source": "wikidata-owned",
         "via": "DOCOMO SMTB Net Bank",
@@ -13451,12 +13546,6 @@
         "source": "wikidata-owned",
         "via": "International Transport Forum",
         "url": "https://www.wikidata.org/wiki/Q1337904"
-      },
-      {
-        "domain": "oecd-ilibrary.org",
-        "source": "wikidata-owned",
-        "via": "OECD iLibrary",
-        "url": "https://www.wikidata.org/wiki/Q2007440"
       },
       {
         "domain": "oecd-nea.org",
@@ -13683,12 +13772,6 @@
         "source": "wikidata-owned",
         "via": "Mint Mobile",
         "url": "https://www.wikidata.org/wiki/Q30595490"
-      },
-      {
-        "domain": "sprint.com",
-        "source": "wikidata-owned",
-        "via": "Sprint Corporation",
-        "url": "https://www.wikidata.org/wiki/Q301965"
       }
     ],
     "brandTlds": [],
@@ -14287,6 +14370,19 @@
     "brandTlds": [],
     "wikidataDomain": "nypost.com",
     "trancoRank": 1081,
+    "confirmedAt": "2026-11-19"
+  },
+  {
+    "slug": "archive-of-our-own",
+    "name": "Archive of Our Own",
+    "wikidataId": "Q27764876",
+    "country": null,
+    "primaryDomain": "archiveofourown.org",
+    "officialDomains": ["archiveofourown.org"],
+    "relatedDomains": [],
+    "brandTlds": [],
+    "wikidataDomain": "archiveofourown.org",
+    "trancoRank": 1084,
     "confirmedAt": "2026-11-19"
   },
   {
