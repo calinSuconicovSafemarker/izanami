@@ -1,5 +1,7 @@
 # 12 — "Why" summary under the verdict
 
+**Status:** Done (049ec5c)
+
 **Depends on:** —
 
 ## Goal
