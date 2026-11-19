@@ -31,6 +31,7 @@ export function caseFacts(c: VerdictCase): Facts {
       nameservers: fact(f.nameservers as string[] | '?'),
       mx: fact(f.mx as string[] | '?'),
       spf: fact(f.spf as boolean | '?'),
+      addresses: fact(f.asns === '?' ? '?' : []),
       asns: fact(f.asns as number[] | '?'),
       firstCertDate: fact(f.firstCertDate as string | null | '?'),
       checkedAt: cases.checkedAt,
@@ -41,6 +42,7 @@ export function caseFacts(c: VerdictCase): Facts {
       registrar: known(of.registrar),
       nameservers: known(of.nameservers),
       mx: known(of.mx),
+      addresses: known([]),
       asns: known(of.asns),
     },
   };

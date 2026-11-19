@@ -142,6 +142,16 @@ describe('gatherFacts', () => {
     expect(facts.variantFacts.existence).toEqual(known('registered-not-resolving'));
   });
 
+  it('collects the A and AAAA addresses of both domains', async () => {
+    const client = stub({
+      'tudelft.com': { dns: { A: ['192.0.2.1', '192.0.2.2'], AAAA: ['2001:db8::1'] } },
+      'tudelft.nl': { dns: { A: ['130.161.128.82'] } },
+    });
+    const facts = await gatherFacts(parseVariant('tudelft.com'), TU_DELFT, client, { now });
+    expect(facts.variantFacts.addresses).toEqual(known(['192.0.2.1', '192.0.2.2', '2001:db8::1']));
+    expect(facts.officialFacts.addresses).toEqual(known(['130.161.128.82']));
+  });
+
   it('counts an MX-only domain as resolving', async () => {
     const client = stub({
       'tudelft.com': { dns: { MX: ['10 mx.example.net'] } },

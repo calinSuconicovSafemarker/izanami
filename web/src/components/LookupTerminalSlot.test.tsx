@@ -145,3 +145,23 @@ describe('verdict card', () => {
     expect(within(card).getByRole('status')).toHaveTextContent('Verdict: Official');
   });
 });
+
+describe('domain analysis panel', () => {
+  const panel = () => screen.queryByRole('region', { name: /domain analysis/i });
+
+  it('sits between the terminal and the verdict card', async () => {
+    renderRoute('/org/tu-delft?d=google.com');
+    const analysis = await screen.findByRole('region', { name: /domain analysis/i });
+    const verdict = await screen.findByRole('region', { name: /^verdict$/i });
+    const follows = (a: Node, b: Node) =>
+      !!(a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING);
+    expect(follows(terminal(), analysis)).toBe(true);
+    expect(follows(analysis, verdict)).toBe(true);
+  });
+
+  it('is not shown for a known official domain', async () => {
+    renderRoute('/org/tu-delft?d=tudelft.nl', new FixtureLookupClient([]));
+    await screen.findByRole('region', { name: /^verdict$/i });
+    expect(panel()).not.toBeInTheDocument();
+  });
+});

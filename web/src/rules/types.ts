@@ -40,6 +40,8 @@ export interface InfraFacts {
   nameservers: Fact<string[]>;
   /** Lower-case MX host names, preference stripped. */
   mx: Fact<string[]>;
+  /** A and AAAA addresses, in answer order. */
+  addresses: Fact<string[]>;
   /** Origin ASNs of the A/AAAA addresses. */
   asns: Fact<number[]>;
 }

@@ -5,6 +5,7 @@ import { LookupTerminal } from '../lookup-ui/LookupTerminal';
 import { useLookup, type LookupState } from '../lookup-ui/useLookup';
 import { OfficialVerdictCard, VerdictCard } from '../verdict-ui';
 import { isNotRegistered } from '../rules';
+import { DomainAnalysisPanel } from '../analysis-ui/DomainAnalysisPanel';
 
 /**
  * The org page's lookup area. Owns the lookup state (`useLookup`) and syncs it with the
@@ -30,6 +31,9 @@ export function LookupTerminalSlot({ org }: { org: Org }) {
   return (
     <div className="flex flex-col gap-4">
       <LookupTerminal key={d ?? ''} org={org} lookup={lookup} initialInput={d} onSubmit={submit} />
+      {(lookup.state.phase === 'running' || lookup.state.phase === 'done') && (
+        <DomainAnalysisPanel facts={lookup.state.facts} />
+      )}
       <Verdict state={lookup.state} orgName={org.name} />
     </div>
   );
