@@ -30,3 +30,11 @@ Live `tudelft.com` is TU Delft's own defensive registration: it is delegated to 
 - `no-mx` does **not** fire when the variant shares nameservers or registrar with the official domain (the same overlap tests as `same-nameservers` / `same-registrar`); it reports `not-fired` with that reason.
 - `no-mx` still fires for variants without that overlap (e.g. a parked typo-squat on a parking provider).
 - `fixtures/cases.json` models live `tudelft.com` (shared NS and ASN, different registrar, no MX/SPF) and expects *Likely legit* (score −5).
+
+## Amendment 2 — 2026-11-19: `listed-related` instead of an Official short-circuit
+
+Domains Wikidata lists as owned by the organisation used to count as official ([ADR-0002](0002-build-time-resolution.md) Amendment 2) and short-circuited to *Official*. Wikidata keeps dead acquisitions and investments, so a lapsed domain re-registered by an attacker would have read as Official ([ADR-0002](0002-build-time-resolution.md) Amendment 4).
+
+- New rule `listed-related` (−30): fires when the variant is one of the org's Wikidata-listed related domains, with the summary "Listed by Wikidata as owned by Google (via YouTube)". It is an ordinary legit signal, never a short-circuit.
+- −30 pulls a long-standing listed domain without other risk signals to *Likely legit*, but does not hide a fresh registration: `young-domain` (+40) + `not-in-tranco` (+10) + `fresh-cert` (+20) still give *Likely fraud* (+40).
+- `official-match` now short-circuits only for the org's own sites, published-list and curated related domains, and brand TLDs.

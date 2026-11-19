@@ -16,6 +16,6 @@ When you open Google, show the legitimate domains Google's staff and systems use
 - data-diff report includes related-domain changes for human review.
 
 ## Acceptance criteria
-- Google shows youtube.com and gmail.com (Wikidata) and g.co (curated or published), each with a source.
+- Google shows youtube.com and gmail.com (curated, with sources; also owned per Wikidata) and g.co (curated or published), each with a source.
 - `youtube.com` typed on Google's page → Official.
-- No domain appears under two orgs. Build reproducible from cache; fixture-based tests, no network in CI.
+- A domain appears under two orgs only through proven ownership: a related domain may be the official site of an org this one owns (youtube.com under Google and as YouTube's own entry), per Wikidata, a curated `owns` link or the company's own list ([ADR-0002](../adr/0002-build-time-resolution.md) Amendment 2). No other overlap. Build reproducible from cache; fixture-based tests, no network in CI.

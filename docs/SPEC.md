@@ -51,7 +51,8 @@ Each rule is a pure function `(variant: VariantFacts, official: OfficialFacts) �
 
 | Rule | Fires when | Weight |
 |---|---|---|
-| `official-match` | variant ∈ known official domains, or its TLD ∈ the org's brand TLDs ("Google operates the .gle top-level domain") | short-circuit → **Official** |
+| `official-match` | variant ∈ known official domains (own sites + published-list and curated related domains), or its TLD ∈ the org's brand TLDs ("Google operates the .gle top-level domain") | short-circuit → **Official** |
+| `listed-related` | variant is a related domain Wikidata lists as owned by the org ("Listed by Wikidata as owned by Google (via YouTube)"); never a short-circuit, every other rule still runs ([ADR-0003](adr/0003-scoring-model.md) Amendment 2) | −30 |
 | `young-domain` | registered < 90 days ago | +40 |
 | `much-newer` | registered > 5 years after official (and not `young-domain`) | +15 |
 | `brand-lookalike` | edit distance ≤ 2 / contains brand label | +25 |
@@ -65,7 +66,7 @@ Each rule is a pure function `(variant: VariantFacts, official: OfficialFacts) �
 | `mail-ready` | has MX + SPF but no shared infra | +15 |
 | `fresh-cert` | first CT cert < 30 days ago (optional) | +20 |
 | `registered-not-resolving` | watch state | +20 |
-| `odd-tld` | TLD not in {org country ccTLD, common gTLDs} and in the abuse-heavy list | +10 |
+| `odd-tld` | TLD neither the org's country ccTLD nor a legacy generic TLD, and in the abuse-heavy list (`web/src/tld/lists.ts`) | +10 |
 
 **Verdict**: ≤ 0 → *Likely legit*; 1–39 → *Suspicious*; ≥ 40 → *Likely fraud*. If more than half of the applicable rules' absolute weight is `unknown` → *Insufficient data*. Unknown rules are always shown, never hidden.
 
@@ -75,7 +76,7 @@ Owner (registrant) is displayed only when RDAP returns it unredacted; it is not 
 
 Outputs committed to `web/src/data/`:
 
-- `orgs.json` — ~500 orgs: `{ slug, name, wikidataId, country, primaryDomain, officialDomains[], relatedDomains[], brandTlds[], wikidataDomain, trancoRank, confirmedAt }`. Generated from Wikidata entities with P856 whose registrable domain is in Tranco top ~10k; top 500 by rank. An org is included only when **both** sources agree ([ADR-0002](adr/0002-build-time-resolution.md)).
+- `orgs.json` — ~500 orgs: `{ slug, name, wikidataId, country, primaryDomain, officialDomains[], relatedDomains[], brandTlds[], wikidataDomain, trancoRank, confirmedAt }`. A related domain's `source` sets its trust level: `published-list` and `curated` are *Official*, `wikidata-owned` is *listed, verified at lookup* ([ADR-0002](adr/0002-build-time-resolution.md) Amendment 4). Countries and administrative regions are never organisations. Generated from Wikidata entities with P856 whose registrable domain is in Tranco top ~10k; top 500 by rank. An org is included only when **both** sources agree ([ADR-0002](adr/0002-build-time-resolution.md)).
 - `extras.json` (hand-curated input, e.g. TU Delft `Q752663`) — exempt from the Tranco check, each entry must cite a source.
 - `tranco-top100k` — compact set: sorted 32-bit FNV-1a hashes, Golomb-Rice coded (~207 KB gzipped). No false negatives; false-positive rate ≈ n/2³² ≈ 2.3e-5.
 - `confusables.json` — Latin/Cyrillic/Greek subset of Unicode `confusables.txt`.
@@ -110,7 +111,7 @@ Client-side downloads only (Blob + `a[download]`, no network, CSP unchanged); bu
 | `schemaVersion`, `tool` (`"izanami"`), `kind` (`"lookup"`), `exportedAt`, `checkedAt` | ISO 8601 times; `checkedAt` is `null` for an official domain (no lookups) |
 | `org` | `{slug, name, primaryDomain, officialDomains, relatedDomains, brandTlds}` |
 | `variant` | `{input, unicode, punycode, registrableDomain}` |
-| `analysis` | `{technique, editDistance, similarityPercent (0–100), homoglyphs: [{text, looksLike, codePoints}], inTrancoTop100k}` |
+| `analysis` | `{technique, techniqueLabel, editDistance, similarityPercent (0–100), homoglyphs: [{text, looksLike, codePoints}], inTrancoTop100k}` |
 | `existence` | `not-registered` \| `registered-not-resolving` \| `resolving` \| `null` |
 | `registration` | `{registrationDate, registrar, firstCertDate}` (`firstCertDate: "none"` = no certificate ever logged) |
 | `dns`, `hosting` | `{nameservers, mx, addresses, spf}`, `{asns}` |
@@ -121,7 +122,7 @@ Client-side downloads only (Blob + `a[download]`, no network, CSP unchanged); bu
 
 A fact that could not be looked up is `null`; `registration`, `dns`, `hosting` and `official` are `null` for an official domain. CSV: one row per rule; every row repeats `domain, unicode, org, existence, verdict, score, unknown_share, checked_at`, then `rule_id, rule_status, rule_weight, rule_summary, rule_explanation`.
 
-**Lookalike scan**: "Export JSON" / "Export CSV" once the results table has rows. JSON: `{schemaVersion, tool, kind: "lookalike-scan", exportedAt, org, scan: {status, total, checked, registered}, candidates: [{domain, display, technique, tld, tldRating, tldCategory, exists, nameservers, checkedAt}]}` (`checked < total` for a cancelled scan). CSV columns: `candidate, domain, technique, tld, tld_rating, exists, checked_at`.
+**Lookalike scan**: "Export JSON" / "Export CSV" once the results table has rows. JSON: `{schemaVersion, tool, kind: "lookalike-scan", exportedAt, org, scan: {status, total, checked, registered}, candidates: [{domain, display, technique, techniqueLabel, tld, tldRating, tldCategory, exists, nameservers, checkedAt}]}` (`checked < total` for a cancelled scan). CSV columns: `candidate, domain, technique, tld, tld_rating, exists, checked_at`.
 
 CSV follows RFC 4180 (CRLF, quoting, doubled quotes), starts with a UTF-8 BOM for Excel, and prefixes text cells starting with `= + - @` (or tab/CR) with `'` against formula injection.
 
