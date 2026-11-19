@@ -37,11 +37,12 @@ export const WEBSITE_CLASS = 'Q35127';
 export const NEVER_CLASSES = ['Q13406463', 'Q5'] as const;
 
 /**
- * Countries (Q6256), sovereign states (Q3624078), states (Q7275) and administrative regions
- * (Q56061): never an entry, even though Wikidata's class tree puts states under organisation
- * ("Germany" would otherwise claim bund.de and every German ministry's domain, R2).
+ * Countries (Q6256), sovereign states (Q3624078), states (Q7275) and political territorial
+ * entities (Q1048835: provinces, counties): never an entry, even though Wikidata's class tree
+ * puts states under organisation ("Germany" would otherwise claim bund.de, R2). Not the broader
+ * administrative territorial entity (Q56061): Wikidata puts ministries under it.
  */
-export const GEOGRAPHIC_CLASSES = ['Q6256', 'Q3624078', 'Q7275', 'Q56061'] as const;
+export const GEOGRAPHIC_CLASSES = ['Q6256', 'Q3624078', 'Q7275', 'Q1048835'] as const;
 
 /**
  * Software, concepts and products ("Microsoft Office", "Snowflake ID", "Google Search", "HTC

@@ -167,7 +167,11 @@ describe('assignBrandTlds', () => {
       {
         ...CONFIG[0],
         sharedTlds: [
-          { tld: 'apple', wikidataId: 'Q1', source: 'https://www.iana.org/domains/root/db/apple.html' },
+          {
+            tld: 'apple',
+            wikidataId: 'Q1',
+            source: 'https://www.iana.org/domains/root/db/apple.html',
+          },
         ],
       },
     ]);

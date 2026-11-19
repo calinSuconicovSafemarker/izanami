@@ -119,7 +119,7 @@ describe('ownedFromEntities: lapsed and minority links (R1)', () => {
   });
   const VALUE = [{ snaktype: 'value', datavalue: { value: { time: '+2012-01-15T00:00:00Z' } } }];
 
-  it('drops children that were dissolved (P576) or discontinued (P2669)', () => {
+  it('flags children that were dissolved (P576) or discontinued (P2669) as lapsed', () => {
     const json = {
       entities: {
         Q30: owned('Q30', { P127: [itemClaim('Q95')], P576: VALUE }),
@@ -127,10 +127,14 @@ describe('ownedFromEntities: lapsed and minority links (R1)', () => {
         Q32: owned('Q32', { P127: [itemClaim('Q95')] }),
       },
     };
-    expect(ownedFromEntities(['Q95'], json).map((e) => e.wikidataId)).toEqual(['Q32']);
+    expect(ownedFromEntities(['Q95'], json).map((e) => [e.wikidataId, e.lapsed])).toEqual([
+      ['Q30', true],
+      ['Q31', true],
+      ['Q32', undefined],
+    ]);
   });
 
-  it('treats an owner among more than two current owners as an investor, not a parent', () => {
+  it('flags an owner among more than two current owners as an investor, not a parent', () => {
     const json = {
       entities: {
         Q40: owned('Q40', {
@@ -139,7 +143,10 @@ describe('ownedFromEntities: lapsed and minority links (R1)', () => {
         Q41: owned('Q41', { P127: [itemClaim('Q95'), itemClaim('Q1')] }),
       },
     };
-    expect(ownedFromEntities(['Q95'], json).map((e) => e.wikidataId)).toEqual(['Q41']);
+    expect(ownedFromEntities(['Q95'], json).map((e) => [e.wikidataId, e.investor])).toEqual([
+      ['Q40', true],
+      ['Q41', undefined],
+    ]);
   });
 
   it('ignores official websites that have an end time', () => {

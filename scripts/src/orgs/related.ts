@@ -19,6 +19,10 @@ export interface OwnedEntity {
   websites: string[];
   /** Set for a hand-curated link (`owns` in extras.json): the URL backing it. */
   source?: string;
+  /** Dissolved (P576) or discontinued (P2669): its domains may have lapsed; not followed (R1). */
+  lapsed?: true;
+  /** Linked only as one owner among many (an investment, not control); not followed (R1). */
+  investor?: true;
 }
 
 /** A list of `domains` the company publishes itself (already parsed). */
@@ -221,7 +225,7 @@ function ownershipCandidates(
       const next: string[] = [];
       for (const parent of frontier) {
         for (const entity of children.get(parent) ?? []) {
-          if (seen.has(entity.wikidataId)) continue;
+          if (seen.has(entity.wikidataId) || entity.lapsed || entity.investor) continue;
           seen.set(entity.wikidataId, entity.source);
           next.push(entity.wikidataId);
           const domains = new Set(entity.websites.map(officialDomainOf));

@@ -86,50 +86,54 @@ const qNumber = (id: string) => Number(id.slice(1));
 
 /**
  * Ownership links among `entities` whose parent is one of `parentIds`: children naming a parent
- * in P127/P749, and parents naming a child in P355. Only current, controlling links count, and
- * dissolved or discontinued children are left out (their domains may have lapsed, R1). Children missing from
- * `entities` are skipped (a P355 child must be fetched too).
+ * in P127/P749, and parents naming a child in P355. Only current links count. Children missing
+ * from `entities` are skipped (a P355 child must be fetched too). Dissolved or discontinued
+ * children are flagged `lapsed`, and links that are only an owner among many `investor`: both are
+ * still returned (so the crawl, and its cache, stay the same) but contribute no domains (R1).
  */
 export function ownedFromEntities(parentIds: readonly string[], json: unknown): OwnedEntity[] {
   const entities = (json as EntitiesJson | null)?.entities ?? {};
   const parents = new Set(parentIds);
-  const links = new Map<string, { parentId: string; childId: string }>();
-  const link = (parentId: string, childId: string) => {
-    if (parentId !== childId) links.set(`${parentId}>${childId}`, { parentId, childId });
+  const links = new Map<string, { parentId: string; childId: string; controlling: boolean }>();
+  const link = (parentId: string, childId: string, controlling: boolean) => {
+    if (parentId === childId) return;
+    const key = `${parentId}>${childId}`;
+    const known = links.get(key);
+    links.set(key, { parentId, childId, controlling: controlling || !!known?.controlling });
   };
   for (const [id, entity] of Object.entries(entities)) {
     if (entity.missing !== undefined) continue;
     const owners = (entity.claims?.P127 ?? []).filter(isCurrentLink).length;
     for (const prop of CHILD_TO_PARENT) {
-      if (prop === 'P127' && owners > MAX_CONTROLLING_OWNERS) continue;
+      const controlling = prop !== 'P127' || owners <= MAX_CONTROLLING_OWNERS;
       for (const statement of entity.claims?.[prop] ?? []) {
         const parent = itemValue(statement);
-        if (parent && parents.has(parent) && isCurrentLink(statement)) link(parent, id);
+        if (parent && parents.has(parent) && isCurrentLink(statement))
+          link(parent, id, controlling);
       }
     }
     if (parents.has(id)) {
       for (const statement of entity.claims?.[PARENT_TO_CHILD] ?? []) {
         const child = itemValue(statement);
-        if (child && isCurrentLink(statement)) link(id, child);
+        if (child && isCurrentLink(statement)) link(id, child, true);
       }
     }
   }
   return [...links.values()]
-    .filter(({ childId }) => {
-      const child = entities[childId];
-      return child !== undefined && child.missing === undefined && !isLapsed(child);
-    })
+    .filter(({ childId }) => entities[childId] && entities[childId].missing === undefined)
     .sort(
       (a, b) =>
         qNumber(a.parentId) - qNumber(b.parentId) || qNumber(a.childId) - qNumber(b.childId),
     )
-    .map(({ parentId, childId }) => {
+    .map(({ parentId, childId, controlling }) => {
       const child = entities[childId]!;
       return {
         parentId,
         wikidataId: childId,
         name: child.labels?.en?.value?.trim() || childId,
         websites: websites(child),
+        ...(isLapsed(child) ? { lapsed: true as const } : {}),
+        ...(controlling ? {} : { investor: true as const }),
       };
     });
 }

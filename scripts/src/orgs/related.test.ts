@@ -265,3 +265,17 @@ describe('parsePublishedListsConfig', () => {
     expect(() => parsePublishedListsConfig([{ ...MS_LIST, parser: 'html' }])).toThrow(/parser/);
   });
 });
+
+describe('addRelatedDomains: lapsed and investor links (R1)', () => {
+  it('neither adds nor follows lapsed or investor-only entities', () => {
+    const { orgs } = addRelatedDomains([GOOGLE], TRANCO, {
+      owned: [
+        { ...owned('Q95', 'Q30', 'Dead startup', 'https://deepmind.com/'), lapsed: true },
+        owned('Q30', 'Q31', 'Its child', 'https://waze.com/'),
+        { ...owned('Q95', 'Q40', 'Portfolio company', 'https://acme.com/'), investor: true },
+        owned('Q95', 'Q9334', 'Gmail', 'https://gmail.com/'),
+      ],
+    });
+    expect(related(orgs, 'Q95')).toEqual([['gmail.com', 'wikidata-owned', 'Gmail']]);
+  });
+});
