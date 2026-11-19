@@ -1,5 +1,13 @@
 import { describe, expect, it } from 'vitest';
-import { allOrgs, getOrg, relatedDomainGroups, searchOrgs, toOrgInput, type Org } from './index';
+import {
+  allOrgs,
+  getOrg,
+  officialContext,
+  relatedDomainGroups,
+  searchOrgs,
+  toOrgInput,
+  type Org,
+} from './index';
 
 const BBC: Org = {
   slug: 'bbc',
@@ -32,20 +40,23 @@ describe('org accessor', () => {
       country: '',
       primaryDomain: 'bbc.co.uk',
       officialDomains: ['bbc.co.uk'],
+      relatedOwned: [],
       brandTlds: [],
       brandLabel: 'bbc',
     });
   });
 
-  it('counts related domains as official for matching', () => {
+  it('counts curated and published related domains as official, Wikidata-owned ones as listed only (R1)', () => {
     const input = toOrgInput({
       ...BBC,
       relatedDomains: [
         { domain: 'bbci.co.uk', source: 'curated', url: 'https://example.org' },
+        { domain: 'bbc.net', source: 'published-list', via: 'BBC list' },
         { domain: 'bbc.com', source: 'wikidata-owned', via: 'BBC Online' },
       ],
     });
-    expect(input.officialDomains).toEqual(['bbc.co.uk', 'bbci.co.uk', 'bbc.com']);
+    expect(input.officialDomains).toEqual(['bbc.co.uk', 'bbci.co.uk', 'bbc.net']);
+    expect(input.relatedOwned).toEqual([{ domain: 'bbc.com', via: 'BBC Online' }]);
   });
 });
 
@@ -60,8 +71,8 @@ describe('relatedDomainGroups', () => {
       ],
     });
     expect(groups.map((g) => [g.title, g.domains.map((d) => d.domain)])).toEqual([
-      ['Products & subsidiaries', ['b.com']],
-      ['Curated', ['a.com', 'c.com']],
+      ['Official (curated, with source)', ['a.com', 'c.com']],
+      ['Owned per Wikidata — verified at lookup', ['b.com']],
     ]);
   });
 });
@@ -72,9 +83,20 @@ describe('bundled related domains', () => {
     related(slug).find((r) => r.domain === domain)?.source;
 
   it("lists Google's products and short links, each with a source", () => {
-    expect(sourceOf('google', 'youtube.com')).toBe('wikidata-owned');
-    expect(sourceOf('google', 'gmail.com')).toBe('wikidata-owned');
-    expect(sourceOf('google', 'g.co')).toBe('curated');
+    for (const d of ['youtube.com', 'gmail.com', 'g.co', 'android.com', 'youtu.be', 'abc.xyz'])
+      expect(sourceOf('google', d), d).toBe('curated');
+    expect(related('google').every((r) => r.url?.startsWith('https://'))).toBe(true);
+  });
+
+  it('never makes dead acquisitions or investments Official (R1)', () => {
+    for (const d of ['jaiku.com', 'meebo.com', 'nothing.tech', 'chelseamarket.com'])
+      expect(['wikidata-owned', undefined], d).toContain(sourceOf('google', d));
+    expect(sourceOf('google', 'jaiku.com')).toBeUndefined();
+    expect(sourceOf('google', 'nothing.tech')).toBeUndefined();
+  });
+
+  it('has no countries or states as organisations (R2)', () => {
+    expect(allOrgs.find((o) => o.wikidataId === 'Q183')).toBeUndefined();
     expect(related('google').every((r) => r.url?.startsWith('https://'))).toBe(true);
   });
 
@@ -93,11 +115,11 @@ describe('bundled related domains', () => {
       }
     }
     // The one allowed overlap: a related domain that is the official site of an org this one owns,
-    // per Wikidata or a curated link (youtube.com under Google and as YouTube's own entry).
+    // per Wikidata, a curated link or the company's own list (youtube.com under Google and as
+    // YouTube's own entry; ADR-0002 Amendment 2).
     for (const org of allOrgs) {
       for (const r of org.relatedDomains) {
         if (officialOwner.has(r.domain)) {
-          expect(['wikidata-owned', 'curated'], r.domain).toContain(r.source);
           expect(r.via, r.domain).toBeTruthy();
         }
       }
@@ -116,5 +138,25 @@ describe('searchOrgs', () => {
 
   it('returns every organisation for an empty query', () => {
     expect(searchOrgs('  ')).toHaveLength(allOrgs.length);
+  });
+});
+
+describe('officialContext (S2)', () => {
+  it('normalises brand TLDs once and splits related domains by trust level', () => {
+    const ctx = officialContext({
+      ...BBC,
+      brandTlds: ['.BBC', 'ГУГЛ'],
+      relatedDomains: [
+        { domain: 'bbci.co.uk', source: 'curated' },
+        { domain: 'bbc.com', source: 'wikidata-owned', via: 'BBC Online' },
+      ],
+    });
+    expect(ctx).toEqual({
+      primary: 'bbc.co.uk',
+      brandLabel: 'bbc',
+      officialDomains: ['bbc.co.uk', 'bbci.co.uk'],
+      relatedOwned: [{ domain: 'bbc.com', via: 'BBC Online' }],
+      brandTlds: ['bbc', 'xn--c1aay4a'],
+    });
   });
 });

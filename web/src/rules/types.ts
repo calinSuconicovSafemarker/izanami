@@ -17,6 +17,14 @@ export type Existence = 'not-registered' | 'registered-not-resolving' | 'resolvi
 export const isNotRegistered = (existence: Fact<Existence>): boolean =>
   existence.state === 'known' && existence.value === 'not-registered';
 
+/** A domain Wikidata lists as owned by the organisation (verify level, R1). */
+export interface RelatedOwned {
+  /** Registrable domain (punycode). */
+  domain: string;
+  /** The owned entity that names the domain ("YouTube"). */
+  via?: string;
+}
+
 /** What `gatherFacts` needs to know about the organisation (subset of an orgs.json entry). */
 export interface OrgInput {
   slug: string;
@@ -24,7 +32,16 @@ export interface OrgInput {
   /** ISO 3166-1 alpha-2 country code, e.g. `NL`. */
   country: string;
   primaryDomain: string;
+  /**
+   * Official-level domains: the org's own sites plus published-list and curated related domains.
+   * A variant among them short-circuits to Official.
+   */
   officialDomains: readonly string[];
+  /**
+   * Verify-level domains Wikidata lists as owned (products, subsidiaries). A variant among them
+   * gets the `listed-related` legit signal but is still scored by every other rule (R1).
+   */
+  relatedOwned?: readonly RelatedOwned[];
   /** TLDs the organisation operates (punycode, no dot): every domain under them is official. */
   brandTlds?: readonly string[];
   /** e.g. `tudelft`. */
@@ -35,6 +52,11 @@ export interface OrgInput {
 export interface InfraFacts {
   /** Registrable domain, punycode. */
   domain: string;
+  /**
+   * Whether the RDAP lookup answered (`ok`, or `not-found` for an unregistered domain); unknown
+   * when it failed. Tells "the registry does not publish it" apart from "couldn't check" (R6).
+   */
+  rdap: Fact<'ok' | 'not-found'>;
   /** ISO 8601. */
   registrationDate: Fact<string>;
   registrar: Fact<string>;
@@ -59,6 +81,8 @@ export interface VariantFacts extends InfraFacts {
   orgName: string;
   /** ISO 3166-1 alpha-2 country code of the organisation. */
   orgCountry: string;
+  /** Set when Wikidata lists the variant as owned by the organisation (`listed-related`). */
+  listedRelated?: { via?: string };
   /** Registrable domain is in the bundled Tranco top 100k. */
   inTranco: boolean;
   existence: Fact<Existence>;
@@ -74,7 +98,7 @@ export type OfficialFacts = InfraFacts;
 
 /** Variant facts that come from a lookup (and can therefore be pending or unknown). */
 export type LookupFact = {
-  [K in keyof VariantFacts]: VariantFacts[K] extends Fact<unknown> ? K : never;
+  [K in keyof VariantFacts]-?: VariantFacts[K] extends Fact<unknown> ? K : never;
 }[keyof VariantFacts];
 
 export interface Facts {
@@ -84,6 +108,7 @@ export interface Facts {
 
 export type RuleId =
   | 'official-match'
+  | 'listed-related'
   | 'young-domain'
   | 'much-newer'
   | 'brand-lookalike'

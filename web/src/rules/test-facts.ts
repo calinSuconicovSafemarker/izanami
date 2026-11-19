@@ -8,6 +8,7 @@ export const CHECKED_AT = '2026-11-17T12:00:00Z';
 export function officialFacts(overrides: Partial<OfficialFacts> = {}): OfficialFacts {
   return {
     domain: 'tudelft.nl',
+    rdap: known('ok'),
     registrationDate: known('1987-03-17T00:00:00Z'),
     registrar: known('SURF B.V.'),
     nameservers: known(['ns1.surfnet.nl', 'ns2.surfnet.nl', 'ns1.zurich.surf.net']),
@@ -36,6 +37,7 @@ export function variantFacts(overrides: Partial<VariantFacts> = {}): VariantFact
     },
     inTranco: false,
     existence: known('resolving'),
+    rdap: known('ok'),
     registrationDate: known('2010-01-01T00:00:00Z'),
     registrar: known('Hosting Provider B.V.'),
     nameservers: known(['ns1.hostingprovider.nl', 'ns2.hostingprovider.nl']),

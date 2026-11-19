@@ -17,6 +17,8 @@ export const WEIGHTS = {
   freshCert: 20,
   registeredNotResolving: 20,
   oddTld: 10,
+  /** Wikidata lists the domain as owned by the org: legit, but never a short-circuit (R1). */
+  listedRelated: -30,
 } as const;
 
 export const THRESHOLDS = {
@@ -53,39 +55,5 @@ export const BRAND_REGISTRARS = [
   '101domain',
 ] as const;
 
-/** gTLDs common enough that they are never "odd". */
-export const COMMON_GTLDS = ['com', 'org', 'net', 'edu', 'gov', 'int', 'eu'] as const;
-
-/**
- * TLDs over-represented in phishing/abuse reports (Spamhaus, Interisle).
- * Only these can fire `odd-tld`.
- */
-export const ABUSE_HEAVY_TLDS = [
-  'xyz',
-  'top',
-  'icu',
-  'buzz',
-  'club',
-  'online',
-  'site',
-  'shop',
-  'live',
-  'click',
-  'link',
-  'cfd',
-  'sbs',
-  'bond',
-  'cyou',
-  'rest',
-  'monster',
-  'quest',
-  'work',
-  'support',
-  'zip',
-  'mov',
-  'tk',
-  'ml',
-  'ga',
-  'cf',
-  'gq',
-] as const;
+// TLD lists live in tld/lists.ts (one source for the rules and the TLD rating).
+export { ABUSE_HEAVY_TLDS, GENERIC_TLDS } from '../tld/lists';

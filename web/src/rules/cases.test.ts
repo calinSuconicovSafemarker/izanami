@@ -15,7 +15,7 @@ describe('fixtures/cases.json', () => {
   it('always reports every rule, unknown ones included', () => {
     const allUnknown = cases.cases.find((c) => c.expected === 'Insufficient data')!;
     const results = evaluate(caseFacts(allUnknown));
-    expect(results).toHaveLength(14);
+    expect(results).toHaveLength(15);
     expect(results.filter((r) => r.status === 'unknown').length).toBeGreaterThan(5);
   });
 });

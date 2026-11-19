@@ -74,7 +74,10 @@ export function OfficialDomainCard({ org }: { org: Org }) {
       ))}
       {groups.length > 0 && (
         <p className="text-xs text-zinc-400">
-          Related domains count as official when you check a lookalike on this page.
+          Official related domains are recognised as {org.name}&apos;s when you check them here.
+          Domains Wikidata lists as owned are only a hint: they are still looked up and scored,
+          because Wikidata also keeps closed, sold and invested-in companies whose domains may have
+          lapsed.
         </p>
       )}
 

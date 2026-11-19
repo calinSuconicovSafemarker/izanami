@@ -1,6 +1,7 @@
 import { fireEvent, screen, within } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { FixtureLookupClient } from '../lookup/fixture-client';
+import { getOrg } from '../orgs';
 import { renderRoute } from '../test/render-route';
 
 const card = () => screen.getByRole('region', { name: /official domains/i });
@@ -15,21 +16,21 @@ describe('organisation page', () => {
     expect(within(others).queryByText('google.com')).not.toBeInTheDocument();
   });
 
-  it('lists related domains grouped by source, each with its source', () => {
+  it('lists related domains grouped by trust level, each with its source (R1)', () => {
     renderRoute('/org/google');
-    const products = within(card()).getByRole('list', { name: /products & subsidiaries/i });
-    const youtube = within(products).getByText('youtube.com').closest('li')!;
-    expect(youtube).toHaveTextContent(/Wikidata: YouTube/);
+    const curated = within(card()).getByRole('list', { name: /official \(curated/i });
+    const youtube = within(curated).getByText('youtube.com').closest('li')!;
     expect(within(youtube).getByRole('link')).toHaveAttribute(
       'href',
-      'https://www.wikidata.org/wiki/Q866',
+      'https://knowledge.workspace.google.com/admin/youtube/control-youtube-content-available-to-users',
     );
-    expect(within(products).getByText('gmail.com')).toBeInTheDocument();
-    const curated = within(card()).getByRole('list', { name: /^curated/i });
     expect(within(curated).getByText('g.co').closest('li')).toHaveTextContent(/source/i);
     expect(
-      within(card()).getByRole('list', { name: /published by the company/i }),
+      within(card()).getByRole('list', { name: /official \(published by google\)/i }),
     ).toBeInTheDocument();
+    const listed = within(card()).getByRole('list', { name: /owned per wikidata/i });
+    expect(listed).toHaveTextContent(/Wikidata: /);
+    expect(card()).toHaveTextContent(/still looked up and scored/i);
   });
 
   it('lists the brand TLDs the org operates, each linked to its IANA record', () => {
@@ -51,16 +52,24 @@ describe('organisation page', () => {
 
   it('collapses a long group behind a disclosure', () => {
     renderRoute('/org/google');
-    const published = within(card()).getByRole('list', { name: /published by the company/i });
+    const published = within(card()).getByRole('list', { name: /published by google/i });
     const details = published.closest('details')!;
     expect(details).not.toHaveAttribute('open');
     expect(within(details).getByText(/show all \d+/i)).toBeInTheDocument();
   });
 
-  it('treats a related domain typed on the page as Official', async () => {
+  it('treats a curated related domain typed on the page as Official', async () => {
     renderRoute('/org/google?d=youtube.com', new FixtureLookupClient([]));
     const verdict = await screen.findByRole('region', { name: /^verdict$/i });
     expect(within(verdict).getByRole('status')).toHaveTextContent('Verdict: Official');
+  });
+
+  it('looks up and scores a Wikidata-listed related domain instead of calling it Official (R1)', async () => {
+    const listed = getOrg('google')!.relatedDomains.find((r) => r.source === 'wikidata-owned')!;
+    renderRoute(`/org/google?d=${listed.domain}`, new FixtureLookupClient([]));
+    const verdict = await screen.findByRole('region', { name: /^verdict$/i });
+    expect(await within(verdict).findByText(/Listed by Wikidata as owned by Google/)).toBeTruthy();
+    expect(within(verdict).getByRole('status')).not.toHaveTextContent('Verdict: Official');
   });
 
   it('cites Wikidata P856 with a link to the item, the Tranco rank and the confirmation date', () => {

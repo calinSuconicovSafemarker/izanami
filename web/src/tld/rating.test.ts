@@ -25,11 +25,20 @@ describe('rateTld', () => {
     expect(rateTld('tk')).toMatchObject({ category: 'high-abuse', country: 'Tokelau' });
   });
 
-  it('rates supplied single-owner TLDs as brand', () => {
+  it("rates the org's own brand TLDs as official (R7)", () => {
     expect(rateTld('google', { brandTlds: ['google'] })).toMatchObject({
-      category: 'brand',
-      label: 'brand',
+      category: 'official',
+      label: 'official',
     });
+  });
+
+  it("rates any other org's brand TLD as brand, naming the owner (R7)", () => {
+    expect(rateTld('google')).toMatchObject({ category: 'brand', label: 'brand TLD (Google)' });
+    expect(rateTld('.GOOGLE', { brandTlds: ['apple'] }).category).toBe('brand');
+  });
+
+  it('names every owner of a shared brand TLD (R4)', () => {
+    expect(rateTld('youtube').label).toBe('brand TLD (Google, YouTube)');
   });
 
   it('prefers official over every other category', () => {

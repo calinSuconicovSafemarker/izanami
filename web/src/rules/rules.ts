@@ -13,7 +13,8 @@ import { isNotRegistered as notRegistered } from './types';
 import { getDomain } from 'tldts';
 import { toUnicode } from 'punycode/';
 import { officialExplanation } from './official';
-import { ABUSE_HEAVY_TLDS, AGES, BRAND_REGISTRARS, COMMON_GTLDS, WEIGHTS } from './weights';
+import { ccTld, isAbuseHeavy, isGeneric } from '../tld/lists';
+import { AGES, BRAND_REGISTRARS, WEIGHTS } from './weights';
 
 const DAY_MS = 86_400_000;
 
@@ -217,16 +218,10 @@ const notInTranco: Rule = (v) =>
         'Not a popular domain (outside Tranco top 100k)',
       );
 
-const ccTld = (country: string) => {
-  const cc = country.toLowerCase();
-  return cc === 'gb' ? 'uk' : cc;
-};
-
 const oddTld: Rule = (v) => {
   const w = WEIGHTS.oddTld;
   const tld = v.tld.toLowerCase();
-  const usual = new Set<string>([ccTld(v.orgCountry), ...COMMON_GTLDS]);
-  if (usual.has(tld)) {
+  if (isGeneric(tld) || (v.orgCountry && tld === ccTld(v.orgCountry))) {
     return result(
       'odd-tld',
       'not-fired',
@@ -235,7 +230,7 @@ const oddTld: Rule = (v) => {
       `Usual TLD (.${tld})`,
     );
   }
-  return (ABUSE_HEAVY_TLDS as readonly string[]).includes(tld)
+  return isAbuseHeavy(tld)
     ? result(
         'odd-tld',
         'fired',
@@ -276,6 +271,35 @@ const officialMatch: Rule = (v) =>
           `${v.unicode} is not one of ${v.orgName}'s known official domains.`,
           'Not a known official domain',
         );
+
+/**
+ * Wikidata lists the variant as a site of something the org owns. Only a legit signal, not
+ * Official: Wikidata keeps dead acquisitions, investments and properties, and a lapsed domain
+ * re-registered by an attacker must still be scored by the other rules (R1).
+ */
+const listedRelated: Rule = (v) => {
+  const id = 'listed-related';
+  const w = WEIGHTS.listedRelated;
+  if (!v.listedRelated) {
+    return result(
+      id,
+      'not-fired',
+      w,
+      `${v.unicode} is not listed by Wikidata as owned by ${v.orgName}.`,
+      `Not listed as owned by ${v.orgName}`,
+    );
+  }
+  const { via } = v.listedRelated;
+  const viaText = via && via !== v.orgName ? ` (via ${via})` : '';
+  return result(
+    id,
+    'fired',
+    w,
+    `Wikidata lists ${v.unicode} as owned by ${v.orgName}${viaText}. Wikidata also keeps dead ` +
+      'acquisitions and investments, so the other signals are still checked.',
+    `Listed by Wikidata as owned by ${v.orgName}${viaText}`,
+  );
+};
 
 // --- Infrastructure overlap -------------------------------------------------
 
@@ -662,6 +686,7 @@ const registeredNotResolving: Rule = (v) => {
 /** Every rule, in display order. */
 export const RULES: Record<RuleId, Rule> = {
   'official-match': officialMatch,
+  'listed-related': listedRelated,
   'young-domain': youngDomain,
   'much-newer': muchNewer,
   'brand-lookalike': brandLookalike,
@@ -683,6 +708,7 @@ export const RULES: Record<RuleId, Rule> = {
  */
 export const RULE_INPUTS: Record<RuleId, readonly LookupFact[]> = {
   'official-match': [],
+  'listed-related': [],
   'young-domain': ['existence', 'registrationDate'],
   'much-newer': ['existence', 'registrationDate'],
   'brand-lookalike': [],

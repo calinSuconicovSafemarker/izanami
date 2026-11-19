@@ -1,11 +1,9 @@
+import { officialContext, type Org } from '../orgs';
+import { ccTld } from './lists';
 import { rateTld, type TldCategory, type TldRating } from './rating';
 
 /** Offered on every org: legacy generics, then common abuse-heavy TLDs (shown as such). */
 const QUICK_TLDS = ['com', 'net', 'org', 'info', 'xyz', 'top', 'online', 'shop'] as const;
-
-/** ISO 3166-1 alpha-2 → ccTLD (they match except for the UK). */
-export const ccTld = (country: string) =>
-  country.toUpperCase() === 'GB' ? 'uk' : country.toLowerCase();
 
 const ORDER: Record<TldCategory, number> = {
   official: 0,
@@ -16,19 +14,14 @@ const ORDER: Record<TldCategory, number> = {
   'high-abuse': 3,
 };
 
-export interface QuickPickOrg {
-  country: string | null;
-  officialDomains: readonly string[];
-}
-
 /**
- * Quick-pick TLD chips for an org, rated: the org's ccTLD first, then generic TLDs,
- * high-abuse TLDs last so they are never presented as neutral.
+ * Quick-pick TLD chips for an org, rated against its official context: the org's ccTLD first,
+ * then generic TLDs, high-abuse TLDs last so they are never presented as neutral.
  */
-export function quickPickTlds(org: QuickPickOrg, brandTlds?: readonly string[]): TldRating[] {
+export function quickPickTlds(org: Org): TldRating[] {
   const cc = org.country ? [ccTld(org.country)] : [];
   const tlds = [...new Set([...cc, ...QUICK_TLDS])];
-  const ctx = { officialDomains: org.officialDomains, brandTlds };
+  const ctx = officialContext(org);
   return tlds
     .map((t, i) => ({ rating: rateTld(t, ctx), i }))
     .sort((a, b) => ORDER[a.rating.category] - ORDER[b.rating.category] || a.i - b.i)

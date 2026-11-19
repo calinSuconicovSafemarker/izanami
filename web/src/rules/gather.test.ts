@@ -185,4 +185,23 @@ describe('gatherFacts', () => {
     await gatherFacts(parseVariant('tudelft.de'), org, client, { now });
     expect(calls.filter((c) => c === 'rdap example.de')).toHaveLength(2);
   });
+
+  it('records whether RDAP answered, so "not published" is told apart from a failed lookup (R6)', async () => {
+    const org = { ...TU_DELFT, slug: 'example', primaryDomain: 'example.de' };
+    const facts = await gatherFacts(
+      parseVariant('tudelft.de'),
+      org,
+      stub({ 'example.de': { rdap: { registrar: 'DENIC member' } } }),
+      { now },
+    );
+    expect(facts.variantFacts.rdap).toEqual(UNKNOWN);
+    expect(facts.officialFacts.rdap).toEqual(known('ok'));
+  });
+
+  it('marks a variant listed by Wikidata as owned (R1)', async () => {
+    const org = { ...TU_DELFT, relatedOwned: [{ domain: 'tudelft.de', via: 'TU Delft Germany' }] };
+    const facts = await gatherFacts(parseVariant('www.tudelft.de'), org, stub({}), { now });
+    expect(facts.variantFacts.listedRelated).toEqual({ via: 'TU Delft Germany' });
+    expect(facts.variantFacts.similarity.isOfficial).toBe(false);
+  });
 });

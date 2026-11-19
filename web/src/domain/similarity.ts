@@ -1,6 +1,7 @@
 import { toASCII, toUnicode } from 'punycode/';
 import { skeleton } from '../lib/skeleton';
 import type { ParsedVariant } from './parse';
+import { normaliseTld } from './tld-name';
 
 export type LookalikeKind =
   'official' | 'tld-swap' | 'typo' | 'homoglyph' | 'combo' | 'subdomain-trick' | 'unrelated';
@@ -67,7 +68,7 @@ export function similarity(
 
   const officialDomain = officials.includes(variant.registrableDomain);
   const brandTld =
-    !officialDomain && brandTlds.some((t) => toASCII(t.toLowerCase()) === variant.tld)
+    !officialDomain && brandTlds.some((t) => normaliseTld(t) === variant.tld)
       ? variant.tld
       : undefined;
   const isOfficial = officialDomain || brandTld !== undefined;

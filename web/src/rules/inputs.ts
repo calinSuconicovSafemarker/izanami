@@ -12,6 +12,7 @@ export const FACT_SOURCES: Record<LookupFact, string> = {
   nameservers: 'DNS',
   mx: 'DNS',
   spf: 'DNS',
+  rdap: 'RDAP',
   registrationDate: 'RDAP',
   registrar: 'RDAP',
   addresses: 'DNS',

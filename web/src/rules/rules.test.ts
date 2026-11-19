@@ -152,6 +152,35 @@ table('not-in-tranco', [
   { name: 'present', variant: { inTranco: true }, status: 'not-fired', says: ['Tranco'] },
 ]);
 
+table('listed-related', [
+  {
+    name: 'listed by Wikidata as owned via a subsidiary',
+    variant: { listedRelated: { via: 'Jaiku' } },
+    status: 'fired',
+    weight: -30,
+    says: ['Wikidata', 'Delft University of Technology', 'Jaiku'],
+  },
+  { name: 'not listed', status: 'not-fired', weight: -30 },
+]);
+
+describe('listed-related summary', () => {
+  it('names the organisation and the owned entity', () => {
+    const r = RULES['listed-related'](
+      variantFacts({ orgName: 'Google', listedRelated: { via: 'YouTube' } }),
+      officialFacts(),
+    );
+    expect(r.summary).toBe('Listed by Wikidata as owned by Google (via YouTube)');
+  });
+
+  it('leaves out "via" when the entity is the organisation itself', () => {
+    const r = RULES['listed-related'](
+      variantFacts({ orgName: 'Google', listedRelated: { via: 'Google' } }),
+      officialFacts(),
+    );
+    expect(r.summary).toBe('Listed by Wikidata as owned by Google');
+  });
+});
+
 table('odd-tld', [
   {
     name: 'abuse-heavy .xyz',
@@ -409,6 +438,7 @@ describe('RULES', () => {
     expect(Object.keys(RULES).sort()).toEqual(
       [
         'official-match',
+        'listed-related',
         'young-domain',
         'much-newer',
         'brand-lookalike',

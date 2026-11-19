@@ -38,6 +38,7 @@ const RULE_LABELS: Record<RuleId, string> = {
   'fresh-cert': 'Fresh TLS certificate',
   'registered-not-resolving': 'Registered but not live',
   'odd-tld': 'Unusual TLD',
+  'listed-related': 'Listed as owned (Wikidata)',
 };
 
 /** e.g. `DNS, RDAP and ASN for tudelft.online; RDAP for tudelft.nl`. */

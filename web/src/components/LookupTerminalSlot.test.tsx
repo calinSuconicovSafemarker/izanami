@@ -189,7 +189,9 @@ describe('TLD ratings', () => {
   it('shows each chip rating as text', () => {
     renderRoute('/org/tu-delft');
     expect(chip('nl')).toHaveTextContent('official');
-    expect(chip('com')).toHaveTextContent('generic');
+    // tudelft.com is a curated official domain, so .com is one of TU Delft's TLDs.
+    expect(chip('com')).toHaveTextContent('official');
+    expect(chip('net')).toHaveTextContent('generic');
     expect(chip('xyz')).toHaveAccessibleName('.xyz high-abuse TLD');
   });
 

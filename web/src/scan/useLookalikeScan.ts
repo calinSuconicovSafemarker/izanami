@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { generatePermutations, parseVariant, type Candidate } from '../domain';
 import type { LookupClient } from '../lookup';
 import { useLookupClient } from '../lookup-ui/client-context';
-import { toOrgInput, type Org } from '../orgs';
+import { officialContext, type Org } from '../orgs';
 import { ccTld, quickPickTlds, rateTld, type TldRating } from '../tld';
 import { scanCandidates, type ScanResult } from './scan';
 
@@ -40,7 +40,6 @@ export type ScanState =
     };
 
 export interface LookalikeScanOptions {
-  brandTlds?: readonly string[];
   /** Pause between queries per worker; default from `scanCandidates`. */
   delayMs?: number;
   client?: LookupClient;
@@ -54,33 +53,31 @@ export interface LookalikeScanHook {
 }
 
 /** The bounded candidate set for an org (brand × TLDs plus typos on the primary TLD). */
-export function lookalikeCandidates(
-  org: Org,
-  brandTlds: readonly string[] = org.brandTlds,
-): Candidate[] {
-  const { brandLabel } = toOrgInput(org);
+export function lookalikeCandidates(org: Org): Candidate[] {
+  const ctx = officialContext(org);
   const tlds = [
     ...new Set([
       ...(org.country ? [ccTld(org.country)] : []),
-      ...quickPickTlds(org, brandTlds).map((r) => r.tld),
+      ...quickPickTlds(org).map((r) => r.tld),
       ...EXTRA_SCAN_TLDS,
     ]),
   ];
   return generatePermutations({
-    brandLabel,
+    brandLabel: ctx.brandLabel,
     primaryTld: parseVariant(org.primaryDomain).tld,
     tlds,
-    // Related domains (youtube.com for Google) are official too: never report them as lookalikes.
-    officialDomains: toOrgInput(org).officialDomains,
+    // Every related domain, Wikidata-listed ones included, is the org's or was: never report it
+    // as a lookalike to register.
+    officialDomains: [...ctx.officialDomains, ...ctx.relatedOwned.map((r) => r.domain)],
   });
 }
 
 /** Runs the lookalike scan for one org; cancel or unmount stops dispatching queries. */
 export function useLookalikeScan(org: Org, options: LookalikeScanOptions = {}): LookalikeScanHook {
-  const { brandTlds = org.brandTlds, delayMs } = options;
+  const { delayMs } = options;
   const contextClient = useLookupClient();
   const client = options.client ?? contextClient;
-  const candidates = useMemo(() => lookalikeCandidates(org, brandTlds), [org, brandTlds]);
+  const candidates = useMemo(() => lookalikeCandidates(org), [org]);
   const [state, setState] = useState<ScanState>({ phase: 'idle' });
   const controller = useRef<AbortController | null>(null);
 
@@ -95,8 +92,8 @@ export function useLookalikeScan(org: Org, options: LookalikeScanOptions = {}): 
     controller.current?.abort();
     const ac = new AbortController();
     controller.current = ac;
-    // No `official` category here: a typo on the org's own TLD must not read as "official".
-    const ctx = { brandTlds };
+    // Only brand TLDs rate as `official` here: a typo on the org's own .com must not.
+    const ctx = { brandTlds: officialContext(org).brandTlds };
     const settled: (ScanRow | undefined)[] = [];
     const rows = () => settled.filter((r): r is ScanRow => r !== undefined);
     setState({ phase: 'running', total: candidates.length, rows: [] });
@@ -116,7 +113,7 @@ export function useLookalikeScan(org: Org, options: LookalikeScanOptions = {}): 
       controller.current = null;
       setState({ phase: 'done', total: candidates.length, rows: rows() });
     });
-  }, [candidates, client, delayMs, brandTlds]);
+  }, [candidates, client, delayMs, org]);
 
   useEffect(() => () => controller.current?.abort(), []);
 

@@ -1,7 +1,6 @@
 import { useId, useState, type FormEvent } from 'react';
 import { toUnicode } from 'punycode/';
-import type { Org } from '../orgs';
-import { toOrgInput } from '../orgs';
+import { officialContext, type Org } from '../orgs';
 import { officialExplanation, type Existence, type Fact } from '../rules';
 import type { TerminalLine } from './lines';
 import { quickPickTlds, rateTld, TldBadge, type TldContext } from '../tld';
@@ -116,20 +115,14 @@ export interface LookupTerminalProps {
   /** Prefill (e.g. from a deep link); defaults to `<brandLabel>.`. Read on mount only. */
   initialInput?: string | null;
   onSubmit: (input: string) => void;
-  /** Single-owner TLDs to rate as `brand`; defaults to the org's own brand TLDs. */
-  brandTlds?: readonly string[];
 }
 
 /** Terminal-styled lookup panel: input + TLD chips + raw result lines + existence state. */
-export function LookupTerminal({
-  org,
-  lookup,
-  initialInput,
-  onSubmit,
-  brandTlds = org.brandTlds,
-}: LookupTerminalProps) {
-  const { brandLabel } = toOrgInput(org);
-  const tldContext: TldContext = { officialDomains: org.officialDomains, brandTlds };
+export function LookupTerminal({ org, lookup, initialInput, onSubmit }: LookupTerminalProps) {
+  const { brandLabel, brandTlds } = officialContext(org);
+  // The looked-up variant is not official (that phase never reaches this line), so only a brand
+  // TLD rates as official: a lookalike on the org's own .com must not read as "official".
+  const tldContext: TldContext = { brandTlds };
   const [input, setInput] = useState(initialInput || `${brandLabel}.`);
   const inputId = useId();
 
@@ -170,7 +163,7 @@ export function LookupTerminal({
         </button>
       </form>
       <ul aria-label="Quick TLDs" className="flex flex-wrap gap-2">
-        {quickPickTlds(org, brandTlds).map((rating) => (
+        {quickPickTlds(org).map((rating) => (
           <li key={rating.tld}>
             <button
               type="button"

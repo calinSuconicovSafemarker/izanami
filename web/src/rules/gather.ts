@@ -1,6 +1,6 @@
 // Collects facts for the rules through a LookupClient. The only module in
 // rules/ that does I/O, and only via the injected client.
-import { toUnicode } from 'punycode/';
+import { toASCII, toUnicode } from 'punycode/';
 import { has as inTrancoTop100k } from '../data/tranco';
 import { similarity, type ParsedVariant } from '../domain';
 import type { DnsResult, LookupClient, RdapResult } from '../lookup';
@@ -32,6 +32,7 @@ type Emit = (partial: Partial<Collected>) => void;
 
 const pendingInfra = (domain: string): Collected => ({
   domain,
+  rdap: PENDING,
   registrationDate: PENDING,
   registrar: PENDING,
   nameservers: PENDING,
@@ -42,6 +43,13 @@ const pendingInfra = (domain: string): Collected => ({
   spf: PENDING,
   firstCertDate: PENDING,
 });
+
+/** `listedRelated` when Wikidata lists the variant's registrable domain as owned by the org (R1). */
+function listed(org: OrgInput, domain: string): Pick<VariantFacts, 'listedRelated'> {
+  const hit = org.relatedOwned?.find((r) => toASCII(r.domain.toLowerCase()) === domain);
+  if (!hit) return {};
+  return { listedRelated: hit.via ? { via: hit.via } : {} };
+}
 
 const answered = (r: DnsResult) => r.status !== 'unavailable';
 
@@ -135,6 +143,7 @@ async function collect(
     ),
     rdap.then((r) =>
       set({
+        rdap: r.status === 'unavailable' ? UNKNOWN : known(r.status),
         registrationDate: r.registrationDate ? known(r.registrationDate) : UNKNOWN,
         registrar: r.registrar ? known(r.registrar) : UNKNOWN,
       }),
@@ -166,13 +175,23 @@ async function collect(
 
 const infraOnly = ({
   domain,
+  rdap,
   registrationDate,
   registrar,
   nameservers,
   mx,
   addresses,
   asns,
-}: Collected) => ({ domain, registrationDate, registrar, nameservers, mx, addresses, asns });
+}: Collected) => ({
+  domain,
+  rdap,
+  registrationDate,
+  registrar,
+  nameservers,
+  mx,
+  addresses,
+  asns,
+});
 
 /** Official facts per client and domain, so each official domain is looked up once per session. */
 const officialCache = new WeakMap<LookupClient, Map<string, Promise<OfficialFacts>>>();
@@ -211,6 +230,7 @@ export async function gatherFacts(
     orgName: org.name,
     orgCountry: org.country,
     similarity: similarity(variant, org.brandLabel, org.officialDomains, org.brandTlds),
+    ...listed(org, domain),
     inTranco: inTrancoTop100k(domain),
     checkedAt: (options.now ?? new Date()).toISOString(),
   };

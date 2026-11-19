@@ -1,5 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import type { RuleId, RuleResult, RuleStatus } from './types';
+import { evaluate } from './evaluate';
+import { officialFacts, variantFacts } from './test-facts';
+import { known } from './types';
 import { verdict } from './verdict';
 
 const r = (id: RuleId, status: RuleStatus, weight: number): RuleResult => ({
@@ -112,5 +115,36 @@ describe('verdict', () => {
     ]);
     expect(v.unknownShare).toBe(0.5);
     expect(v.verdict).toBe('Likely legit');
+  });
+});
+
+describe('verdict for a Wikidata-listed related domain (R1)', () => {
+  it('is not Official: a lapsed domain re-registered by someone else still scores risky', () => {
+    const facts = {
+      variantFacts: variantFacts({
+        domain: 'jaiku.com',
+        unicode: 'jaiku.com',
+        tld: 'com',
+        orgName: 'Google',
+        listedRelated: { via: 'Jaiku' },
+        registrationDate: known('2026-11-01T00:00:00Z'),
+        firstCertDate: known('2026-11-02T00:00:00Z'),
+      }),
+      officialFacts: officialFacts({ domain: 'google.com' }),
+    };
+    const v = verdict(evaluate(facts));
+    expect(v.verdict).toBe('Likely fraud');
+  });
+
+  it('pulls a long-standing listed domain with no other signal to Likely legit', () => {
+    const facts = {
+      variantFacts: variantFacts({
+        orgName: 'Google',
+        listedRelated: { via: 'YouTube' },
+        registrationDate: known('1990-01-01T00:00:00Z'),
+      }),
+      officialFacts: officialFacts(),
+    };
+    expect(verdict(evaluate(facts)).verdict).toBe('Likely legit');
   });
 });

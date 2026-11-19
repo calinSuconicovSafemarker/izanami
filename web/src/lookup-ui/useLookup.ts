@@ -1,5 +1,11 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { InvalidVariantError, parseVariant, similarity, type ParsedVariant } from '../domain';
+import {
+  InvalidVariantError,
+  parseVariant,
+  similarity,
+  type ParsedVariant,
+  type Similarity,
+} from '../domain';
 import type { LookupClient } from '../lookup';
 import type { Org } from '../orgs';
 import { toOrgInput } from '../orgs';
@@ -21,6 +27,8 @@ export type LookupState =
   | {
       phase: 'official';
       variant: ParsedVariant;
+      /** Why it is official (reused by the export). */
+      similarity: Similarity;
       /** Set when official because the org operates the variant's TLD (punycode). */
       brandTld?: string;
     }
@@ -71,6 +79,7 @@ export function useLookup(org: Org, clientOverride?: LookupClient): Lookup {
         setState({
           phase: 'official',
           variant,
+          similarity: sim,
           ...(sim.brandTld ? { brandTld: sim.brandTld } : {}),
         });
         return;
