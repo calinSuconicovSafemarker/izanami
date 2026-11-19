@@ -29,6 +29,16 @@ Run one at a time (e.g. with `/implement`). Each ticket lists its dependencies; 
 
 Round 2 status: all done, plus B3 (export) and the code-review fixes (db1b102). Deployed to GitHub Pages and AWS CloudFront on 2026-11-19.
 
+### Round 3 (API, credits, commercial-safe data, 2026-11-19)
+
+| # | Ticket | Depends on |
+|---|---|---|
+| 17 | [Credits and licences](17-credits-and-licences.md) | — |
+| 18 | [JSON API (Lambda behind CloudFront)](18-json-api.md) | B3 |
+| 19 | [Replace Tranco with Majestic + CrUX](19-replace-tranco.md) | 17 |
+
+Round 3 status: all done (f658df9). Deployed to GitHub Pages and AWS CloudFront on 2026-11-19; API live at `/api/` on the CloudFront site only.
+
 Suggested order: 00 → 01 → 02 → 03 → 04 → 05 → 06 → 07 → 08 → 09 → 10 → 11.
 First runnable slice (no scoring): after 06.
 
