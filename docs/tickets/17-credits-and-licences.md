@@ -1,5 +1,7 @@
 # 17 — Credits and licences for every data source and service
 
+**Status:** Done (3a8a986)
+
 **Depends on:** — (content from the licence research, `docs/research/licences.md`)
 
 ## Goal
