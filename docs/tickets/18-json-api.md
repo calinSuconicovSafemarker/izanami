@@ -1,5 +1,7 @@
 # 18 — JSON API (AWS Lambda behind CloudFront)
 
+**Status:** Done (14afe4c)
+
 **Depends on:** B3 (export JSON shape)
 
 ## Goal

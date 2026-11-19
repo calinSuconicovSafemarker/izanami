@@ -5,7 +5,8 @@
   "workspaces": [
     "web",
     "scripts",
-    "infra"
+    "infra",
+    "api"
   ],
   "engines": {
     "node": ">=20"

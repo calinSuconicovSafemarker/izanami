@@ -2,7 +2,7 @@
 
 A static website that helps someone check whether a domain is the **official** domain of a well-known organisation, or a **lookalike** that might be used for phishing. It only uses passive, public lookups (DNS, RDAP, Certificate Transparency) — no probing, scanning or contacting the domain's own servers.
 
-Personal learning + CV project. TypeScript end to end. Hosted on GitHub Pages ([ADR-0005](adr/0005-github-pages-hosting.md); AWS S3 + CloudFront remains an optional alternative), **browser-only at runtime** (see [ADR-0001](adr/0001-browser-only-runtime.md)).
+Personal learning + CV project. TypeScript end to end. Hosted on GitHub Pages ([ADR-0005](adr/0005-github-pages-hosting.md); AWS S3 + CloudFront remains an optional alternative), **browser-only at runtime** (see [ADR-0001](adr/0001-browser-only-runtime.md)). An optional JSON API runs the same code on AWS Lambda for other tools (see [API](#api), [ADR-0006](adr/0006-json-api.md)).
 
 Terms are defined in [GLOSSARY.md](GLOSSARY.md).
 
@@ -92,8 +92,9 @@ Outputs committed to `web/src/data/`:
 
 ## Privacy
 
-- No backend, no analytics, no logging by us.
-- A "What this tool sends where" panel lists every third party a lookup contacts.
+- The website has no backend, no analytics and no logging by us: lookups go from the browser to the public services.
+- The optional JSON API ([below](#api)) is the exception: queries sent **to the API** reach our Lambda, and its lookups come from AWS's IP instead of the caller's. Logged: Lambda's default `START` / `END` / `REPORT` lines per invocation (request id, duration, billed duration, memory) and, for 5xx responses only, one line `{"status":…,"code":"…"}`. No path, query string, domain or IP is logged; logs are kept one week. CloudFront access logging is off; CloudFront caches each answer for up to an hour, keyed on `org` and `domain`.
+- A "What this tool sends where" panel lists every third party a lookup contacts, and the API.
 - Disclaimer: "Heuristic, not a guarantee. Passive public lookups only."
 
 ## UI
@@ -114,6 +115,8 @@ Client-side downloads only (Blob + `a[download]`, no network, CSP unchanged); bu
 | `org` | `{slug, name, primaryDomain, officialDomains, relatedDomains, brandTlds}` |
 | `variant` | `{input, unicode, punycode, registrableDomain}` |
 | `analysis` | `{technique, techniqueLabel, editDistance, similarityPercent (0–100), homoglyphs: [{text, looksLike, codePoints}], inTrancoTop100k}` |
+| `tld` | TLD rating as on the site: `{tld, category, label, country?}`; for a looked-up variant only the org's brand TLDs rate `official` |
+| `dataSources` | `{lookups, unknown, dataVersion}`: lookups run (`[]` for an official domain), lookups with an unknown fact (failed, timed out or not published), build date of the bundled data |
 | `existence` | `not-registered` \| `registered-not-resolving` \| `resolving` \| `null` |
 | `registration` | `{registrationDate, registrar, firstCertDate}` (`firstCertDate: "none"` = no certificate ever logged) |
 | `dns`, `hosting` | `{nameservers, mx, addresses, spf}`, `{asns}` |
@@ -129,24 +132,42 @@ A fact that could not be looked up is `null`; `registration`, `dns`, `hosting` a
 
 CSV follows RFC 4180 (CRLF, quoting, doubled quotes), starts with a UTF-8 BOM for Excel, and prefixes text cells starting with `= + - @` (or tab/CR) with `'` against formula injection. CSV carries no `sources` (no place for metadata without breaking parsers); use the JSON when attribution must travel with the data.
 
+## API
+
+Optional JSON API for other tools ([ADR-0006](adr/0006-json-api.md)), same origin as the AWS-hosted site, under `/api/`. Handler: `api/src/handler.ts` (Lambda function URL, Node 22); it imports the website's modules, so a check runs exactly what the lookup terminal runs (`web/src/check/startCheck`) and returns what "Export JSON" downloads (`toLookupExport`).
+
+| Endpoint | Response |
+| --- | --- |
+| `GET /api/check?org=<org-id>&domain=<variant>` | The single-lookup export document ([Export](#export), `schemaVersion: 1`): verdict, score, why, every rule, facts, analysis, TLD rating, data sources. `verdict.label` is `Official` for a known official domain (no lookups run), `null` for a not-registered variant |
+| `GET /api/orgs` | `[{id, name, primaryDomain}]`, best Tranco rank first; `id` is the org slug |
+| `GET /api/orgs/<org-id>` | `{id, name, wikidataId, country, primary, officialDomains: [{domain, source, via?, url?, trust: "official"}], relatedOwned: [{domain, source: "wikidata-owned", via?, url?, trust: "verify"}], brandTlds, confirmedAt}`; own-site `source` is `wikidata-official-website` or `curated-extra` |
+| `GET /api/health` | `{ok: true, dataVersion}` (`dataVersion` = latest `confirmedAt`) |
+
+- **Errors:** `{error: {code, message}}`, never a stack trace. 400 `missing-parameter`, `duplicate-parameter`, `invalid-domain`; 404 `unknown-org`, `not-found` (route); 405 `method-not-allowed` (with `Allow: GET, HEAD`); 500 `internal-error`; 504 `upstream-timeout`. Through CloudFront, methods other than GET/HEAD are refused with 403 before reaching the function.
+- **Input:** `org` must be an id from `orgs.json`. `domain` at most 253 characters, a bare domain name (no scheme, path, query, port, userinfo, brackets, spaces or control characters), then the website parser: IDN → punycode, normalised to the registrable domain, IPs and names without a public suffix rejected. Each parameter once.
+- **Lookups:** DoH, RDAP, ASN and crt.sh through the live `LookupClient`, from the Lambda. Each DoH/RDAP request times out after 3 s, crt.sh after 5 s; lookups still running at 9 s are aborted (their facts become unknown, the verdict still returns); 11 s → 504. crt.sh is optional: on failure `firstCertDate` is `null` and `fresh-cert` unknown.
+- **Headers:** `Content-Type: application/json; charset=utf-8`, `Access-Control-Allow-Origin: *` (read-only, no credentials), `Cache-Control: public, max-age=3600` on success, `no-store` on errors, on `/api/health` and on a check cut off by the time budget. The site's security headers and CSP function apply too. `HEAD` returns the headers with an empty body.
+- **Caching:** CloudFront caches `/api/*` keyed on the `org` and `domain` query strings only (other parameters, headers and cookies are neither in the key nor forwarded), default and max TTL 1 h.
+- **Infra:** `NodejsFunction` (arm64, 512 MB, 15 s, esbuild locally), function URL with `AWS_IAM` auth reached only through CloudFront Origin Access Control (a direct call gets 403), log retention 1 week, no reserved concurrency (the account's 10 concurrent executions are the cap).
+
 ## Repo layout
 
 ```
 /web        Vite + React + TS + Tailwind + Vitest
+/api        JSON API: Lambda handler reusing web/src (Node 22 + TS)
 /scripts    build-time data generator (Node + TS)
 /infra      AWS CDK (TS)
-/lambda     (backlog only)
 /docs       SPEC, GLOSSARY, adr/, tickets/
 ```
 
 ## Testing
 
-- Vitest. Rules: table-driven tests per rule. Lookup client: recorded JSON fixtures, no live network in CI.
+- Vitest. Rules: table-driven tests per rule. Lookup client: recorded JSON fixtures, no live network in CI. API handler: `FixtureLookupClient`; infra: CDK assertion tests.
 - One optional live smoke test (`npm run test:live`), not in CI.
 - A `fixtures/cases.json` of real-world examples (official, defensive registration, known lookalikes) to tune weights.
 
 ## Out of scope (for now)
 
-- Any server-side component (see backlog ticket B1).
+- Server-side components other than the JSON API (e.g. a lookup proxy for the website, backlog ticket B1).
 - Active probing: HTTP fetches of the variant, screenshots, port scans.
 - Custom domain.

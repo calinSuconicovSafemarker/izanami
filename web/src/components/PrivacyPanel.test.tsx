@@ -44,6 +44,14 @@ describe('"What this tool sends where" panel', () => {
     expect(dialog).toHaveTextContent(/no analytics/i);
   });
 
+  it('says what the JSON API sees and logs (ticket 18)', () => {
+    renderRoute('/');
+    const { dialog } = openPanel();
+    expect(dialog).toHaveTextContent(/JSON API/);
+    expect(dialog).toHaveTextContent(/our AWS Lambda/);
+    expect(dialog).toHaveTextContent(/never the domain, the query string or your IP address/);
+  });
+
   it('moves focus into the dialog and keeps Tab inside it', () => {
     renderRoute('/');
     const { dialog } = openPanel();

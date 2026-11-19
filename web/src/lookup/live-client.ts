@@ -30,6 +30,14 @@ export interface LiveLookupClientOptions {
   rdapBaseUrls?: RdapBaseUrls;
   /** crt.sh is slow and flaky; give up after this long. Default 5000. */
   certsTimeoutMs?: number;
+  /**
+   * Give up on any single DoH/RDAP request after this long; it then counts as failed (the next
+   * resolver is tried, or the result is `unavailable`). Default: no limit, as in the browser,
+   * where the user can retry. The API sets one to stay inside its time budget.
+   */
+  requestTimeoutMs?: number;
+  /** Aborting it fails every request in flight or started later (an overall deadline). */
+  signal?: AbortSignal;
 }
 
 interface CrtShEntry {
@@ -52,11 +60,15 @@ export class LiveLookupClient implements LookupClient {
   private readonly fetch: FetchLike;
   private readonly rdapBaseUrls: RdapBaseUrls;
   private readonly certsTimeoutMs: number;
+  private readonly requestTimeoutMs: number | undefined;
+  private readonly signal: AbortSignal | undefined;
 
   constructor(options: LiveLookupClientOptions = {}) {
     this.fetch = options.fetch ?? ((input, init) => globalThis.fetch(input, init));
     this.rdapBaseUrls = options.rdapBaseUrls ?? {};
     this.certsTimeoutMs = options.certsTimeoutMs ?? 5000;
+    this.requestTimeoutMs = options.requestTimeoutMs;
+    this.signal = options.signal;
   }
 
   async dns(name: string, type: DnsType): Promise<DnsResult> {
@@ -83,16 +95,22 @@ export class LiveLookupClient implements LookupClient {
     const url = `${base.endsWith('/') ? base : `${base}/`}domain/${encodeURIComponent(domain)}`;
     const unavailable: RdapResult = { status: 'unavailable', domain, nameservers: [] };
     try {
-      const res = await this.request(url, 'application/rdap+json');
-      if (res.status === 404)
-        return { status: 'not-found', domain, registered: false, nameservers: [] };
-      if (!res.ok) return unavailable;
-      return {
-        status: 'ok',
-        domain,
-        registered: true,
-        ...parseRdapDomain((await res.json()) as RdapDomain),
-      };
+      return await this.get(
+        url,
+        'application/rdap+json',
+        async (res): Promise<RdapResult> => {
+          if (res.status === 404)
+            return { status: 'not-found', domain, registered: false, nameservers: [] };
+          if (!res.ok) return unavailable;
+          return {
+            status: 'ok',
+            domain,
+            registered: true,
+            ...parseRdapDomain((await res.json()) as RdapDomain),
+          };
+        },
+        this.requestTimeoutMs,
+      );
     } catch {
       return unavailable;
     }
@@ -113,42 +131,80 @@ export class LiveLookupClient implements LookupClient {
 
   /** Certificate Transparency history from crt.sh. Never throws. */
   async certs(domain: string): Promise<CertResult> {
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), this.certsTimeoutMs);
+    const url = `https://crt.sh/?q=${encodeURIComponent(domain)}&output=json`;
     try {
-      const url = `https://crt.sh/?q=${encodeURIComponent(domain)}&output=json`;
-      const res = await this.request(url, undefined, controller.signal);
-      if (!res.ok) return { status: 'unavailable', domain, certs: [] };
-      const entries = (await res.json()) as CrtShEntry[];
-      const certs = entries.map(toCertEntry).sort((a, b) => a.notBefore.localeCompare(b.notBefore));
-      return { status: 'ok', domain, certs };
+      return await this.get(
+        url,
+        undefined,
+        async (res): Promise<CertResult> => {
+          if (!res.ok) return { status: 'unavailable', domain, certs: [] };
+          const entries = (await res.json()) as CrtShEntry[];
+          const certs = entries
+            .map(toCertEntry)
+            .sort((a, b) => a.notBefore.localeCompare(b.notBefore));
+          return { status: 'ok', domain, certs };
+        },
+        this.certsTimeoutMs,
+      );
     } catch {
       return { status: 'unavailable', domain, certs: [] };
-    } finally {
-      clearTimeout(timer);
     }
   }
 
   /**
    * Every request goes through here so they stay CORS-simple and anonymous:
    * no cookies, no Referer, and no header except `accept`.
+   *
+   * `read` runs inside the deadline, so a slow body is cut off too. The deadline is `timeoutMs`
+   * (when given) or the client's `signal`, whichever comes first; on expiry the fetch is aborted
+   * and this rejects.
    */
-  private request(url: string, accept?: string, signal?: AbortSignal): Promise<Response> {
-    return this.fetch(url, {
-      method: 'GET',
-      credentials: 'omit',
-      referrerPolicy: 'no-referrer',
-      ...(accept && { headers: { accept } }),
-      ...(signal && { signal }),
+  private async get<T>(
+    url: string,
+    accept: string | undefined,
+    read: (res: Response) => Promise<T>,
+    timeoutMs: number | undefined,
+  ): Promise<T> {
+    const send = (signal?: AbortSignal) =>
+      this.fetch(url, {
+        method: 'GET',
+        credentials: 'omit',
+        referrerPolicy: 'no-referrer',
+        ...(accept && { headers: { accept } }),
+        ...(signal && { signal }),
+      });
+    if (timeoutMs === undefined && !this.signal) return read(await send());
+
+    const controller = new AbortController();
+    const aborted = new Promise<never>((_resolve, reject) => {
+      controller.signal.addEventListener('abort', () =>
+        reject(new DOMException('Lookup timed out', 'TimeoutError')),
+      );
     });
+    aborted.catch(() => {}); // only observed through the race below
+    const abort = () => controller.abort();
+    const timer = timeoutMs === undefined ? undefined : setTimeout(abort, timeoutMs);
+    const outer = this.signal;
+    if (outer?.aborted) abort();
+    outer?.addEventListener('abort', abort);
+    try {
+      // The race also settles when an injected fetch ignores the signal.
+      return await Promise.race([send(controller.signal).then(read), aborted]);
+    } finally {
+      clearTimeout(timer);
+      outer?.removeEventListener('abort', abort);
+    }
   }
 
   /** GET returning parsed JSON for 2xx, otherwise undefined. Never throws. */
   private async getJson<T>(url: string, accept: string): Promise<T | undefined> {
     try {
-      const res = await this.request(url, accept);
-      if (!res.ok) return undefined;
-      return (await res.json()) as T;
+      return await this.get(
+        url,
+        accept,
+        async (res) => (res.ok ? ((await res.json()) as T) : undefined),
+        this.requestTimeoutMs,
+      );
     } catch {
       return undefined;
     }

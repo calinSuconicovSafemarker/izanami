@@ -32,3 +32,10 @@ The original plan assumed RDAP/WHOIS, Wikidata or Tranco might block browser cal
 - Each user's browser hits public services directly, which the privacy panel must disclose.
 - Tranco membership is as fresh as the last data build.
 - A Lambda proxy remains as an optional backlog ticket (B1) for caching or CV value.
+
+## Amendment 1 — 2026-11-19: JSON API
+
+The website stays browser-only. An optional JSON API for other tools runs the same modules on
+AWS Lambda behind the site's CloudFront distribution; see
+[ADR-0006](0006-json-api.md). Queries sent to that API (not the website's) pass through our
+Lambda.
