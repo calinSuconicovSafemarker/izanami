@@ -14,6 +14,7 @@ export const FACT_SOURCES: Record<LookupFact, string> = {
   spf: 'DNS',
   registrationDate: 'RDAP',
   registrar: 'RDAP',
+  addresses: 'DNS',
   asns: 'ASN',
   firstCertDate: 'Certificate Transparency (crt.sh)',
 };

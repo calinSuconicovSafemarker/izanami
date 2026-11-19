@@ -92,7 +92,7 @@ describe('lookup terminal', () => {
     const chips = within(terminal()).getByRole('list', { name: /quick tlds/i });
     expect(within(chips).getAllByRole('button')[0]).toHaveTextContent('.nl');
     fireEvent.change(input(), { target: { value: 'tudelft-login.nl' } });
-    fireEvent.click(within(chips).getByRole('button', { name: '.xyz' }));
+    fireEvent.click(within(chips).getByRole('button', { name: /^\.xyz / }));
     expect(input()).toHaveValue('tudelft-login.xyz');
   });
 
@@ -143,5 +143,63 @@ describe('verdict card', () => {
     renderRoute('/org/tu-delft?d=tudelft.nl', new FixtureLookupClient([]));
     const card = await screen.findByRole('region', { name: /^verdict$/i });
     expect(within(card).getByRole('status')).toHaveTextContent('Verdict: Official');
+  });
+});
+
+describe('domain analysis panel', () => {
+  const panel = () => screen.queryByRole('region', { name: /domain analysis/i });
+
+  it('sits between the terminal and the verdict card', async () => {
+    renderRoute('/org/tu-delft?d=google.com');
+    const analysis = await screen.findByRole('region', { name: /domain analysis/i });
+    const verdict = await screen.findByRole('region', { name: /^verdict$/i });
+    const follows = (a: Node, b: Node) =>
+      !!(a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING);
+    expect(follows(terminal(), analysis)).toBe(true);
+    expect(follows(analysis, verdict)).toBe(true);
+  });
+
+  it('is not shown for a known official domain', async () => {
+    renderRoute('/org/tu-delft?d=tudelft.nl', new FixtureLookupClient([]));
+    await screen.findByRole('region', { name: /^verdict$/i });
+    expect(panel()).not.toBeInTheDocument();
+  });
+});
+
+describe('TLD ratings', () => {
+  const chips = () =>
+    within(within(terminal()).getByRole('list', { name: /quick tlds/i })).getAllByRole('button');
+  const chip = (tld: string) => chips().find((b) => b.textContent?.startsWith(`.${tld}`))!;
+
+  it("leads with the org's country TLD and the generic TLDs, high-abuse last", () => {
+    renderRoute('/org/tu-delft');
+    expect(chips().map((b) => b.textContent?.split(' ')[0]?.replace(/[^.a-z]/g, ''))).toEqual([
+      '.nl',
+      '.com',
+      '.net',
+      '.org',
+      '.info',
+      '.xyz',
+      '.top',
+      '.online',
+      '.shop',
+    ]);
+  });
+
+  it('shows each chip rating as text', () => {
+    renderRoute('/org/tu-delft');
+    expect(chip('nl')).toHaveTextContent('official');
+    expect(chip('com')).toHaveTextContent('generic');
+    expect(chip('xyz')).toHaveAccessibleName('.xyz high-abuse TLD');
+  });
+
+  it("names the country on a ccTLD chip that isn't official", () => {
+    renderRoute('/org/microsoft');
+    expect(chip('us')).toHaveTextContent('country · United States');
+  });
+
+  it('shows the rating of the looked-up TLD in the output', async () => {
+    renderRoute('/org/tu-delft?d=tudelft-lookalike-xq7z.guide');
+    expect(await within(output()).findByText('TLD .guide: other gTLD')).toBeInTheDocument();
   });
 });

@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { PENDING } from '../rules';
 import { caseFacts, cases } from '../rules/fixtures/cases';
 import { officialFacts, variantFacts } from '../rules/test-facts';
-import { VerdictCard } from './VerdictCard';
+import { OfficialVerdictCard, VerdictCard } from './VerdictCard';
 
 const card = () => screen.getByRole('region', { name: /verdict/i });
 const announcement = () => within(card()).getByRole('status');
@@ -82,5 +82,51 @@ describe('VerdictCard rule groups', () => {
     const notFired = group(/not fired/i);
     expect(notFired).toHaveTextContent('n/a');
     expect(notFired).toHaveTextContent('example-unrelated.nl is not a lookalike');
+  });
+});
+
+describe('VerdictCard "Why" list', () => {
+  const why = () => within(card()).getByRole('list', { name: /^why/i });
+
+  it('lists the top reasons, with their weights, directly under the verdict', () => {
+    render(<VerdictCard facts={caseFacts(byName('fresh combo-squat'))} done />);
+    const items = within(why()).getAllByRole('listitem');
+    expect(items.map((li) => li.textContent)).toEqual([
+      '+40 Registered 12 days ago',
+      '+25 Contains "tudelft"',
+      '+20 First TLS certificate issued 11 days ago',
+      '+15 Set up to send mail (MX mx1.privateemail.com)',
+    ]);
+  });
+
+  it('is read after the verdict label and before the full rule list', () => {
+    render(<VerdictCard facts={caseFacts(byName(DEFENSIVE))} done />);
+    const label = within(card()).getByText('Likely legit');
+    const after = (a: Node, b: Node) =>
+      Boolean(a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING);
+    expect(after(label, why())).toBe(true);
+    expect(after(why(), group(/risk signals fired/i))).toBe(true);
+    expect(why()).toHaveTextContent("Shares Delft University of Technology's nameservers");
+  });
+
+  it("names what couldn't be checked when data is insufficient", () => {
+    render(<VerdictCard facts={caseFacts(byName('all lookups unavailable'))} done />);
+    expect(why()).toHaveTextContent('Registration date unavailable');
+    expect(why()).toHaveTextContent('Certificate history (crt.sh) unavailable');
+  });
+
+  it('is announced to screen readers right after the verdict', () => {
+    render(<VerdictCard facts={caseFacts(byName('parked typo-squat'))} done />);
+    expect(announcement()).toHaveTextContent(
+      'Verdict: Likely fraud. Why: 1 letter away from "tudelft"; Registered 32 years after tudelft.nl;',
+    );
+  });
+
+  it('is absent for an official domain and while still checking', () => {
+    const { unmount } = render(<VerdictCard facts={caseFacts(byName('official domain'))} done />);
+    expect(within(card()).queryByRole('list', { name: /^why/i })).toBeNull();
+    unmount();
+    render(<OfficialVerdictCard domain="tudelft.nl" orgName="TU Delft" />);
+    expect(within(card()).queryByRole('list', { name: /^why/i })).toBeNull();
   });
 });

@@ -1,5 +1,7 @@
 # B3 — (Later) Export results to CSV / JSON
 
+**Status:** Done (b61440f)
+
 **Depends on:** 12, 13, 15, 16 (decide the result shape once those land)
 
 ## Goal

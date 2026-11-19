@@ -20,7 +20,8 @@ const result = (
   status: RuleResult['status'],
   weight: number,
   explanation: string,
-): RuleResult => ({ id, status, weight, explanation });
+  summary: string,
+): RuleResult => ({ id, status, weight, explanation, summary });
 
 const value = <T>(f: Fact<T>): T | undefined => (f.state === 'known' ? f.value : undefined);
 
@@ -41,42 +42,99 @@ function officialRegistered(o: OfficialFacts): string {
 const youngDomain: Rule = (v, o) => {
   const w = WEIGHTS.youngDomain;
   const id = 'young-domain';
-  if (isNotRegistered(v)) return result(id, 'not-fired', w, `${v.domain} is not registered.`);
+  if (isNotRegistered(v)) {
+    return result(id, 'not-fired', w, `${v.domain} is not registered.`, 'Not registered');
+  }
   const date = value(v.registrationDate);
-  if (!date) return result(id, 'unknown', w, `Registration date of ${v.domain} is unavailable.`);
+  if (!date) {
+    return result(
+      id,
+      'unknown',
+      w,
+      `Registration date of ${v.domain} is unavailable.`,
+      'Registration date unavailable',
+    );
+  }
   const days = daysBetween(date, v.checkedAt);
   return days < AGES.youngDomainDays
-    ? result(id, 'fired', w, `Registered ${ago(days)}; ${officialRegistered(o)}.`)
+    ? result(
+        id,
+        'fired',
+        w,
+        `Registered ${ago(days)}; ${officialRegistered(o)}.`,
+        `Registered ${ago(days)}`,
+      )
     : result(
         id,
         'not-fired',
         w,
         `Registered in ${year(date)}, more than ${AGES.youngDomainDays} days ago.`,
+        `Registered in ${year(date)}`,
       );
 };
 
 const muchNewer: Rule = (v, o) => {
   const w = WEIGHTS.muchNewer;
   const id = 'much-newer';
-  if (isNotRegistered(v)) return result(id, 'not-fired', w, `${v.domain} is not registered.`);
+  if (isNotRegistered(v)) {
+    return result(id, 'not-fired', w, `${v.domain} is not registered.`, 'Not registered');
+  }
   const date = value(v.registrationDate);
   const officialDate = value(o.registrationDate);
   if (!date || !officialDate) {
-    return result(id, 'unknown', w, `Cannot compare registration dates: ${missingDates(v, o)}.`);
+    return result(
+      id,
+      'unknown',
+      w,
+      `Cannot compare registration dates: ${missingDates(v, o)}.`,
+      "Registration dates couldn't be compared",
+    );
   }
   if (daysBetween(date, v.checkedAt) < AGES.youngDomainDays) {
-    return result(id, 'not-fired', w, 'Covered by young-domain (registered very recently).');
+    return result(
+      id,
+      'not-fired',
+      w,
+      'Covered by young-domain (registered very recently).',
+      'Registered very recently',
+    );
   }
   const years = Math.floor(daysBetween(officialDate, date) / 365.25);
   const both = `${v.domain} was registered in ${year(date)}, ${o.domain} in ${year(officialDate)}`;
   return years > AGES.muchNewerYears
-    ? result(id, 'fired', w, `${both}: ${years} years later.`)
-    : result(id, 'not-fired', w, `${both}: within ${AGES.muchNewerYears} years.`);
+    ? result(
+        id,
+        'fired',
+        w,
+        `${both}: ${years} years later.`,
+        `Registered ${years} years after ${o.domain}`,
+      )
+    : result(
+        id,
+        'not-fired',
+        w,
+        `${both}: within ${AGES.muchNewerYears} years.`,
+        `Registered within ${AGES.muchNewerYears} years of ${o.domain}`,
+      );
 };
 
 function missingDates(v: VariantFacts, o: OfficialFacts): string {
   const missing = [v, o].filter((f) => !value(f.registrationDate)).map((f) => f.domain);
   return `registration date of ${missing.join(' and ')} unavailable`;
+}
+
+/** Scripts worth naming for a look-alike letter (Latin last: accented Latin letters). */
+const SCRIPTS = ['Cyrillic', 'Greek', 'Armenian', 'Cherokee', 'Latin'] as const;
+
+const scriptOf = (ch: string) =>
+  SCRIPTS.find((s) => new RegExp(`\\p{Script=${s}}`, 'u').test(ch)) ?? 'Unicode';
+
+/** e.g. `Uses look-alike letters (Cyrillic е)`: the non-ASCII letters, each once. */
+function lookalikeLetters(unicode: string): string {
+  // eslint-disable-next-line no-control-regex
+  const letters = [...new Set([...unicode].filter((ch) => /[^\x00-\x7f]/.test(ch)))];
+  if (!letters.length) return 'Uses look-alike letters';
+  return `Uses look-alike letters (${letters.map((ch) => `${scriptOf(ch)} ${ch}`).join(', ')})`;
 }
 
 const brandLookalike: Rule = (v) => {
@@ -89,6 +147,7 @@ const brandLookalike: Rule = (v) => {
       'fired',
       WEIGHTS.brandHomoglyph,
       `${v.unicode} uses look-alike characters to imitate "${brand}" (punycode ${v.domain}).`,
+      lookalikeLetters(v.unicode),
     );
   }
   const w = WEIGHTS.brandLookalike;
@@ -99,23 +158,43 @@ const brandLookalike: Rule = (v) => {
         'fired',
         w,
         `${v.unicode} is ${s.editDistance} character edit(s) away from "${brand}".`,
+        `${s.editDistance} ${s.editDistance === 1 ? 'letter' : 'letters'} away from "${brand}"`,
       );
     case 'combo':
-      return result(id, 'fired', w, `${v.unicode} contains the brand label "${brand}".`);
+      return result(
+        id,
+        'fired',
+        w,
+        `${v.unicode} contains the brand label "${brand}".`,
+        `Contains "${brand}"`,
+      );
     case 'tld-swap':
-      return result(id, 'fired', w, `${v.unicode} uses the brand label "${brand}" on another TLD.`);
+      return result(
+        id,
+        'fired',
+        w,
+        `${v.unicode} uses the brand label "${brand}" on another TLD.`,
+        `Uses "${brand}" on .${v.tld}`,
+      );
     case 'subdomain-trick':
       return result(
         id,
         'fired',
         w,
         `The brand "${brand}" appears only in a subdomain; the real domain is ${v.unicode}.`,
+        `"${brand}" only in a subdomain of ${v.unicode}`,
       );
     case 'official':
-      return result(id, 'not-fired', w, `${v.unicode} is an official domain.`);
+      return result(id, 'not-fired', w, `${v.unicode} is an official domain.`, 'Official domain');
     case 'unrelated':
       // SPEC: an unrelated variant is scored without the brand-lookalike rule.
-      return result(id, 'not-applicable', w, `${v.unicode} is not a lookalike of ${v.orgName}.`);
+      return result(
+        id,
+        'not-applicable',
+        w,
+        `${v.unicode} is not a lookalike of ${v.orgName}.`,
+        `Not a lookalike of ${v.orgName}`,
+      );
   }
 };
 
@@ -126,12 +205,14 @@ const notInTranco: Rule = (v) =>
         'not-fired',
         WEIGHTS.notInTranco,
         `${v.domain} is in the Tranco top 100k (heavily used).`,
+        'Popular domain (Tranco top 100k)',
       )
     : result(
         'not-in-tranco',
         'fired',
         WEIGHTS.notInTranco,
         `${v.domain} is not in the Tranco top 100k of popular domains.`,
+        'Not a popular domain (outside Tranco top 100k)',
       );
 
 const ccTld = (country: string) => {
@@ -144,11 +225,29 @@ const oddTld: Rule = (v) => {
   const tld = v.tld.toLowerCase();
   const usual = new Set<string>([ccTld(v.orgCountry), ...COMMON_GTLDS]);
   if (usual.has(tld)) {
-    return result('odd-tld', 'not-fired', w, `.${tld} is a usual TLD for ${v.orgName}.`);
+    return result(
+      'odd-tld',
+      'not-fired',
+      w,
+      `.${tld} is a usual TLD for ${v.orgName}.`,
+      `Usual TLD (.${tld})`,
+    );
   }
   return (ABUSE_HEAVY_TLDS as readonly string[]).includes(tld)
-    ? result('odd-tld', 'fired', w, `.${tld} is a TLD frequently used for abuse.`)
-    : result('odd-tld', 'not-fired', w, `.${tld} is not on the abuse-heavy TLD list.`);
+    ? result(
+        'odd-tld',
+        'fired',
+        w,
+        `.${tld} is a TLD frequently used for abuse.`,
+        `.${tld} is a TLD often used for abuse`,
+      )
+    : result(
+        'odd-tld',
+        'not-fired',
+        w,
+        `.${tld} is not on the abuse-heavy TLD list.`,
+        `.${tld} is not an abuse-heavy TLD`,
+      );
 };
 
 const officialMatch: Rule = (v) =>
@@ -158,12 +257,14 @@ const officialMatch: Rule = (v) =>
         'fired',
         0,
         `${v.unicode} is a known official domain of ${v.orgName}.`,
+        `Known official domain of ${v.orgName}`,
       )
     : result(
         'official-match',
         'not-fired',
         0,
         `${v.unicode} is not one of ${v.orgName}'s known official domains.`,
+        'Not a known official domain',
       );
 
 // --- Infrastructure overlap -------------------------------------------------
@@ -240,23 +341,41 @@ function registrarOverlap(v: VariantFacts, o: OfficialFacts): Overlap {
     : { state: 'none', variant: [vr], official: [or] };
 }
 
+/** Short phrases for an overlap rule's summary. */
+interface OverlapPhrases {
+  /** e.g. `Nameservers`, for "Nameservers couldn't be compared". */
+  subject: string;
+  /** e.g. `Shares Google's nameservers`; the first shared value is appended. */
+  shared: string;
+  /** Shortens the appended value, e.g. a host to its provider. */
+  short?: (value: string) => string;
+}
+
 function overlapRule(
   id: RuleId,
   weight: number,
   what: string,
+  phrases: OverlapPhrases,
   overlap: Overlap,
   v: VariantFacts,
   o: OfficialFacts,
 ): RuleResult {
   switch (overlap.state) {
     case 'unknown':
-      return result(id, 'unknown', weight, `Cannot compare ${what}: ${overlap.why}.`);
+      return result(
+        id,
+        'unknown',
+        weight,
+        `Cannot compare ${what}: ${overlap.why}.`,
+        `${phrases.subject} couldn't be compared`,
+      );
     case 'shared':
       return result(
         id,
         'fired',
         weight,
         `${v.domain} shares ${what} with ${o.domain}: ${list(overlap.shared)}.`,
+        `${phrases.shared} (${(phrases.short ?? String)(overlap.shared[0] ?? '')})`,
       );
     case 'none':
       return result(
@@ -264,6 +383,7 @@ function overlapRule(
         'not-fired',
         weight,
         `No shared ${what}: ${v.domain} uses ${list(overlap.variant)}; ${o.domain} uses ${list(overlap.official)}.`,
+        `No ${what} shared with ${o.domain}`,
       );
   }
 }
@@ -273,16 +393,33 @@ const sameNameservers: Rule = (v, o) =>
     'same-nameservers',
     WEIGHTS.sameNameservers,
     'nameservers',
+    { subject: 'Nameservers', shared: `Shares ${v.orgName}'s nameservers`, short: provider },
     nameserverOverlap(v, o),
     v,
     o,
   );
 
 const sameMx: Rule = (v, o) =>
-  overlapRule('same-mx', WEIGHTS.sameMx, 'mail (MX) provider', mxOverlap(v, o), v, o);
+  overlapRule(
+    'same-mx',
+    WEIGHTS.sameMx,
+    'mail (MX) provider',
+    { subject: 'Mail providers', shared: `Shares ${v.orgName}'s mail provider`, short: provider },
+    mxOverlap(v, o),
+    v,
+    o,
+  );
 
 const sameAsn: Rule = (v, o) =>
-  overlapRule('same-asn', WEIGHTS.sameAsn, 'hosting network (ASN)', asnOverlap(v, o), v, o);
+  overlapRule(
+    'same-asn',
+    WEIGHTS.sameAsn,
+    'hosting network (ASN)',
+    { subject: 'Hosting networks', shared: `Hosted on ${v.orgName}'s network` },
+    asnOverlap(v, o),
+    v,
+    o,
+  );
 
 const sameRegistrar: Rule = (v, o) => {
   const overlap = registrarOverlap(v, o);
@@ -291,11 +428,19 @@ const sameRegistrar: Rule = (v, o) => {
     'same-registrar',
     brand ? WEIGHTS.sameBrandRegistrar : WEIGHTS.sameRegistrar,
     'registrar',
+    {
+      subject: 'Registrar',
+      shared: brand
+        ? `Uses ${v.orgName}'s brand-protection registrar`
+        : `Same registrar as ${v.orgName}`,
+    },
     overlap,
     v,
     o,
   );
-  if (isNotRegistered(v)) return { ...r, explanation: `${v.domain} is not registered.` };
+  if (isNotRegistered(v)) {
+    return { ...r, explanation: `${v.domain} is not registered.`, summary: 'Not registered' };
+  }
   return brand
     ? { ...r, explanation: `${r.explanation} It is a corporate brand-protection registrar.` }
     : r;
@@ -305,10 +450,24 @@ const sameRegistrar: Rule = (v, o) => {
 
 function existenceUnknown(id: RuleId, w: number, v: VariantFacts): RuleResult | undefined {
   const e = value(v.existence);
-  if (!e) return result(id, 'unknown', w, `Could not determine whether ${v.domain} is live.`);
+  if (!e) {
+    return result(
+      id,
+      'unknown',
+      w,
+      `Could not determine whether ${v.domain} is live.`,
+      "Couldn't tell whether it is live",
+    );
+  }
   if (e !== 'resolving') {
     const state = e === 'not-registered' ? 'is not registered' : 'does not resolve';
-    return result(id, 'not-fired', w, `${v.domain} ${state}.`);
+    return result(
+      id,
+      'not-fired',
+      w,
+      `${v.domain} ${state}.`,
+      e === 'not-registered' ? 'Not registered' : 'Not live',
+    );
   }
   return undefined;
 }
@@ -324,8 +483,12 @@ const noMx: Rule = (v, o) => {
   if (early) return early;
   const mx = value(v.mx);
   const spf = value(v.spf);
-  if (mx?.length) return result(id, 'not-fired', w, `${v.domain} has MX: ${list(mx)}.`);
-  if (spf === true) return result(id, 'not-fired', w, `${v.domain} publishes an SPF record.`);
+  if (mx?.length) {
+    return result(id, 'not-fired', w, `${v.domain} has MX: ${list(mx)}.`, `Has mail (MX ${mx[0]})`);
+  }
+  if (spf === true) {
+    return result(id, 'not-fired', w, `${v.domain} publishes an SPF record.`, 'Publishes SPF');
+  }
   if (nameserverOverlap(v, o).state === 'shared') {
     const why = `shares nameservers with ${o.domain}`;
     return result(
@@ -333,6 +496,7 @@ const noMx: Rule = (v, o) => {
       'not-fired',
       w,
       `${v.domain} ${why}: no mail is expected on a parked domain.`,
+      'No mail expected on a parked domain',
     );
   }
   if (registrarOverlap(v, o).state === 'shared') {
@@ -342,12 +506,25 @@ const noMx: Rule = (v, o) => {
       'not-fired',
       w,
       `${v.domain} ${why}: no mail is expected on a parked domain.`,
+      'No mail expected on a parked domain',
     );
   }
   if (!mx || spf === undefined) {
-    return result(id, 'unknown', w, `MX or SPF lookup for ${v.domain} unavailable.`);
+    return result(
+      id,
+      'unknown',
+      w,
+      `MX or SPF lookup for ${v.domain} unavailable.`,
+      'Mail setup (MX/SPF) unavailable',
+    );
   }
-  return result(id, 'fired', w, `${v.domain} resolves but has no MX and no SPF record.`);
+  return result(
+    id,
+    'fired',
+    w,
+    `${v.domain} resolves but has no MX and no SPF record.`,
+    'Live but no mail setup (no MX, no SPF)',
+  );
 };
 
 const mailReady: Rule = (v, o) => {
@@ -357,10 +534,20 @@ const mailReady: Rule = (v, o) => {
   if (early) return early;
   const mx = value(v.mx);
   const spf = value(v.spf);
-  if (mx?.length === 0) return result(id, 'not-fired', w, `${v.domain} has no MX records.`);
-  if (spf === false) return result(id, 'not-fired', w, `${v.domain} has no SPF record.`);
+  if (mx?.length === 0) {
+    return result(id, 'not-fired', w, `${v.domain} has no MX records.`, 'No MX records');
+  }
+  if (spf === false) {
+    return result(id, 'not-fired', w, `${v.domain} has no SPF record.`, 'No SPF record');
+  }
   if (!mx || spf === undefined) {
-    return result(id, 'unknown', w, `MX or SPF lookup for ${v.domain} unavailable.`);
+    return result(
+      id,
+      'unknown',
+      w,
+      `MX or SPF lookup for ${v.domain} unavailable.`,
+      'Mail setup (MX/SPF) unavailable',
+    );
   }
   const overlaps = [
     nameserverOverlap(v, o),
@@ -374,6 +561,7 @@ const mailReady: Rule = (v, o) => {
       'not-fired',
       w,
       `${v.domain} can send mail but shares infrastructure with ${o.domain}.`,
+      `Can send mail, on ${o.domain}'s infrastructure`,
     );
   }
   if (overlaps.some((x) => x.state === 'unknown')) {
@@ -382,6 +570,7 @@ const mailReady: Rule = (v, o) => {
       'unknown',
       w,
       `${v.domain} can send mail; infrastructure overlap with ${o.domain} partly unknown.`,
+      "Can send mail; shared infrastructure couldn't be checked",
     );
   }
   return result(
@@ -389,6 +578,7 @@ const mailReady: Rule = (v, o) => {
     'fired',
     w,
     `${v.domain} is set up for mail (MX ${list(mx)}, SPF) with no infrastructure shared with ${o.domain}.`,
+    `Set up to send mail (MX ${mx[0]})`,
   );
 };
 
@@ -397,19 +587,38 @@ const freshCert: Rule = (v) => {
   const w = WEIGHTS.freshCert;
   const f = v.firstCertDate;
   if (f.state !== 'known') {
-    return result(id, 'unknown', w, 'Certificate Transparency history (crt.sh) unavailable.');
+    return result(
+      id,
+      'unknown',
+      w,
+      'Certificate Transparency history (crt.sh) unavailable.',
+      'Certificate history (crt.sh) unavailable',
+    );
   }
   if (f.value === null) {
-    return result(id, 'not-fired', w, `No certificate has ever been logged for ${v.domain}.`);
+    return result(
+      id,
+      'not-fired',
+      w,
+      `No certificate has ever been logged for ${v.domain}.`,
+      'No TLS certificate ever logged',
+    );
   }
   const days = daysBetween(f.value, v.checkedAt);
   return days < AGES.freshCertDays
-    ? result(id, 'fired', w, `First TLS certificate for ${v.domain} was issued ${ago(days)}.`)
+    ? result(
+        id,
+        'fired',
+        w,
+        `First TLS certificate for ${v.domain} was issued ${ago(days)}.`,
+        `First TLS certificate issued ${ago(days)}`,
+      )
     : result(
         id,
         'not-fired',
         w,
         `First TLS certificate for ${v.domain} dates from ${year(f.value)}.`,
+        `First TLS certificate from ${year(f.value)}`,
       );
 };
 
@@ -418,13 +627,25 @@ const registeredNotResolving: Rule = (v) => {
   const w = WEIGHTS.registeredNotResolving;
   switch (value(v.existence)) {
     case 'registered-not-resolving':
-      return result(id, 'fired', w, `${v.domain} is registered but not live yet — worth watching.`);
+      return result(
+        id,
+        'fired',
+        w,
+        `${v.domain} is registered but not live yet — worth watching.`,
+        'Registered but not live yet',
+      );
     case 'resolving':
-      return result(id, 'not-fired', w, `${v.domain} resolves in DNS.`);
+      return result(id, 'not-fired', w, `${v.domain} resolves in DNS.`, 'Live in DNS');
     case 'not-registered':
-      return result(id, 'not-fired', w, `${v.domain} is not registered.`);
+      return result(id, 'not-fired', w, `${v.domain} is not registered.`, 'Not registered');
     case undefined:
-      return result(id, 'unknown', w, `Could not determine whether ${v.domain} is registered.`);
+      return result(
+        id,
+        'unknown',
+        w,
+        `Could not determine whether ${v.domain} is registered.`,
+        "Couldn't tell whether it is registered",
+      );
   }
 };
 

@@ -40,6 +40,8 @@ export interface InfraFacts {
   nameservers: Fact<string[]>;
   /** Lower-case MX host names, preference stripped. */
   mx: Fact<string[]>;
+  /** A and AAAA addresses, in answer order. */
+  addresses: Fact<string[]>;
   /** Origin ASNs of the A/AAAA addresses. */
   asns: Fact<number[]>;
 }
@@ -107,6 +109,8 @@ export interface RuleResult {
   weight: number;
   /** Plain English, with concrete values. */
   explanation: string;
+  /** Short phrase with the concrete value, e.g. `Registered 12 days ago` (the "Why" list). */
+  summary: string;
 }
 
 export type Rule = (variant: VariantFacts, official: OfficialFacts) => RuleResult;

@@ -12,6 +12,7 @@ export function officialFacts(overrides: Partial<OfficialFacts> = {}): OfficialF
     registrar: known('SURF B.V.'),
     nameservers: known(['ns1.surfnet.nl', 'ns2.surfnet.nl', 'ns1.zurich.surf.net']),
     mx: known(['tudelft-nl.mail.protection.outlook.com']),
+    addresses: known(['130.161.128.82']),
     asns: known([1128]),
     ...overrides,
   };
@@ -40,6 +41,7 @@ export function variantFacts(overrides: Partial<VariantFacts> = {}): VariantFact
     nameservers: known(['ns1.hostingprovider.nl', 'ns2.hostingprovider.nl']),
     mx: known(['mx.hostingprovider.nl']),
     spf: known(true),
+    addresses: known(['192.0.2.10']),
     asns: known([20857]),
     firstCertDate: known('2015-06-01T00:00:00Z'),
     checkedAt: CHECKED_AT,

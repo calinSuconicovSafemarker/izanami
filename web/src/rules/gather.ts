@@ -36,6 +36,7 @@ const pendingInfra = (domain: string): Collected => ({
   registrar: PENDING,
   nameservers: PENDING,
   mx: PENDING,
+  addresses: PENDING,
   asns: PENDING,
   existence: PENDING,
   spf: PENDING,
@@ -139,6 +140,11 @@ async function collect(
       }),
     ),
     Promise.all([ns, rdap]).then(([n, r]) => set({ nameservers: nameservers(n, r) })),
+    Promise.all([a, aaaa]).then(([x, y]) =>
+      set({
+        addresses: answered(x) && answered(y) ? known([...x.records, ...y.records]) : UNKNOWN,
+      }),
+    ),
     Promise.all([a, aaaa]).then(async ([x, y]) => set({ asns: await asns(lookupAsn, x, y) })),
     Promise.all([ns, a, aaaa, mx, rdap]).then(([n, x, y, m, r]) =>
       set({ existence: existence([x, y, m], n, r) }),
@@ -158,14 +164,15 @@ async function collect(
   return { facts: out, transientFailure };
 }
 
-const infraOnly = ({ domain, registrationDate, registrar, nameservers, mx, asns }: Collected) => ({
+const infraOnly = ({
   domain,
   registrationDate,
   registrar,
   nameservers,
   mx,
+  addresses,
   asns,
-});
+}: Collected) => ({ domain, registrationDate, registrar, nameservers, mx, addresses, asns });
 
 /** Official facts per client and domain, so each official domain is looked up once per session. */
 const officialCache = new WeakMap<LookupClient, Map<string, Promise<OfficialFacts>>>();
