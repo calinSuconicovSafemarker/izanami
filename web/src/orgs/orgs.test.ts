@@ -32,6 +32,7 @@ describe('org accessor', () => {
       country: '',
       primaryDomain: 'bbc.co.uk',
       officialDomains: ['bbc.co.uk'],
+      brandTlds: [],
       brandLabel: 'bbc',
     });
   });
