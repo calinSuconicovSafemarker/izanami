@@ -109,7 +109,7 @@ export function CreditsPage() {
       </section>
 
       <Link
-        to="/"
+        to="/orgs"
         className={`self-start rounded-md border border-emerald-700 px-3 py-2 text-emerald-400 hover:bg-emerald-950 ${focusRing}`}
       >
         ← Back to all organisations

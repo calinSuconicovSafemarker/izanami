@@ -33,8 +33,9 @@ export function HomePage() {
   return (
     <main className="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-8 sm:py-12">
       <div className="flex flex-col gap-2">
-        <h1 className="font-mono text-2xl font-bold tracking-tight text-emerald-400 sm:text-3xl">
-          Izanami
+        <p className="font-mono text-xs tracking-[0.3em] text-zinc-400 uppercase">Organisations</p>
+        <h1 className="font-mono text-2xl font-bold tracking-[0.15em] text-emerald-400 uppercase sm:text-3xl">
+          Select organisation
         </h1>
         <p className="text-sm text-zinc-400 sm:text-base">
           Pick an organisation to see its known official domains, then check whether another domain

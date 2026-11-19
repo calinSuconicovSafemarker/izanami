@@ -23,10 +23,18 @@ export function Layout() {
         <div className="mx-auto flex max-w-5xl items-center px-4 py-3">
           <Link
             to="/"
-            className={`rounded font-mono text-sm font-semibold text-emerald-400 hover:text-emerald-300 ${focusRing}`}
+            className={`rounded font-mono text-sm font-bold tracking-[0.3em] text-emerald-400 hover:text-emerald-300 ${focusRing}`}
           >
-            izanami
+            IZANAMI
           </Link>
+          <nav aria-label="Main" className="ml-auto">
+            <Link
+              to="/orgs"
+              className={`rounded font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase hover:text-zinc-100 ${focusRing}`}
+            >
+              Organisations
+            </Link>
+          </nav>
         </div>
       </header>
       <div id="main" tabIndex={-1} className="flex-1 focus:outline-none">

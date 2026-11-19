@@ -4,7 +4,7 @@ import { renderRoute } from '../test/render-route';
 
 describe('landing page', () => {
   it('shows TU Delft when searching "delft" and opens its page on click', () => {
-    const router = renderRoute('/');
+    const router = renderRoute('/orgs');
     fireEvent.change(screen.getByRole('searchbox', { name: /search organisations/i }), {
       target: { value: 'delft' },
     });
@@ -15,7 +15,7 @@ describe('landing page', () => {
   });
 
   it('filters by domain and hides non-matching organisations', () => {
-    renderRoute('/');
+    renderRoute('/orgs');
     fireEvent.change(screen.getByRole('searchbox', { name: /search organisations/i }), {
       target: { value: 'tudelft.nl' },
     });
@@ -24,7 +24,7 @@ describe('landing page', () => {
   });
 
   it('says so when nothing matches', () => {
-    renderRoute('/');
+    renderRoute('/orgs');
     fireEvent.change(screen.getByRole('searchbox', { name: /search organisations/i }), {
       target: { value: 'zzzz-no-such-org' },
     });
@@ -32,7 +32,7 @@ describe('landing page', () => {
   });
 
   it('focuses the search box when "/" is pressed', () => {
-    renderRoute('/');
+    renderRoute('/orgs');
     const search = screen.getByRole('searchbox', { name: /search organisations/i });
     search.blur();
     fireEvent.keyDown(document.body, { key: '/' });
@@ -40,7 +40,7 @@ describe('landing page', () => {
   });
 
   it('opens the first result when Enter is pressed in the search box', () => {
-    const router = renderRoute('/');
+    const router = renderRoute('/orgs');
     const search = screen.getByRole('searchbox', { name: /search organisations/i });
     fireEvent.change(search, { target: { value: 'delft' } });
     fireEvent.keyDown(search, { key: 'Enter' });

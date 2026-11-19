@@ -14,7 +14,7 @@ async function violations() {
 }
 
 describe('accessibility (axe)', () => {
-  it.each(['/', '/org/tu-delft', '/org/google', '/credits', '/nope'])(
+  it.each(['/', '/orgs', '/org/tu-delft', '/org/google', '/credits', '/nope'])(
     '%s has no violations',
     async (path) => {
       renderRoute(path);

@@ -123,7 +123,7 @@ describe('organisation page', () => {
     const router = renderRoute('/org/no-such-org');
     expect(screen.getByRole('heading', { level: 1, name: /not found/i })).toBeInTheDocument();
     fireEvent.click(screen.getByRole('link', { name: /all organisations/i }));
-    expect(router.state.location.pathname).toBe('/');
+    expect(router.state.location.pathname).toBe('/orgs');
   });
 
   it('shows the same 404 for an unknown route', () => {
