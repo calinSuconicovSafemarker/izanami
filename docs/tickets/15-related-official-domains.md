@@ -1,5 +1,7 @@
 # 15 — Related official domains (ownership graph + published lists)
 
+**Status:** Done (9d0a658) — full ownership crawl completed (1,239 related domains; Google 228, Microsoft 121, Apple 18)
+
 **Depends on:** —
 
 ## Goal
