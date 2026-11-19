@@ -1,5 +1,7 @@
 # 14 — Brand TLDs count as official
 
+**Status:** Done (2106f51) — 77 brand TLDs across 39 orgs (Google 14)
+
 **Depends on:** 15 (org data shape)
 
 ## Goal
