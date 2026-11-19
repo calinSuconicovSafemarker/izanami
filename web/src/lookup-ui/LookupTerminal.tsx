@@ -4,7 +4,8 @@ import type { Org } from '../orgs';
 import { toOrgInput } from '../orgs';
 import type { Existence, Fact } from '../rules';
 import type { TerminalLine } from './lines';
-import { EXISTENCE_WORDING, quickTlds, withTld } from './wording';
+import { quickPickTlds, rateTld, TldBadge, type TldContext } from '../tld';
+import { EXISTENCE_WORDING, withTld } from './wording';
 import type { Lookup, LookupState } from './useLookup';
 
 const toneClass: Record<TerminalLine['tone'], string> = {
@@ -35,7 +36,7 @@ function ExistenceLine({ existence, done }: { existence: Fact<Existence>; done: 
   );
 }
 
-function Output({ state }: { state: LookupState }) {
+function Output({ state, tldContext }: { state: LookupState; tldContext: TldContext }) {
   switch (state.phase) {
     case 'idle':
       return null;
@@ -62,6 +63,7 @@ function Output({ state }: { state: LookupState }) {
             <dt className="text-zinc-400">puny</dt>
             <dd className="break-all text-zinc-200">{variant.registrableDomain}</dd>
           </dl>
+          <TldLine tld={variant.tld} context={tldContext} />
           {variant.unicode !== registrableUnicode && (
             <p className={variant.isSubdomainTrick ? 'text-red-400' : 'text-zinc-400'}>
               You typed {variant.unicode} — the registrable domain is {registrableUnicode}.
@@ -84,17 +86,39 @@ function Output({ state }: { state: LookupState }) {
   }
 }
 
+function TldLine({ tld, context }: { tld: string; context: TldContext }) {
+  const rating = rateTld(tld, context);
+  return (
+    <p className="flex flex-wrap items-center gap-2 text-zinc-400">
+      <span className="sr-only">{`TLD .${rating.tld}: ${rating.label}`}</span>
+      <span aria-hidden="true">tld .{rating.tld}</span>
+      <span aria-hidden="true">
+        <TldBadge rating={rating} />
+      </span>
+    </p>
+  );
+}
+
 export interface LookupTerminalProps {
   org: Org;
   lookup: Lookup;
   /** Prefill (e.g. from a deep link); defaults to `<brandLabel>.`. Read on mount only. */
   initialInput?: string | null;
   onSubmit: (input: string) => void;
+  /** Single-owner TLDs to rate as `brand` (optional until brand-TLD data exists). */
+  brandTlds?: readonly string[];
 }
 
 /** Terminal-styled lookup panel: input + TLD chips + raw result lines + existence state. */
-export function LookupTerminal({ org, lookup, initialInput, onSubmit }: LookupTerminalProps) {
+export function LookupTerminal({
+  org,
+  lookup,
+  initialInput,
+  onSubmit,
+  brandTlds,
+}: LookupTerminalProps) {
   const { brandLabel } = toOrgInput(org);
+  const tldContext: TldContext = { officialDomains: org.officialDomains, brandTlds };
   const [input, setInput] = useState(initialInput || `${brandLabel}.`);
   const inputId = useId();
 
@@ -135,20 +159,21 @@ export function LookupTerminal({ org, lookup, initialInput, onSubmit }: LookupTe
         </button>
       </form>
       <ul aria-label="Quick TLDs" className="flex flex-wrap gap-2">
-        {quickTlds(org).map((tld) => (
-          <li key={tld}>
+        {quickPickTlds(org, brandTlds).map((rating) => (
+          <li key={rating.tld}>
             <button
               type="button"
-              onClick={() => setInput(withTld(input, tld, brandLabel))}
-              className="rounded border border-zinc-700 px-2 py-0.5 text-zinc-300 hover:border-emerald-500/60 hover:text-emerald-300 focus-visible:outline-2 focus-visible:outline-emerald-400"
+              aria-label={`.${rating.tld} ${rating.label} TLD`}
+              onClick={() => setInput(withTld(input, rating.tld, brandLabel))}
+              className={`flex items-center gap-1.5 rounded border px-2 py-0.5 text-zinc-300 hover:border-emerald-500/60 hover:text-emerald-300 focus-visible:outline-2 focus-visible:outline-emerald-400 ${rating.category === 'high-abuse' ? 'border-dashed border-amber-500/70' : 'border-zinc-700'}`}
             >
-              .{tld}
+              .{rating.tld} <TldBadge rating={rating} />
             </button>
           </li>
         ))}
       </ul>
       <div role="log" aria-label="Lookup output" aria-live="polite" className="flex flex-col gap-1">
-        <Output state={lookup.state} />
+        <Output state={lookup.state} tldContext={tldContext} />
       </div>
     </section>
   );
