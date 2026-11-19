@@ -94,8 +94,8 @@ export class InfraStack extends Stack {
     } satisfies cloudfront.BehaviorOptions;
 
     // JSON API (ticket 18, ADR-0006). No reserved concurrency: the account allows 10 concurrent
-    // executions in total, which already caps cost and upstream load (and reserving any would
-    // fail: Lambda keeps 10 unreserved).
+    // executions in total (checked 2026-11-19), which already caps cost and upstream load, and
+    // reserving any would fail: Lambda requires a minimum of unreserved concurrency.
     const apiLogs = new logs.LogGroup(this, 'ApiLogs', {
       retention: logs.RetentionDays.ONE_WEEK,
       removalPolicy: RemovalPolicy.DESTROY,

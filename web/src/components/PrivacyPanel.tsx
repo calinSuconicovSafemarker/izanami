@@ -171,6 +171,14 @@ export function PrivacyPanel() {
                 The site files are served by Amazon CloudFront with access logging turned off. We
                 never contact the domain you check: no HTTP requests, screenshots or scans.
               </p>
+              <p className="text-xs text-zinc-400">
+                <strong>JSON API (for scripts, not used by this website):</strong> a query sent to{' '}
+                <span className="font-mono">/api/check</span> is answered by our AWS Lambda, which
+                makes the lookups above from AWS&apos;s network instead of your browser. CloudFront
+                caches each answer for up to an hour. The Lambda logs, kept for one week, contain
+                only a start, end and duration line per request and, for server errors, the status
+                and error code: never the domain, the query string or your IP address.
+              </p>
             </div>
           </div>
         </div>

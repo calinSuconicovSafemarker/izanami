@@ -8,7 +8,8 @@ used for phishing (typos, homoglyphs, TLD swaps, combo-squats, subdomain tricks)
 every rule it applies (fired, not fired or unknown) and gives a heuristic verdict.
 
 Static web app (`web/`) deployed to S3 + CloudFront by the CDK app in `infra/`. Everything runs in
-your browser: there is no backend and no analytics.
+your browser: the website has no backend and no analytics. An optional [JSON API](#json-api)
+(`api/`, AWS Lambda) runs the same checks for scripts.
 
 <!-- TODO(ticket 11): add screenshots of the landing page, an organisation page and a lookup
 result (e.g. docs/screenshots/*.png) once the lookup terminal (ticket 06) has landed. -->
@@ -50,6 +51,7 @@ Design decisions are recorded as ADRs:
 - [ADR-0002: Resolve official domains at build time](docs/adr/0002-build-time-resolution.md)
 - [ADR-0003: Weighted additive scoring with explicit unknowns](docs/adr/0003-scoring-model.md)
 - [ADR-0004: Strict security headers with a generated CSP allowlist](docs/adr/0004-security-headers.md)
+- [ADR-0006: JSON API on a Lambda function URL behind CloudFront](docs/adr/0006-json-api.md)
 
 See also the [spec](docs/SPEC.md) and [glossary](docs/GLOSSARY.md).
 
@@ -61,6 +63,40 @@ screenshots, port scans or crawling. Its verdict is a heuristic, not a guarantee
 means "listed as official by Wikidata and heavily used per Tranco", not proof of ownership.
 Please don't use it to harass domain owners; report suspected phishing to the registrar or the
 targeted organisation.
+
+## JSON API
+
+Other tools can get the same result the website shows, as JSON, without a browser. It is served
+by the AWS deployment (not GitHub Pages) under `/api/`: a Lambda function that imports the
+website's own modules, behind CloudFront ([ADR-0006](docs/adr/0006-json-api.md), full reference
+in the [spec](docs/SPEC.md#api)).
+
+```sh
+API=https://d1kyj53r37y0uu.cloudfront.net/api
+
+# Check a domain against an organisation: the website's "Export JSON" document
+curl "$API/check?org=google&domain=c.gle"        # verdict.label "Official" (Google runs .gle)
+curl "$API/check?org=google&domain=gooogle.com"  # scored: verdict, why, every rule, facts
+curl "$API/check?org=google&domain=meebo.com"    # Wikidata-listed: scored, not Official
+
+# Just the verdict and the reasons (with jq)
+curl -s "$API/check?org=tu-delft&domain=tudeIft.nl" | jq '{verdict, why}'
+
+# Organisations and their official context
+curl "$API/orgs"          # [{ "id": "google", "name": "Google", "primaryDomain": "google.com" }, ...]
+curl "$API/orgs/google"   # official domains (trust level), Wikidata-listed related domains, brand TLDs
+curl "$API/health"        # { "ok": true, "dataVersion": "2026-11-19" }
+```
+
+- `org` is an id from `/api/orgs` (the slug in `/#/org/<slug>`); `domain` is a bare domain
+  name (Unicode or punycode; no scheme, path or port), at most 253 characters.
+- Errors are JSON `{ "error": { "code", "message" } }`: 400 bad or missing input, 404 unknown
+  org or route, 405 non-GET, 500/504 failure or timeout.
+- Answers are cached by CloudFront for an hour per `org` + `domain`, so repeat checks are instant
+  and send nothing upstream (`x-cache: Hit from cloudfront`). `Access-Control-Allow-Origin: *`.
+- Privacy: unlike the website, a query sent to the API passes through our Lambda. Its logs (kept
+  a week) hold only Lambda's per-request start/end/duration lines and, for server errors, the
+  status and error code; never the domain, query string or your IP.
 
 ## Development
 
@@ -94,7 +130,8 @@ One-time setup: in the repository, Settings → Pages → Build and deployment �
 ### Optional: AWS hosting
 
 `infra/` still contains a CDK app for S3 + CloudFront (Origin Access Control, header-based CSP via
-a CloudFront Function, HSTS) and a GitHub OIDC deploy role (`IzanamiStack`,
+a CloudFront Function, HSTS), the JSON API (Lambda function URL behind the same distribution,
+bundled locally with esbuild, no Docker needed) and a GitHub OIDC deploy role (`IzanamiStack`,
 `IzanamiGitHubDeploy`). It is deployed manually from a laptop (`aws login`, then `npm run build && cd infra && npx cdk deploy IzanamiStack`), not from GitHub, because the AWS account's organisation blocks GitHub OIDC; see
 [ADR-0004](docs/adr/0004-security-headers.md). To use it: `npm run build`, then
 `cd infra && npx cdk bootstrap aws://<account-id>/<region>` and `npx cdk deploy IzanamiStack`.
