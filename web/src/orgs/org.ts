@@ -17,6 +17,11 @@ export interface Org {
    * lists), sorted by domain; none is in `officialDomains` (ticket 15, ADR-0002 Amendment 2).
    */
   relatedDomains: readonly RelatedDomain[];
+  /**
+   * Top-level domains the organisation runs for itself (punycode, no dot, sorted), e.g.
+   * `['gle', 'google']`: every domain under them is the organisation's (ticket 14).
+   */
+  brandTlds: readonly string[];
   /** The Wikidata P856 domain confirmed by Tranco; null for curated extras. */
   wikidataDomain: string | null;
   /** Tranco rank of `primaryDomain`, or null when unranked (extras only). */

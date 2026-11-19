@@ -107,6 +107,7 @@ export function mergeExtras(
         ...new Set([...extra.officialDomains, ...(match?.officialDomains ?? [])]),
       ].sort(),
       relatedDomains: [],
+      brandTlds: [],
       wikidataDomain: match?.wikidataDomain ?? null,
       trancoRank: tranco.get(extra.primaryDomain) ?? null,
       confirmedAt,

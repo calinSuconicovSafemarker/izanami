@@ -11,6 +11,7 @@ function org(id: string, name: string, domains: string[], confirmedAt = '2026-11
     primaryDomain: domains[0] ?? '',
     officialDomains: domains,
     relatedDomains: [],
+    brandTlds: [],
     wikidataDomain: domains[0] ?? null,
     trancoRank: 1,
     confirmedAt,

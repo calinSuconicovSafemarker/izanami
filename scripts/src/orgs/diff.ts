@@ -9,12 +9,14 @@ export interface OrgChange {
   previousPrimary: string | null;
   addedRelated: RelatedDomain[];
   removedRelated: string[];
+  addedBrandTlds: string[];
+  removedBrandTlds: string[];
 }
 
 export interface OrgDiff {
   added: Org[];
   removed: Org[];
-  /** Orgs whose official or related domains changed; added orgs with related domains too. */
+  /** Orgs whose official or related domains or brand TLDs changed; added orgs with them too. */
   changed: OrgChange[];
   /** Curated/published related domains left out because another org has them. */
   skipped?: SkippedDomain[];
@@ -43,12 +45,18 @@ export function diffOrgs(previous: readonly Org[], next: readonly Org[]): OrgDif
       old && old.primaryDomain !== org.primaryDomain ? old.primaryDomain : null;
     const addedRelated = org.relatedDomains.filter((r) => !oldRelated.has(r.domain));
     const removedRelated = [...oldRelated].filter((d) => !newRelated.has(d));
+    // orgs.json written before ticket 14 has no brandTlds.
+    const oldBrand = (old?.brandTlds as Org['brandTlds'] | undefined) ?? [];
+    const addedBrandTlds = org.brandTlds.filter((t) => !oldBrand.includes(t));
+    const removedBrandTlds = oldBrand.filter((t) => !org.brandTlds.includes(t));
     if (
       addedDomains.length ||
       removedDomains.length ||
       previousPrimary ||
       addedRelated.length ||
-      removedRelated.length
+      removedRelated.length ||
+      addedBrandTlds.length ||
+      removedBrandTlds.length
     ) {
       changed.push({
         org,
@@ -57,6 +65,8 @@ export function diffOrgs(previous: readonly Org[], next: readonly Org[]): OrgDif
         previousPrimary,
         addedRelated,
         removedRelated,
+        addedBrandTlds,
+        removedBrandTlds,
       });
     }
   }
@@ -107,6 +117,18 @@ export function renderDiff({ added, removed, changed, skipped = [], notes = [] }
         const parts = [
           ...c.addedRelated.map((r) => `+${r.domain} (${r.source}${r.via ? `: ${r.via}` : ''})`),
           ...c.removedRelated.map((d) => `-${d}`),
+        ];
+        return `${label(c.org)}: ${parts.join(', ')}`;
+      }),
+  );
+  section(
+    'Changed brand TLDs',
+    changed
+      .filter((c) => c.addedBrandTlds.length || c.removedBrandTlds.length)
+      .map((c) => {
+        const parts = [
+          ...c.addedBrandTlds.map((t) => `+.${t}`),
+          ...c.removedBrandTlds.map((t) => `-.${t}`),
         ];
         return `${label(c.org)}: ${parts.join(', ')}`;
       }),

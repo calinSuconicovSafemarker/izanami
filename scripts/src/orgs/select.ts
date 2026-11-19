@@ -56,6 +56,7 @@ export function selectOrgs({ entities, tranco, limit, confirmedAt }: SelectInput
       primaryDomain: primary,
       officialDomains: domains,
       relatedDomains: [],
+      brandTlds: [],
       wikidataDomain: primary,
       trancoRank: tranco.get(primary) ?? null,
       confirmedAt,

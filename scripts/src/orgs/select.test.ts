@@ -68,6 +68,7 @@ describe('selectOrgs', () => {
       primaryDomain: 'tudelft.nl',
       officialDomains: ['tu-delft.com', 'tudelft.nl'],
       relatedDomains: [],
+      brandTlds: [],
       wikidataDomain: 'tudelft.nl',
       trancoRank: 300,
       confirmedAt: NOW,

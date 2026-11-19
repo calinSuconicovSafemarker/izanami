@@ -1,0 +1,255 @@
+[
+  {
+    "operator": "Charleston Road Registry Inc.",
+    "wikidataId": "Q95",
+    "source": "https://www.iana.org/domains/root/db/google.html",
+    "closedTlds": [
+      {
+        "tld": "dclk",
+        "source": "https://www.iana.org/domains/root/db/dclk.html"
+      },
+      {
+        "tld": "gbiz",
+        "source": "https://www.iana.org/domains/root/db/gbiz.html"
+      },
+      {
+        "tld": "gle",
+        "source": "https://www.iana.org/domains/root/db/gle.html"
+      },
+      {
+        "tld": "goog",
+        "source": "https://www.iana.org/domains/root/db/goog.html"
+      },
+      {
+        "tld": "guge",
+        "source": "https://www.iana.org/domains/root/db/guge.html"
+      },
+      {
+        "tld": "hangout",
+        "source": "https://www.iana.org/domains/root/db/hangout.html"
+      },
+      {
+        "tld": "xn--qcka1pmc",
+        "source": "https://www.iana.org/domains/root/db/xn--qcka1pmc.html"
+      }
+    ]
+  },
+  {
+    "operator": "Microsoft Corporation",
+    "wikidataId": "Q2283",
+    "source": "https://www.iana.org/domains/root/db/microsoft.html",
+    "closedTlds": [
+      {
+        "tld": "office",
+        "source": "https://www.iana.org/domains/root/db/office.html"
+      }
+    ]
+  },
+  {
+    "operator": "Apple Inc.",
+    "wikidataId": "Q312",
+    "source": "https://www.iana.org/domains/root/db/apple.html"
+  },
+  {
+    "operator": "Amazon Registry Services, Inc.",
+    "wikidataId": "Q3884",
+    "source": "https://www.iana.org/domains/root/db/amazon.html"
+  },
+  {
+    "operator": "Netflix, Inc.",
+    "wikidataId": "Q907311",
+    "source": "https://www.iana.org/domains/root/db/netflix.html"
+  },
+  {
+    "operator": "Yahoo Inc.",
+    "wikidataId": "Q37093",
+    "source": "https://www.iana.org/domains/root/db/yahoo.html"
+  },
+  {
+    "operator": "Baidu, Inc.",
+    "wikidataId": "Q14772",
+    "source": "https://www.iana.org/domains/root/db/baidu.html",
+    "closedTlds": [
+      {
+        "tld": "baidu",
+        "source": "https://www.iana.org/domains/root/db/baidu.html"
+      }
+    ]
+  },
+  {
+    "operator": "SAMSUNG SDS CO., LTD",
+    "wikidataId": "Q20716",
+    "source": "https://www.iana.org/domains/root/db/samsung.html",
+    "closedTlds": [
+      {
+        "tld": "samsung",
+        "source": "https://www.iana.org/domains/root/db/samsung.html"
+      },
+      {
+        "tld": "xn--cg4bki",
+        "source": "https://www.iana.org/domains/root/db/xn--cg4bki.html"
+      }
+    ]
+  },
+  {
+    "operator": "Intuit Administrative Services, Inc.",
+    "wikidataId": "Q1318848",
+    "source": "https://www.iana.org/domains/root/db/intuit.html"
+  },
+  {
+    "operator": "Go Daddy East, LLC",
+    "wikidataId": "Q1416215",
+    "source": "https://www.iana.org/domains/root/db/godaddy.html"
+  },
+  {
+    "operator": "Flickr, Inc.",
+    "wikidataId": "Q103204",
+    "source": "https://www.iana.org/domains/root/db/flickr.html"
+  },
+  {
+    "operator": "Oracle Corporation",
+    "wikidataId": "Q19900",
+    "source": "https://www.iana.org/domains/root/db/oracle.html"
+  },
+  {
+    "operator": "British Broadcasting Corporation",
+    "wikidataId": "Q9531",
+    "source": "https://www.iana.org/domains/root/db/bbc.html"
+  },
+  {
+    "operator": "The Weather Company, LLC",
+    "wikidataId": "Q2043935",
+    "source": "https://www.iana.org/domains/root/db/weatherchannel.html"
+  },
+  {
+    "operator": "Massachusetts Institute of Technology",
+    "wikidataId": "Q49108",
+    "source": "https://www.iana.org/domains/root/db/mit.html"
+  },
+  {
+    "operator": "Cisco Technology, Inc.",
+    "wikidataId": "Q173395",
+    "source": "https://www.iana.org/domains/root/db/cisco.html"
+  },
+  {
+    "operator": "International Business Machines Corporation",
+    "wikidataId": "Q37156",
+    "source": "https://www.iana.org/domains/root/db/ibm.html"
+  },
+  {
+    "operator": "Booking.com B.V.",
+    "wikidataId": "Q4035313",
+    "source": "https://www.iana.org/domains/root/db/booking.html",
+    "closedTlds": [
+      {
+        "tld": "booking",
+        "source": "https://www.iana.org/domains/root/db/booking.html"
+      }
+    ]
+  },
+  {
+    "operator": "Alibaba Group Holding Limited",
+    "wikidataId": "Q1359568",
+    "source": "https://www.iana.org/domains/root/db/alibaba.html"
+  },
+  {
+    "operator": "Dell Inc.",
+    "wikidataId": "Q30873",
+    "source": "https://www.iana.org/domains/root/db/dell.html"
+  },
+  {
+    "operator": "Bloomberg IP Holdings LLC",
+    "wikidataId": "Q13977",
+    "source": "https://www.iana.org/domains/root/db/bloomberg.html"
+  },
+  {
+    "operator": "YANDEX LLC",
+    "wikidataId": "Q5281",
+    "source": "https://www.iana.org/domains/root/db/yandex.html"
+  },
+  {
+    "operator": "AOL Media LLC",
+    "wikidataId": "Q27585",
+    "source": "https://www.iana.org/domains/root/db/aol.html"
+  },
+  {
+    "operator": "Wal-Mart Stores, Inc.",
+    "wikidataId": "Q483551",
+    "source": "https://www.iana.org/domains/root/db/walmart.html"
+  },
+  {
+    "operator": "Sina Corporation",
+    "wikidataId": "Q938668",
+    "source": "https://www.iana.org/domains/root/db/sina.html"
+  },
+  {
+    "operator": "Sony Computer Entertainment Inc.",
+    "wikidataId": "Q10677",
+    "source": "https://www.iana.org/domains/root/db/playstation.html"
+  },
+  {
+    "operator": "IEEE Global LLC",
+    "wikidataId": "Q131566",
+    "source": "https://www.iana.org/domains/root/db/ieee.html"
+  },
+  {
+    "operator": "UBN INTERNET LTDA.",
+    "wikidataId": "Q1783492",
+    "source": "https://www.iana.org/domains/root/db/uol.html"
+  },
+  {
+    "operator": "Target Domain Holdings, LLC",
+    "wikidataId": "Q1046951",
+    "source": "https://www.iana.org/domains/root/db/target.html"
+  },
+  {
+    "operator": "UPS Market Driver, Inc.",
+    "wikidataId": "Q155026",
+    "source": "https://www.iana.org/domains/root/db/ups.html"
+  },
+  {
+    "operator": "VeriSign, Inc.",
+    "wikidataId": "Q734338",
+    "source": "https://www.iana.org/domains/root/db/verisign.html"
+  },
+  {
+    "operator": "NIKE, Inc.",
+    "wikidataId": "Q483915",
+    "source": "https://www.iana.org/domains/root/db/nike.html"
+  },
+  {
+    "operator": "Bank of America Corporation",
+    "wikidataId": "Q487907",
+    "source": "https://www.iana.org/domains/root/db/bofa.html"
+  },
+  {
+    "operator": "Home Depot Product Authority, LLC",
+    "wikidataId": "Q864407",
+    "source": "https://www.iana.org/domains/root/db/homedepot.html"
+  },
+  {
+    "operator": "Marriott Worldwide Corporation",
+    "wikidataId": "Q1141173",
+    "source": "https://www.iana.org/domains/root/db/marriott.html"
+  },
+  {
+    "operator": "BBY Solutions, Inc.",
+    "wikidataId": "Q533415",
+    "source": "https://www.iana.org/domains/root/db/bestbuy.html"
+  },
+  {
+    "operator": "McKinsey Holdings, Inc.",
+    "wikidataId": "Q310207",
+    "source": "https://www.iana.org/domains/root/db/mckinsey.html"
+  },
+  {
+    "operator": "Deloitte Touche Tohmatsu",
+    "wikidataId": "Q491748",
+    "source": "https://www.iana.org/domains/root/db/deloitte.html"
+  },
+  {
+    "operator": "MLB Advanced Media DH, LLC",
+    "wikidataId": "Q1163715",
+    "source": "https://www.iana.org/domains/root/db/mlb.html"
+  }
+]

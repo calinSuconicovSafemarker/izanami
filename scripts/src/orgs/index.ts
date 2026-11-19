@@ -4,6 +4,7 @@ import { dirname, join } from 'node:path';
 import { setTimeout as sleep } from 'node:timers/promises';
 import { fileURLToPath } from 'node:url';
 import { format, resolveConfig } from 'prettier';
+import { parseBrandTldsConfig, parseRootZoneDb, parseSpecification13 } from './brand-tlds';
 import { parseExtras } from './extras';
 import { queryOwnedViaApi } from './ownership';
 import { parsePublishedList, parsePublishedListsConfig } from './related';
@@ -24,6 +25,12 @@ const ORGS_JSON = join(REPO, 'web/src/data/orgs.json');
 const DIFF_MD = join(REPO, 'web/src/data/data-diff.md');
 const EXTRAS_JSON = join(REPO, 'scripts/data/extras.json');
 const PUBLISHED_LISTS_JSON = join(REPO, 'scripts/data/published-lists.json');
+const BRAND_TLDS_JSON = join(REPO, 'scripts/data/brand-tlds.json');
+
+/** Every delegated TLD with its manager, on one page (cached; refetch with BUILD_DATA_REFRESH=1). */
+const IANA_ROOT_ZONE_DB = 'https://www.iana.org/domains/root/db';
+/** ICANN's registry-agreement list; `specification13` marks the .brand TLDs. */
+const ICANN_GTLDS_JSON = 'https://www.icann.org/resources/registries/gtlds/v2/gtlds.json';
 
 const SPARQL_URL = 'https://query.wikidata.org/sparql';
 
@@ -125,6 +132,17 @@ const liveSources: OrgsSources = {
     return lists;
   },
   ownershipGaps: () => apiGaps,
+  async brandTlds() {
+    const rootZone = await cached('brand-tlds/root-db.html', () =>
+      fetchWithRetry(IANA_ROOT_ZONE_DB),
+    );
+    const gtlds = await cached('brand-tlds/gtlds.json', () => fetchWithRetry(ICANN_GTLDS_JSON));
+    return {
+      rootZone: parseRootZoneDb(rootZone.toString('utf8')),
+      specification13: parseSpecification13(JSON.parse(gtlds.toString('utf8'))),
+      operators: parseBrandTldsConfig(JSON.parse(await readFile(BRAND_TLDS_JSON, 'utf8'))),
+    };
+  },
   async previousOrgs() {
     if (!existsSync(ORGS_JSON)) return null;
     return JSON.parse(await readFile(ORGS_JSON, 'utf8')) as Org[];
@@ -147,8 +165,10 @@ export async function buildOrgs(): Promise<void> {
   await writeFormatted(DIFF_MD, diffMarkdown);
   const extras = orgs.filter((o) => o.wikidataDomain === null).length;
   const related = orgs.reduce((n, o) => n + o.relatedDomains.length, 0);
+  const brand = orgs.reduce((n, o) => n + o.brandTlds.length, 0);
   console.log(
-    `orgs: wrote ${orgs.length} organisations (${extras} curated-only, ${related} related domains)`,
+    `orgs: wrote ${orgs.length} organisations (${extras} curated-only, ${related} related ` +
+      `domains, ${brand} brand TLDs)`,
   );
 }
 

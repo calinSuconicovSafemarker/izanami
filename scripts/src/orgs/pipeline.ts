@@ -1,3 +1,4 @@
+import { assignBrandTlds, type BrandTldInputs } from './brand-tlds';
 import { diffOrgs, renderDiff } from './diff';
 import { curatedDomains, curatedOwnership, mergeExtras, type Extra } from './extras';
 import {
@@ -23,6 +24,8 @@ export interface OrgsSources {
   publishedLists(): Promise<PublishedDomains[]>;
   /** How many ownership API responses were unavailable (cache-only build); 0 or absent = complete. */
   ownershipGaps?(): number;
+  /** IANA root zone, ICANN .brand flags and the curated operator mapping (ticket 14). */
+  brandTlds(): Promise<BrandTldInputs>;
   previousOrgs(): Promise<Org[] | null>;
 }
 
@@ -89,18 +92,23 @@ export async function runOrgsPipeline(
     parents.forEach((id) => visited.add(id));
   }
 
-  const { orgs, skipped } = addRelatedDomains(merged, allRanks, {
+  const related = addRelatedDomains(merged, allRanks, {
     owned: [...curatedOwnership(extras), ...owned],
     published: await sources.publishedLists(),
     curated: curatedDomains(extras),
   });
+  const { orgs, notes: brandNotes } = assignBrandTlds(related.orgs, await sources.brandTlds());
+  const { skipped } = related;
   const previous = (await sources.previousOrgs()) ?? [];
   const gaps = sources.ownershipGaps?.() ?? 0;
-  const notes = gaps
-    ? [
-        `Ownership crawl partial: ${gaps} Wikidata API responses were unavailable, so some ` +
-          'wikidata-owned related domains are missing. Rerun without BUILD_DATA_OWNERSHIP=cache-only.',
-      ]
-    : [];
+  const notes = [
+    ...(gaps
+      ? [
+          `Ownership crawl partial: ${gaps} Wikidata API responses were unavailable, so some ` +
+            'wikidata-owned related domains are missing. Rerun without BUILD_DATA_OWNERSHIP=cache-only.',
+        ]
+      : []),
+    ...brandNotes,
+  ];
   return { orgs, diffMarkdown: renderDiff({ ...diffOrgs(previous, orgs), skipped, notes }) };
 }

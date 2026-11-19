@@ -78,6 +78,22 @@ function sources(
         domains: ['google.ad', 'google.com'],
       },
     ],
+    brandTlds: async () => ({
+      rootZone: [
+        { tld: 'gle', type: 'Generic', manager: 'Charleston Road Registry Inc.' },
+        { tld: 'google', type: 'Generic', manager: 'Charleston Road Registry Inc.' },
+        { tld: 'app', type: 'Generic', manager: 'Charleston Road Registry Inc.' },
+      ],
+      specification13: new Set(['google']),
+      operators: [
+        {
+          operator: 'Charleston Road Registry Inc.',
+          wikidataId: 'Q95',
+          source: 'https://www.iana.org/domains/root/db/google.html',
+          closedTlds: [{ tld: 'gle', source: 'https://www.iana.org/domains/root/db/gle.html' }],
+        },
+      ],
+    }),
     previousOrgs: async () => previous,
   };
 }
@@ -122,6 +138,22 @@ describe('runOrgsPipeline', () => {
       ['youtube.com', 'wikidata-owned'],
     ]);
     expect(diffMarkdown).toContain('+youtube.com (wikidata-owned: YouTube)');
+  });
+});
+
+describe('runOrgsPipeline brand TLDs', () => {
+  it('sets brandTlds from the IANA root zone and lists changes in the data diff', async () => {
+    const first = await runOrgsPipeline(sources(null), OPTIONS);
+    expect(first.orgs.map((o) => [o.slug, o.brandTlds])).toEqual([
+      ['google', ['gle', 'google']],
+      ['tu-delft', []],
+    ]);
+    const previous = first.orgs.map((o) =>
+      o.slug === 'google' ? { ...o, brandTlds: ['goog'] } : o,
+    );
+    const { diffMarkdown } = await runOrgsPipeline(sources(previous), OPTIONS);
+    expect(diffMarkdown).toContain('## Changed brand TLDs (1)');
+    expect(diffMarkdown).toContain('- Google (Q95): +.gle, +.google, -.goog');
   });
 });
 

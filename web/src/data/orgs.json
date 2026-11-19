@@ -1386,6 +1386,22 @@
         "url": "https://www.wikidata.org/wiki/Q60146133"
       }
     ],
+    "brandTlds": [
+      "android",
+      "chrome",
+      "dclk",
+      "gbiz",
+      "gle",
+      "gmail",
+      "goog",
+      "google",
+      "guge",
+      "hangout",
+      "nexus",
+      "xn--flw351e",
+      "xn--qcka1pmc",
+      "youtube"
+    ],
     "wikidataDomain": null,
     "trancoRank": 1,
     "confirmedAt": "2026-11-19"
@@ -1405,6 +1421,7 @@
         "url": "https://www.wikidata.org/wiki/Q140563638"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "cloudflare.com",
     "trancoRank": 2,
     "confirmedAt": "2026-11-19"
@@ -1433,6 +1450,7 @@
         "url": "https://www.wikidata.org/wiki/Q2341037"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "facebook.com",
     "trancoRank": 5,
     "confirmedAt": "2026-11-19"
@@ -2168,6 +2186,7 @@
         "url": "https://www.wikidata.org/wiki/Q3049573"
       }
     ],
+    "brandTlds": ["azure", "bing", "hotmail", "microsoft", "office", "skype", "windows", "xbox"],
     "wikidataDomain": "microsoft.com",
     "trancoRank": 8,
     "confirmedAt": "2026-11-19"
@@ -2180,6 +2199,7 @@
     "primaryDomain": "youtube.com",
     "officialDomains": ["youtube.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "youtube.com",
     "trancoRank": 10,
     "confirmedAt": "2026-11-19"
@@ -2293,6 +2313,7 @@
         "url": "https://www.wikidata.org/wiki/Q1195495"
       }
     ],
+    "brandTlds": ["apple"],
     "wikidataDomain": "apple.com",
     "trancoRank": 11,
     "confirmedAt": "2026-11-19"
@@ -2305,6 +2326,7 @@
     "primaryDomain": "instagram.com",
     "officialDomains": ["instagram.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "instagram.com",
     "trancoRank": 14,
     "confirmedAt": "2026-11-19"
@@ -2328,6 +2350,7 @@
         "url": "https://www.wikidata.org/wiki/Q2528603"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "twitter.com",
     "trancoRank": 16,
     "confirmedAt": "2026-11-19"
@@ -2340,6 +2363,7 @@
     "primaryDomain": "linkedin.com",
     "officialDomains": ["linkedin.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "linkedin.com",
     "trancoRank": 17,
     "confirmedAt": "2026-11-19"
@@ -2352,6 +2376,7 @@
     "primaryDomain": "mail.ru",
     "officialDomains": ["mail.ru", "xn--i1aeb2e.xn--p1ai"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "mail.ru",
     "trancoRank": 25,
     "confirmedAt": "2026-11-19"
@@ -2364,6 +2389,7 @@
     "primaryDomain": "office.com",
     "officialDomains": ["office.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "office.com",
     "trancoRank": 28,
     "confirmedAt": "2026-11-19"
@@ -2661,6 +2687,18 @@
         "url": "https://www.wikidata.org/wiki/Q65121026"
       }
     ],
+    "brandTlds": [
+      "amazon",
+      "audible",
+      "fire",
+      "imdb",
+      "kindle",
+      "prime",
+      "silk",
+      "xn--cckwcxetd",
+      "xn--jlq480n2rg",
+      "zappos"
+    ],
     "wikidataDomain": "amazon.com",
     "trancoRank": 29,
     "confirmedAt": "2026-11-19"
@@ -2673,6 +2711,7 @@
     "primaryDomain": "live.com",
     "officialDomains": ["live.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "live.com",
     "trancoRank": 31,
     "confirmedAt": "2026-11-19"
@@ -2692,6 +2731,7 @@
         "url": "https://www.wikidata.org/wiki/Q7067518"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "github.com",
     "trancoRank": 34,
     "confirmedAt": "2026-11-19"
@@ -2704,6 +2744,7 @@
     "primaryDomain": "dzen.ru",
     "officialDomains": ["dzen.ru"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "dzen.ru",
     "trancoRank": 38,
     "confirmedAt": "2026-11-19"
@@ -2716,6 +2757,7 @@
     "primaryDomain": "wikipedia.org",
     "officialDomains": ["wikipedia.org"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "wikipedia.org",
     "trancoRank": 39,
     "confirmedAt": "2026-11-19"
@@ -2735,6 +2777,7 @@
         "url": "https://www.wikidata.org/wiki/Q23761586"
       }
     ],
+    "brandTlds": ["netflix"],
     "wikidataDomain": "netflix.com",
     "trancoRank": 40,
     "confirmedAt": "2026-11-19"
@@ -2747,6 +2790,7 @@
     "primaryDomain": "bing.com",
     "officialDomains": ["bing.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "bing.com",
     "trancoRank": 46,
     "confirmedAt": "2026-11-19"
@@ -2759,6 +2803,7 @@
     "primaryDomain": "pinterest.com",
     "officialDomains": ["pinterest.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "pinterest.com",
     "trancoRank": 54,
     "confirmedAt": "2026-11-19"
@@ -2771,6 +2816,7 @@
     "primaryDomain": "icloud.com",
     "officialDomains": ["icloud.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "icloud.com",
     "trancoRank": 55,
     "confirmedAt": "2026-11-19"
@@ -2826,6 +2872,7 @@
         "url": "https://www.wikidata.org/wiki/Q7430731"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "adobe.com",
     "trancoRank": 59,
     "confirmedAt": "2026-11-19"
@@ -2838,6 +2885,7 @@
     "primaryDomain": "tiktok.com",
     "officialDomains": ["tiktok.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "tiktok.com",
     "trancoRank": 61,
     "confirmedAt": "2026-11-19"
@@ -2850,6 +2898,7 @@
     "primaryDomain": "whatsapp.com",
     "officialDomains": ["whatsapp.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "whatsapp.com",
     "trancoRank": 63,
     "confirmedAt": "2026-11-19"
@@ -2869,6 +2918,7 @@
         "url": "https://www.wikidata.org/wiki/Q4391517"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "skype.com",
     "trancoRank": 64,
     "confirmedAt": "2026-11-19"
@@ -2881,6 +2931,7 @@
     "primaryDomain": "gandi.net",
     "officialDomains": ["gandi.net"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "gandi.net",
     "trancoRank": 65,
     "confirmedAt": "2026-11-19"
@@ -2893,6 +2944,7 @@
     "primaryDomain": "wordpress.org",
     "officialDomains": ["wordpress.org"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "wordpress.org",
     "trancoRank": 69,
     "confirmedAt": "2026-11-19"
@@ -2930,6 +2982,7 @@
         "url": "https://www.wikidata.org/wiki/Q974875"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "digicert.com",
     "trancoRank": 71,
     "confirmedAt": "2026-11-19"
@@ -2991,6 +3044,7 @@
         "url": "https://www.wikidata.org/wiki/Q591565"
       }
     ],
+    "brandTlds": ["yahoo"],
     "wikidataDomain": "yahoo.com",
     "trancoRank": 72,
     "confirmedAt": "2026-11-19"
@@ -3010,6 +3064,7 @@
         "url": "https://www.wikidata.org/wiki/Q37470793"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "spotify.com",
     "trancoRank": 77,
     "confirmedAt": "2026-11-19"
@@ -3071,6 +3126,7 @@
         "url": "https://www.wikidata.org/wiki/Q7534755"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "epicgames.com",
     "trancoRank": 78,
     "confirmedAt": "2026-11-19"
@@ -3102,6 +3158,7 @@
         "url": "https://www.wikidata.org/wiki/Q16255869"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "opera.com",
     "trancoRank": 79,
     "confirmedAt": "2026-11-19"
@@ -3114,6 +3171,7 @@
     "primaryDomain": "roblox.com",
     "officialDomains": ["roblox.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "roblox.com",
     "trancoRank": 82,
     "confirmedAt": "2026-11-19"
@@ -3133,6 +3191,7 @@
         "url": "https://www.wikidata.org/wiki/Q2378942"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "vimeo.com",
     "trancoRank": 84,
     "confirmedAt": "2026-11-19"
@@ -3145,6 +3204,7 @@
     "primaryDomain": "ntp.org",
     "officialDomains": ["ntp.org"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "ntp.org",
     "trancoRank": 85,
     "confirmedAt": "2026-11-19"
@@ -3157,6 +3217,7 @@
     "primaryDomain": "qq.com",
     "officialDomains": ["qq.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "qq.com",
     "trancoRank": 90,
     "confirmedAt": "2026-11-19"
@@ -3188,6 +3249,7 @@
         "url": "https://www.wikidata.org/wiki/Q135618044"
       }
     ],
+    "brandTlds": ["baidu"],
     "wikidataDomain": "baidu.com",
     "trancoRank": 91,
     "confirmedAt": "2026-11-19"
@@ -3200,6 +3262,7 @@
     "primaryDomain": "mozilla.org",
     "officialDomains": ["mozilla.org"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "mozilla.org",
     "trancoRank": 93,
     "confirmedAt": "2026-11-19"
@@ -3237,6 +3300,7 @@
         "url": "https://www.wikidata.org/wiki/Q7671813"
       }
     ],
+    "brandTlds": ["intuit", "mint"],
     "wikidataDomain": "intuit.com",
     "trancoRank": 94,
     "confirmedAt": "2026-11-19"
@@ -3249,6 +3313,7 @@
     "primaryDomain": "msn.com",
     "officialDomains": ["msn.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "msn.com",
     "trancoRank": 95,
     "confirmedAt": "2026-11-19"
@@ -3261,6 +3326,7 @@
     "primaryDomain": "nginx.org",
     "officialDomains": ["nginx.org"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "nginx.org",
     "trancoRank": 96,
     "confirmedAt": "2026-11-19"
@@ -3273,6 +3339,7 @@
     "primaryDomain": "wordpress.com",
     "officialDomains": ["wordpress.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "wordpress.com",
     "trancoRank": 98,
     "confirmedAt": "2026-11-19"
@@ -3292,6 +3359,7 @@
         "url": "https://www.wikidata.org/wiki/Q104723943"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "f5.com",
     "trancoRank": 99,
     "confirmedAt": "2026-11-19"
@@ -3311,6 +3379,7 @@
         "url": "https://www.wikidata.org/wiki/Q56173"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "t-online.de",
     "trancoRank": 100,
     "confirmedAt": "2026-11-19"
@@ -3323,6 +3392,7 @@
     "primaryDomain": "ui.com",
     "officialDomains": ["ui.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "ui.com",
     "trancoRank": 108,
     "confirmedAt": "2026-11-19"
@@ -3338,6 +3408,7 @@
       "reddittorjg6rue252oqsxryoxengawnmo46qy4kyii5wtqnwfj4ooad.onion"
     ],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "reddit.com",
     "trancoRank": 109,
     "confirmedAt": "2026-11-19"
@@ -3350,6 +3421,7 @@
     "primaryDomain": "chatgpt.com",
     "officialDomains": ["chatgpt.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "chatgpt.com",
     "trancoRank": 110,
     "confirmedAt": "2026-11-19"
@@ -3362,6 +3434,7 @@
     "primaryDomain": "europa.eu",
     "officialDomains": ["europa.eu"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "europa.eu",
     "trancoRank": 111,
     "confirmedAt": "2026-11-19"
@@ -3525,6 +3598,7 @@
         "url": "https://www.wikidata.org/wiki/Q925020"
       }
     ],
+    "brandTlds": ["samsung", "xn--cg4bki"],
     "wikidataDomain": "samsung.com",
     "trancoRank": 123,
     "confirmedAt": "2026-11-19"
@@ -3537,6 +3611,7 @@
     "primaryDomain": "webex.com",
     "officialDomains": ["webex.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "webex.com",
     "trancoRank": 125,
     "confirmedAt": "2026-11-19"
@@ -3562,6 +3637,7 @@
         "url": "https://www.wikidata.org/wiki/Q124544998"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "openai.com",
     "trancoRank": 127,
     "confirmedAt": "2026-11-19"
@@ -3574,6 +3650,7 @@
     "primaryDomain": "office365.com",
     "officialDomains": ["office365.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "office365.com",
     "trancoRank": 129,
     "confirmedAt": "2026-11-19"
@@ -3623,6 +3700,7 @@
         "url": "https://www.wikidata.org/wiki/Q180686"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "nih.gov",
     "trancoRank": 131,
     "confirmedAt": "2026-11-19"
@@ -3635,6 +3713,7 @@
     "primaryDomain": "dropbox.com",
     "officialDomains": ["dropbox.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "dropbox.com",
     "trancoRank": 132,
     "confirmedAt": "2026-11-19"
@@ -3647,6 +3726,7 @@
     "primaryDomain": "windows.com",
     "officialDomains": ["windows.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "windows.com",
     "trancoRank": 133,
     "confirmedAt": "2026-11-19"
@@ -3659,6 +3739,7 @@
     "primaryDomain": "outlook.com",
     "officialDomains": ["outlook.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "outlook.com",
     "trancoRank": 135,
     "confirmedAt": "2026-11-19"
@@ -3671,6 +3752,7 @@
     "primaryDomain": "android.com",
     "officialDomains": ["android.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "android.com",
     "trancoRank": 137,
     "confirmedAt": "2026-11-19"
@@ -3683,6 +3765,7 @@
     "primaryDomain": "apache.org",
     "officialDomains": ["apache.org"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "apache.org",
     "trancoRank": 140,
     "confirmedAt": "2026-11-19"
@@ -3698,6 +3781,7 @@
       "archivep75mbjunhxc6x4j5mwjmomyxb573v42baldlqu56ruil2oiad.onion"
     ],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "archive.org",
     "trancoRank": 147,
     "confirmedAt": "2026-11-19"
@@ -3710,6 +3794,7 @@
     "primaryDomain": "tumblr.com",
     "officialDomains": ["tumblr.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "tumblr.com",
     "trancoRank": 151,
     "confirmedAt": "2026-11-19"
@@ -3722,6 +3807,7 @@
     "primaryDomain": "discord.gg",
     "officialDomains": ["discord.com", "discord.gg", "discord.new"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "discord.gg",
     "trancoRank": 152,
     "confirmedAt": "2026-11-19"
@@ -3734,6 +3820,7 @@
     "primaryDomain": "crashlytics.com",
     "officialDomains": ["crashlytics.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "crashlytics.com",
     "trancoRank": 153,
     "confirmedAt": "2026-11-19"
@@ -3746,6 +3833,7 @@
     "primaryDomain": "nytimes.com",
     "officialDomains": ["nytimes.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "nytimes.com",
     "trancoRank": 154,
     "confirmedAt": "2026-11-19"
@@ -3758,6 +3846,7 @@
     "primaryDomain": "meraki.com",
     "officialDomains": ["meraki.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "meraki.com",
     "trancoRank": 157,
     "confirmedAt": "2026-11-19"
@@ -3770,6 +3859,7 @@
     "primaryDomain": "ubuntu.com",
     "officialDomains": ["ubuntu.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "ubuntu.com",
     "trancoRank": 158,
     "confirmedAt": "2026-11-19"
@@ -3782,6 +3872,7 @@
     "primaryDomain": "snapchat.com",
     "officialDomains": ["snapchat.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "snapchat.com",
     "trancoRank": 159,
     "confirmedAt": "2026-11-19"
@@ -3794,6 +3885,7 @@
     "primaryDomain": "telegram.org",
     "officialDomains": ["telegram.org"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "telegram.org",
     "trancoRank": 161,
     "confirmedAt": "2026-11-19"
@@ -3806,6 +3898,7 @@
     "primaryDomain": "vk.com",
     "officialDomains": ["vk.com", "vk.ru"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "vk.com",
     "trancoRank": 162,
     "confirmedAt": "2026-11-19"
@@ -3825,6 +3918,7 @@
         "url": "https://www.wikidata.org/wiki/Q113277881"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "shopify.com",
     "trancoRank": 163,
     "confirmedAt": "2026-11-19"
@@ -3837,6 +3931,7 @@
     "primaryDomain": "gravatar.com",
     "officialDomains": ["gravatar.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "gravatar.com",
     "trancoRank": 165,
     "confirmedAt": "2026-11-19"
@@ -3849,6 +3944,7 @@
     "primaryDomain": "reg.ru",
     "officialDomains": ["reg.ru", "xn--c1ad6a.xn--p1ai"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "reg.ru",
     "trancoRank": 172,
     "confirmedAt": "2026-11-19"
@@ -3861,6 +3957,7 @@
     "primaryDomain": "creativecommons.org",
     "officialDomains": ["creativecommons.org"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "creativecommons.org",
     "trancoRank": 173,
     "confirmedAt": "2026-11-19"
@@ -3891,6 +3988,7 @@
         "url": "https://www.wikidata.org/wiki/Q16325128"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "paypal.com",
     "trancoRank": 175,
     "confirmedAt": "2026-11-19"
@@ -3934,6 +4032,7 @@
         "url": "https://www.wikidata.org/wiki/Q7601821"
       }
     ],
+    "brandTlds": ["godaddy"],
     "wikidataDomain": "godaddy.com",
     "trancoRank": 176,
     "confirmedAt": "2026-11-19"
@@ -3953,6 +4052,7 @@
         "url": "https://www.wikidata.org/wiki/Q113772386"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "cnn.com",
     "trancoRank": 178,
     "confirmedAt": "2026-11-19"
@@ -3965,6 +4065,7 @@
     "primaryDomain": "flickr.com",
     "officialDomains": ["flickr.com"],
     "relatedDomains": [],
+    "brandTlds": ["flickr"],
     "wikidataDomain": "flickr.com",
     "trancoRank": 182,
     "confirmedAt": "2026-11-19"
@@ -3990,6 +4091,7 @@
         "url": "https://www.wikidata.org/wiki/Q20155677"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "w3.org",
     "trancoRank": 183,
     "confirmedAt": "2026-11-19"
@@ -4002,6 +4104,7 @@
     "primaryDomain": "forter.com",
     "officialDomains": ["forter.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "forter.com",
     "trancoRank": 184,
     "confirmedAt": "2026-11-19"
@@ -4014,6 +4117,7 @@
     "primaryDomain": "example.com",
     "officialDomains": ["example.com", "example.edu", "example.net", "example.org"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "example.com",
     "trancoRank": 185,
     "confirmedAt": "2026-11-19"
@@ -4026,6 +4130,7 @@
     "primaryDomain": "pki.goog",
     "officialDomains": ["pki.goog"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "pki.goog",
     "trancoRank": 191,
     "confirmedAt": "2026-11-19"
@@ -4045,6 +4150,7 @@
         "url": "https://www.wikidata.org/wiki/Q4049245"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "kaspersky.com",
     "trancoRank": 194,
     "confirmedAt": "2026-11-19"
@@ -4057,6 +4163,7 @@
     "primaryDomain": "macromedia.com",
     "officialDomains": ["macromedia.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "macromedia.com",
     "trancoRank": 195,
     "confirmedAt": "2026-11-19"
@@ -4145,6 +4252,7 @@
         "url": "https://www.wikidata.org/wiki/Q108148210"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "ebay.com",
     "trancoRank": 196,
     "confirmedAt": "2026-11-19"
@@ -4160,6 +4268,7 @@
       "brave4u7jddbv7cyviptqjc7jusxh72uik7zt6adtckl5f4nwy2v72qd.onion"
     ],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "brave.com",
     "trancoRank": 197,
     "confirmedAt": "2026-11-19"
@@ -4172,6 +4281,7 @@
     "primaryDomain": "soundcloud.com",
     "officialDomains": ["soundcloud.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "soundcloud.com",
     "trancoRank": 198,
     "confirmedAt": "2026-11-19"
@@ -4187,6 +4297,7 @@
       "theguardian.com"
     ],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "theguardian.com",
     "trancoRank": 199,
     "confirmedAt": "2026-11-19"
@@ -4199,6 +4310,7 @@
     "primaryDomain": "doi.org",
     "officialDomains": ["doi.org"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "doi.org",
     "trancoRank": 201,
     "confirmedAt": "2026-11-19"
@@ -4218,6 +4330,7 @@
         "url": "https://www.wikidata.org/wiki/Q124748989"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "medium.com",
     "trancoRank": 204,
     "confirmedAt": "2026-11-19"
@@ -4230,6 +4343,7 @@
     "primaryDomain": "hcaptcha.com",
     "officialDomains": ["hcaptcha.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "hcaptcha.com",
     "trancoRank": 206,
     "confirmedAt": "2026-11-19"
@@ -4242,6 +4356,7 @@
     "primaryDomain": "roku.com",
     "officialDomains": ["roku.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "roku.com",
     "trancoRank": 208,
     "confirmedAt": "2026-11-19"
@@ -4291,6 +4406,7 @@
         "url": "https://www.wikidata.org/wiki/Q846031"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "mts.ru",
     "trancoRank": 209,
     "confirmedAt": "2026-11-19"
@@ -4303,6 +4419,7 @@
     "primaryDomain": "wikimedia.org",
     "officialDomains": ["wikimedia.org"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "wikimedia.org",
     "trancoRank": 211,
     "confirmedAt": "2026-11-19"
@@ -4334,6 +4451,7 @@
         "url": "https://www.wikidata.org/wiki/Q140795851"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "stripe.com",
     "trancoRank": 213,
     "confirmedAt": "2026-11-19"
@@ -4395,6 +4513,7 @@
         "url": "https://www.wikidata.org/wiki/Q14647"
       }
     ],
+    "brandTlds": ["java", "oracle"],
     "wikidataDomain": "oracle.com",
     "trancoRank": 215,
     "confirmedAt": "2026-11-19"
@@ -4450,6 +4569,7 @@
         "url": "https://www.wikidata.org/wiki/Q285194"
       }
     ],
+    "brandTlds": ["bbc"],
     "wikidataDomain": "bbc.com",
     "trancoRank": 216,
     "confirmedAt": "2026-11-19"
@@ -4462,6 +4582,7 @@
     "primaryDomain": "criteo.com",
     "officialDomains": ["criteo.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "criteo.com",
     "trancoRank": 222,
     "confirmedAt": "2026-11-19"
@@ -4474,6 +4595,7 @@
     "primaryDomain": "amplitude.com",
     "officialDomains": ["amplitude.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "amplitude.com",
     "trancoRank": 223,
     "confirmedAt": "2026-11-19"
@@ -4493,6 +4615,7 @@
         "url": "https://www.wikidata.org/wiki/Q127700778"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "forbes.com",
     "trancoRank": 227,
     "confirmedAt": "2026-11-19"
@@ -4505,6 +4628,7 @@
     "primaryDomain": "weather.com",
     "officialDomains": ["weather.com"],
     "relatedDomains": [],
+    "brandTlds": ["weatherchannel"],
     "wikidataDomain": "weather.com",
     "trancoRank": 228,
     "confirmedAt": "2026-11-19"
@@ -4517,6 +4641,7 @@
     "primaryDomain": "namecheap.com",
     "officialDomains": ["namecheap.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "namecheap.com",
     "trancoRank": 229,
     "confirmedAt": "2026-11-19"
@@ -4529,6 +4654,7 @@
     "primaryDomain": "sciencedirect.com",
     "officialDomains": ["sciencedirect.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "sciencedirect.com",
     "trancoRank": 231,
     "confirmedAt": "2026-11-19"
@@ -4541,6 +4667,7 @@
     "primaryDomain": "twitch.tv",
     "officialDomains": ["twitch.tv"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "twitch.tv",
     "trancoRank": 234,
     "confirmedAt": "2026-11-19"
@@ -4596,6 +4723,7 @@
         "url": "https://www.wikidata.org/wiki/Q123574937"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "xiaomi.com",
     "trancoRank": 235,
     "confirmedAt": "2026-11-19"
@@ -4615,6 +4743,7 @@
         "url": "https://www.wikidata.org/wiki/Q774437"
       }
     ],
+    "brandTlds": ["mit"],
     "wikidataDomain": "mit.edu",
     "trancoRank": 236,
     "confirmedAt": "2026-11-19"
@@ -4627,6 +4756,7 @@
     "primaryDomain": "nist.gov",
     "officialDomains": ["nist.gov"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "nist.gov",
     "trancoRank": 237,
     "confirmedAt": "2026-11-19"
@@ -4639,6 +4769,7 @@
     "primaryDomain": "researchgate.net",
     "officialDomains": ["researchgate.net"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "researchgate.net",
     "trancoRank": 240,
     "confirmedAt": "2026-11-19"
@@ -4712,6 +4843,7 @@
         "url": "https://www.wikidata.org/wiki/Q498944"
       }
     ],
+    "brandTlds": ["cisco"],
     "wikidataDomain": "cisco.com",
     "trancoRank": 241,
     "confirmedAt": "2026-11-19"
@@ -4724,6 +4856,7 @@
     "primaryDomain": "dnsmadeeasy.com",
     "officialDomains": ["dnsmadeeasy.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "dnsmadeeasy.com",
     "trancoRank": 246,
     "confirmedAt": "2026-11-19"
@@ -4736,6 +4869,7 @@
     "primaryDomain": "applovin.com",
     "officialDomains": ["applovin.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "applovin.com",
     "trancoRank": 248,
     "confirmedAt": "2026-11-19"
@@ -4748,6 +4882,7 @@
     "primaryDomain": "sourceforge.net",
     "officialDomains": ["sourceforge.net"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "sourceforge.net",
     "trancoRank": 252,
     "confirmedAt": "2026-11-19"
@@ -4797,6 +4932,7 @@
         "url": "https://www.wikidata.org/wiki/Q17130715"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "salesforce.com",
     "trancoRank": 255,
     "confirmedAt": "2026-11-19"
@@ -4809,6 +4945,7 @@
     "primaryDomain": "cpanel.net",
     "officialDomains": ["cpanel.net"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "cpanel.net",
     "trancoRank": 261,
     "confirmedAt": "2026-11-19"
@@ -4821,6 +4958,7 @@
     "primaryDomain": "hubspot.com",
     "officialDomains": ["hubspot.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "hubspot.com",
     "trancoRank": 262,
     "confirmedAt": "2026-11-19"
@@ -4833,6 +4971,7 @@
     "primaryDomain": "imdb.com",
     "officialDomains": ["imdb.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "imdb.com",
     "trancoRank": 266,
     "confirmedAt": "2026-11-19"
@@ -4858,6 +4997,7 @@
         "url": "https://www.wikidata.org/wiki/Q1856835"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "who.int",
     "trancoRank": 267,
     "confirmedAt": "2026-11-19"
@@ -4870,6 +5010,7 @@
     "primaryDomain": "linktr.ee",
     "officialDomains": ["linktr.ee", "linktree.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "linktr.ee",
     "trancoRank": 269,
     "confirmedAt": "2026-11-19"
@@ -4882,6 +5023,7 @@
     "primaryDomain": "arubanetworks.com",
     "officialDomains": ["arubanetworks.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "arubanetworks.com",
     "trancoRank": 273,
     "confirmedAt": "2026-11-19"
@@ -4894,6 +5036,7 @@
     "primaryDomain": "launchdarkly.com",
     "officialDomains": ["launchdarkly.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "launchdarkly.com",
     "trancoRank": 276,
     "confirmedAt": "2026-11-19"
@@ -4906,6 +5049,7 @@
     "primaryDomain": "datadoghq.com",
     "officialDomains": ["datadoghq.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "datadoghq.com",
     "trancoRank": 278,
     "confirmedAt": "2026-11-19"
@@ -4918,6 +5062,7 @@
     "primaryDomain": "slack.com",
     "officialDomains": ["slack.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "slack.com",
     "trancoRank": 280,
     "confirmedAt": "2026-11-19"
@@ -4985,6 +5130,7 @@
         "url": "https://www.wikidata.org/wiki/Q7978227"
       }
     ],
+    "brandTlds": ["ibm"],
     "wikidataDomain": "ibm.com",
     "trancoRank": 283,
     "confirmedAt": "2026-11-19"
@@ -5034,6 +5180,7 @@
         "url": "https://www.wikidata.org/wiki/Q1531473"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "hp.com",
     "trancoRank": 284,
     "confirmedAt": "2026-11-19"
@@ -5053,6 +5200,7 @@
         "url": "https://www.wikidata.org/wiki/Q23307695"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "reuters.com",
     "trancoRank": 286,
     "confirmedAt": "2026-11-19"
@@ -5072,6 +5220,7 @@
         "url": "https://www.wikidata.org/wiki/Q97376484"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "canva.com",
     "trancoRank": 288,
     "confirmedAt": "2026-11-19"
@@ -5084,6 +5233,7 @@
     "primaryDomain": "ozon.ru",
     "officialDomains": ["ozon.ru"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "ozon.ru",
     "trancoRank": 291,
     "confirmedAt": "2026-11-19"
@@ -5096,6 +5246,7 @@
     "primaryDomain": "nature.com",
     "officialDomains": ["nature.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "nature.com",
     "trancoRank": 293,
     "confirmedAt": "2026-11-19"
@@ -5115,6 +5266,7 @@
         "url": "https://www.wikidata.org/wiki/Q183231"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "www.gov.uk",
     "trancoRank": 294,
     "confirmedAt": "2026-11-19"
@@ -5134,6 +5286,7 @@
         "url": "https://www.wikidata.org/wiki/Q286317"
       }
     ],
+    "brandTlds": ["booking"],
     "wikidataDomain": "booking.com",
     "trancoRank": 296,
     "confirmedAt": "2026-11-19"
@@ -5146,6 +5299,7 @@
     "primaryDomain": "launchpad.net",
     "officialDomains": ["launchpad.net"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "launchpad.net",
     "trancoRank": 299,
     "confirmedAt": "2026-11-19"
@@ -5158,6 +5312,7 @@
     "primaryDomain": "grammarly.com",
     "officialDomains": ["grammarly.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "grammarly.com",
     "trancoRank": 307,
     "confirmedAt": "2026-11-19"
@@ -5170,6 +5325,7 @@
     "primaryDomain": "zendesk.com",
     "officialDomains": ["zendesk.co.jp", "zendesk.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "zendesk.com",
     "trancoRank": 309,
     "confirmedAt": "2026-11-19"
@@ -5201,6 +5357,7 @@
         "url": "https://www.wikidata.org/wiki/Q2981629"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "springer.com",
     "trancoRank": 312,
     "confirmedAt": "2026-11-19"
@@ -5213,6 +5370,7 @@
     "primaryDomain": "miui.com",
     "officialDomains": ["miui.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "miui.com",
     "trancoRank": 319,
     "confirmedAt": "2026-11-19"
@@ -5244,6 +5402,7 @@
         "url": "https://www.wikidata.org/wiki/Q463360"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "wiley.com",
     "trancoRank": 320,
     "confirmedAt": "2026-11-19"
@@ -5275,6 +5434,7 @@
         "url": "https://www.wikidata.org/wiki/Q118876059"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "anthropic.com",
     "trancoRank": 321,
     "confirmedAt": "2026-11-19"
@@ -5287,6 +5447,7 @@
     "primaryDomain": "avast.com",
     "officialDomains": ["avast.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "avast.com",
     "trancoRank": 322,
     "confirmedAt": "2026-11-19"
@@ -5302,6 +5463,7 @@
       "debian.org"
     ],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "debian.org",
     "trancoRank": 326,
     "confirmedAt": "2026-11-19"
@@ -5314,6 +5476,7 @@
     "primaryDomain": "weibo.com",
     "officialDomains": ["weibo.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "weibo.com",
     "trancoRank": 329,
     "confirmedAt": "2026-11-19"
@@ -5363,6 +5526,7 @@
         "url": "https://www.wikidata.org/wiki/Q6167975"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "espn.com",
     "trancoRank": 331,
     "confirmedAt": "2026-11-19"
@@ -5406,6 +5570,7 @@
         "url": "https://www.wikidata.org/wiki/Q16980880"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "harvard.edu",
     "trancoRank": 334,
     "confirmedAt": "2026-11-19"
@@ -5418,6 +5583,7 @@
     "primaryDomain": "php.net",
     "officialDomains": ["php.net"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "php.net",
     "trancoRank": 335,
     "confirmedAt": "2026-11-19"
@@ -5430,6 +5596,7 @@
     "primaryDomain": "trustpilot.com",
     "officialDomains": ["trustpilot.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "trustpilot.com",
     "trancoRank": 336,
     "confirmedAt": "2026-11-19"
@@ -5641,6 +5808,7 @@
         "url": "https://www.wikidata.org/wiki/Q151135"
       }
     ],
+    "brandTlds": ["alibaba", "alipay", "taobao", "tmall"],
     "wikidataDomain": "alibaba.com",
     "trancoRank": 337,
     "confirmedAt": "2026-11-19"
@@ -5672,6 +5840,7 @@
         "url": "https://www.wikidata.org/wiki/Q3560555"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "autodesk.com",
     "trancoRank": 339,
     "confirmedAt": "2026-11-19"
@@ -5691,6 +5860,7 @@
         "url": "https://www.wikidata.org/wiki/Q29115431"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "etsy.com",
     "trancoRank": 341,
     "confirmedAt": "2026-11-19"
@@ -5703,6 +5873,7 @@
     "primaryDomain": "paloaltonetworks.com",
     "officialDomains": ["paloaltonetworks.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "paloaltonetworks.com",
     "trancoRank": 342,
     "confirmedAt": "2026-11-19"
@@ -5715,6 +5886,7 @@
     "primaryDomain": "unisys.com",
     "officialDomains": ["unisys.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "unisys.com",
     "trancoRank": 343,
     "confirmedAt": "2026-11-19"
@@ -5734,6 +5906,7 @@
         "url": "https://www.wikidata.org/wiki/Q56072164"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "okta.com",
     "trancoRank": 344,
     "confirmedAt": "2026-11-19"
@@ -5746,6 +5919,7 @@
     "primaryDomain": "naver.com",
     "officialDomains": ["naver.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "naver.com",
     "trancoRank": 348,
     "confirmedAt": "2026-11-19"
@@ -5819,6 +5993,7 @@
         "url": "https://www.wikidata.org/wiki/Q267949"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "ea.com",
     "trancoRank": 349,
     "confirmedAt": "2026-11-19"
@@ -5831,6 +6006,7 @@
     "primaryDomain": "dynatrace.com",
     "officialDomains": ["dynatrace.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "dynatrace.com",
     "trancoRank": 350,
     "confirmedAt": "2026-11-19"
@@ -5850,6 +6026,7 @@
         "url": "https://www.wikidata.org/wiki/Q137700378"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "bilibili.com",
     "trancoRank": 351,
     "confirmedAt": "2026-11-19"
@@ -5862,6 +6039,7 @@
     "primaryDomain": "ok.ru",
     "officialDomains": ["ok.ru"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "ok.ru",
     "trancoRank": 352,
     "confirmedAt": "2026-11-19"
@@ -5893,6 +6071,7 @@
         "url": "https://www.wikidata.org/wiki/Q17079467"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "nvidia.com",
     "trancoRank": 353,
     "confirmedAt": "2026-11-19"
@@ -5905,6 +6084,7 @@
     "primaryDomain": "tradingview.com",
     "officialDomains": ["tradingview.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "tradingview.com",
     "trancoRank": 354,
     "confirmedAt": "2026-11-19"
@@ -5917,6 +6097,7 @@
     "primaryDomain": "branch.io",
     "officialDomains": ["branch.io"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "branch.io",
     "trancoRank": 355,
     "confirmedAt": "2026-11-19"
@@ -5936,6 +6117,7 @@
         "url": "https://www.wikidata.org/wiki/Q141309860"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "tp-link.com",
     "trancoRank": 356,
     "confirmedAt": "2026-11-19"
@@ -5948,6 +6130,7 @@
     "primaryDomain": "wsj.com",
     "officialDomains": ["wsj.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "wsj.com",
     "trancoRank": 357,
     "confirmedAt": "2026-11-19"
@@ -5960,6 +6143,7 @@
     "primaryDomain": "gnu.org",
     "officialDomains": ["gnu.org"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "gnu.org",
     "trancoRank": 358,
     "confirmedAt": "2026-11-19"
@@ -6003,6 +6187,7 @@
         "url": "https://www.wikidata.org/wiki/Q2595760"
       }
     ],
+    "brandTlds": ["dell"],
     "wikidataDomain": "dell.com",
     "trancoRank": 359,
     "confirmedAt": "2026-11-19"
@@ -6022,6 +6207,7 @@
         "url": "https://www.wikidata.org/wiki/Q30267799"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "cdc.gov",
     "trancoRank": 365,
     "confirmedAt": "2026-11-19"
@@ -6034,6 +6220,7 @@
     "primaryDomain": "bsky.app",
     "officialDomains": ["bsky.app"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "bsky.app",
     "trancoRank": 366,
     "confirmedAt": "2026-11-19"
@@ -6046,6 +6233,7 @@
     "primaryDomain": "checkpoint.com",
     "officialDomains": ["checkpoint.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "checkpoint.com",
     "trancoRank": 368,
     "confirmedAt": "2026-11-19"
@@ -6058,6 +6246,7 @@
     "primaryDomain": "weebly.com",
     "officialDomains": ["weebly.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "weebly.com",
     "trancoRank": 369,
     "confirmedAt": "2026-11-19"
@@ -6419,6 +6608,7 @@
         "url": "https://www.wikidata.org/wiki/Q170424"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "un.org",
     "trancoRank": 370,
     "confirmedAt": "2026-11-19"
@@ -6468,6 +6658,7 @@
         "url": "https://www.wikidata.org/wiki/Q8057730"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "netease.com",
     "trancoRank": 377,
     "confirmedAt": "2026-11-19"
@@ -6489,6 +6680,7 @@
       "archiveiya74codqgiixo33q62qlrqtkgmcitqx5u2oeqnmn5bpcbiyd.onion"
     ],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "archive.ph",
     "trancoRank": 383,
     "confirmedAt": "2026-11-19"
@@ -6526,6 +6718,7 @@
         "url": "https://www.wikidata.org/wiki/Q130530819"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "stanford.edu",
     "trancoRank": 384,
     "confirmedAt": "2026-11-19"
@@ -6538,6 +6731,7 @@
     "primaryDomain": "name.com",
     "officialDomains": ["name.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "name.com",
     "trancoRank": 386,
     "confirmedAt": "2026-11-19"
@@ -6550,6 +6744,7 @@
     "primaryDomain": "amazontrust.com",
     "officialDomains": ["amazontrust.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "amazontrust.com",
     "trancoRank": 388,
     "confirmedAt": "2026-11-19"
@@ -6562,6 +6757,7 @@
     "primaryDomain": "globo.com",
     "officialDomains": ["globo.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "globo.com",
     "trancoRank": 390,
     "confirmedAt": "2026-11-19"
@@ -6574,6 +6770,7 @@
     "primaryDomain": "wps.com",
     "officialDomains": ["wps.cn", "wps.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "wps.com",
     "trancoRank": 391,
     "confirmedAt": "2026-11-19"
@@ -6586,6 +6783,7 @@
     "primaryDomain": "go.com",
     "officialDomains": ["go.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "go.com",
     "trancoRank": 394,
     "confirmedAt": "2026-11-19"
@@ -6598,6 +6796,7 @@
     "primaryDomain": "issuu.com",
     "officialDomains": ["issuu.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "issuu.com",
     "trancoRank": 396,
     "confirmedAt": "2026-11-19"
@@ -6635,6 +6834,7 @@
         "url": "https://www.wikidata.org/wiki/Q3564619"
       }
     ],
+    "brandTlds": ["bloomberg"],
     "wikidataDomain": "bloomberg.com",
     "trancoRank": 400,
     "confirmedAt": "2026-11-19"
@@ -6647,6 +6847,7 @@
     "primaryDomain": "gitlab.com",
     "officialDomains": ["gitlab.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "gitlab.com",
     "trancoRank": 401,
     "confirmedAt": "2026-11-19"
@@ -6659,6 +6860,7 @@
     "primaryDomain": "taobao.com",
     "officialDomains": ["taobao.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "taobao.com",
     "trancoRank": 402,
     "confirmedAt": "2026-11-19"
@@ -6690,6 +6892,7 @@
         "url": "https://www.wikidata.org/wiki/Q1540619"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "nasa.gov",
     "trancoRank": 403,
     "confirmedAt": "2026-11-19"
@@ -6702,6 +6905,7 @@
     "primaryDomain": "claude.ai",
     "officialDomains": ["claude.ai"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "claude.ai",
     "trancoRank": 404,
     "confirmedAt": "2026-11-19"
@@ -6714,6 +6918,7 @@
     "primaryDomain": "washingtonpost.com",
     "officialDomains": ["washingtonpost.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "washingtonpost.com",
     "trancoRank": 405,
     "confirmedAt": "2026-11-19"
@@ -6726,6 +6931,7 @@
     "primaryDomain": "appsflyer.com",
     "officialDomains": ["appsflyer.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "appsflyer.com",
     "trancoRank": 406,
     "confirmedAt": "2026-11-19"
@@ -6738,6 +6944,7 @@
     "primaryDomain": "opendns.com",
     "officialDomains": ["opendns.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "opendns.com",
     "trancoRank": 407,
     "confirmedAt": "2026-11-19"
@@ -6750,6 +6957,7 @@
     "primaryDomain": "gmail.com",
     "officialDomains": ["gmail.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "gmail.com",
     "trancoRank": 409,
     "confirmedAt": "2026-11-19"
@@ -6762,6 +6970,7 @@
     "primaryDomain": "plesk.com",
     "officialDomains": ["plesk.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "plesk.com",
     "trancoRank": 412,
     "confirmedAt": "2026-11-19"
@@ -6823,6 +7032,7 @@
         "url": "https://www.wikidata.org/wiki/Q104843604"
       }
     ],
+    "brandTlds": ["yandex"],
     "wikidataDomain": "yandex.com",
     "trancoRank": 415,
     "confirmedAt": "2026-11-19"
@@ -6835,6 +7045,7 @@
     "primaryDomain": "calendly.com",
     "officialDomains": ["calendly.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "calendly.com",
     "trancoRank": 418,
     "confirmedAt": "2026-11-19"
@@ -6850,6 +7061,7 @@
       "duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion"
     ],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "duckduckgo.com",
     "trancoRank": 419,
     "confirmedAt": "2026-11-19"
@@ -6862,6 +7074,7 @@
     "primaryDomain": "substack.com",
     "officialDomains": ["substack.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "substack.com",
     "trancoRank": 420,
     "confirmedAt": "2026-11-19"
@@ -6874,6 +7087,7 @@
     "primaryDomain": "temu.com",
     "officialDomains": ["temu.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "temu.com",
     "trancoRank": 423,
     "confirmedAt": "2026-11-19"
@@ -7037,6 +7251,7 @@
         "url": "https://www.wikidata.org/wiki/Q11288564"
       }
     ],
+    "brandTlds": ["aol"],
     "wikidataDomain": "aol.com",
     "trancoRank": 424,
     "confirmedAt": "2026-11-19"
@@ -7049,6 +7264,7 @@
     "primaryDomain": "line.me",
     "officialDomains": ["line.me"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "line.me",
     "trancoRank": 425,
     "confirmedAt": "2026-11-19"
@@ -7061,6 +7277,7 @@
     "primaryDomain": "unsplash.com",
     "officialDomains": ["unsplash.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "unsplash.com",
     "trancoRank": 427,
     "confirmedAt": "2026-11-19"
@@ -7073,6 +7290,7 @@
     "primaryDomain": "indeed.com",
     "officialDomains": ["indeed.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "indeed.com",
     "trancoRank": 435,
     "confirmedAt": "2026-11-19"
@@ -7098,6 +7316,7 @@
         "url": "https://www.wikidata.org/wiki/Q104852066"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "telekom.de",
     "trancoRank": 439,
     "confirmedAt": "2026-11-19"
@@ -7110,6 +7329,7 @@
     "primaryDomain": "dailymotion.com",
     "officialDomains": ["dailymotion.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "dailymotion.com",
     "trancoRank": 446,
     "confirmedAt": "2026-11-19"
@@ -7122,6 +7342,7 @@
     "primaryDomain": "arxiv.org",
     "officialDomains": ["arxiv.org"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "arxiv.org",
     "trancoRank": 447,
     "confirmedAt": "2026-11-19"
@@ -7134,6 +7355,7 @@
     "primaryDomain": "mcafee.com",
     "officialDomains": ["mcafee.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "mcafee.com",
     "trancoRank": 451,
     "confirmedAt": "2026-11-19"
@@ -7146,6 +7368,7 @@
     "primaryDomain": "bluehost.com",
     "officialDomains": ["bluehost.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "bluehost.com",
     "trancoRank": 453,
     "confirmedAt": "2026-11-19"
@@ -7219,6 +7442,7 @@
         "url": "https://www.wikidata.org/wiki/Q1746945"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "intel.com",
     "trancoRank": 455,
     "confirmedAt": "2026-11-19"
@@ -7238,6 +7462,7 @@
         "url": "https://www.wikidata.org/wiki/Q11255390"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "yahoo.co.jp",
     "trancoRank": 461,
     "confirmedAt": "2026-11-19"
@@ -7250,6 +7475,7 @@
     "primaryDomain": "duolingo.com",
     "officialDomains": ["duolingo.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "duolingo.com",
     "trancoRank": 462,
     "confirmedAt": "2026-11-19"
@@ -7275,6 +7501,7 @@
         "url": "https://www.wikidata.org/wiki/Q17156801"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "taboola.com",
     "trancoRank": 463,
     "confirmedAt": "2026-11-19"
@@ -7287,6 +7514,7 @@
     "primaryDomain": "braze.com",
     "officialDomains": ["braze.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "braze.com",
     "trancoRank": 465,
     "confirmedAt": "2026-11-19"
@@ -7299,6 +7527,7 @@
     "primaryDomain": "pixabay.com",
     "officialDomains": ["pixabay.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "pixabay.com",
     "trancoRank": 468,
     "confirmedAt": "2026-11-19"
@@ -7318,6 +7547,7 @@
         "url": "https://www.wikidata.org/wiki/Q140620908"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "trendmicro.com",
     "trancoRank": 470,
     "confirmedAt": "2026-11-19"
@@ -7330,6 +7560,7 @@
     "primaryDomain": "speedtest.net",
     "officialDomains": ["speedtest.net"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "speedtest.net",
     "trancoRank": 473,
     "confirmedAt": "2026-11-19"
@@ -7342,6 +7573,7 @@
     "primaryDomain": "markmonitor.com",
     "officialDomains": ["markmonitor.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "markmonitor.com",
     "trancoRank": 474,
     "confirmedAt": "2026-11-19"
@@ -7367,6 +7599,7 @@
         "url": "https://www.wikidata.org/wiki/Q130425958"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "shein.com",
     "trancoRank": 475,
     "confirmedAt": "2026-11-19"
@@ -7501,6 +7734,7 @@
         "url": "https://www.wikidata.org/wiki/Q3816562"
       }
     ],
+    "brandTlds": ["george", "samsclub", "walmart"],
     "wikidataDomain": "walmart.com",
     "trancoRank": 476,
     "confirmedAt": "2026-11-19"
@@ -7513,6 +7747,7 @@
     "primaryDomain": "goodreads.com",
     "officialDomains": ["goodreads.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "goodreads.com",
     "trancoRank": 477,
     "confirmedAt": "2026-11-19"
@@ -7525,6 +7760,7 @@
     "primaryDomain": "openstreetmap.org",
     "officialDomains": ["openstreetmap.org"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "openstreetmap.org",
     "trancoRank": 478,
     "confirmedAt": "2026-11-19"
@@ -7537,6 +7773,7 @@
     "primaryDomain": "hostgator.com",
     "officialDomains": ["hostgator.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "hostgator.com",
     "trancoRank": 479,
     "confirmedAt": "2026-11-19"
@@ -7562,6 +7799,7 @@
         "url": "https://www.wikidata.org/wiki/Q3135124"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "huawei.com",
     "trancoRank": 483,
     "confirmedAt": "2026-11-19"
@@ -7587,6 +7825,7 @@
         "url": "https://www.wikidata.org/wiki/Q1667993"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "ietf.org",
     "trancoRank": 484,
     "confirmedAt": "2026-11-19"
@@ -7612,6 +7851,7 @@
         "url": "https://www.wikidata.org/wiki/Q130397497"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "cnbc.com",
     "trancoRank": 485,
     "confirmedAt": "2026-11-19"
@@ -7636,6 +7876,7 @@
         "url": "https://www.wikidata.org/wiki/Q111718012"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "businessinsider.com",
     "trancoRank": 490,
     "confirmedAt": "2026-11-19"
@@ -7648,6 +7889,7 @@
     "primaryDomain": "eventbrite.com",
     "officialDomains": ["eventbrite.co.uk", "eventbrite.com", "eventbrite.com.au", "eventbrite.it"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "eventbrite.com",
     "trancoRank": 495,
     "confirmedAt": "2026-11-19"
@@ -7673,6 +7915,7 @@
         "url": "https://www.wikidata.org/wiki/Q92526"
       }
     ],
+    "brandTlds": ["sina", "xn--9krt00a"],
     "wikidataDomain": "sina.com.cn",
     "trancoRank": 497,
     "confirmedAt": "2026-11-19"
@@ -7685,6 +7928,7 @@
     "primaryDomain": "foxnews.com",
     "officialDomains": ["foxnews.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "foxnews.com",
     "trancoRank": 498,
     "confirmedAt": "2026-11-19"
@@ -7697,6 +7941,7 @@
     "primaryDomain": "quora.com",
     "officialDomains": ["quora.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "quora.com",
     "trancoRank": 499,
     "confirmedAt": "2026-11-19"
@@ -7709,6 +7954,7 @@
     "primaryDomain": "scribd.com",
     "officialDomains": ["scribd.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "scribd.com",
     "trancoRank": 502,
     "confirmedAt": "2026-11-19"
@@ -7721,6 +7967,7 @@
     "primaryDomain": "selectel.ru",
     "officialDomains": ["selectel.ru"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "selectel.ru",
     "trancoRank": 503,
     "confirmedAt": "2026-11-19"
@@ -7733,6 +7980,7 @@
     "primaryDomain": "playstation.com",
     "officialDomains": ["playstation.com"],
     "relatedDomains": [],
+    "brandTlds": ["playstation"],
     "wikidataDomain": "playstation.com",
     "trancoRank": 508,
     "confirmedAt": "2026-11-19"
@@ -7745,6 +7993,7 @@
     "primaryDomain": "statista.com",
     "officialDomains": ["statista.com", "statista.org"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "statista.com",
     "trancoRank": 509,
     "confirmedAt": "2026-11-19"
@@ -7757,6 +8006,7 @@
     "primaryDomain": "addtoany.com",
     "officialDomains": ["addtoany.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "addtoany.com",
     "trancoRank": 512,
     "confirmedAt": "2026-11-19"
@@ -7769,6 +8019,7 @@
     "primaryDomain": "npr.org",
     "officialDomains": ["npr.org"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "npr.org",
     "trancoRank": 513,
     "confirmedAt": "2026-11-19"
@@ -7781,6 +8032,7 @@
     "primaryDomain": "indiatimes.com",
     "officialDomains": ["indiatimes.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "indiatimes.com",
     "trancoRank": 514,
     "confirmedAt": "2026-11-19"
@@ -7793,6 +8045,7 @@
     "primaryDomain": "klaviyo.com",
     "officialDomains": ["klaviyo.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "klaviyo.com",
     "trancoRank": 516,
     "confirmedAt": "2026-11-19"
@@ -7805,6 +8058,7 @@
     "primaryDomain": "blogger.com",
     "officialDomains": ["blogger.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "blogger.com",
     "trancoRank": 519,
     "confirmedAt": "2026-11-19"
@@ -7817,6 +8071,7 @@
     "primaryDomain": "shop.app",
     "officialDomains": ["shop.app"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "shop.app",
     "trancoRank": 521,
     "confirmedAt": "2026-11-19"
@@ -7829,6 +8084,7 @@
     "primaryDomain": "docker.com",
     "officialDomains": ["docker.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "docker.com",
     "trancoRank": 525,
     "confirmedAt": "2026-11-19"
@@ -7848,6 +8104,7 @@
         "url": "https://www.wikidata.org/wiki/Q105334142"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "inmobi.com",
     "trancoRank": 527,
     "confirmedAt": "2026-11-19"
@@ -7945,6 +8202,7 @@
         "url": "https://www.wikidata.org/wiki/Q1003789"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "miit.gov.cn",
     "trancoRank": 530,
     "confirmedAt": "2026-11-19"
@@ -7957,6 +8215,7 @@
     "primaryDomain": "capcut.com",
     "officialDomains": ["capcut.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "capcut.com",
     "trancoRank": 531,
     "confirmedAt": "2026-11-19"
@@ -7969,6 +8228,7 @@
     "primaryDomain": "tandfonline.com",
     "officialDomains": ["tandfonline.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "tandfonline.com",
     "trancoRank": 533,
     "confirmedAt": "2026-11-19"
@@ -7981,6 +8241,7 @@
     "primaryDomain": "behance.net",
     "officialDomains": ["behance.net"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "behance.net",
     "trancoRank": 536,
     "confirmedAt": "2026-11-19"
@@ -7993,6 +8254,7 @@
     "primaryDomain": "mysql.com",
     "officialDomains": ["mysql.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "mysql.com",
     "trancoRank": 537,
     "confirmedAt": "2026-11-19"
@@ -8005,6 +8267,7 @@
     "primaryDomain": "firefox.com",
     "officialDomains": ["firefox.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "firefox.com",
     "trancoRank": 544,
     "confirmedAt": "2026-11-19"
@@ -8024,6 +8287,7 @@
         "url": "https://www.wikidata.org/wiki/Q64521795"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "fandom.com",
     "trancoRank": 546,
     "confirmedAt": "2026-11-19"
@@ -8036,6 +8300,7 @@
     "primaryDomain": "conviva.com",
     "officialDomains": ["conviva.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "conviva.com",
     "trancoRank": 547,
     "confirmedAt": "2026-11-19"
@@ -8048,6 +8313,7 @@
     "primaryDomain": "stackoverflow.com",
     "officialDomains": ["stackoverflow.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "stackoverflow.com",
     "trancoRank": 550,
     "confirmedAt": "2026-11-19"
@@ -8060,6 +8326,7 @@
     "primaryDomain": "fast.com",
     "officialDomains": ["fast.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "fast.com",
     "trancoRank": 554,
     "confirmedAt": "2026-11-19"
@@ -8079,6 +8346,7 @@
         "url": "https://www.wikidata.org/wiki/Q2913725"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "ft.com",
     "trancoRank": 556,
     "confirmedAt": "2026-11-19"
@@ -8091,6 +8359,7 @@
     "primaryDomain": "google.com.hk",
     "officialDomains": ["google.com.hk"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "google.com.hk",
     "trancoRank": 557,
     "confirmedAt": "2026-11-19"
@@ -8103,6 +8372,7 @@
     "primaryDomain": "sophos.com",
     "officialDomains": ["sophos.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "sophos.com",
     "trancoRank": 559,
     "confirmedAt": "2026-11-19"
@@ -8128,6 +8398,7 @@
         "url": "https://www.wikidata.org/wiki/Q3567094"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "cornell.edu",
     "trancoRank": 561,
     "confirmedAt": "2026-11-19"
@@ -8140,6 +8411,7 @@
     "primaryDomain": "maricopa.gov",
     "officialDomains": ["maricopa.gov"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "maricopa.gov",
     "trancoRank": 564,
     "confirmedAt": "2026-11-19"
@@ -8152,6 +8424,7 @@
     "primaryDomain": "eset.com",
     "officialDomains": ["eset.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "eset.com",
     "trancoRank": 565,
     "confirmedAt": "2026-11-19"
@@ -8164,6 +8437,7 @@
     "primaryDomain": "threads.com",
     "officialDomains": ["threads.com", "threads.net"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "threads.com",
     "trancoRank": 566,
     "confirmedAt": "2026-11-19"
@@ -8195,6 +8469,7 @@
         "url": "https://www.wikidata.org/wiki/Q7838011"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "atlassian.com",
     "trancoRank": 568,
     "confirmedAt": "2026-11-19"
@@ -8207,6 +8482,7 @@
     "primaryDomain": "sohu.com",
     "officialDomains": ["sohu.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "sohu.com",
     "trancoRank": 569,
     "confirmedAt": "2026-11-19"
@@ -8219,6 +8495,7 @@
     "primaryDomain": "media.net",
     "officialDomains": ["media.net"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "media.net",
     "trancoRank": 571,
     "confirmedAt": "2026-11-19"
@@ -8231,6 +8508,7 @@
     "primaryDomain": "slideshare.net",
     "officialDomains": ["slideshare.net"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "slideshare.net",
     "trancoRank": 573,
     "confirmedAt": "2026-11-19"
@@ -8243,6 +8521,7 @@
     "primaryDomain": "wired.com",
     "officialDomains": ["wired.co.uk", "wired.com", "wired.it", "wired.jp"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "wired.com",
     "trancoRank": 574,
     "confirmedAt": "2026-11-19"
@@ -8262,6 +8541,7 @@
         "url": "https://www.wikidata.org/wiki/Q849784"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "ca.gov",
     "trancoRank": 576,
     "confirmedAt": "2026-11-19"
@@ -8274,6 +8554,7 @@
     "primaryDomain": "deviantart.com",
     "officialDomains": ["deviantart.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "deviantart.com",
     "trancoRank": 581,
     "confirmedAt": "2026-11-19"
@@ -8286,6 +8567,7 @@
     "primaryDomain": "time.com",
     "officialDomains": ["time.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "time.com",
     "trancoRank": 584,
     "confirmedAt": "2026-11-19"
@@ -8335,6 +8617,7 @@
         "url": "https://www.wikidata.org/wiki/Q1066823"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "noaa.gov",
     "trancoRank": 587,
     "confirmedAt": "2026-11-19"
@@ -8347,6 +8630,7 @@
     "primaryDomain": "dreamhost.com",
     "officialDomains": ["dreamhost.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "dreamhost.com",
     "trancoRank": 589,
     "confirmedAt": "2026-11-19"
@@ -8359,6 +8643,7 @@
     "primaryDomain": "squarespace.com",
     "officialDomains": ["squarespace.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "squarespace.com",
     "trancoRank": 590,
     "confirmedAt": "2026-11-19"
@@ -8450,6 +8735,7 @@
         "url": "https://www.wikidata.org/wiki/Q844271"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "rakuten.co.jp",
     "trancoRank": 591,
     "confirmedAt": "2026-11-19"
@@ -8475,6 +8761,7 @@
         "url": "https://www.wikidata.org/wiki/Q291312"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "mediatek.com",
     "trancoRank": 592,
     "confirmedAt": "2026-11-19"
@@ -8500,6 +8787,7 @@
         "url": "https://www.wikidata.org/wiki/Q46523"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "wix.com",
     "trancoRank": 595,
     "confirmedAt": "2026-11-19"
@@ -8552,6 +8840,7 @@
         "url": "https://www.wikidata.org/wiki/Q99694110"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "tripadvisor.com",
     "trancoRank": 597,
     "confirmedAt": "2026-11-19"
@@ -8613,6 +8902,7 @@
         "url": "https://www.wikidata.org/wiki/Q5970484"
       }
     ],
+    "brandTlds": ["ieee"],
     "wikidataDomain": "ieee.org",
     "trancoRank": 598,
     "confirmedAt": "2026-11-19"
@@ -8638,6 +8928,7 @@
         "url": "https://www.wikidata.org/wiki/Q18281268"
       }
     ],
+    "brandTlds": ["uol"],
     "wikidataDomain": "uol.com.br",
     "trancoRank": 602,
     "confirmedAt": "2026-11-19"
@@ -8650,6 +8941,7 @@
     "primaryDomain": "digitalocean.com",
     "officialDomains": ["digitalocean.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "digitalocean.com",
     "trancoRank": 603,
     "confirmedAt": "2026-11-19"
@@ -8675,6 +8967,7 @@
         "url": "https://www.wikidata.org/wiki/Q30106164"
       }
     ],
+    "brandTlds": ["target"],
     "wikidataDomain": "target.com",
     "trancoRank": 606,
     "confirmedAt": "2026-11-19"
@@ -8706,6 +8999,7 @@
         "url": "https://www.wikidata.org/wiki/Q92645976"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "mdpi.com",
     "trancoRank": 607,
     "confirmedAt": "2026-11-19"
@@ -8718,6 +9012,7 @@
     "primaryDomain": "jquery.com",
     "officialDomains": ["jquery.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "jquery.com",
     "trancoRank": 612,
     "confirmedAt": "2026-11-19"
@@ -8730,6 +9025,7 @@
     "primaryDomain": "hotjar.com",
     "officialDomains": ["hotjar.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "hotjar.com",
     "trancoRank": 613,
     "confirmedAt": "2026-11-19"
@@ -8923,6 +9219,7 @@
         "url": "https://www.wikidata.org/wiki/Q4537973"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "sberbank.ru",
     "trancoRank": 615,
     "confirmedAt": "2026-11-19"
@@ -8935,6 +9232,7 @@
     "primaryDomain": "techcrunch.com",
     "officialDomains": ["techcrunch.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "techcrunch.com",
     "trancoRank": 617,
     "confirmedAt": "2026-11-19"
@@ -8960,6 +9258,7 @@
         "url": "https://www.wikidata.org/wiki/Q6778890"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "sagepub.com",
     "trancoRank": 620,
     "confirmedAt": "2026-11-19"
@@ -8972,6 +9271,7 @@
     "primaryDomain": "optimizely.com",
     "officialDomains": ["optimizely.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "optimizely.com",
     "trancoRank": 621,
     "confirmedAt": "2026-11-19"
@@ -8984,6 +9284,7 @@
     "primaryDomain": "onetrust.com",
     "officialDomains": ["onetrust.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "onetrust.com",
     "trancoRank": 623,
     "confirmedAt": "2026-11-19"
@@ -8996,6 +9297,7 @@
     "primaryDomain": "ring.com",
     "officialDomains": ["ring.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "ring.com",
     "trancoRank": 630,
     "confirmedAt": "2026-11-19"
@@ -9008,6 +9310,7 @@
     "primaryDomain": "telegraph.co.uk",
     "officialDomains": ["telegraph.co.uk"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "telegraph.co.uk",
     "trancoRank": 631,
     "confirmedAt": "2026-11-19"
@@ -9027,6 +9330,7 @@
         "url": "https://www.wikidata.org/wiki/Q27982214"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "usatoday.com",
     "trancoRank": 632,
     "confirmedAt": "2026-11-19"
@@ -9039,6 +9343,7 @@
     "primaryDomain": "amazon.fr",
     "officialDomains": ["amazon.fr"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "amazon.fr",
     "trancoRank": 633,
     "confirmedAt": "2026-11-19"
@@ -9051,6 +9356,7 @@
     "primaryDomain": "ikea.com",
     "officialDomains": ["ikea.ca", "ikea.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "ikea.com",
     "trancoRank": 634,
     "confirmedAt": "2026-11-19"
@@ -9063,6 +9369,7 @@
     "primaryDomain": "accuweather.com",
     "officialDomains": ["accuweather.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "accuweather.com",
     "trancoRank": 636,
     "confirmedAt": "2026-11-19"
@@ -9075,6 +9382,7 @@
     "primaryDomain": "iso.org",
     "officialDomains": ["iso.ch", "iso.org"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "iso.org",
     "trancoRank": 637,
     "confirmedAt": "2026-11-19"
@@ -9087,6 +9395,7 @@
     "primaryDomain": "avito.ru",
     "officialDomains": ["avito.ru"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "avito.ru",
     "trancoRank": 639,
     "confirmedAt": "2026-11-19"
@@ -9099,6 +9408,7 @@
     "primaryDomain": "merriam-webster.com",
     "officialDomains": ["merriam-webster.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "merriam-webster.com",
     "trancoRank": 640,
     "confirmedAt": "2026-11-19"
@@ -9111,6 +9421,7 @@
     "primaryDomain": "box.com",
     "officialDomains": ["box.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "box.com",
     "trancoRank": 641,
     "confirmedAt": "2026-11-19"
@@ -9130,6 +9441,7 @@
         "url": "https://www.wikidata.org/wiki/Q47263042"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "berkeley.edu",
     "trancoRank": 643,
     "confirmedAt": "2026-11-19"
@@ -9161,6 +9473,7 @@
         "url": "https://www.wikidata.org/wiki/Q475225"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "loc.gov",
     "trancoRank": 647,
     "confirmedAt": "2026-11-19"
@@ -9173,6 +9486,7 @@
     "primaryDomain": "amazon.ca",
     "officialDomains": ["amazon.ca"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "amazon.ca",
     "trancoRank": 648,
     "confirmedAt": "2026-11-19"
@@ -9234,6 +9548,7 @@
         "url": "https://www.wikidata.org/wiki/Q7865531"
       }
     ],
+    "brandTlds": ["ups"],
     "wikidataDomain": "ups.com",
     "trancoRank": 649,
     "confirmedAt": "2026-11-19"
@@ -9246,6 +9561,7 @@
     "primaryDomain": "verisign.com",
     "officialDomains": ["verisign.com"],
     "relatedDomains": [],
+    "brandTlds": ["verisign"],
     "wikidataDomain": "verisign.com",
     "trancoRank": 651,
     "confirmedAt": "2026-11-19"
@@ -9343,6 +9659,7 @@
         "url": "https://www.wikidata.org/wiki/Q28135300"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "meta.com",
     "trancoRank": 654,
     "confirmedAt": "2026-11-19"
@@ -9374,6 +9691,7 @@
         "url": "https://www.wikidata.org/wiki/Q111442059"
       }
     ],
+    "brandTlds": ["nike"],
     "wikidataDomain": "nike.com",
     "trancoRank": 659,
     "confirmedAt": "2026-11-19"
@@ -9783,6 +10101,7 @@
         "url": "https://www.wikidata.org/wiki/Q48898961"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "tencent.com",
     "trancoRank": 660,
     "confirmedAt": "2026-11-19"
@@ -9795,6 +10114,7 @@
     "primaryDomain": "free.fr",
     "officialDomains": ["free.fr"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "free.fr",
     "trancoRank": 665,
     "confirmedAt": "2026-11-19"
@@ -9807,6 +10127,7 @@
     "primaryDomain": "elpais.com",
     "officialDomains": ["elpais.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "elpais.com",
     "trancoRank": 666,
     "confirmedAt": "2026-11-19"
@@ -9819,6 +10140,7 @@
     "primaryDomain": "primevideo.com",
     "officialDomains": ["primevideo.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "primevideo.com",
     "trancoRank": 672,
     "confirmedAt": "2026-11-19"
@@ -9844,6 +10166,7 @@
         "url": "https://www.wikidata.org/wiki/Q12014467"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "redhat.com",
     "trancoRank": 674,
     "confirmedAt": "2026-11-19"
@@ -9856,6 +10179,7 @@
     "primaryDomain": "cambridge.org",
     "officialDomains": ["cambridge.org"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "cambridge.org",
     "trancoRank": 675,
     "confirmedAt": "2026-11-19"
@@ -9868,6 +10192,7 @@
     "primaryDomain": "britannica.com",
     "officialDomains": ["britannica.com", "eb.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "britannica.com",
     "trancoRank": 676,
     "confirmedAt": "2026-11-19"
@@ -9887,6 +10212,7 @@
         "url": "https://www.wikidata.org/wiki/Q16968003"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "surveymonkey.com",
     "trancoRank": 679,
     "confirmedAt": "2026-11-19"
@@ -9899,6 +10225,7 @@
     "primaryDomain": "mobile.de",
     "officialDomains": ["mobile.de"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "mobile.de",
     "trancoRank": 682,
     "confirmedAt": "2026-11-19"
@@ -9911,6 +10238,7 @@
     "primaryDomain": "xhamster.com",
     "officialDomains": ["xhamster.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "xhamster.com",
     "trancoRank": 683,
     "confirmedAt": "2026-11-19"
@@ -9923,6 +10251,7 @@
     "primaryDomain": "wildberries.ru",
     "officialDomains": ["wildberries.by", "wildberries.ge", "wildberries.ru"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "wildberries.ru",
     "trancoRank": 684,
     "confirmedAt": "2026-11-19"
@@ -9935,6 +10264,7 @@
     "primaryDomain": "rfc-editor.org",
     "officialDomains": ["rfc-editor.org"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "rfc-editor.org",
     "trancoRank": 685,
     "confirmedAt": "2026-11-19"
@@ -9960,6 +10290,7 @@
         "url": "https://www.wikidata.org/wiki/Q116769322"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "cbsnews.com",
     "trancoRank": 686,
     "confirmedAt": "2026-11-19"
@@ -9979,6 +10310,7 @@
         "url": "https://www.wikidata.org/wiki/Q5973040"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "fda.gov",
     "trancoRank": 688,
     "confirmedAt": "2026-11-19"
@@ -9991,6 +10323,7 @@
     "primaryDomain": "spiegel.de",
     "officialDomains": ["spiegel.de"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "spiegel.de",
     "trancoRank": 689,
     "confirmedAt": "2026-11-19"
@@ -10010,6 +10343,7 @@
         "url": "https://www.wikidata.org/wiki/Q21462723"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "uber.com",
     "trancoRank": 690,
     "confirmedAt": "2026-11-19"
@@ -10022,6 +10356,7 @@
     "primaryDomain": "kick.com",
     "officialDomains": ["kick.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "kick.com",
     "trancoRank": 691,
     "confirmedAt": "2026-11-19"
@@ -10034,6 +10369,7 @@
     "primaryDomain": "lemonde.fr",
     "officialDomains": ["lemonde.fr"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "lemonde.fr",
     "trancoRank": 693,
     "confirmedAt": "2026-11-19"
@@ -10046,6 +10382,7 @@
     "primaryDomain": "nintendo.com",
     "officialDomains": ["nintendo.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "nintendo.com",
     "trancoRank": 694,
     "confirmedAt": "2026-11-19"
@@ -10058,6 +10395,7 @@
     "primaryDomain": "bandcamp.com",
     "officialDomains": ["bandcamp.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "bandcamp.com",
     "trancoRank": 695,
     "confirmedAt": "2026-11-19"
@@ -10070,6 +10408,7 @@
     "primaryDomain": "stripchat.com",
     "officialDomains": ["stripchat.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "stripchat.com",
     "trancoRank": 697,
     "confirmedAt": "2026-11-19"
@@ -10082,6 +10421,7 @@
     "primaryDomain": "gosuslugi.ru",
     "officialDomains": ["gosuslugi.ru"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "gosuslugi.ru",
     "trancoRank": 698,
     "confirmedAt": "2026-11-19"
@@ -10094,6 +10434,7 @@
     "primaryDomain": "ivi.ru",
     "officialDomains": ["ivi.ru"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "ivi.ru",
     "trancoRank": 700,
     "confirmedAt": "2026-11-19"
@@ -10106,6 +10447,7 @@
     "primaryDomain": "fontawesome.com",
     "officialDomains": ["fontawesome.com", "fontawesome.io"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "fontawesome.com",
     "trancoRank": 703,
     "confirmedAt": "2026-11-19"
@@ -10118,6 +10460,7 @@
     "primaryDomain": "yelp.com",
     "officialDomains": ["yelp.co.uk", "yelp.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "yelp.com",
     "trancoRank": 704,
     "confirmedAt": "2026-11-19"
@@ -10130,6 +10473,7 @@
     "primaryDomain": "outbrain.com",
     "officialDomains": ["outbrain.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "outbrain.com",
     "trancoRank": 705,
     "confirmedAt": "2026-11-19"
@@ -10142,6 +10486,7 @@
     "primaryDomain": "bugsnag.com",
     "officialDomains": ["bugsnag.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "bugsnag.com",
     "trancoRank": 708,
     "confirmedAt": "2026-11-19"
@@ -10154,6 +10499,7 @@
     "primaryDomain": "itch.io",
     "officialDomains": ["itch.io"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "itch.io",
     "trancoRank": 711,
     "confirmedAt": "2026-11-19"
@@ -10166,6 +10512,7 @@
     "primaryDomain": "deepl.com",
     "officialDomains": ["deepl.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "deepl.com",
     "trancoRank": 717,
     "confirmedAt": "2026-11-19"
@@ -10178,6 +10525,7 @@
     "primaryDomain": "newrelic.com",
     "officialDomains": ["newrelic.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "newrelic.com",
     "trancoRank": 718,
     "confirmedAt": "2026-11-19"
@@ -10203,6 +10551,7 @@
         "url": "https://www.wikidata.org/wiki/Q136330662"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "binance.com",
     "trancoRank": 723,
     "confirmedAt": "2026-11-19"
@@ -10252,6 +10601,7 @@
         "url": "https://www.wikidata.org/wiki/Q4046573"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "asus.com",
     "trancoRank": 724,
     "confirmedAt": "2026-11-19"
@@ -10264,6 +10614,7 @@
     "primaryDomain": "anydesk.com",
     "officialDomains": ["anydesk.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "anydesk.com",
     "trancoRank": 730,
     "confirmedAt": "2026-11-19"
@@ -10276,6 +10627,7 @@
     "primaryDomain": "ya.ru",
     "officialDomains": ["ya.ru"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "ya.ru",
     "trancoRank": 731,
     "confirmedAt": "2026-11-19"
@@ -10288,6 +10640,7 @@
     "primaryDomain": "craigslist.org",
     "officialDomains": ["craigslist.org"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "craigslist.org",
     "trancoRank": 733,
     "confirmedAt": "2026-11-19"
@@ -10300,6 +10653,7 @@
     "primaryDomain": "dailymail.co.uk",
     "officialDomains": ["dailymail.co.uk"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "dailymail.co.uk",
     "trancoRank": 734,
     "confirmedAt": "2026-11-19"
@@ -10312,6 +10666,7 @@
     "primaryDomain": "mediafire.com",
     "officialDomains": ["mediafire.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "mediafire.com",
     "trancoRank": 739,
     "confirmedAt": "2026-11-19"
@@ -10324,6 +10679,7 @@
     "primaryDomain": "zoho.com",
     "officialDomains": ["zoho.com", "zohocorp.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "zoho.com",
     "trancoRank": 742,
     "confirmedAt": "2026-11-19"
@@ -10336,6 +10692,7 @@
     "primaryDomain": "linode.com",
     "officialDomains": ["linode.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "linode.com",
     "trancoRank": 743,
     "confirmedAt": "2026-11-19"
@@ -10348,6 +10705,7 @@
     "primaryDomain": "python.org",
     "officialDomains": ["python.org"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "python.org",
     "trancoRank": 744,
     "confirmedAt": "2026-11-19"
@@ -10403,6 +10761,7 @@
         "url": "https://www.wikidata.org/wiki/Q7805198"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "spectrum.com",
     "trancoRank": 745,
     "confirmedAt": "2026-11-19"
@@ -10415,6 +10774,7 @@
     "primaryDomain": "wattpad.com",
     "officialDomains": ["wattpad.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "wattpad.com",
     "trancoRank": 746,
     "confirmedAt": "2026-11-19"
@@ -10434,6 +10794,7 @@
         "url": "https://www.wikidata.org/wiki/Q4038428"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "independent.co.uk",
     "trancoRank": 747,
     "confirmedAt": "2026-11-19"
@@ -10456,6 +10817,7 @@
       "shopee.tw"
     ],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "shopee.co.id",
     "trancoRank": 750,
     "confirmedAt": "2026-11-19"
@@ -10468,6 +10830,7 @@
     "primaryDomain": "360.cn",
     "officialDomains": ["360.cn", "360.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "360.cn",
     "trancoRank": 754,
     "confirmedAt": "2026-11-19"
@@ -10485,6 +10848,7 @@
       "homedepot.com.mx"
     ],
     "relatedDomains": [],
+    "brandTlds": ["homedepot"],
     "wikidataDomain": "homedepot.com",
     "trancoRank": 755,
     "confirmedAt": "2026-11-19"
@@ -10497,6 +10861,7 @@
     "primaryDomain": "auth0.com",
     "officialDomains": ["auth0.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "auth0.com",
     "trancoRank": 757,
     "confirmedAt": "2026-11-19"
@@ -10509,6 +10874,7 @@
     "primaryDomain": "life360.com",
     "officialDomains": ["life360.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "life360.com",
     "trancoRank": 761,
     "confirmedAt": "2026-11-19"
@@ -10521,6 +10887,7 @@
     "primaryDomain": "cnet.com",
     "officialDomains": ["cnet.com", "cnetfrance.fr"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "cnet.com",
     "trancoRank": 762,
     "confirmedAt": "2026-11-19"
@@ -10533,6 +10900,7 @@
     "primaryDomain": "apnews.com",
     "officialDomains": ["apnews.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "apnews.com",
     "trancoRank": 765,
     "confirmedAt": "2026-11-19"
@@ -10545,6 +10913,7 @@
     "primaryDomain": "bild.de",
     "officialDomains": ["bild.de"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "bild.de",
     "trancoRank": 766,
     "confirmedAt": "2026-11-19"
@@ -10584,6 +10953,7 @@
         "url": "https://www.wikidata.org/wiki/Q13512397"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "airbnb.com",
     "trancoRank": 767,
     "confirmedAt": "2026-11-19"
@@ -10596,6 +10966,7 @@
     "primaryDomain": "deepseek.com",
     "officialDomains": ["deepseek.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "deepseek.com",
     "trancoRank": 770,
     "confirmedAt": "2026-11-19"
@@ -10651,6 +11022,7 @@
         "url": "https://www.wikidata.org/wiki/Q7958488"
       }
     ],
+    "brandTlds": ["marriott"],
     "wikidataDomain": "marriott.com",
     "trancoRank": 771,
     "confirmedAt": "2026-11-19"
@@ -10670,6 +11042,7 @@
         "url": "https://www.wikidata.org/wiki/Q1324709"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "nikkei.com",
     "trancoRank": 772,
     "confirmedAt": "2026-11-19"
@@ -10701,6 +11074,7 @@
         "url": "https://www.wikidata.org/wiki/Q23672376"
       }
     ],
+    "brandTlds": ["bestbuy"],
     "wikidataDomain": "bestbuy.com",
     "trancoRank": 773,
     "confirmedAt": "2026-11-19"
@@ -10713,6 +11087,7 @@
     "primaryDomain": "mailchimp.com",
     "officialDomains": ["mailchimp.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "mailchimp.com",
     "trancoRank": 776,
     "confirmedAt": "2026-11-19"
@@ -10725,6 +11100,7 @@
     "primaryDomain": "g.co",
     "officialDomains": ["g.co"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "g.co",
     "trancoRank": 780,
     "confirmedAt": "2026-11-19"
@@ -10737,6 +11113,7 @@
     "primaryDomain": "viber.com",
     "officialDomains": ["viber.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "viber.com",
     "trancoRank": 781,
     "confirmedAt": "2026-11-19"
@@ -10749,6 +11126,7 @@
     "primaryDomain": "cloudinary.com",
     "officialDomains": ["cloudinary.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "cloudinary.com",
     "trancoRank": 785,
     "confirmedAt": "2026-11-19"
@@ -10774,6 +11152,7 @@
         "url": "https://www.wikidata.org/wiki/Q7847653"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "zillow.com",
     "trancoRank": 789,
     "confirmedAt": "2026-11-19"
@@ -10786,6 +11165,7 @@
     "primaryDomain": "welt.de",
     "officialDomains": ["welt.de"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "welt.de",
     "trancoRank": 790,
     "confirmedAt": "2026-11-19"
@@ -10805,6 +11185,7 @@
         "url": "https://www.wikidata.org/wiki/Q20426955"
       }
     ],
+    "brandTlds": ["mckinsey"],
     "wikidataDomain": "mckinsey.com",
     "trancoRank": 794,
     "confirmedAt": "2026-11-19"
@@ -10817,6 +11198,7 @@
     "primaryDomain": "wp.pl",
     "officialDomains": ["wp.pl"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "wp.pl",
     "trancoRank": 796,
     "confirmedAt": "2026-11-19"
@@ -10848,6 +11230,7 @@
         "url": "https://www.wikidata.org/wiki/Q4053619"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "lenovo.com",
     "trancoRank": 797,
     "confirmedAt": "2026-11-19"
@@ -10860,6 +11243,7 @@
     "primaryDomain": "flurry.com",
     "officialDomains": ["flurry.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "flurry.com",
     "trancoRank": 800,
     "confirmedAt": "2026-11-19"
@@ -10872,6 +11256,7 @@
     "primaryDomain": "prnewswire.com",
     "officialDomains": ["prnewswire.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "prnewswire.com",
     "trancoRank": 802,
     "confirmedAt": "2026-11-19"
@@ -10884,6 +11269,7 @@
     "primaryDomain": "imgur.com",
     "officialDomains": ["imgur.com", "imgurinc.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "imgur.com",
     "trancoRank": 803,
     "confirmedAt": "2026-11-19"
@@ -10896,6 +11282,7 @@
     "primaryDomain": "33across.com",
     "officialDomains": ["33across.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "33across.com",
     "trancoRank": 812,
     "confirmedAt": "2026-11-19"
@@ -10908,6 +11295,7 @@
     "primaryDomain": "rakuten.com",
     "officialDomains": ["rakuten.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "rakuten.com",
     "trancoRank": 813,
     "confirmedAt": "2026-11-19"
@@ -10920,6 +11308,7 @@
     "primaryDomain": "livejournal.com",
     "officialDomains": ["livejournal.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "livejournal.com",
     "trancoRank": 814,
     "confirmedAt": "2026-11-19"
@@ -10932,6 +11321,7 @@
     "primaryDomain": "ameblo.jp",
     "officialDomains": ["ameba.jp", "ameblo.jp"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "ameblo.jp",
     "trancoRank": 816,
     "confirmedAt": "2026-11-19"
@@ -10944,6 +11334,7 @@
     "primaryDomain": "erome.com",
     "officialDomains": ["erome.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "erome.com",
     "trancoRank": 818,
     "confirmedAt": "2026-11-19"
@@ -10956,6 +11347,7 @@
     "primaryDomain": "instructure.com",
     "officialDomains": ["instructure.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "instructure.com",
     "trancoRank": 819,
     "confirmedAt": "2026-11-19"
@@ -10968,6 +11360,7 @@
     "primaryDomain": "disneyplus.com",
     "officialDomains": ["disneyplus.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "disneyplus.com",
     "trancoRank": 825,
     "confirmedAt": "2026-11-19"
@@ -10980,6 +11373,7 @@
     "primaryDomain": "people.com",
     "officialDomains": ["people.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "people.com",
     "trancoRank": 827,
     "confirmedAt": "2026-11-19"
@@ -10992,6 +11386,7 @@
     "primaryDomain": "mixpanel.com",
     "officialDomains": ["mixpanel.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "mixpanel.com",
     "trancoRank": 828,
     "confirmedAt": "2026-11-19"
@@ -11004,6 +11399,7 @@
     "primaryDomain": "fiverr.com",
     "officialDomains": ["fiverr.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "fiverr.com",
     "trancoRank": 830,
     "confirmedAt": "2026-11-19"
@@ -11016,6 +11412,7 @@
     "primaryDomain": "unruly.co",
     "officialDomains": ["unruly.co"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "unruly.co",
     "trancoRank": 835,
     "confirmedAt": "2026-11-19"
@@ -11028,6 +11425,7 @@
     "primaryDomain": "kleinanzeigen.de",
     "officialDomains": ["ebay-kleinanzeigen.de", "kleinanzeigen.de"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "kleinanzeigen.de",
     "trancoRank": 836,
     "confirmedAt": "2026-11-19"
@@ -11040,6 +11438,7 @@
     "primaryDomain": "ted.com",
     "officialDomains": ["ted.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "ted.com",
     "trancoRank": 838,
     "confirmedAt": "2026-11-19"
@@ -11052,6 +11451,7 @@
     "primaryDomain": "focus.de",
     "officialDomains": ["focus.de"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "focus.de",
     "trancoRank": 839,
     "confirmedAt": "2026-11-19"
@@ -11077,6 +11477,7 @@
         "url": "https://www.wikidata.org/wiki/Q7891188"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "usps.com",
     "trancoRank": 840,
     "confirmedAt": "2026-11-19"
@@ -11089,6 +11490,7 @@
     "primaryDomain": "chess.com",
     "officialDomains": ["chess.com", "schoolschoolschool.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "chess.com",
     "trancoRank": 842,
     "confirmedAt": "2026-11-19"
@@ -11101,6 +11503,7 @@
     "primaryDomain": "www.gov.br",
     "officialDomains": ["www.gov.br"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "www.gov.br",
     "trancoRank": 844,
     "confirmedAt": "2026-11-19"
@@ -11113,6 +11516,7 @@
     "primaryDomain": "theverge.com",
     "officialDomains": ["theverge.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "theverge.com",
     "trancoRank": 847,
     "confirmedAt": "2026-11-19"
@@ -11125,6 +11529,7 @@
     "primaryDomain": "allegro.pl",
     "officialDomains": ["allegro.cz", "allegro.hu", "allegro.pl", "allegro.sk"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "allegro.pl",
     "trancoRank": 849,
     "confirmedAt": "2026-11-19"
@@ -11144,6 +11549,7 @@
         "url": "https://www.wikidata.org/wiki/Q54913070"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "seznam.cz",
     "trancoRank": 850,
     "confirmedAt": "2026-11-19"
@@ -11156,6 +11562,7 @@
     "primaryDomain": "frontiersin.org",
     "officialDomains": ["frontiersin.org"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "frontiersin.org",
     "trancoRank": 851,
     "confirmedAt": "2026-11-19"
@@ -11168,6 +11575,7 @@
     "primaryDomain": "discogs.com",
     "officialDomains": ["discogs.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "discogs.com",
     "trancoRank": 855,
     "confirmedAt": "2026-11-19"
@@ -11180,6 +11588,7 @@
     "primaryDomain": "me.com",
     "officialDomains": ["me.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "me.com",
     "trancoRank": 856,
     "confirmedAt": "2026-11-19"
@@ -11199,6 +11608,7 @@
         "url": "https://www.wikidata.org/wiki/Q1574090"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "usda.gov",
     "trancoRank": 857,
     "confirmedAt": "2026-11-19"
@@ -11211,6 +11621,7 @@
     "primaryDomain": "deloitte.com",
     "officialDomains": ["deloitte.com"],
     "relatedDomains": [],
+    "brandTlds": ["deloitte"],
     "wikidataDomain": "deloitte.com",
     "trancoRank": 859,
     "confirmedAt": "2026-11-19"
@@ -11223,6 +11634,7 @@
     "primaryDomain": "academia.edu",
     "officialDomains": ["academia.edu"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "academia.edu",
     "trancoRank": 860,
     "confirmedAt": "2026-11-19"
@@ -11254,6 +11666,7 @@
         "url": "https://www.wikidata.org/wiki/Q30324297"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "flipkart.com",
     "trancoRank": 863,
     "confirmedAt": "2026-11-19"
@@ -11266,6 +11679,7 @@
     "primaryDomain": "myspace.com",
     "officialDomains": ["myspace.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "myspace.com",
     "trancoRank": 864,
     "confirmedAt": "2026-11-19"
@@ -11297,6 +11711,7 @@
         "url": "https://www.wikidata.org/wiki/Q112160972"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "nbcnews.com",
     "trancoRank": 869,
     "confirmedAt": "2026-11-19"
@@ -11309,6 +11724,7 @@
     "primaryDomain": "agoda.com",
     "officialDomains": ["agoda.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "agoda.com",
     "trancoRank": 871,
     "confirmedAt": "2026-11-19"
@@ -11321,6 +11737,7 @@
     "primaryDomain": "pexels.com",
     "officialDomains": ["pexels.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "pexels.com",
     "trancoRank": 875,
     "confirmedAt": "2026-11-19"
@@ -11333,6 +11750,7 @@
     "primaryDomain": "yieldmo.com",
     "officialDomains": ["yieldmo.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "yieldmo.com",
     "trancoRank": 876,
     "confirmedAt": "2026-11-19"
@@ -11345,6 +11763,7 @@
     "primaryDomain": "spamhaus.org",
     "officialDomains": ["spamhaus.org"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "spamhaus.org",
     "trancoRank": 877,
     "confirmedAt": "2026-11-19"
@@ -11357,6 +11776,7 @@
     "primaryDomain": "biblegateway.com",
     "officialDomains": ["biblegateway.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "biblegateway.com",
     "trancoRank": 878,
     "confirmedAt": "2026-11-19"
@@ -11387,6 +11807,7 @@
         "url": "https://www.wikidata.org/wiki/Q102405064"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "worldbank.org",
     "trancoRank": 883,
     "confirmedAt": "2026-11-19"
@@ -11399,6 +11820,7 @@
     "primaryDomain": "classlink.com",
     "officialDomains": ["classlink.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "classlink.com",
     "trancoRank": 884,
     "confirmedAt": "2026-11-19"
@@ -11448,6 +11870,7 @@
         "url": "https://www.wikidata.org/wiki/Q22907300"
       }
     ],
+    "brandTlds": ["bofa"],
     "wikidataDomain": "bankofamerica.com",
     "trancoRank": 887,
     "confirmedAt": "2026-11-19"
@@ -11460,6 +11883,7 @@
     "primaryDomain": "poki.com",
     "officialDomains": ["poki.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "poki.com",
     "trancoRank": 889,
     "confirmedAt": "2026-11-19"
@@ -11479,6 +11903,7 @@
         "url": "https://www.wikidata.org/wiki/Q28409115"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "zoom.com",
     "trancoRank": 890,
     "confirmedAt": "2026-11-19"
@@ -11648,6 +12073,7 @@
         "url": "https://www.wikidata.org/wiki/Q542322"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "otto.de",
     "trancoRank": 893,
     "confirmedAt": "2026-11-19"
@@ -11660,6 +12086,7 @@
     "primaryDomain": "epa.gov",
     "officialDomains": ["epa.gov"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "epa.gov",
     "trancoRank": 894,
     "confirmedAt": "2026-11-19"
@@ -11672,6 +12099,7 @@
     "primaryDomain": "figma.com",
     "officialDomains": ["figma.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "figma.com",
     "trancoRank": 896,
     "confirmedAt": "2026-11-19"
@@ -11684,6 +12112,7 @@
     "primaryDomain": "tailscale.com",
     "officialDomains": ["tailscale.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "tailscale.com",
     "trancoRank": 898,
     "confirmedAt": "2026-11-19"
@@ -11696,6 +12125,7 @@
     "primaryDomain": "appcenter.ms",
     "officialDomains": ["appcenter.ms"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "appcenter.ms",
     "trancoRank": 900,
     "confirmedAt": "2026-11-19"
@@ -11757,6 +12187,7 @@
         "url": "https://www.wikidata.org/wiki/Q626409"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "lg.com",
     "trancoRank": 906,
     "confirmedAt": "2026-11-19"
@@ -11769,6 +12200,7 @@
     "primaryDomain": "hbr.org",
     "officialDomains": ["hbr.org", "hbrarabic.com", "hbrchina.org"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "hbr.org",
     "trancoRank": 908,
     "confirmedAt": "2026-11-19"
@@ -11781,6 +12213,7 @@
     "primaryDomain": "princeton.edu",
     "officialDomains": ["princeton.edu"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "princeton.edu",
     "trancoRank": 909,
     "confirmedAt": "2026-11-19"
@@ -11793,6 +12226,7 @@
     "primaryDomain": "perplexity.ai",
     "officialDomains": ["perplexity.ai"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "perplexity.ai",
     "trancoRank": 912,
     "confirmedAt": "2026-11-19"
@@ -11805,6 +12239,7 @@
     "primaryDomain": "qualtrics.com",
     "officialDomains": ["qualtrics.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "qualtrics.com",
     "trancoRank": 913,
     "confirmedAt": "2026-11-19"
@@ -11817,6 +12252,7 @@
     "primaryDomain": "paramountplus.com",
     "officialDomains": ["paramountplus.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "paramountplus.com",
     "trancoRank": 914,
     "confirmedAt": "2026-11-19"
@@ -11829,6 +12265,7 @@
     "primaryDomain": "latimes.com",
     "officialDomains": ["latimes.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "latimes.com",
     "trancoRank": 915,
     "confirmedAt": "2026-11-19"
@@ -11841,6 +12278,7 @@
     "primaryDomain": "seedtag.com",
     "officialDomains": ["seedtag.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "seedtag.com",
     "trancoRank": 917,
     "confirmedAt": "2026-11-19"
@@ -11853,6 +12291,7 @@
     "primaryDomain": "disqus.com",
     "officialDomains": ["disqus.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "disqus.com",
     "trancoRank": 918,
     "confirmedAt": "2026-11-19"
@@ -11865,6 +12304,7 @@
     "primaryDomain": "networkadvertising.org",
     "officialDomains": ["networkadvertising.org"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "networkadvertising.org",
     "trancoRank": 919,
     "confirmedAt": "2026-11-19"
@@ -11884,6 +12324,7 @@
         "url": "https://www.wikidata.org/wiki/Q111496405"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "nexusmods.com",
     "trancoRank": 921,
     "confirmedAt": "2026-11-19"
@@ -11903,6 +12344,7 @@
         "url": "https://www.wikidata.org/wiki/Q18712957"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "coupang.com",
     "trancoRank": 926,
     "confirmedAt": "2026-11-19"
@@ -11915,6 +12357,7 @@
     "primaryDomain": "pikabu.ru",
     "officialDomains": ["pikabu.ru"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "pikabu.ru",
     "trancoRank": 927,
     "confirmedAt": "2026-11-19"
@@ -11927,6 +12370,7 @@
     "primaryDomain": "note.com",
     "officialDomains": ["note.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "note.com",
     "trancoRank": 928,
     "confirmedAt": "2026-11-19"
@@ -11939,6 +12383,7 @@
     "primaryDomain": "patreon.com",
     "officialDomains": ["patreon.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "patreon.com",
     "trancoRank": 929,
     "confirmedAt": "2026-11-19"
@@ -11951,6 +12396,7 @@
     "primaryDomain": "repubblica.it",
     "officialDomains": ["repubblica.it"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "repubblica.it",
     "trancoRank": 933,
     "confirmedAt": "2026-11-19"
@@ -11970,6 +12416,7 @@
         "url": "https://www.wikidata.org/wiki/Q7079372"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "state.gov",
     "trancoRank": 935,
     "confirmedAt": "2026-11-19"
@@ -11982,6 +12429,7 @@
     "primaryDomain": "mayoclinic.org",
     "officialDomains": ["mayoclinic.org"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "mayoclinic.org",
     "trancoRank": 936,
     "confirmedAt": "2026-11-19"
@@ -12337,6 +12785,7 @@
         "url": "https://www.wikidata.org/wiki/Q475602"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "bund.de",
     "trancoRank": 938,
     "confirmedAt": "2026-11-19"
@@ -12356,6 +12805,7 @@
         "url": "https://www.wikidata.org/wiki/Q3245159"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "pbs.org",
     "trancoRank": 939,
     "confirmedAt": "2026-11-19"
@@ -12368,6 +12818,7 @@
     "primaryDomain": "character.ai",
     "officialDomains": ["character.ai"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "character.ai",
     "trancoRank": 940,
     "confirmedAt": "2026-11-19"
@@ -12380,6 +12831,7 @@
     "primaryDomain": "jetbrains.com",
     "officialDomains": ["jetbrains.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "jetbrains.com",
     "trancoRank": 941,
     "confirmedAt": "2026-11-19"
@@ -12392,6 +12844,7 @@
     "primaryDomain": "corriere.it",
     "officialDomains": ["corriere.it"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "corriere.it",
     "trancoRank": 942,
     "confirmedAt": "2026-11-19"
@@ -12404,6 +12857,7 @@
     "primaryDomain": "genius.com",
     "officialDomains": ["genius.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "genius.com",
     "trancoRank": 943,
     "confirmedAt": "2026-11-19"
@@ -12416,6 +12870,7 @@
     "primaryDomain": "youku.com",
     "officialDomains": ["youku.com", "youku.tv"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "youku.com",
     "trancoRank": 945,
     "confirmedAt": "2026-11-19"
@@ -12443,6 +12898,7 @@
       "huffpostmaghreb.com"
     ],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "huffpost.com",
     "trancoRank": 947,
     "confirmedAt": "2026-11-19"
@@ -12474,6 +12930,7 @@
         "url": "https://www.wikidata.org/wiki/Q9392135"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "onet.pl",
     "trancoRank": 950,
     "confirmedAt": "2026-11-19"
@@ -12505,6 +12962,7 @@
         "url": "https://www.wikidata.org/wiki/Q1377104"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "telefonica.de",
     "trancoRank": 953,
     "confirmedAt": "2026-11-19"
@@ -12517,6 +12975,7 @@
     "primaryDomain": "curseforge.com",
     "officialDomains": ["curseforge.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "curseforge.com",
     "trancoRank": 956,
     "confirmedAt": "2026-11-19"
@@ -12536,6 +12995,7 @@
         "url": "https://www.wikidata.org/wiki/Q16961710"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "twilio.com",
     "trancoRank": 959,
     "confirmedAt": "2026-11-19"
@@ -12548,6 +13008,7 @@
     "primaryDomain": "odoo.com",
     "officialDomains": ["odoo.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "odoo.com",
     "trancoRank": 960,
     "confirmedAt": "2026-11-19"
@@ -12567,6 +13028,7 @@
         "url": "https://www.wikidata.org/wiki/Q3456209"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "lowes.com",
     "trancoRank": 961,
     "confirmedAt": "2026-11-19"
@@ -12579,6 +13041,7 @@
     "primaryDomain": "change.org",
     "officialDomains": ["change.org"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "change.org",
     "trancoRank": 963,
     "confirmedAt": "2026-11-19"
@@ -12634,6 +13097,7 @@
         "url": "https://www.wikidata.org/wiki/Q124513787"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "ancestry.com",
     "trancoRank": 964,
     "confirmedAt": "2026-11-19"
@@ -12653,6 +13117,7 @@
         "url": "https://www.wikidata.org/wiki/Q7800678"
       }
     ],
+    "brandTlds": ["mlb"],
     "wikidataDomain": "mlb.com",
     "trancoRank": 966,
     "confirmedAt": "2026-11-19"
@@ -12672,6 +13137,7 @@
         "url": "https://www.wikidata.org/wiki/Q3135697"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "hilton.com",
     "trancoRank": 967,
     "confirmedAt": "2026-11-19"
@@ -12721,6 +13187,7 @@
         "url": "https://www.wikidata.org/wiki/Q98277868"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "washington.edu",
     "trancoRank": 970,
     "confirmedAt": "2026-11-19"
@@ -12740,6 +13207,7 @@
         "url": "https://www.wikidata.org/wiki/Q10272036"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "caixa.gov.br",
     "trancoRank": 973,
     "confirmedAt": "2026-11-19"
@@ -12752,6 +13220,7 @@
     "primaryDomain": "xnxx.com",
     "officialDomains": ["xnxx.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "xnxx.com",
     "trancoRank": 976,
     "confirmedAt": "2026-11-19"
@@ -12764,6 +13233,7 @@
     "primaryDomain": "sofascore.com",
     "officialDomains": ["sofascore.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "sofascore.com",
     "trancoRank": 982,
     "confirmedAt": "2026-11-19"
@@ -12783,6 +13253,7 @@
         "url": "https://www.wikidata.org/wiki/Q67936681"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "jd.com",
     "trancoRank": 983,
     "confirmedAt": "2026-11-19"
@@ -12795,6 +13266,7 @@
     "primaryDomain": "playrix.com",
     "officialDomains": ["playrix.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "playrix.com",
     "trancoRank": 985,
     "confirmedAt": "2026-11-19"
@@ -12807,6 +13279,7 @@
     "primaryDomain": "rustore.ru",
     "officialDomains": ["rustore.ru"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "rustore.ru",
     "trancoRank": 986,
     "confirmedAt": "2026-11-19"
@@ -12819,6 +13292,7 @@
     "primaryDomain": "themoviedb.org",
     "officialDomains": ["themoviedb.org"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "themoviedb.org",
     "trancoRank": 989,
     "confirmedAt": "2026-11-19"
@@ -12831,6 +13305,7 @@
     "primaryDomain": "flightradar24.com",
     "officialDomains": ["flightradar24.com", "fr24.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "flightradar24.com",
     "trancoRank": 990,
     "confirmedAt": "2026-11-19"
@@ -12843,6 +13318,7 @@
     "primaryDomain": "n-tv.de",
     "officialDomains": ["n-tv.de"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "n-tv.de",
     "trancoRank": 994,
     "confirmedAt": "2026-11-19"
@@ -12855,6 +13331,7 @@
     "primaryDomain": "ecosia.org",
     "officialDomains": ["ecosia.org"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "ecosia.org",
     "trancoRank": 998,
     "confirmedAt": "2026-11-19"
@@ -12922,6 +13399,7 @@
         "url": "https://www.wikidata.org/wiki/Q7921364"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "docomo.ne.jp",
     "trancoRank": 1000,
     "confirmedAt": "2026-11-19"
@@ -12949,6 +13427,7 @@
       "costco.se"
     ],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "costco.com",
     "trancoRank": 1002,
     "confirmedAt": "2026-11-19"
@@ -12986,6 +13465,7 @@
         "url": "https://www.wikidata.org/wiki/Q369760"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "oecd.org",
     "trancoRank": 1003,
     "confirmedAt": "2026-11-19"
@@ -12998,6 +13478,7 @@
     "primaryDomain": "kwai.com",
     "officialDomains": ["kuaishou.com", "kwai.com", "snackvideo.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "kwai.com",
     "trancoRank": 1011,
     "confirmedAt": "2026-11-19"
@@ -13010,6 +13491,7 @@
     "primaryDomain": "quizlet.com",
     "officialDomains": ["quizlet.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "quizlet.com",
     "trancoRank": 1012,
     "confirmedAt": "2026-11-19"
@@ -13022,6 +13504,7 @@
     "primaryDomain": "consultant.ru",
     "officialDomains": ["consultant.ru"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "consultant.ru",
     "trancoRank": 1013,
     "confirmedAt": "2026-11-19"
@@ -13034,6 +13517,7 @@
     "primaryDomain": "pixiv.net",
     "officialDomains": ["pixiv.net"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "pixiv.net",
     "trancoRank": 1014,
     "confirmedAt": "2026-11-19"
@@ -13046,6 +13530,7 @@
     "primaryDomain": "xing.com",
     "officialDomains": ["xing.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "xing.com",
     "trancoRank": 1015,
     "confirmedAt": "2026-11-19"
@@ -13113,6 +13598,7 @@
         "url": "https://www.wikidata.org/wiki/Q7895758"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "umich.edu",
     "trancoRank": 1016,
     "confirmedAt": "2026-11-19"
@@ -13160,6 +13646,7 @@
       "rezultati.com"
     ],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "flashscore.com",
     "trancoRank": 1017,
     "confirmedAt": "2026-11-19"
@@ -13172,6 +13659,7 @@
     "primaryDomain": "huggingface.co",
     "officialDomains": ["huggingface.co"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "huggingface.co",
     "trancoRank": 1018,
     "confirmedAt": "2026-11-19"
@@ -13203,6 +13691,7 @@
         "url": "https://www.wikidata.org/wiki/Q301965"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "t-mobile.com",
     "trancoRank": 1020,
     "confirmedAt": "2026-11-19"
@@ -13215,6 +13704,7 @@
     "primaryDomain": "nationalgeographic.com",
     "officialDomains": ["nationalgeographic.com", "nationalgeographic.it"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "nationalgeographic.com",
     "trancoRank": 1021,
     "confirmedAt": "2026-11-19"
@@ -13234,6 +13724,7 @@
         "url": "https://www.wikidata.org/wiki/Q17086387"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "pandora.com",
     "trancoRank": 1022,
     "confirmedAt": "2026-11-19"
@@ -13246,6 +13737,7 @@
     "primaryDomain": "bol.com",
     "officialDomains": ["bol.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "bol.com",
     "trancoRank": 1023,
     "confirmedAt": "2026-11-19"
@@ -13258,6 +13750,7 @@
     "primaryDomain": "xiaohongshu.com",
     "officialDomains": ["xiaohongshu.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "xiaohongshu.com",
     "trancoRank": 1024,
     "confirmedAt": "2026-11-19"
@@ -13270,6 +13763,7 @@
     "primaryDomain": "infobae.com",
     "officialDomains": ["infobae.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "infobae.com",
     "trancoRank": 1025,
     "confirmedAt": "2026-11-19"
@@ -13295,6 +13789,7 @@
         "url": "https://www.wikidata.org/wiki/Q5437756"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "columbia.edu",
     "trancoRank": 1026,
     "confirmedAt": "2026-11-19"
@@ -13307,6 +13802,7 @@
     "primaryDomain": "threema.ch",
     "officialDomains": ["threema.ch"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "threema.ch",
     "trancoRank": 1028,
     "confirmedAt": "2026-11-19"
@@ -13326,6 +13822,7 @@
         "url": "https://www.wikidata.org/wiki/Q141757564"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "trendyol.com",
     "trancoRank": 1029,
     "confirmedAt": "2026-11-19"
@@ -13338,6 +13835,7 @@
     "primaryDomain": "whitehouse.gov",
     "officialDomains": ["whitehouse.gov"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "whitehouse.gov",
     "trancoRank": 1031,
     "confirmedAt": "2026-11-19"
@@ -13369,6 +13867,7 @@
         "url": "https://www.wikidata.org/wiki/Q3402479"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "ouest-france.fr",
     "trancoRank": 1033,
     "confirmedAt": "2026-11-19"
@@ -13381,6 +13880,7 @@
     "primaryDomain": "nextcloud.com",
     "officialDomains": ["nextcloud.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "nextcloud.com",
     "trancoRank": 1034,
     "confirmedAt": "2026-11-19"
@@ -13393,6 +13893,7 @@
     "primaryDomain": "att.net",
     "officialDomains": ["att.net"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "att.net",
     "trancoRank": 1036,
     "confirmedAt": "2026-11-19"
@@ -13418,6 +13919,7 @@
         "url": "https://www.wikidata.org/wiki/Q99309150"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "ox.ac.uk",
     "trancoRank": 1040,
     "confirmedAt": "2026-11-19"
@@ -13430,6 +13932,7 @@
     "primaryDomain": "intercom.com",
     "officialDomains": ["intercom.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "intercom.com",
     "trancoRank": 1042,
     "confirmedAt": "2026-11-19"
@@ -13442,6 +13945,7 @@
     "primaryDomain": "wise.com",
     "officialDomains": ["wise.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "wise.com",
     "trancoRank": 1043,
     "confirmedAt": "2026-11-19"
@@ -13461,6 +13965,7 @@
         "url": "https://www.wikidata.org/wiki/Q106501516"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "garmin.com",
     "trancoRank": 1045,
     "confirmedAt": "2026-11-19"
@@ -13480,6 +13985,7 @@
         "url": "https://www.wikidata.org/wiki/Q141677118"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "wisc.edu",
     "trancoRank": 1046,
     "confirmedAt": "2026-11-19"
@@ -13499,6 +14005,7 @@
         "url": "https://www.wikidata.org/wiki/Q24817272"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "weforum.org",
     "trancoRank": 1047,
     "confirmedAt": "2026-11-19"
@@ -13511,6 +14018,7 @@
     "primaryDomain": "crazygames.com",
     "officialDomains": ["crazygames.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "crazygames.com",
     "trancoRank": 1049,
     "confirmedAt": "2026-11-19"
@@ -13523,6 +14031,7 @@
     "primaryDomain": "statcounter.com",
     "officialDomains": ["statcounter.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "statcounter.com",
     "trancoRank": 1051,
     "confirmedAt": "2026-11-19"
@@ -13535,6 +14044,7 @@
     "primaryDomain": "letterboxd.com",
     "officialDomains": ["letterboxd.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "letterboxd.com",
     "trancoRank": 1054,
     "confirmedAt": "2026-11-19"
@@ -13547,6 +14057,7 @@
     "primaryDomain": "netgear.com",
     "officialDomains": ["netgear.co.uk", "netgear.com", "netgear.de", "netgear.fr", "netgear.it"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "netgear.com",
     "trancoRank": 1055,
     "confirmedAt": "2026-11-19"
@@ -13559,6 +14070,7 @@
     "primaryDomain": "bfmtv.com",
     "officialDomains": ["bfmtv.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "bfmtv.com",
     "trancoRank": 1056,
     "confirmedAt": "2026-11-19"
@@ -13571,6 +14083,7 @@
     "primaryDomain": "datadome.co",
     "officialDomains": ["datadome.co"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "datadome.co",
     "trancoRank": 1057,
     "confirmedAt": "2026-11-19"
@@ -13583,6 +14096,7 @@
     "primaryDomain": "healthline.com",
     "officialDomains": ["healthline.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "healthline.com",
     "trancoRank": 1058,
     "confirmedAt": "2026-11-19"
@@ -13595,6 +14109,7 @@
     "primaryDomain": "theatlantic.com",
     "officialDomains": ["theatlantic.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "theatlantic.com",
     "trancoRank": 1059,
     "confirmedAt": "2026-11-19"
@@ -13607,6 +14122,7 @@
     "primaryDomain": "kohls.com",
     "officialDomains": ["kohls.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "kohls.com",
     "trancoRank": 1060,
     "confirmedAt": "2026-11-19"
@@ -13632,6 +14148,7 @@
         "url": "https://www.wikidata.org/wiki/Q105539224"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "rackspace.com",
     "trancoRank": 1063,
     "confirmedAt": "2026-11-19"
@@ -13644,6 +14161,7 @@
     "primaryDomain": "moneycontrol.com",
     "officialDomains": ["moneycontrol.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "moneycontrol.com",
     "trancoRank": 1068,
     "confirmedAt": "2026-11-19"
@@ -13656,6 +14174,7 @@
     "primaryDomain": "redfin.com",
     "officialDomains": ["redfin.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "redfin.com",
     "trancoRank": 1072,
     "confirmedAt": "2026-11-19"
@@ -13668,6 +14187,7 @@
     "primaryDomain": "douyin.com",
     "officialDomains": ["douyin.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "douyin.com",
     "trancoRank": 1073,
     "confirmedAt": "2026-11-19"
@@ -13680,6 +14200,7 @@
     "primaryDomain": "as.com",
     "officialDomains": ["as.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "as.com",
     "trancoRank": 1074,
     "confirmedAt": "2026-11-19"
@@ -13711,6 +14232,7 @@
         "url": "https://www.wikidata.org/wiki/Q5100590"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": "mps.gov.cn",
     "trancoRank": 1076,
     "confirmedAt": "2026-11-19"
@@ -13723,6 +14245,7 @@
     "primaryDomain": "investopedia.com",
     "officialDomains": ["investopedia.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "investopedia.com",
     "trancoRank": 1077,
     "confirmedAt": "2026-11-19"
@@ -13735,6 +14258,7 @@
     "primaryDomain": "alipay.com",
     "officialDomains": ["alipay.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "alipay.com",
     "trancoRank": 1079,
     "confirmedAt": "2026-11-19"
@@ -13747,6 +14271,7 @@
     "primaryDomain": "ipinfo.io",
     "officialDomains": ["ipinfo.io"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "ipinfo.io",
     "trancoRank": 1080,
     "confirmedAt": "2026-11-19"
@@ -13759,6 +14284,7 @@
     "primaryDomain": "nypost.com",
     "officialDomains": ["nypost.com"],
     "relatedDomains": [],
+    "brandTlds": [],
     "wikidataDomain": "nypost.com",
     "trancoRank": 1081,
     "confirmedAt": "2026-11-19"
@@ -13782,6 +14308,7 @@
         "url": "https://crt.sh/?id=29352240987"
       }
     ],
+    "brandTlds": [],
     "wikidataDomain": null,
     "trancoRank": 5431,
     "confirmedAt": "2026-11-19"
