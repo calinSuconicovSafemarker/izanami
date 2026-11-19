@@ -1,5 +1,7 @@
 # 16 — TLD risk rating and lookalike scan
 
+**Status:** Done (5f6725d)
+
 **Depends on:** —
 
 ## Goal
