@@ -1,4 +1,5 @@
 // Export of the lookalike scan results table (SPEC "Export"). Pure: no DOM, no I/O.
+import { techniqueLabel } from '../domain';
 import type { Org } from '../orgs';
 import type { Exists, ScanState } from '../scan';
 import type { TldCategory } from '../tld';
@@ -24,7 +25,10 @@ export interface ScanExport {
     domain: string;
     /** Unicode, as shown in the table. */
     display: string;
+    /** Technique id (`omission`, `tld-swap` …). */
     technique: string;
+    /** Human label for the technique (`Omission`). */
+    techniqueLabel: string;
     tld: string;
     /** Badge text, e.g. `country · France`. */
     tldRating: string;
@@ -59,6 +63,7 @@ export function toScanExport({ org, state, exportedAt }: ScanExportInput): ScanE
       domain: r.candidate.domain,
       display: r.candidate.display,
       technique: r.candidate.technique,
+      techniqueLabel: techniqueLabel(r.candidate.technique),
       tld: r.candidate.tld,
       tldRating: r.rating.label,
       tldCategory: r.rating.category,

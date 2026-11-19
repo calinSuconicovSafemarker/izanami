@@ -72,7 +72,7 @@ describe('single lookup export', () => {
       variant: { registrableDomain: 'google.com' },
       existence: 'resolving',
     });
-    expect(doc.rules).toHaveLength(14);
+    expect(doc.rules).toHaveLength(15);
     await waitFor(() => expect(downloads.revoke).toHaveBeenCalledWith('blob:test/1'));
   });
 

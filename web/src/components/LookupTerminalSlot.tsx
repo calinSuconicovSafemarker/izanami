@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import type { Org } from '../orgs';
+import { officialContext, type Org } from '../orgs';
+import { rateTld, TldBadge } from '../tld';
 import { LookupTerminal } from '../lookup-ui/LookupTerminal';
 import { useLookup, type LookupState } from '../lookup-ui/useLookup';
 import { OfficialVerdictCard, VerdictCard } from '../verdict-ui';
@@ -33,7 +34,19 @@ export function LookupTerminalSlot({ org }: { org: Org }) {
     <div className="flex flex-col gap-4">
       <LookupTerminal key={d ?? ''} org={org} lookup={lookup} initialInput={d} onSubmit={submit} />
       {(lookup.state.phase === 'running' || lookup.state.phase === 'done') && (
-        <DomainAnalysisPanel facts={lookup.state.facts} />
+        <DomainAnalysisPanel
+          facts={lookup.state.facts}
+          tldRating={
+            <span className="mt-1 block">
+              {/* Only brand TLDs rate official here: a lookalike on the org's own .com must not. */}
+              <TldBadge
+                rating={rateTld(lookup.state.variant.tld, {
+                  brandTlds: officialContext(org).brandTlds,
+                })}
+              />
+            </span>
+          }
+        />
       )}
       <Verdict state={lookup.state} org={org} />
     </div>

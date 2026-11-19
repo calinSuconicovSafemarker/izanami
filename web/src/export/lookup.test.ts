@@ -1,12 +1,20 @@
 import { describe, expect, it } from 'vitest';
 import { parseVariant, similarity } from '../domain';
-import { getOrg } from '../orgs';
+import { getOrg, officialContext, type Org } from '../orgs';
 import { known, UNKNOWN, type Facts } from '../rules';
 import { officialFacts, variantFacts } from '../rules/test-facts';
 import { lookupToCsv, toLookupExport } from './lookup';
 
 const org = getOrg('tu-delft')!;
 const exportedAt = new Date('2026-11-19T08:05:00Z');
+
+/** An official-domain export: no lookups, the similarity the terminal computed. */
+function officialExport(o: Org, input: string) {
+  const variant = parseVariant(input);
+  const ctx = officialContext(o);
+  const sim = similarity(variant, ctx.brandLabel, ctx.officialDomains, ctx.brandTlds);
+  return toLookupExport({ org: o, variant, similarity: sim, exportedAt });
+}
 
 /** tudelft.com registered 16 days before the check, no infrastructure shared with tudelft.nl. */
 function youngTldSwap(): { variant: ReturnType<typeof parseVariant>; facts: Facts } {
@@ -73,7 +81,7 @@ describe('toLookupExport', () => {
       official: { domain: 'tudelft.nl', registrar: 'SURF B.V.', asns: [1128] },
     });
     expect(out.verdict?.label).toBe('Likely fraud');
-    expect(out.rules).toHaveLength(14);
+    expect(out.rules).toHaveLength(15);
     expect(out.rules.find((r) => r.id === 'young-domain')).toMatchObject({
       status: 'fired',
       weight: 40,
@@ -107,16 +115,15 @@ describe('toLookupExport', () => {
     expect(out.existence).toBe('not-registered');
     expect(out.verdict).toBeNull();
     expect(out.why).toEqual([]);
-    expect(out.rules).toHaveLength(14);
+    expect(out.rules).toHaveLength(15);
   });
 
   it('exports a known official domain without lookups: Official verdict, no facts or rules', () => {
-    const variant = parseVariant('www.tudelft.nl');
-    const out = toLookupExport({ org, variant, exportedAt });
+    const out = officialExport(org, 'www.tudelft.nl');
     expect(out).toMatchObject({
       checkedAt: null,
       variant: { input: 'www.tudelft.nl', registrableDomain: 'tudelft.nl' },
-      analysis: { technique: 'official', editDistance: 0 },
+      analysis: { technique: 'official', techniqueLabel: 'Official', editDistance: 0 },
       existence: null,
       registration: null,
       dns: null,
@@ -130,7 +137,7 @@ describe('toLookupExport', () => {
 
   it('exports a domain under a brand TLD as official and lists the brand TLDs in the org block', () => {
     const google = getOrg('google')!;
-    const out = toLookupExport({ org: google, variant: parseVariant('c.gle'), exportedAt });
+    const out = officialExport(google, 'c.gle');
     expect(out.org.brandTlds).toEqual(expect.arrayContaining(['gle', 'goog', 'google', 'youtube']));
     expect(out).toMatchObject({
       analysis: { technique: 'official' },
@@ -166,16 +173,14 @@ describe('lookupToCsv', () => {
       'domain,unicode,org,existence,verdict,score,unknown_share,checked_at,' +
         'rule_id,rule_status,rule_weight,rule_summary,rule_explanation',
     );
-    expect(lines).toHaveLength(15);
+    expect(lines).toHaveLength(16);
     expect(lines.find((l) => l.includes(',young-domain,'))).toMatch(
       /^tudelft\.com,tudelft\.com,Delft University of Technology,resolving,Likely fraud,\d+,[\d.]+,2026-11-17T12:00:00Z,young-domain,fired,40,/,
     );
   });
 
   it('writes a single row with empty rule columns for an official domain', () => {
-    const csv = lookupToCsv(
-      toLookupExport({ org, variant: parseVariant('tudelft.nl'), exportedAt }),
-    );
+    const csv = lookupToCsv(officialExport(org, 'tudelft.nl'));
     expect(csv.trimEnd().split('\r\n')[1]).toBe(
       'tudelft.nl,tudelft.nl,Delft University of Technology,,Official,0,0,,,,,,',
     );

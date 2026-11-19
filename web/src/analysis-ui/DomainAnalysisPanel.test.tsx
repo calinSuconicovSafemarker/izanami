@@ -92,6 +92,21 @@ describe('DomainAnalysisPanel registration', () => {
     expect(row(/registrar/i)).toHaveTextContent('not published by registry');
   });
 
+  it("says couldn't check when the RDAP lookup itself failed (R6)", () => {
+    render(
+      <DomainAnalysisPanel
+        facts={factsFor('tudelft.com', {
+          rdap: UNKNOWN,
+          registrationDate: UNKNOWN,
+          registrar: UNKNOWN,
+        })}
+      />,
+    );
+    expect(row(/^registered$/i)).toHaveTextContent("couldn't check");
+    expect(row(/registrar/i)).toHaveTextContent("couldn't check");
+    expect(panel()).not.toHaveTextContent('not published by registry');
+  });
+
   it('says "checking…" while registration data is pending', () => {
     render(<DomainAnalysisPanel facts={factsFor('tudelft.com', { registrationDate: PENDING })} />);
     expect(row(/^registered$/i)).toHaveTextContent('checking…');

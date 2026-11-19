@@ -61,11 +61,12 @@ describe('lookalike scan', () => {
     expect(await within(scan()).findByText(/scan complete/i)).toBeInTheDocument();
 
     const com = rowFor('tudelft.net');
-    expect(com).toHaveTextContent('tld-swap');
+    expect(com).toHaveTextContent('TLD swap');
     expect(com).toHaveTextContent('generic');
     expect(com).toHaveTextContent('registered');
     expect(rowFor('tudelft.xyz')).toHaveTextContent('high-abuse');
-    expect(rowFor('tudlft.nl')).toHaveTextContent('omission');
+    expect(rowFor('tudlft.nl')).toHaveTextContent('Omission');
+    expect(rowFor('tudlft.nl')).not.toHaveTextContent(/omission/);
     expect(rowFor('tudlft.nl')).toHaveTextContent('not registered');
     expect(within(scan()).queryByText('tudelft.nl', { selector: 'th' })).not.toBeInTheDocument();
 

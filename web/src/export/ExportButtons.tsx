@@ -40,12 +40,13 @@ function ExportButtons<T>({ subject, json, csv }: ExportButtonsProps<T>) {
 /** Export a finished lookup (`done`) or an official-domain result; nothing otherwise. */
 export function LookupExportButtons({ org, state }: { org: Org; state: LookupState }) {
   if (state.phase !== 'done' && state.phase !== 'official') return null;
-  const facts = state.phase === 'done' ? state.facts : undefined;
   const { variant } = state;
+  const from =
+    state.phase === 'official' ? { similarity: state.similarity } : { facts: state.facts };
   return (
     <ExportButtons
       subject={variant.registrableDomain}
-      json={(exportedAt) => toLookupExport({ org, variant, facts, exportedAt })}
+      json={(exportedAt) => toLookupExport({ org, variant, exportedAt, ...from })}
       csv={lookupToCsv}
     />
   );

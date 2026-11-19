@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { techniqueLabel } from '../domain';
 import type { Org } from '../orgs';
 import { TldBadge } from '../tld';
 import { ScanExportButtons } from '../export/ExportButtons';
@@ -31,8 +32,6 @@ function Status({ state }: { state: ScanState }) {
 
 export interface LookalikeScanProps {
   org: Org;
-  /** Single-owner TLDs to rate as `brand`; defaults to the org's own brand TLDs. */
-  brandTlds?: readonly string[];
   /** Pause between DoH queries per worker (tests pass 0). */
   delayMs?: number;
 }
@@ -41,8 +40,8 @@ export interface LookalikeScanProps {
  * "Lookalike scan": generates bounded typo/TLD candidates for the org's brand and checks
  * which exist with one DoH NS query each (≤4 in parallel, paced, cancellable).
  */
-export function LookalikeScan({ org, brandTlds, delayMs }: LookalikeScanProps) {
-  const { state, candidates, start, cancel } = useLookalikeScan(org, { brandTlds, delayMs });
+export function LookalikeScan({ org, delayMs }: LookalikeScanProps) {
+  const { state, candidates, start, cancel } = useLookalikeScan(org, { delayMs });
   const running = state.phase === 'running';
 
   return (
@@ -111,7 +110,9 @@ export function LookalikeScan({ org, brandTlds, delayMs }: LookalikeScanProps) {
                   <th scope="row" className="px-2 py-1 font-normal break-all text-zinc-200">
                     {row.candidate.display}
                   </th>
-                  <td className="px-2 py-1 text-zinc-300">{row.candidate.technique}</td>
+                  <td className="px-2 py-1 text-zinc-300">
+                    {techniqueLabel(row.candidate.technique)}
+                  </td>
                   <td className="px-2 py-1">
                     <TldBadge rating={row.rating} />
                   </td>

@@ -1,7 +1,7 @@
 // Export of one lookup (SPEC "Export"). Pure: no DOM, no I/O.
-import { similarity, type LookalikeKind, type ParsedVariant } from '../domain';
+import { techniqueLabel, type LookalikeKind, type ParsedVariant, type Similarity } from '../domain';
 import { homoglyphSegments, similarityPercent } from '../domain/analysis';
-import { toOrgInput, type Org } from '../orgs';
+import { officialContext, type Org } from '../orgs';
 import {
   evaluate,
   isNotRegistered,
@@ -45,6 +45,8 @@ export interface LookupExport {
   variant: { input: string; unicode: string; punycode: string; registrableDomain: string };
   analysis: {
     technique: LookalikeKind;
+    /** Human label for the technique (`TLD swap`). */
+    techniqueLabel: string;
     editDistance: number;
     /** 0–100. */
     similarityPercent: number;
@@ -75,13 +77,15 @@ export interface LookupExport {
   rules: { id: RuleId; status: RuleStatus; weight: number; summary: string; explanation: string }[];
 }
 
-export interface LookupExportInput {
+/**
+ * One lookup to export: the final facts, or for a known official domain (no lookups run) the
+ * similarity the lookup already computed.
+ */
+export type LookupExportInput = {
   org: Org;
   variant: ParsedVariant;
-  /** Final facts; absent for a known official domain (no lookups run). */
-  facts?: Facts;
   exportedAt: Date;
-}
+} & ({ facts: Facts; similarity?: never } | { facts?: never; similarity: Similarity });
 
 const value = <T>(f: Fact<T>): Value<T> => (f.state === 'known' ? f.value : null);
 
@@ -96,15 +100,10 @@ const infra = (f: InfraFacts): ExportInfra => ({
 });
 
 /** Build the export document for a finished lookup. */
-export function toLookupExport({
-  org,
-  variant,
-  facts,
-  exportedAt,
-}: LookupExportInput): LookupExport {
-  const { brandLabel, officialDomains, brandTlds } = toOrgInput(org);
-  const sim =
-    facts?.variantFacts.similarity ?? similarity(variant, brandLabel, officialDomains, brandTlds);
+export function toLookupExport(input: LookupExportInput): LookupExport {
+  const { org, variant, facts, exportedAt } = input;
+  const { brandLabel } = officialContext(org);
+  const sim = facts ? facts.variantFacts.similarity : input.similarity;
   const vf = facts?.variantFacts;
   const results = facts ? evaluate(facts) : [];
   const unregistered = vf ? isNotRegistered(vf.existence) : false;
@@ -126,6 +125,7 @@ export function toLookupExport({
     },
     analysis: {
       technique: sim.kind,
+      techniqueLabel: techniqueLabel(sim.kind),
       editDistance: sim.editDistance,
       similarityPercent: similarityPercent(variant.label, brandLabel),
       homoglyphs: homoglyphSegments(variant.label, brandLabel).flatMap((s) =>

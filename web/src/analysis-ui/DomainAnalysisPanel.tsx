@@ -1,52 +1,24 @@
 import { useId, type ReactNode } from 'react';
-import type { LookalikeKind } from '../domain';
+import { TECHNIQUES } from '../domain';
 import { homoglyphSegments, registrationAge, similarityPercent } from '../domain/analysis';
 import { isNotRegistered, type Fact, type Facts } from '../rules';
 
 export interface DomainAnalysisPanelProps {
   /** Latest facts snapshot (pending facts render as "checking…"). */
   facts: Facts;
-  /** Optional extra content under the technique, e.g. a rating of the variant's TLD. */
+  /** Extra content under the technique: the rating badge of the variant's TLD. */
   tldRating?: ReactNode;
 }
 
-const TECHNIQUES: Record<LookalikeKind, { label: string; description: string }> = {
-  official: {
-    label: 'Official',
-    description: "One of the organisation's known official domains.",
-  },
-  'tld-swap': {
-    label: 'TLD swap',
-    description:
-      "The same name under a different extension, betting you won't notice how the address ends.",
-  },
-  typo: {
-    label: 'Typo-squat',
-    description:
-      'One or two characters added, dropped, swapped or replaced to catch people who mistype the address.',
-  },
-  homoglyph: {
-    label: 'Homoglyph',
-    description:
-      'Letters replaced by look-alike characters, often from another alphabet, so the name reads the same.',
-  },
-  combo: {
-    label: 'Combo-squat',
-    description:
-      'The brand name plus an extra word (login, secure, support…) to pass as an official service.',
-  },
-  'subdomain-trick': {
-    label: 'Subdomain trick',
-    description:
-      "The brand sits in a subdomain of someone else's domain; the real owner is the part at the end.",
-  },
-  unrelated: {
-    label: 'Unrelated',
-    description: 'Does not closely resemble the brand: no typosquatting technique detected.',
-  },
-};
-
 const NOT_PUBLISHED = 'not published by registry';
+const COULD_NOT_CHECK = "couldn't check";
+
+/**
+ * Wording for an unknown RDAP fact: "not published" only when RDAP answered without it; a failed
+ * lookup is "couldn't check" (R6).
+ */
+const rdapUnknown = (rdap: Fact<'ok' | 'not-found'>) =>
+  rdap.state === 'known' ? NOT_PUBLISHED : COULD_NOT_CHECK;
 
 /** Render a fact: its value, "checking…" while pending, or `unknownText` when unknown. */
 function show<T>(fact: Fact<T>, render: (value: T) => ReactNode, unknownText: string): ReactNode {
@@ -82,7 +54,7 @@ export function DomainAnalysisPanel({ facts, tldRating }: DomainAnalysisPanelPro
   const percent = similarityPercent(label, v.brandLabel);
   const swaps = v.similarity.homoglyph ? homoglyphSegments(label, v.brandLabel) : [];
   const notRegistered = isNotRegistered(v.existence);
-  const unknownRdap = notRegistered ? 'not registered' : NOT_PUBLISHED;
+  const unknownRdap = notRegistered ? 'not registered' : rdapUnknown(v.rdap);
   const age = (date: string) => registrationAge(date, v.checkedAt);
 
   return (
@@ -148,12 +120,12 @@ export function DomainAnalysisPanel({ facts, tldRating }: DomainAnalysisPanelPro
         </dd>
         <dt>Official registered</dt>
         <dd>
-          {o.domain}: {show(o.registrationDate, age, NOT_PUBLISHED)}
+          {o.domain}: {show(o.registrationDate, age, rdapUnknown(o.rdap))}
         </dd>
 
         <dt>Hosting</dt>
         <dd>
-          {show(v.addresses, (ips) => list(ips, 'no addresses'), "couldn't check")}
+          {show(v.addresses, (ips) => list(ips, 'no addresses'), COULD_NOT_CHECK)}
           {v.asns.state === 'known' && v.asns.value.length > 0 && (
             <span> · {v.asns.value.map((n) => `AS${n}`).join(', ')}</span>
           )}
