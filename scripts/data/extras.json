@@ -51,6 +51,30 @@
       {
         "domain": "youtube-nocookie.com",
         "source": "https://knowledge.workspace.google.com/admin/getting-started/set-up-a-google-workspace-host-name-allowlist"
+      },
+      {
+        "domain": "abc.xyz",
+        "source": "https://abc.xyz/investor/"
+      },
+      {
+        "domain": "android.com",
+        "source": "https://support.google.com/work/android/answer/10513641"
+      },
+      {
+        "domain": "ggpht.com",
+        "source": "https://support.google.com/work/android/answer/10513641"
+      },
+      {
+        "domain": "gmail.com",
+        "source": "https://support.google.com/mail/answer/56256"
+      },
+      {
+        "domain": "youtu.be",
+        "source": "https://knowledge.workspace.google.com/admin/youtube/control-youtube-content-available-to-users"
+      },
+      {
+        "domain": "youtube.com",
+        "source": "https://knowledge.workspace.google.com/admin/youtube/control-youtube-content-available-to-users"
       }
     ],
     "owns": [

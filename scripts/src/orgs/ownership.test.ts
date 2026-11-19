@@ -110,3 +110,54 @@ describe('queryOwnedViaApi', () => {
     expect(owned.map((o) => o.wikidataId)).toEqual(['Q866']);
   });
 });
+
+describe('ownedFromEntities: lapsed and minority links (R1)', () => {
+  const owned = (id: string, claims: Record<string, unknown[]>) => ({
+    id,
+    labels: { en: { value: id } },
+    claims: { P856: [urlClaim(`https://${id.toLowerCase()}.example/`)], ...claims },
+  });
+  const VALUE = [{ snaktype: 'value', datavalue: { value: { time: '+2012-01-15T00:00:00Z' } } }];
+
+  it('drops children that were dissolved (P576) or discontinued (P2669)', () => {
+    const json = {
+      entities: {
+        Q30: owned('Q30', { P127: [itemClaim('Q95')], P576: VALUE }),
+        Q31: owned('Q31', { P127: [itemClaim('Q95')], P2669: VALUE }),
+        Q32: owned('Q32', { P127: [itemClaim('Q95')] }),
+      },
+    };
+    expect(ownedFromEntities(['Q95'], json).map((e) => e.wikidataId)).toEqual(['Q32']);
+  });
+
+  it('treats an owner among more than two current owners as an investor, not a parent', () => {
+    const json = {
+      entities: {
+        Q40: owned('Q40', {
+          P127: [itemClaim('Q95'), itemClaim('Q1'), itemClaim('Q2'), itemClaim('Q3')],
+        }),
+        Q41: owned('Q41', { P127: [itemClaim('Q95'), itemClaim('Q1')] }),
+      },
+    };
+    expect(ownedFromEntities(['Q95'], json).map((e) => e.wikidataId)).toEqual(['Q41']);
+  });
+
+  it('ignores official websites that have an end time', () => {
+    const json = {
+      entities: {
+        Q50: {
+          id: 'Q50',
+          labels: { en: { value: 'Shop' } },
+          claims: {
+            P127: [itemClaim('Q95')],
+            P856: [
+              { ...urlClaim('https://old-shop.example/'), qualifiers: ENDED },
+              urlClaim('https://shop.example/'),
+            ],
+          },
+        },
+      },
+    };
+    expect(ownedFromEntities(['Q95'], json)[0]?.websites).toEqual(['https://shop.example/']);
+  });
+});

@@ -159,21 +159,24 @@ export function addRelatedDomains(
       }
       continue;
     }
-    // Another org's own site is allowed only because this org owns that org: credit the ownership
-    // link (Wikidata or curated), whichever source named the domain.
+    // Another org's own site is allowed only because this org owns that org. A curated or
+    // published entry keeps its own (Official-level) source; a Wikidata-found one credits the
+    // ownership link (curated or Wikidata), which sets its trust level (R1).
     const curatedLink = owner && descendants.get(orgId)?.get(owner.wikidataId);
     assigned.set(
       domain,
-      !owner
+      !owner || source === 'published-list'
         ? candidate
-        : curatedLink
-          ? { ...candidate, source: 'curated', via: owner.name, url: curatedLink }
-          : {
-              ...candidate,
-              source: 'wikidata-owned',
-              via: owner.name,
-              url: `https://www.wikidata.org/wiki/${owner.wikidataId}`,
-            },
+        : source === 'curated'
+          ? { ...candidate, via: owner.name }
+          : curatedLink
+            ? { ...candidate, source: 'curated', via: owner.name, url: curatedLink }
+            : {
+                ...candidate,
+                source: 'wikidata-owned',
+                via: owner.name,
+                url: `https://www.wikidata.org/wiki/${owner.wikidataId}`,
+              },
     );
   }
 

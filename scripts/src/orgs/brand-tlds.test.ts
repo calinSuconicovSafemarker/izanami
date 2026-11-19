@@ -139,4 +139,48 @@ describe('assignBrandTlds', () => {
       'Brand TLD .gle is curated for Apple Inc. but IANA lists Charleston Road Registry Inc. as its manager; skipped.',
     ]);
   });
+
+  it('also gives a shared TLD to the owned orgs listed for it (R4), each with a source', () => {
+    const operators = parseBrandTldsConfig([
+      {
+        ...CONFIG[0],
+        sharedTlds: [
+          {
+            tld: 'google',
+            wikidataId: 'Q1',
+            source: 'https://www.iana.org/domains/root/db/google.html',
+          },
+        ],
+      },
+    ]);
+    const { orgs: result, notes } = assignBrandTlds(orgs, { ...inputs, operators });
+    expect(result.map((o) => [o.slug, o.brandTlds])).toEqual([
+      ['google', ['gle', 'google', 'xn--flw351e']],
+      ['apple', []],
+      ['other', ['google']],
+    ]);
+    expect(notes).toEqual([]);
+  });
+
+  it("notes a shared TLD that is not one of the operator's brand TLDs", () => {
+    const operators = parseBrandTldsConfig([
+      {
+        ...CONFIG[0],
+        sharedTlds: [
+          { tld: 'apple', wikidataId: 'Q1', source: 'https://www.iana.org/domains/root/db/apple.html' },
+        ],
+      },
+    ]);
+    const { orgs: result, notes } = assignBrandTlds(orgs, { ...inputs, operators });
+    expect(result[2]?.brandTlds).toEqual([]);
+    expect(notes).toEqual([
+      'Brand TLD .apple is shared from Charleston Road Registry Inc. but is not one of its brand TLDs; skipped.',
+    ]);
+  });
+
+  it('rejects a shared TLD without a source URL', () => {
+    expect(() =>
+      parseBrandTldsConfig([{ ...CONFIG[0], sharedTlds: [{ tld: 'google', wikidataId: 'Q1' }] }]),
+    ).toThrow(/source/);
+  });
 });

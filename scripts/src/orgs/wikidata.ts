@@ -37,6 +37,13 @@ export const WEBSITE_CLASS = 'Q35127';
 export const NEVER_CLASSES = ['Q13406463', 'Q5'] as const;
 
 /**
+ * Countries (Q6256), sovereign states (Q3624078), states (Q7275) and administrative regions
+ * (Q56061): never an entry, even though Wikidata's class tree puts states under organisation
+ * ("Germany" would otherwise claim bund.de and every German ministry's domain, R2).
+ */
+export const GEOGRAPHIC_CLASSES = ['Q6256', 'Q3624078', 'Q7275', 'Q56061'] as const;
+
+/**
  * Software, concepts and products ("Microsoft Office", "Snowflake ID", "Google Search", "HTC
  * Dream"): deprioritised unless the entity is also an organisation or a website. Not dropped:
  * Wikidata classes many real brands (WhatsApp, Discord, DuckDuckGo) only as software, and its
@@ -183,8 +190,8 @@ export function parseClassAncestors(json: unknown): Map<string, string[]> {
 }
 
 /**
- * Sets `isOrganisation` and `isProduct` from the class ancestry and drops Wikimedia lists and
- * humans.
+ * Sets `isOrganisation` and `isProduct` from the class ancestry and drops Wikimedia lists,
+ * humans, countries and administrative regions.
  */
 export function classifyEntities(
   entities: ReadonlyMap<string, WikidataEntity>,
@@ -196,6 +203,7 @@ export function classifyEntities(
     const has = (classes: readonly string[]) => classes.some((c) => supers.has(c));
     const isOrganisation = supers.has(ORGANISATION_CLASS);
     if (has(NEVER_CLASSES) && !isOrganisation) continue;
+    if (has(GEOGRAPHIC_CLASSES)) continue;
     const isProduct = has(PRODUCT_CLASSES) && !isOrganisation && !supers.has(WEBSITE_CLASS);
     kept.set(id, { ...entity, isOrganisation, isProduct });
   }

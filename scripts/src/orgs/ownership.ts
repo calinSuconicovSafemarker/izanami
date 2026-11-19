@@ -57,6 +57,18 @@ function isCurrentLink(statement: Statement): boolean {
   return !share?.some((n) => Number.isFinite(n) && n < 0.5);
 }
 
+/**
+ * More current P127 owners than this on one child: each is an investor, not a controlling
+ * parent (Nothing Technology lists four funds; the WebPlatform consortium ten).
+ */
+const MAX_CONTROLLING_OWNERS = 2;
+
+/** Dissolved/abolished (P576) or discontinued (P2669): its domains may have lapsed (R1). */
+const LAPSED = ['P576', 'P2669'] as const;
+
+const isLapsed = (entity: Entity) =>
+  LAPSED.some((p) => (entity.claims?.[p] ?? []).some((s) => s.rank !== 'deprecated'));
+
 function itemValue(statement: Statement): string | undefined {
   const id = (statement.mainsnak?.datavalue?.value as { id?: unknown } | undefined)?.id;
   return typeof id === 'string' ? id : undefined;
@@ -64,7 +76,7 @@ function itemValue(statement: Statement): string | undefined {
 
 function websites(entity: Entity): string[] {
   const urls = (entity.claims?.P856 ?? [])
-    .filter((s) => s.rank !== 'deprecated')
+    .filter((s) => s.rank !== 'deprecated' && !s.qualifiers?.P582?.length)
     .map((s) => s.mainsnak?.datavalue?.value)
     .filter((v): v is string => typeof v === 'string');
   return [...new Set(urls)];
@@ -74,7 +86,8 @@ const qNumber = (id: string) => Number(id.slice(1));
 
 /**
  * Ownership links among `entities` whose parent is one of `parentIds`: children naming a parent
- * in P127/P749, and parents naming a child in P355. Only current links count. Children missing from
+ * in P127/P749, and parents naming a child in P355. Only current, controlling links count, and
+ * dissolved or discontinued children are left out (their domains may have lapsed, R1). Children missing from
  * `entities` are skipped (a P355 child must be fetched too).
  */
 export function ownedFromEntities(parentIds: readonly string[], json: unknown): OwnedEntity[] {
@@ -86,7 +99,9 @@ export function ownedFromEntities(parentIds: readonly string[], json: unknown): 
   };
   for (const [id, entity] of Object.entries(entities)) {
     if (entity.missing !== undefined) continue;
+    const owners = (entity.claims?.P127 ?? []).filter(isCurrentLink).length;
     for (const prop of CHILD_TO_PARENT) {
+      if (prop === 'P127' && owners > MAX_CONTROLLING_OWNERS) continue;
       for (const statement of entity.claims?.[prop] ?? []) {
         const parent = itemValue(statement);
         if (parent && parents.has(parent) && isCurrentLink(statement)) link(parent, id);
@@ -100,7 +115,10 @@ export function ownedFromEntities(parentIds: readonly string[], json: unknown): 
     }
   }
   return [...links.values()]
-    .filter(({ childId }) => entities[childId] && entities[childId].missing === undefined)
+    .filter(({ childId }) => {
+      const child = entities[childId];
+      return child !== undefined && child.missing === undefined && !isLapsed(child);
+    })
     .sort(
       (a, b) =>
         qNumber(a.parentId) - qNumber(b.parentId) || qNumber(a.childId) - qNumber(b.childId),

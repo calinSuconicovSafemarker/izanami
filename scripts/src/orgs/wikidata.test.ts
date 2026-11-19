@@ -153,4 +153,22 @@ describe('class ancestry', () => {
       ['X', false, false],
     ]);
   });
+
+  it('drops countries, states and administrative regions even when classed as organisations', () => {
+    const ancestors = new Map([
+      ['Q3624078', ['Q3624078', 'Q7275', 'Q43229']], // sovereign state → state → organisation
+      ['Q6256', ['Q6256']], // country
+      ['Q1221156', ['Q1221156', 'Q56061']], // state of Germany → administrative territorial entity
+      ['Q3918', ['Q3918', 'Q43229']],
+    ]);
+    const kept = classifyEntities(
+      new Map([
+        ['Q183', entity('Q183', 'Germany', ['Q3624078', 'Q6256'])],
+        ['Q980', entity('Q980', 'Bavaria', ['Q1221156'])],
+        ['Q752663', entity('Q752663', 'Delft University of Technology', ['Q3918'])],
+      ]),
+      ancestors,
+    );
+    expect([...kept.keys()]).toEqual(['Q752663']);
+  });
 });

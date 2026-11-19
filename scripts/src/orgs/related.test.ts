@@ -68,24 +68,35 @@ describe('addRelatedDomains', () => {
     expect(related(orgs, 'Q866')).toEqual([]);
   });
 
-  it("credits ownership when a list names an owned org's official domain", () => {
+  it("keeps a curated entry for an owned org's official domain at the curated trust level", () => {
     const { orgs } = addRelatedDomains([GOOGLE, YOUTUBE], TRANCO, {
       owned: [owned('Q95', 'Q866', 'YouTube Inc.')],
       curated: [{ wikidataId: 'Q95', domain: 'youtube.com', url: 'https://example.org/yt' }],
     });
     expect(orgs[0]?.relatedDomains).toEqual([
-      {
-        domain: 'youtube.com',
-        source: 'wikidata-owned',
-        via: 'YouTube',
-        url: 'https://www.wikidata.org/wiki/Q866',
-      },
+      { domain: 'youtube.com', source: 'curated', via: 'YouTube', url: 'https://example.org/yt' },
     ]);
   });
 
+  it("keeps a published-list entry for an owned org's official domain at its trust level", () => {
+    const { orgs } = addRelatedDomains([GOOGLE, YOUTUBE], TRANCO, {
+      owned: [owned('Q95', 'Q866', 'YouTube Inc.')],
+      published: [
+        {
+          wikidataId: 'Q95',
+          name: 'Google list',
+          url: 'https://example.org/list',
+          domains: ['youtube.com'],
+        },
+      ],
+    });
+    expect(related(orgs, 'Q95')).toEqual([['youtube.com', 'published-list', 'Google list']]);
+  });
+
   it('credits a curated ownership link with its source', () => {
+    // A Wikidata-found domain reached through a curated ownership link is curated too.
     const gco = org('Q5512639', 'g.co', ['g.co'], 900);
-    const { orgs } = addRelatedDomains([GOOGLE, gco], TRANCO, {
+    const { orgs } = addRelatedDomains([GOOGLE, gco], new Map([...TRANCO, ['g.co', 900]]), {
       owned: [
         {
           parentId: 'Q95',
@@ -94,8 +105,8 @@ describe('addRelatedDomains', () => {
           websites: [],
           source: 'https://example.org/gco',
         },
+        owned('Q5512639', 'Q7', 'g.co shortener', 'https://g.co/'),
       ],
-      curated: [{ wikidataId: 'Q95', domain: 'g.co', url: 'https://example.org/claim' }],
     });
     expect(orgs[0]?.relatedDomains).toEqual([
       { domain: 'g.co', source: 'curated', via: 'g.co', url: 'https://example.org/gco' },

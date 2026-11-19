@@ -32,6 +32,23 @@
         "tld": "xn--qcka1pmc",
         "source": "https://www.iana.org/domains/root/db/xn--qcka1pmc.html"
       }
+    ],
+    "sharedTlds": [
+      {
+        "tld": "android",
+        "wikidataId": "Q94",
+        "source": "https://www.iana.org/domains/root/db/android.html"
+      },
+      {
+        "tld": "gmail",
+        "wikidataId": "Q9334",
+        "source": "https://www.iana.org/domains/root/db/gmail.html"
+      },
+      {
+        "tld": "youtube",
+        "wikidataId": "Q866",
+        "source": "https://www.iana.org/domains/root/db/youtube.html"
+      }
     ]
   },
   {
@@ -42,6 +59,28 @@
       {
         "tld": "office",
         "source": "https://www.iana.org/domains/root/db/office.html"
+      }
+    ],
+    "sharedTlds": [
+      {
+        "tld": "bing",
+        "wikidataId": "Q182496",
+        "source": "https://www.iana.org/domains/root/db/bing.html"
+      },
+      {
+        "tld": "office",
+        "wikidataId": "Q11255",
+        "source": "https://www.iana.org/domains/root/db/office.html"
+      },
+      {
+        "tld": "skype",
+        "wikidataId": "Q40984",
+        "source": "https://www.iana.org/domains/root/db/skype.html"
+      },
+      {
+        "tld": "windows",
+        "wikidataId": "Q1406",
+        "source": "https://www.iana.org/domains/root/db/windows.html"
       }
     ]
   },

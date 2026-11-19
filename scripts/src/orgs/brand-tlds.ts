@@ -27,6 +27,18 @@ export interface ClosedTld {
   source: string;
 }
 
+/**
+ * A brand TLD of the operator that also belongs to an organisation the operator's org owns
+ * (`.youtube` → YouTube as well as Google, R4).
+ */
+export interface SharedTld {
+  tld: string;
+  /** The owned organisation that also gets the TLD. */
+  wikidataId: string;
+  /** URL backing that the TLD is that organisation's. */
+  source: string;
+}
+
 /** One entry of `scripts/data/brand-tlds.json`. */
 export interface BrandTldOperator {
   /** Exactly as the IANA Root Zone Database names the TLD manager. */
@@ -37,6 +49,8 @@ export interface BrandTldOperator {
   source: string;
   /** Closed TLDs without Specification 13 that count anyway. */
   closedTlds?: ClosedTld[];
+  /** Brand TLDs of this operator that also count for another (owned) organisation. */
+  sharedTlds?: SharedTld[];
 }
 
 export interface BrandTldInputs {
@@ -107,14 +121,23 @@ export function parseBrandTldsConfig(json: unknown): BrandTldOperator[] {
       if (!c.source || !HTTPS.test(c.source))
         throw new Error(`${where}.closedTlds[${j}]: source must be an https URL`);
     });
+    raw.sharedTlds?.forEach((c: Partial<SharedTld>, j) => {
+      if (!c.tld || !/^[a-z0-9-]+$/.test(c.tld))
+        throw new Error(`${where}.sharedTlds[${j}]: tld must be a lower-case punycode label`);
+      if (!c.wikidataId || !/^Q\d+$/.test(c.wikidataId))
+        throw new Error(`${where}.sharedTlds[${j}]: wikidataId must be a Q-id`);
+      if (!c.source || !HTTPS.test(c.source))
+        throw new Error(`${where}.sharedTlds[${j}]: source must be an https URL`);
+    });
     return raw as BrandTldOperator;
   });
 }
 
 /**
  * Sets `brandTlds` on every org: generic TLDs whose IANA manager maps to the org and that are
- * `.brand` TLDs or curated closed TLDs. Curated closed TLDs IANA lists under another manager are
- * skipped and noted.
+ * `.brand` TLDs or curated closed TLDs, plus TLDs an operator shares with an owned org (one TLD can
+ * belong to several orgs, R4). Curated closed TLDs IANA lists under another manager, and shared
+ * TLDs the operator does not run as brand TLDs, are skipped and noted.
  */
 export function assignBrandTlds(
   orgs: readonly Org[],
@@ -146,6 +169,15 @@ export function assignBrandTlds(
             (manager
               ? `IANA lists ${manager} as its manager; skipped.`
               : 'IANA lists no such generic TLD; skipped.'),
+        );
+    }
+    const own = byOrg.get(op.wikidataId);
+    for (const shared of op.sharedTlds ?? []) {
+      if (own?.has(shared.tld)) add(shared.wikidataId, shared.tld);
+      else
+        notes.push(
+          `Brand TLD .${shared.tld} is shared from ${op.operator} but is not one of its brand ` +
+            'TLDs; skipped.',
         );
     }
   }
