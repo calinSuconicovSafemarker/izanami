@@ -17,7 +17,13 @@ import {
   type WhyItem,
 } from '../rules';
 import { toCsv } from './csv';
-import { EXPORT_SCHEMA_VERSION, exportOrg, type ExportOrg } from './common';
+import {
+  EXPORT_SCHEMA_VERSION,
+  exportOrg,
+  lookupSources,
+  type ExportOrg,
+  type ExportSource,
+} from './common';
 
 /** A lookup fact: its value, or `null` when the lookup failed or never answered. */
 type Value<T> = T | null;
@@ -75,6 +81,8 @@ export interface LookupExport {
   verdict: { label: VerdictLabel; score: number; unknownShare: number } | null;
   why: WhyItem[];
   rules: { id: RuleId; status: RuleStatus; weight: number; summary: string; explanation: string }[];
+  /** Data sources with licence and attribution (ticket 17); additive, schema version unchanged. */
+  sources: ExportSource[];
 }
 
 /**
@@ -163,6 +171,7 @@ export function toLookupExport(input: LookupExportInput): LookupExport {
       summary: r.summary,
       explanation: r.explanation,
     })),
+    sources: lookupSources(),
   };
 }
 

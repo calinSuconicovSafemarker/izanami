@@ -157,6 +157,31 @@ describe('toLookupExport', () => {
     ).toBeNull();
   });
 
+  it('carries its data sources, with the attribution their licences ask for (ticket 17)', () => {
+    const { variant, facts } = youngTldSwap();
+    const { sources } = toLookupExport({ org, variant, facts, exportedAt });
+    expect(sources.map((s) => s.id)).toEqual([
+      'wikidata',
+      'tranco',
+      'public-suffix-list',
+      'unicode-confusables',
+      'cloudflare-doh',
+      'google-public-dns',
+      'team-cymru',
+      'registry-rdap',
+      'rdap-org',
+      'crt-sh',
+    ]);
+    const byId = Object.fromEntries(sources.map((s) => [s.id, s]));
+    expect(byId['unicode-confusables']?.attribution).toBe(
+      'Copyright © 1991-2026 Unicode, Inc. Unicode License V3.',
+    );
+    expect(byId.tranco?.attribution).toMatch(/Majestic Million \(CC BY 3\.0/);
+    expect(byId.wikidata).not.toHaveProperty('attribution');
+    // The official-domain export (no lookups) carries the same list.
+    expect(officialExport(org, 'tudelft.nl').sources).toEqual(sources);
+  });
+
   it('survives a JSON round trip unchanged', () => {
     const { variant, facts } = youngTldSwap();
     const out = toLookupExport({ org, variant, facts, exportedAt });

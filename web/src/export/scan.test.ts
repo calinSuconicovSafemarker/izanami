@@ -79,7 +79,21 @@ describe('toScanExport', () => {
           checkedAt: '2026-11-19T08:00:02.000Z',
         },
       ],
+      sources: expect.any(Array),
     });
+  });
+
+  it('names its data sources with licence links (ticket 17)', () => {
+    const out = toScanExport({ org, state: { phase: 'done', total: 2, rows }, exportedAt });
+    expect(out.sources.map((s) => s.id)).toEqual([
+      'wikidata',
+      'public-suffix-list',
+      'iana-root-zone',
+      'icann-gtlds',
+      'cloudflare-doh',
+      'google-public-dns',
+    ]);
+    for (const s of out.sources) expect(s.licenceUrl).toMatch(/^https:\/\//);
   });
 
   it('marks a cancelled scan as partial: checked < total', () => {

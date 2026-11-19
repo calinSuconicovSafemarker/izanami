@@ -4,7 +4,13 @@ import type { Org } from '../orgs';
 import type { Exists, ScanState } from '../scan';
 import type { TldCategory } from '../tld';
 import { toCsv } from './csv';
-import { EXPORT_SCHEMA_VERSION, exportOrg, type ExportOrg } from './common';
+import {
+  EXPORT_SCHEMA_VERSION,
+  exportOrg,
+  scanSources,
+  type ExportOrg,
+  type ExportSource,
+} from './common';
 
 export interface ScanExport {
   schemaVersion: typeof EXPORT_SCHEMA_VERSION;
@@ -38,6 +44,8 @@ export interface ScanExport {
     /** ISO 8601. */
     checkedAt: string;
   }[];
+  /** Data sources with licence and attribution (ticket 17); additive, schema version unchanged. */
+  sources: ExportSource[];
 }
 
 export interface ScanExportInput {
@@ -71,6 +79,7 @@ export function toScanExport({ org, state, exportedAt }: ScanExportInput): ScanE
       nameservers: [...r.nameservers],
       checkedAt: r.checkedAt,
     })),
+    sources: scanSources(),
   };
 }
 

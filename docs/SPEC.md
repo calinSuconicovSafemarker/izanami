@@ -100,6 +100,8 @@ Outputs committed to `web/src/data/`:
 
 Dark by default, mobile-first, keyboard-accessible, Tailwind (no component library). Terminal-styled lookup panel.
 
+**Credits** (`#/credits`, linked from the footer): every build-time dataset, live service and shipped library with link, use, licence and required attribution, from `web/src/credits/sources.ts`. Commercial-use findings: [research/licences.md](research/licences.md).
+
 ## Export
 
 Client-side downloads only (Blob + `a[download]`, no network, CSP unchanged); builders in `web/src/export/`. File names: `izanami-<registrable domain | scan-<org slug>>-<yyyymmdd-hhmm UTC>.<json|csv>`.
@@ -119,12 +121,13 @@ Client-side downloads only (Blob + `a[download]`, no network, CSP unchanged); bu
 | `verdict` | `{label, score, unknownShare}`; `null` for a not-registered variant |
 | `why` | the "Why" list: `[{id, kind, weight, summary}]` |
 | `rules` | every rule in display order: `[{id, status, weight, summary, explanation}]` |
+| `sources` | data sources the export draws on: `[{id, name, url, licence, licenceUrl, attribution?}]`; `attribution` where the licence asks for it (additive, still `schemaVersion: 1`) |
 
 A fact that could not be looked up is `null`; `registration`, `dns`, `hosting` and `official` are `null` for an official domain. CSV: one row per rule; every row repeats `domain, unicode, org, existence, verdict, score, unknown_share, checked_at`, then `rule_id, rule_status, rule_weight, rule_summary, rule_explanation`.
 
-**Lookalike scan**: "Export JSON" / "Export CSV" once the results table has rows. JSON: `{schemaVersion, tool, kind: "lookalike-scan", exportedAt, org, scan: {status, total, checked, registered}, candidates: [{domain, display, technique, techniqueLabel, tld, tldRating, tldCategory, exists, nameservers, checkedAt}]}` (`checked < total` for a cancelled scan). CSV columns: `candidate, domain, technique, tld, tld_rating, exists, checked_at`.
+**Lookalike scan**: "Export JSON" / "Export CSV" once the results table has rows. JSON: `{schemaVersion, tool, kind: "lookalike-scan", exportedAt, org, scan: {status, total, checked, registered}, candidates: [{domain, display, technique, techniqueLabel, tld, tldRating, tldCategory, exists, nameservers, checkedAt}], sources}` (`checked < total` for a cancelled scan). CSV columns: `candidate, domain, technique, tld, tld_rating, exists, checked_at`.
 
-CSV follows RFC 4180 (CRLF, quoting, doubled quotes), starts with a UTF-8 BOM for Excel, and prefixes text cells starting with `= + - @` (or tab/CR) with `'` against formula injection.
+CSV follows RFC 4180 (CRLF, quoting, doubled quotes), starts with a UTF-8 BOM for Excel, and prefixes text cells starting with `= + - @` (or tab/CR) with `'` against formula injection. CSV carries no `sources` (no place for metadata without breaking parsers); use the JSON when attribution must travel with the data.
 
 ## Repo layout
 
