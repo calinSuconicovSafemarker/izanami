@@ -75,6 +75,7 @@ npm run synth -w infra
 ## Deployment
 
 Live site:
+
 - **AWS (S3 + CloudFront, full security headers):** https://d1kyj53r37y0uu.cloudfront.net/
 - **GitHub Pages (auto-deployed on every push):** https://calinsuconicovsafemarker.github.io/izanami/
 
