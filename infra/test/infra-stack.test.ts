@@ -1,20 +1,25 @@
 import { mkdtempSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { App } from 'aws-cdk-lib';
 import { Match, Template } from 'aws-cdk-lib/assertions';
 import { beforeAll, describe, expect, it } from 'vitest';
 import { InfraStack } from '../lib/infra-stack';
+
+const repoRoot = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 
 let template: Template;
 
 beforeAll(() => {
   const siteDir = mkdtempSync(join(tmpdir(), 'site-'));
   writeFileSync(join(siteDir, 'index.html'), '<!doctype html>');
-  const app = new App();
+  // Skip esbuild in unit tests (`npm run synth` bundles for real).
+  const app = new App({ context: { 'aws:cdk:bundling-stacks': [] } });
   const stack = new InfraStack(app, 'TestStack', {
     siteDir,
     rdapHosts: ['https://rdap.nic.example'],
+    repoRoot,
   });
   template = Template.fromStack(stack);
 });
@@ -65,24 +70,25 @@ describe('site bucket', () => {
 
 describe('distribution', () => {
   it('reads S3 through Origin Access Control, HTTPS only, index.html root', () => {
-    template.resourceCountIs('AWS::CloudFront::OriginAccessControl', 1);
+    // One OAC for S3, one for the API's Lambda function URL.
+    template.resourceCountIs('AWS::CloudFront::OriginAccessControl', 2);
     template.hasResourceProperties('AWS::CloudFront::OriginAccessControl', {
-      OriginAccessControlConfig: {
+      OriginAccessControlConfig: Match.objectLike({
         OriginAccessControlOriginType: 's3',
         SigningBehavior: 'always',
         SigningProtocol: 'sigv4',
-      },
+      }),
     });
     template.hasResourceProperties('AWS::CloudFront::Distribution', {
       DistributionConfig: Match.objectLike({
         DefaultRootObject: 'index.html',
         Aliases: Match.absent(),
-        Origins: [
+        Origins: Match.arrayWith([
           Match.objectLike({
             OriginAccessControlId: Match.anyValue(),
             S3OriginConfig: { OriginAccessIdentity: '' },
           }),
-        ],
+        ]),
         DefaultCacheBehavior: Match.objectLike({ ViewerProtocolPolicy: 'redirect-to-https' }),
       }),
     });
@@ -132,6 +138,132 @@ describe('security headers', () => {
       expect(b.FunctionAssociations[0].EventType).toBe('viewer-response');
     }
   });
+
+  it('leaves JSON API responses intact apart from adding the CSP', () => {
+    const fn = Object.values(template.findResources('AWS::CloudFront::Function'))[0]!;
+    const handler = new Function(`${fn.Properties.FunctionCode}\nreturn handler;`)();
+    const headers = {
+      'content-type': { value: 'application/json; charset=utf-8' },
+      'access-control-allow-origin': { value: '*' },
+      'cache-control': { value: 'public, max-age=3600' },
+    };
+    const res = handler({ response: { statusCode: 200, headers: { ...headers } } });
+    expect(res.statusCode).toBe(200);
+    expect(res.headers).toMatchObject(headers);
+    expect(Object.keys(res.headers)).toEqual([...Object.keys(headers), 'content-security-policy']);
+  });
+});
+
+describe('JSON API (ADR-0006)', () => {
+  const resources = (type: string) => Object.values(template.findResources(type));
+  const config = () => resources('AWS::CloudFront::Distribution')[0]!.Properties.DistributionConfig;
+  const apiBehavior = () =>
+    (config().CacheBehaviors as Record<string, unknown>[]).find((b) => b.PathPattern === 'api/*')!;
+  const resource = (ref: unknown) =>
+    template.toJSON().Resources[(ref as { Ref: string }).Ref] as {
+      Type: string;
+      Properties: Record<string, never>;
+    };
+
+  it('runs Node 22 on arm64 with 512 MB, a 15 s timeout and no reserved concurrency', () => {
+    template.hasResourceProperties('AWS::Lambda::Function', {
+      Runtime: 'nodejs22.x',
+      Architectures: ['arm64'],
+      MemorySize: 512,
+      Timeout: 15,
+      Handler: 'index.handler',
+      ReservedConcurrentExecutions: Match.absent(),
+    });
+  });
+
+  it('keeps its logs for one week', () => {
+    template.hasResourceProperties('AWS::Logs::LogGroup', { RetentionInDays: 7 });
+    const fn = resources('AWS::Lambda::Function').find(
+      (f) => f.Properties.Runtime === 'nodejs22.x',
+    )!;
+    expect(fn.Properties.LoggingConfig.LogGroup).toEqual({ Ref: expect.stringMatching(/ApiLogs/) });
+  });
+
+  it('has a function URL with AWS_IAM auth, so direct calls are refused', () => {
+    template.resourceCountIs('AWS::Lambda::Url', 1);
+    template.hasResourceProperties('AWS::Lambda::Url', { AuthType: 'AWS_IAM' });
+  });
+
+  it('is reached through Origin Access Control for Lambda, invocable only by this distribution', () => {
+    template.hasResourceProperties('AWS::CloudFront::OriginAccessControl', {
+      OriginAccessControlConfig: Match.objectLike({
+        OriginAccessControlOriginType: 'lambda',
+        SigningBehavior: 'always',
+        SigningProtocol: 'sigv4',
+      }),
+    });
+    const perms = resources('AWS::Lambda::Permission');
+    expect(perms.map((p) => p.Properties.Action).sort()).toEqual([
+      'lambda:InvokeFunction',
+      'lambda:InvokeFunctionUrl',
+    ]);
+    for (const p of perms) {
+      expect(p.Properties.Principal).toBe('cloudfront.amazonaws.com');
+      expect(JSON.stringify(p.Properties.SourceArn)).toContain(':distribution/');
+    }
+    const apiOrigin = (config().Origins as Record<string, unknown>[]).find(
+      (o) => o.Id === apiBehavior().TargetOriginId,
+    )!;
+    expect(apiOrigin).toMatchObject({
+      OriginAccessControlId: expect.anything(),
+      CustomOriginConfig: { OriginProtocolPolicy: 'https-only', OriginReadTimeout: 15 },
+    });
+  });
+
+  it('routes /api/* to the function: HTTPS only, GET/HEAD only, site security headers and CSP', () => {
+    const b = apiBehavior();
+    expect(b).toMatchObject({
+      ViewerProtocolPolicy: 'https-only',
+      AllowedMethods: ['GET', 'HEAD'],
+      CachedMethods: ['GET', 'HEAD'],
+      ResponseHeadersPolicyId: config().DefaultCacheBehavior.ResponseHeadersPolicyId,
+      FunctionAssociations: config().DefaultCacheBehavior.FunctionAssociations,
+    });
+  });
+
+  it('caches for 1 h by default, keyed on the org and domain query strings only', () => {
+    const policy = resource(apiBehavior().CachePolicyId);
+    expect(policy.Type).toBe('AWS::CloudFront::CachePolicy');
+    expect(policy.Properties.CachePolicyConfig).toMatchObject({
+      DefaultTTL: 3600,
+      MinTTL: 0,
+      MaxTTL: 3600,
+      ParametersInCacheKeyAndForwardedToOrigin: {
+        QueryStringsConfig: { QueryStringBehavior: 'whitelist', QueryStrings: ['org', 'domain'] },
+        HeadersConfig: { HeaderBehavior: 'none' },
+        CookiesConfig: { CookieBehavior: 'none' },
+      },
+    });
+  });
+
+  it('forwards only the org and domain query strings to the origin (no Host header)', () => {
+    const policy = resource(apiBehavior().OriginRequestPolicyId);
+    expect(policy.Type).toBe('AWS::CloudFront::OriginRequestPolicy');
+    expect(policy.Properties.OriginRequestPolicyConfig).toMatchObject({
+      QueryStringsConfig: { QueryStringBehavior: 'whitelist', QueryStrings: ['org', 'domain'] },
+      HeadersConfig: { HeaderBehavior: 'none' },
+      CookiesConfig: { CookieBehavior: 'none' },
+    });
+  });
+
+  it('uses no other AWS services: no secrets, tables, queues or extra functions', () => {
+    for (const type of [
+      'AWS::SecretsManager::Secret',
+      'AWS::SSM::Parameter',
+      'AWS::DynamoDB::Table',
+      'AWS::SQS::Queue',
+      'AWS::ApiGateway::RestApi',
+      'AWS::ApiGatewayV2::Api',
+      'AWS::Lambda::EventSourceMapping',
+    ]) {
+      template.resourceCountIs(type, 0);
+    }
+  });
 });
 
 describe('caching', () => {
@@ -172,7 +304,13 @@ describe('deployment and outputs', () => {
   it('exports the distribution URL, bucket name and distribution ID', () => {
     const outputs = template.toJSON().Outputs as Record<string, { Value: unknown }>;
     expect(Object.keys(outputs)).toEqual(
-      expect.arrayContaining(['DistributionUrl', 'BucketName', 'DistributionId']),
+      expect.arrayContaining([
+        'DistributionUrl',
+        'BucketName',
+        'DistributionId',
+        'ApiHealthUrl',
+        'ApiFunctionUrl',
+      ]),
     );
     expect(JSON.stringify(outputs.DistributionUrl!.Value)).toContain('https://');
   });

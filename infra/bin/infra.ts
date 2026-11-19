@@ -16,7 +16,7 @@ const { hosts } = JSON.parse(
 ) as { hosts: string[] };
 
 const app = new App();
-new InfraStack(app, 'IzanamiStack', { siteDir, rdapHosts: hosts });
+new InfraStack(app, 'IzanamiStack', { siteDir, rdapHosts: hosts, repoRoot: root });
 
 // One-time CI/CD stack, only synthesised when a repo is configured:
 //   npx cdk deploy IzanamiGitHubDeploy -c githubRepo=<owner>/<name>
