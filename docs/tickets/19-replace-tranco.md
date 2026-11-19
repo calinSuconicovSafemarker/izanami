@@ -1,5 +1,7 @@
 # 19 — Replace Tranco with commercially licensed popularity data
 
+**Status:** Done (41c3d05)
+
 **Depends on:** 17 (licence research: `docs/research/licences.md`)
 
 ## Goal
