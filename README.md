@@ -3,7 +3,7 @@
 _See through lookalike domains._ Named after the Naruto technique that traps an opponent in a loop until they accept the truth.
 
 Is `tudeIft.nl` really TU Delft? This static website shows the known official domains of about
-500 well-known organisations and checks whether another domain is a **lookalike** that could be
+1,000 well-known organisations and checks whether another domain is a **lookalike** that could be
 used for phishing (typos, homoglyphs, TLD swaps, combo-squats, subdomain tricks). It explains
 every rule it applies (fired, not fired or unknown) and gives a heuristic verdict.
 
@@ -19,10 +19,10 @@ result (e.g. docs/screenshots/*.png) once the lookup terminal (ticket 06) has la
 flowchart LR
   subgraph build["Build time (npm run build:data, Node)"]
     WD[Wikidata P856] --> GEN[scripts/]
-    TR[Tranco top list] --> GEN
+    POP[Popularity lists:<br/>Majestic Million, CrUX] --> GEN
     IANA[IANA RDAP bootstrap] --> GEN
     UC[Unicode confusables] --> GEN
-    GEN --> DATA["web/src/data/<br/>orgs.json, Tranco set,<br/>confusables, RDAP hosts"]
+    GEN --> DATA["web/src/data/<br/>orgs.json, popular-domain set,<br/>confusables, RDAP hosts"]
   end
   subgraph host["AWS (CDK, infra/)"]
     S3[(Private S3 bucket)] --> CF[CloudFront + strict CSP]
@@ -37,7 +37,7 @@ flowchart LR
 ```
 
 - Official domains are resolved **at build time**: an organisation is listed only when Wikidata
-  and Tranco agree. The browser never calls Wikidata or Tranco.
+  and the popularity lists agree. The browser never calls Wikidata or the lists.
 - A lookup normalises the input to its registrable domain, then queries DNS-over-HTTPS, RDAP and
   Certificate Transparency directly from the browser and scores the result with a small,
   transparent rules engine (`web/src/rules/`).
@@ -58,7 +58,7 @@ See also the [spec](docs/SPEC.md) and [glossary](docs/GLOSSARY.md).
 This tool only reads public records about a domain: DNS, registration data (RDAP) and
 Certificate Transparency logs. It never contacts the domain being checked: no HTTP requests,
 screenshots, port scans or crawling. Its verdict is a heuristic, not a guarantee, and "official"
-means "listed as official by Wikidata and heavily used per Tranco", not proof of ownership.
+means "listed as official by Wikidata and heavily used per the popularity lists", not proof of ownership.
 Please don't use it to harass domain owners; report suspected phishing to the registrar or the
 targeted organisation.
 

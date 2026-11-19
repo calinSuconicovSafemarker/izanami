@@ -8,12 +8,12 @@ Terms are defined in [GLOSSARY.md](GLOSSARY.md).
 
 ## User flow
 
-1. **Landing page** — searchable grid of ~500 organisations (search by name or domain).
+1. **Landing page** — searchable grid of ~1,000 organisations (search by name or domain).
 2. **Organisation page** (`/#/org/<slug>`) — an *official-domain card*:
    - primary domain + all known official domains;
    - brand TLDs the organisation operates ("Operates the TLDs .google, .gle …"), each linked to its IANA record;
-   - evidence: "Wikidata lists this as the official website (P856)" + "Tranco rank N (heavily used)" + `confirmedAt` date.
-   - Honest wording: Wikidata says official + Tranco says heavily used. This is **not** proof of ownership.
+   - evidence: "Wikidata lists this as the official website (P856)" + "Top 1,000 sites (Chrome UX Report, Majestic Million) — heavily used" + `confirmedAt` date.
+   - Honest wording: Wikidata says official + the popularity lists say heavily used. This is **not** proof of ownership.
 3. **Lookup terminal** — monospace panel, brand label prefilled (`tudelft.`), TLD quick-pick chips, free editing allowed (typos, combo-squats, IDN). Deep link `/#/org/<slug>?d=<variant>` auto-runs the lookup.
 4. **Results** — raw DNS/RDAP lines in terminal style, then a **verdict card** listing every rule as *fired / not fired / unknown* with a plain-English line each.
 
@@ -33,7 +33,7 @@ Terms are defined in [GLOSSARY.md](GLOSSARY.md).
 | ASN | DoH TXT `<reversed-ip>.origin.asn.cymru.com` | Failure → `same-asn` unknown |
 | Cert history | crt.sh JSON (optional) | Timeout ~5 s; failure → `fresh-cert` unknown |
 | Official domain's own NS/MX/registrar/ASN | Same sources, queried live for comparison | Cached per session |
-| Variant popularity | Bundled Tranco top-100k set | No runtime call |
+| Variant popularity | Bundled popular top-100k set (Majestic Million + CrUX) | No runtime call |
 
 All network access goes through one `LookupClient` interface so rules and UI are testable with recorded fixtures.
 
@@ -57,7 +57,7 @@ Each rule is a pure function `(variant: VariantFacts, official: OfficialFacts) �
 | `much-newer` | registered > 5 years after official (and not `young-domain`) | +15 |
 | `brand-lookalike` | edit distance ≤ 2 / contains brand label | +25 |
 | `brand-lookalike` (homoglyph/punycode) | confusables skeleton matches brand | +35 |
-| `not-in-tranco` | registrable domain not in bundled top-100k | +10 |
+| `not-popular` | registrable domain not in bundled popular top-100k set | +10 |
 | `same-nameservers` | shares an NS host/provider with official | −40 |
 | `same-registrar` | same registrar as official (brand registrars like MarkMonitor/CSC weigh extra) | −25 |
 | `same-mx` | shares MX provider with official | −15 |
@@ -76,9 +76,11 @@ Owner (registrant) is displayed only when RDAP returns it unredacted; it is not 
 
 Outputs committed to `web/src/data/`:
 
-- `orgs.json` — ~500 orgs: `{ slug, name, wikidataId, country, primaryDomain, officialDomains[], relatedDomains[], brandTlds[], wikidataDomain, trancoRank, confirmedAt }`. A related domain's `source` sets its trust level: `published-list` and `curated` are *Official*, `wikidata-owned` is *listed, verified at lookup* ([ADR-0002](adr/0002-build-time-resolution.md) Amendment 4). Countries and administrative regions are never organisations. Generated from Wikidata entities with P856 whose registrable domain is in Tranco top ~10k; top 500 by rank. An org is included only when **both** sources agree ([ADR-0002](adr/0002-build-time-resolution.md)).
-- `extras.json` (hand-curated input, e.g. TU Delft `Q752663`) — exempt from the Tranco check, each entry must cite a source.
-- `tranco-top100k` — compact set: sorted 32-bit FNV-1a hashes, Golomb-Rice coded (~207 KB gzipped). No false negatives; false-positive rate ≈ n/2³² ≈ 2.3e-5.
+- `orgs.json` — ~1,000 orgs: `{ slug, name, wikidataId, country, primaryDomain, officialDomains[], relatedDomains[], brandTlds[], wikidataDomain, popularity: { bucket, sources, majesticRank, cruxBucket } | null, confirmedAt }`. A related domain's `source` sets its trust level: `published-list` and `curated` are *Official*, `wikidata-owned` is *listed, verified at lookup* ([ADR-0002](adr/0002-build-time-resolution.md) Amendment 4). Countries and administrative regions are never organisations. Generated from Wikidata entities with P856 whose registrable domain is in the top-10k popularity bucket; top 1,000 by popularity (best position in either list: Majestic rank, or half the CrUX bucket bound), plus the pinned orgs of `scripts/data/pinned-orgs.json`. An org is included only when **both** sources agree ([ADR-0002](adr/0002-build-time-resolution.md)).
+- `extras.json` (hand-curated input, e.g. TU Delft `Q752663`) — exempt from the popularity check, each entry must cite a source.
+- `popular-top100k` — registrable domains in the top 100k of the Majestic Million or the Chrome UX Report (~163k domains). Compact set: sorted 32-bit FNV-1a hashes, Golomb-Rice coded. No false negatives; false-positive rate ≈ n/2³² ≈ 4e-5.
+
+**Popularity** ([ADR-0002](adr/0002-build-time-resolution.md) Amendment 5): the Majestic Million (CC BY 3.0, exact rank) and the Chrome UX Report top origins (CC BY 4.0, rank buckets) are combined per registrable domain into the best bucket across both lists (top 1k / 10k / 100k / 1M), with the lists that name it. Both are cached in `scripts/.cache/popularity/`.
 - `confusables.json` — Latin/Cyrillic/Greek subset of Unicode `confusables.txt`.
 - `rdap-hosts.json` — RDAP server hosts from the IANA bootstrap, used for the CSP `connect-src` allowlist.
 - `data-diff.md` — human-reviewed report of official domains, related domains and brand TLDs that changed since the last build.
@@ -113,7 +115,7 @@ Client-side downloads only (Blob + `a[download]`, no network, CSP unchanged); bu
 | `schemaVersion`, `tool` (`"izanami"`), `kind` (`"lookup"`), `exportedAt`, `checkedAt` | ISO 8601 times; `checkedAt` is `null` for an official domain (no lookups) |
 | `org` | `{slug, name, primaryDomain, officialDomains, relatedDomains, brandTlds}` |
 | `variant` | `{input, unicode, punycode, registrableDomain}` |
-| `analysis` | `{technique, techniqueLabel, editDistance, similarityPercent (0–100), homoglyphs: [{text, looksLike, codePoints}], inTrancoTop100k}` |
+| `analysis` | `{technique, techniqueLabel, editDistance, similarityPercent (0–100), homoglyphs: [{text, looksLike, codePoints}], inPopularTop100k}` |
 | `existence` | `not-registered` \| `registered-not-resolving` \| `resolving` \| `null` |
 | `registration` | `{registrationDate, registrar, firstCertDate}` (`firstCertDate: "none"` = no certificate ever logged) |
 | `dns`, `hosting` | `{nameservers, mx, addresses, spf}`, `{asns}` |
