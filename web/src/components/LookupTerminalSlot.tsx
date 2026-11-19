@@ -6,6 +6,7 @@ import { useLookup, type LookupState } from '../lookup-ui/useLookup';
 import { OfficialVerdictCard, VerdictCard } from '../verdict-ui';
 import { isNotRegistered } from '../rules';
 import { DomainAnalysisPanel } from '../analysis-ui/DomainAnalysisPanel';
+import { LookupExportButtons } from '../export/ExportButtons';
 
 /**
  * The org page's lookup area. Owns the lookup state (`useLookup`) and syncs it with the
@@ -34,20 +35,30 @@ export function LookupTerminalSlot({ org }: { org: Org }) {
       {(lookup.state.phase === 'running' || lookup.state.phase === 'done') && (
         <DomainAnalysisPanel facts={lookup.state.facts} />
       )}
-      <Verdict state={lookup.state} orgName={org.name} />
+      <Verdict state={lookup.state} org={org} />
     </div>
   );
 }
 
-function Verdict({ state, orgName }: { state: LookupState; orgName: string }) {
+function Verdict({ state, org }: { state: LookupState; org: Org }) {
+  const exportButtons = <LookupExportButtons org={org} state={state} />;
   switch (state.phase) {
     case 'official':
-      return <OfficialVerdictCard domain={state.variant.unicode} orgName={orgName} />;
+      return (
+        <OfficialVerdictCard
+          domain={state.variant.unicode}
+          orgName={org.name}
+          actions={exportButtons}
+        />
+      );
     case 'running':
     case 'done': {
-      // An unregistered variant gets the terminal's "no active threat" line instead of a verdict.
-      if (isNotRegistered(state.existence)) return null;
-      return <VerdictCard facts={state.facts} done={state.phase === 'done'} />;
+      // An unregistered variant gets the terminal's "no active threat" line instead of a verdict;
+      // its (verdict-less) result can still be exported.
+      if (isNotRegistered(state.existence)) return exportButtons;
+      return (
+        <VerdictCard facts={state.facts} done={state.phase === 'done'} actions={exportButtons} />
+      );
     }
     default:
       return null;

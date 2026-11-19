@@ -26,6 +26,8 @@ const EXTRA_SCAN_TLDS = [
 
 export interface ScanRow extends ScanResult {
   rating: TldRating;
+  /** When the result settled (ISO 8601). */
+  checkedAt: string;
 }
 
 export type ScanState =
@@ -98,7 +100,11 @@ export function useLookalikeScan(org: Org, options: LookalikeScanOptions = {}): 
       delayMs,
       signal: ac.signal,
       onResult: (result, index) => {
-        settled[index] = { ...result, rating: rateTld(result.candidate.tld, ctx) };
+        settled[index] = {
+          ...result,
+          rating: rateTld(result.candidate.tld, ctx),
+          checkedAt: new Date().toISOString(),
+        };
         setState({ phase: 'running', total: candidates.length, rows: rows() });
       },
     }).then(() => {

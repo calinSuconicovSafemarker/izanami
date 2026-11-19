@@ -18,6 +18,8 @@ export interface VerdictCardProps {
   facts: Facts;
   /** Every lookup settled: the verdict is final. */
   done: boolean;
+  /** Shown at the bottom of the card once the verdict is final (e.g. export buttons). */
+  actions?: ReactNode;
 }
 
 const RULE_LABELS: Record<RuleId, string> = {
@@ -175,7 +177,7 @@ const announce = (v: Verdict, why: WhyItem[]) =>
     : `Verdict: ${v.verdict}`;
 
 /** Verdict and every rule's outcome for one lookup. */
-export function VerdictCard({ facts, done }: VerdictCardProps) {
+export function VerdictCard({ facts, done, actions }: VerdictCardProps) {
   const results = evaluate(facts);
   const final = done ? verdict(results) : undefined;
   const why = final ? whyList(facts, results) : [];
@@ -212,16 +214,26 @@ export function VerdictCard({ facts, done }: VerdictCardProps) {
           <RuleList title="Not fired" rules={notFired} />
         </details>
       )}
+      {final && actions}
     </CardFrame>
   );
 }
 
 /** For a known official domain: no lookups or scoring, just the verdict. */
-export function OfficialVerdictCard({ domain, orgName }: { domain: string; orgName: string }) {
+export function OfficialVerdictCard({
+  domain,
+  orgName,
+  actions,
+}: {
+  domain: string;
+  orgName: string;
+  actions?: ReactNode;
+}) {
   const v: Verdict = { verdict: 'Official', score: 0, unknownShare: 0 };
   return (
     <CardFrame announcement="Verdict: Official">
       <VerdictHeader v={v} text={`${domain} is a known official domain of ${orgName}.`} />
+      {actions}
     </CardFrame>
   );
 }

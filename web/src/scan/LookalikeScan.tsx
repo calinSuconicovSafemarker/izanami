@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import type { Org } from '../orgs';
 import { TldBadge } from '../tld';
+import { ScanExportButtons } from '../export/ExportButtons';
 import type { Exists } from './scan';
 import { useLookalikeScan, type ScanState } from './useLookalikeScan';
 
@@ -76,6 +77,7 @@ export function LookalikeScan({ org, brandTlds, delayMs }: LookalikeScanProps) {
         )}
       </div>
       <Status state={state} />
+      <ScanExportButtons org={org} state={state} />
       {state.phase !== 'idle' && state.rows.length > 0 && (
         <div
           tabIndex={0}

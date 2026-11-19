@@ -98,6 +98,32 @@ Outputs committed to `web/src/data/`:
 
 Dark by default, mobile-first, keyboard-accessible, Tailwind (no component library). Terminal-styled lookup panel.
 
+## Export
+
+Client-side downloads only (Blob + `a[download]`, no network, CSP unchanged); builders in `web/src/export/`. File names: `izanami-<registrable domain | scan-<org slug>>-<yyyymmdd-hhmm UTC>.<json|csv>`.
+
+**Single lookup**: "Export JSON" / "Export CSV" on the verdict card once the lookup is done (also for an official domain, and below the terminal for a not-registered result). JSON (`schemaVersion: 1`; a breaking change bumps it):
+
+| Key | Content |
+| --- | --- |
+| `schemaVersion`, `tool` (`"izanami"`), `kind` (`"lookup"`), `exportedAt`, `checkedAt` | ISO 8601 times; `checkedAt` is `null` for an official domain (no lookups) |
+| `org` | `{slug, name, primaryDomain, officialDomains}` |
+| `variant` | `{input, unicode, punycode, registrableDomain}` |
+| `analysis` | `{technique, editDistance, similarityPercent (0–100), homoglyphs: [{text, looksLike, codePoints}], inTrancoTop100k}` |
+| `existence` | `not-registered` \| `registered-not-resolving` \| `resolving` \| `null` |
+| `registration` | `{registrationDate, registrar, firstCertDate}` (`firstCertDate: "none"` = no certificate ever logged) |
+| `dns`, `hosting` | `{nameservers, mx, addresses, spf}`, `{asns}` |
+| `official` | facts of the org's primary domain it was compared with: `{domain, registrationDate, registrar, nameservers, mx, addresses, asns}` |
+| `verdict` | `{label, score, unknownShare}`; `null` for a not-registered variant |
+| `why` | the "Why" list: `[{id, kind, weight, summary}]` |
+| `rules` | every rule in display order: `[{id, status, weight, summary, explanation}]` |
+
+A fact that could not be looked up is `null`; `registration`, `dns`, `hosting` and `official` are `null` for an official domain. CSV: one row per rule; every row repeats `domain, unicode, org, existence, verdict, score, unknown_share, checked_at`, then `rule_id, rule_status, rule_weight, rule_summary, rule_explanation`.
+
+**Lookalike scan**: "Export JSON" / "Export CSV" once the results table has rows. JSON: `{schemaVersion, tool, kind: "lookalike-scan", exportedAt, org, scan: {status, total, checked, registered}, candidates: [{domain, display, technique, tld, tldRating, tldCategory, exists, nameservers, checkedAt}]}` (`checked < total` for a cancelled scan). CSV columns: `candidate, domain, technique, tld, tld_rating, exists, checked_at`.
+
+CSV follows RFC 4180 (CRLF, quoting, doubled quotes), starts with a UTF-8 BOM for Excel, and prefixes text cells starting with `= + - @` (or tab/CR) with `'` against formula injection.
+
 ## Repo layout
 
 ```
