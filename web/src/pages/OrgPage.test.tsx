@@ -75,13 +75,15 @@ describe('organisation page', () => {
     expect(within(verdict).getByRole('status')).not.toHaveTextContent('Verdict: Official');
   });
 
-  it('cites Wikidata P856 with a link to the item, the Tranco rank and the confirmation date', () => {
+  it('cites Wikidata P856 with a link to the item, the popularity and the confirmation date', () => {
     renderRoute('/org/microsoft');
     const evidence = within(card()).getByRole('list', { name: /evidence/i });
     const wikidata = within(evidence).getByRole('link', { name: /wikidata/i });
     expect(wikidata).toHaveAttribute('href', 'https://www.wikidata.org/wiki/Q2283');
     expect(evidence).toHaveTextContent('Wikidata lists this as the official website (P856)');
-    expect(evidence).toHaveTextContent('Tranco rank 8 — heavily used');
+    expect(evidence).toHaveTextContent(
+      'Top 1,000 sites (Chrome UX Report, Majestic Million) — heavily used',
+    );
     expect(evidence).toHaveTextContent('Confirmed at 2026-11-19');
   });
 
@@ -94,7 +96,9 @@ describe('organisation page', () => {
       'href',
       'https://www.wikidata.org/wiki/Q752663',
     );
-    expect(evidence).toHaveTextContent('Tranco rank 5,431 — heavily used');
+    expect(evidence).toHaveTextContent(
+      'Top 10,000 sites (Chrome UX Report, Majestic Million) — heavily used',
+    );
   });
 
   it('carries the disclaimer in the page content', () => {

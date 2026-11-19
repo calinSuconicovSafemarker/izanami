@@ -7,17 +7,20 @@ import {
   type OwnedEntity,
   type PublishedDomains,
 } from './related';
-import { selectOrgs, type Org } from './select';
-import { parseTranco } from '../lib/tranco';
+import { selectOrgs, type Org, type PinnedOrg } from './select';
+import { rankedDomains, type PopularityBucket, type PopularityMap } from '../lib/popularity';
 import { classifyEntities, mergeEntities, type WikidataEntity } from './wikidata';
 
 /** Everything the pipeline reads from the outside world, injected so tests can stub it. */
 export interface OrgsSources {
-  trancoCsv(): Promise<string>;
+  /** Combined popularity lists (Majestic Million, CrUX), registrable domain → popularity. */
+  popularity(): Promise<PopularityMap>;
   queryEntities(domains: readonly string[]): Promise<Map<string, WikidataEntity>>;
   /** Class → all its superclasses (P279*), for the given P31 classes. */
   queryClassAncestors(classes: readonly string[]): Promise<Map<string, string[]>>;
   extras(): Promise<Extra[]>;
+  /** Organisations kept beyond the cap (`scripts/data/pinned-orgs.json`). */
+  pinnedOrgs(): Promise<PinnedOrg[]>;
   /** Entities owned by / subsidiaries of the given entities (one level). */
   queryOwned(parentIds: readonly string[]): Promise<OwnedEntity[]>;
   /** Vendor-published domain lists, downloaded and parsed. */
@@ -30,9 +33,9 @@ export interface OrgsSources {
 }
 
 export interface OrgsOptions {
-  /** How many top Tranco registrable domains to look up in Wikidata (~10k). */
-  candidateDomains: number;
-  /** How many Tranco-confirmed orgs to keep (500). */
+  /** Registrable domains in this popularity bucket or better are looked up in Wikidata (10k). */
+  candidateBucket: PopularityBucket;
+  /** How many popularity-confirmed orgs to keep (1000), pinned orgs not counted. */
   limit: number;
   /** Domains per SPARQL request. */
   batchSize: number;
@@ -52,12 +55,13 @@ export async function runOrgsPipeline(
   sources: OrgsSources,
   options: OrgsOptions,
 ): Promise<OrgsResult> {
-  const csv = await sources.trancoCsv();
-  const allRanks = parseTranco(csv, Number.POSITIVE_INFINITY);
-  const candidates = new Map([...allRanks].slice(0, options.candidateDomains));
+  const popularity = await sources.popularity();
+  const candidates = new Map(
+    [...popularity].filter(([, p]) => p.bucket <= options.candidateBucket),
+  );
+  const domains = rankedDomains(candidates);
 
   const entities = new Map<string, WikidataEntity>();
-  const domains = [...candidates.keys()];
   for (let i = 0; i < domains.length; i += options.batchSize) {
     mergeEntities(entities, await sources.queryEntities(domains.slice(i, i + options.batchSize)));
   }
@@ -69,14 +73,16 @@ export async function runOrgsPipeline(
     batch.forEach((supers, cls) => ancestors.set(cls, supers));
   }
 
+  const pinned = await sources.pinnedOrgs();
   const generated = selectOrgs({
     entities: classifyEntities(entities, ancestors),
-    tranco: candidates,
+    popularity: candidates,
     limit: options.limit,
+    pinned: new Set(pinned.map((p) => p.wikidataId)),
     confirmedAt: options.confirmedAt,
   });
   const extras = await sources.extras();
-  const merged = mergeExtras(generated, extras, allRanks, options.confirmedAt);
+  const merged = mergeExtras(generated, extras, popularity, options.confirmedAt);
 
   // Ownership graph, two levels below every org (ticket 15).
   const owned: OwnedEntity[] = [];
@@ -92,7 +98,7 @@ export async function runOrgsPipeline(
     parents.forEach((id) => visited.add(id));
   }
 
-  const related = addRelatedDomains(merged, allRanks, {
+  const related = addRelatedDomains(merged, popularity, {
     owned: [...curatedOwnership(extras), ...owned],
     published: await sources.publishedLists(),
     curated: curatedDomains(extras),
@@ -108,6 +114,13 @@ export async function runOrgsPipeline(
             'wikidata-owned related domains are missing. Rerun without BUILD_DATA_OWNERSHIP=cache-only.',
         ]
       : []),
+    ...pinned
+      .filter((p) => !orgs.some((o) => o.wikidataId === p.wikidataId))
+      .map(
+        (p) =>
+          `Pinned org ${p.name} (${p.wikidataId}) is missing: no Wikidata P856 domain in the ` +
+          'top-10k popularity bucket, or another entity claims it.',
+      ),
     ...brandNotes,
   ];
   return { orgs, diffMarkdown: renderDiff({ ...diffOrgs(previous, orgs), skipped, notes }) };

@@ -70,3 +70,20 @@ Review round 2 found that Wikidata ownership is not proof of current control: Wi
 - **Countries are not organisations.** Entities whose class ancestry includes country (Q6256), sovereign state (Q3624078), state (Q7275) or political territorial entity (Q1048835: provinces, counties) are dropped, even though Wikidata's class tree puts states under organisation ("Germany" claimed bund.de and 57 related domains). The broader administrative territorial entity (Q56061) is not used: Wikidata puts ministries and departments under it.
 - **Shared brand TLDs.** `brand-tlds.json` entries may list `sharedTlds: [{tld, wikidataId, source}]`: a brand TLD of the operator that also belongs to an org it owns (`.youtube` → YouTube, `.android` → Android). Matching stays per org.
 - **googleusercontent.com stays excluded**: it is a PSL private suffix where users' content is served from per-user subdomains, so it must never make a lookalike Official, even though Google's Android Enterprise network requirements list it.
+
+## Amendment 5 — 2026-11-19: popularity lists replace Tranco
+
+The Tranco list states no licence, and one of its inputs (Cloudflare Radar) is CC BY-NC 4.0, so it was not cleared for commercial use ([licence research](../research/licences.md)). Ticket 19 replaces it everywhere with two lists whose licences allow commercial use with attribution:
+
+- **Majestic Million** (CC BY 3.0): daily top 1M domains by referring subnets, exact rank.
+- **Chrome UX Report top origins** (CC BY 4.0, Google): monthly rank buckets by real Chrome traffic, read from the unmodified BigQuery export at `github.com/zakird/crux-top-lists` (the month is pinned in `CRUX_MONTH`).
+
+Both are combined into one **popularity** signal per registrable domain: the best bucket across both lists (top 1k / 10k / 100k / 1M), the lists that name it, the Majestic rank and the CrUX bucket. Its **position** is the best showing in either list: the Majestic rank, or half the CrUX bucket bound (CrUX shuffles sites within a bucket, so a top-1k site counts as rank 500). Wherever the decision above says "Tranco":
+
+- **Org selection:** candidates are the domains in the top-10k bucket (~16.6k domains instead of Tranco's 10k); orgs are ordered by position, then Majestic rank, then Q-number. **The cap rises from 500 to 1,000.** Majestic's top 1k is much denser in Wikidata organisations than Tranco's (which is full of CDN, tracking and DNS domains from Cisco Umbrella), so 500 orgs stopped near rank 800 and dropped Meta, Uber, Airbnb, Binance, PlayStation, Nintendo and others that Tranco had. Ordering alone could not fix it: of four orderings simulated at cap 500, the best kept 352 of the 499 generated orgs. At 1,000 it keeps about 400, including those brands; most of the rest are Umbrella-only infrastructure domains (Crashlytics, pki.goog, ntp.org).
+- **Pinned orgs:** `scripts/data/pinned-orgs.json` lists commonly phished brands that still fall just below the cap (Okta, T-Mobile US, McAfee, Sberbank, DeepL, Datadog, Twilio), each with a reason. They are kept beyond the cap but must still qualify (a P856 domain in the top-10k bucket, claimed by them); `data-diff.md` notes any that do not.
+- An org's `trancoRank` became `popularity: { bucket, sources, majesticRank, cruxBucket } | null`.
+- **Related domains** (`wikidata-owned`): "has a Tranco rank (top 1M)" became "listed in the popularity data (top 1M of either list)".
+- **Runtime check:** the bundled set holds every registrable domain in the top-100k bucket of either list (~163k domains, Golomb-Rice coded as before); the rule `not-in-tranco` is now `not-popular`, the export field `inTrancoTop100k` is now `inPopularTop100k`.
+- **Wording:** "Wikidata lists this as official + the popularity lists show it is heavily used" ("Top 1,000 sites (Chrome UX Report, Majestic Million) — heavily used").
+- **Attribution:** both lists are credited on the credits page and in every export's `sources` with name, link, licence link and a note of our changes.

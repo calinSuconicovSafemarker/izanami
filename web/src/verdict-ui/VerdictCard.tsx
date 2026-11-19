@@ -28,7 +28,7 @@ const RULE_LABELS: Record<RuleId, string> = {
   'young-domain': 'Young domain',
   'much-newer': 'Much newer than the official domain',
   'brand-lookalike': 'Brand lookalike',
-  'not-in-tranco': 'Not a popular domain',
+  'not-popular': 'Not a popular domain',
   'same-nameservers': 'Same nameservers',
   'same-registrar': 'Same registrar',
   'same-mx': 'Same mail provider',

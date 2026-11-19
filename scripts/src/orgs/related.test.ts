@@ -6,6 +6,7 @@ import {
   type OwnedEntity,
   type PublishedListConfig,
 } from './related';
+import { majesticOnly, ranked } from '../lib/popularity-fixture';
 import type { Org } from './select';
 
 function org(id: string, name: string, domains: string[], rank: number): Org {
@@ -19,7 +20,7 @@ function org(id: string, name: string, domains: string[], rank: number): Org {
     relatedDomains: [],
     brandTlds: [],
     wikidataDomain: domains[0]!,
-    trancoRank: rank,
+    popularity: majesticOnly(rank),
     confirmedAt: '2026-11-19',
   };
 }
@@ -28,7 +29,7 @@ const GOOGLE = org('Q95', 'Google', ['google.com', 'google.nl'], 1);
 const YOUTUBE = org('Q866', 'YouTube', ['youtube.com'], 10);
 const ACME = org('Q1', 'Acme', ['acme.com'], 50);
 
-const TRANCO = new Map(
+const POPULARITY = ranked(
   ['google.com', 'youtube.com', 'gmail.com', 'deepmind.com', 'acme.com', 'waze.com'].map((d, i) => [
     d,
     i + 1,
@@ -52,7 +53,7 @@ const related = (orgs: Org[], id: string) =>
 
 describe('addRelatedDomains', () => {
   it("adds owned entities' websites, including another org's site when that org is owned", () => {
-    const { orgs } = addRelatedDomains([GOOGLE, YOUTUBE, ACME], TRANCO, {
+    const { orgs } = addRelatedDomains([GOOGLE, YOUTUBE, ACME], POPULARITY, {
       owned: [
         owned('Q95', 'Q866', 'YouTube', 'https://www.youtube.com/'),
         owned('Q95', 'Q9334', 'Gmail', 'https://gmail.com/', 'https://mail.google.com/'),
@@ -69,7 +70,7 @@ describe('addRelatedDomains', () => {
   });
 
   it("keeps a curated entry for an owned org's official domain at the curated trust level", () => {
-    const { orgs } = addRelatedDomains([GOOGLE, YOUTUBE], TRANCO, {
+    const { orgs } = addRelatedDomains([GOOGLE, YOUTUBE], POPULARITY, {
       owned: [owned('Q95', 'Q866', 'YouTube Inc.')],
       curated: [{ wikidataId: 'Q95', domain: 'youtube.com', url: 'https://example.org/yt' }],
     });
@@ -79,7 +80,7 @@ describe('addRelatedDomains', () => {
   });
 
   it("keeps a published-list entry for an owned org's official domain at its trust level", () => {
-    const { orgs } = addRelatedDomains([GOOGLE, YOUTUBE], TRANCO, {
+    const { orgs } = addRelatedDomains([GOOGLE, YOUTUBE], POPULARITY, {
       owned: [owned('Q95', 'Q866', 'YouTube Inc.')],
       published: [
         {
@@ -96,25 +97,31 @@ describe('addRelatedDomains', () => {
   it('credits a curated ownership link with its source', () => {
     // A Wikidata-found domain reached through a curated ownership link is curated too.
     const gco = org('Q5512639', 'g.co', ['g.co'], 900);
-    const { orgs } = addRelatedDomains([GOOGLE, gco], new Map([...TRANCO, ['g.co', 900]]), {
-      owned: [
-        {
-          parentId: 'Q95',
-          wikidataId: 'Q5512639',
-          name: 'g.co',
-          websites: [],
-          source: 'https://example.org/gco',
-        },
-        owned('Q5512639', 'Q7', 'g.co shortener', 'https://g.co/'),
-      ],
-    });
+    const { orgs } = addRelatedDomains(
+      [GOOGLE, gco],
+      ranked(
+        [...POPULARITY].map(([d, p]) => [d, p.majesticRank ?? 0] as const).concat([['g.co', 900]]),
+      ),
+      {
+        owned: [
+          {
+            parentId: 'Q95',
+            wikidataId: 'Q5512639',
+            name: 'g.co',
+            websites: [],
+            source: 'https://example.org/gco',
+          },
+          owned('Q5512639', 'Q7', 'g.co shortener', 'https://g.co/'),
+        ],
+      },
+    );
     expect(orgs[0]?.relatedDomains).toEqual([
       { domain: 'g.co', source: 'curated', via: 'g.co', url: 'https://example.org/gco' },
     ]);
   });
 
   it('follows ownership two levels deep, but not three', () => {
-    const { orgs } = addRelatedDomains([GOOGLE], TRANCO, {
+    const { orgs } = addRelatedDomains([GOOGLE], POPULARITY, {
       owned: [
         owned('Q95', 'Q10', 'Google Ventures'),
         owned('Q10', 'Q11', 'DeepMind', 'https://deepmind.com/'),
@@ -124,8 +131,8 @@ describe('addRelatedDomains', () => {
     expect(related(orgs, 'Q95')).toEqual([['deepmind.com', 'wikidata-owned', 'DeepMind']]);
   });
 
-  it('drops Wikidata domains without a Tranco rank and pages on other platforms', () => {
-    const { orgs } = addRelatedDomains([GOOGLE], TRANCO, {
+  it('drops Wikidata domains not in the popularity data and pages on other platforms', () => {
+    const { orgs } = addRelatedDomains([GOOGLE], POPULARITY, {
       owned: [
         owned('Q95', 'Q20', 'Obscure', 'https://obscure-unranked.com/'),
         owned('Q95', 'Q21', 'Blog', 'https://acme.com/google-blog'),
@@ -135,7 +142,7 @@ describe('addRelatedDomains', () => {
   });
 
   it("skips a domain that is an unrelated org's official domain", () => {
-    const { orgs, skipped } = addRelatedDomains([GOOGLE, ACME], TRANCO, {
+    const { orgs, skipped } = addRelatedDomains([GOOGLE, ACME], POPULARITY, {
       owned: [owned('Q95', 'Q30', 'Partner', 'https://acme.com/')],
       curated: [{ wikidataId: 'Q95', domain: 'acme.com', url: 'https://example.org/claim' }],
     });
@@ -152,7 +159,7 @@ describe('addRelatedDomains', () => {
 
   it('gives a domain reached by two orgs to the nearer owner only', () => {
     const alphabet = org('Q2', 'Alphabet', ['abc.xyz'], 5);
-    const { orgs } = addRelatedDomains([GOOGLE, alphabet], TRANCO, {
+    const { orgs } = addRelatedDomains([GOOGLE, alphabet], POPULARITY, {
       owned: [
         owned('Q2', 'Q95', 'Google', 'https://www.google.com/'),
         owned('Q95', 'Q9334', 'Gmail', 'https://gmail.com/'),
@@ -168,8 +175,8 @@ describe('addRelatedDomains', () => {
     expect(related(orgs, 'Q2')).toEqual([['google.com', 'wikidata-owned', 'Google']]);
   });
 
-  it('adds published-list and curated domains (no Tranco needed), curated winning over both', () => {
-    const { orgs } = addRelatedDomains([GOOGLE], TRANCO, {
+  it('adds published-list and curated domains (no popularity needed), curated winning over both', () => {
+    const { orgs } = addRelatedDomains([GOOGLE], POPULARITY, {
       owned: [owned('Q95', 'Q9334', 'Gmail', 'https://gmail.com/')],
       published: [
         {
@@ -192,7 +199,7 @@ describe('addRelatedDomains', () => {
   });
 
   it('drops domains where anyone can host content, unless curated by hand', () => {
-    const { orgs, skipped } = addRelatedDomains([GOOGLE], new Map([['appspot.com', 9]]), {
+    const { orgs, skipped } = addRelatedDomains([GOOGLE], ranked([['appspot.com', 9]]), {
       owned: [owned('Q95', 'Q40', 'App Engine', 'https://appspot.com/')],
       published: [
         {
@@ -268,7 +275,7 @@ describe('parsePublishedListsConfig', () => {
 
 describe('addRelatedDomains: lapsed and investor links (R1)', () => {
   it('neither adds nor follows lapsed or investor-only entities', () => {
-    const { orgs } = addRelatedDomains([GOOGLE], TRANCO, {
+    const { orgs } = addRelatedDomains([GOOGLE], POPULARITY, {
       owned: [
         { ...owned('Q95', 'Q30', 'Dead startup', 'https://deepmind.com/'), lapsed: true },
         owned('Q30', 'Q31', 'Its child', 'https://waze.com/'),

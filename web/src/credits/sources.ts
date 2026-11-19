@@ -6,7 +6,8 @@ export type CreditGroup = 'build' | 'live' | 'software';
 
 export type SourceId =
   | 'wikidata'
-  | 'tranco'
+  | 'majestic-million'
+  | 'chrome-ux-report'
   | 'iana-rdap-bootstrap'
   | 'iana-root-zone'
   | 'icann-gtlds'
@@ -93,15 +94,25 @@ export const CREDITS: readonly Credit[] = [
     licence: { name: 'CC0 1.0', url: 'https://www.wikidata.org/wiki/Wikidata:Licensing' },
   },
   {
-    id: 'tranco',
+    id: 'majestic-million',
     group: 'build',
-    name: 'Tranco list',
-    url: 'https://tranco-list.eu/',
+    name: 'Majestic Million',
+    url: 'https://majestic.com/reports/majestic-million',
     usedFor: 'Which domains are popular (top 100,000), and which organisations to list.',
-    licence: { name: 'No licence stated; see its source lists', url: 'https://tranco-list.eu/' },
+    licence: { name: 'CC BY 3.0', url: 'https://creativecommons.org/licenses/by/3.0/' },
     attribution:
-      'Tranco combines Cisco Umbrella (free of charge), the Majestic Million (CC BY 3.0, majestic.com), Farsight, the Chrome UX Report (CC BY 4.0, Google) and Cloudflare Radar (CC BY-NC 4.0).',
-    note: 'Cloudflare Radar data is non-commercial (CC BY-NC 4.0), so this list is not cleared for commercial use.',
+      'The Majestic Million by Majestic (https://majestic.com/reports/majestic-million), licensed under CC BY 3.0 (https://creativecommons.org/licenses/by/3.0/). Changes: reduced to registrable domains and combined with the Chrome UX Report into popularity buckets (top 1k, 10k, 100k, 1M).',
+  },
+  {
+    id: 'chrome-ux-report',
+    group: 'build',
+    name: 'Chrome UX Report (CrUX) top origins',
+    url: 'https://developer.chrome.com/docs/crux',
+    usedFor: 'Which domains are popular (top 100,000), and which organisations to list.',
+    licence: { name: 'CC BY 4.0', url: 'https://creativecommons.org/licenses/by/4.0/' },
+    attribution:
+      'Chrome UX Report (CrUX) by Google (https://developer.chrome.com/docs/crux), licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Global top-origins list for October 2026, as exported from the public CrUX BigQuery dataset by https://github.com/zakird/crux-top-lists. Changes: origins reduced to registrable domains and combined with the Majestic Million into popularity buckets (top 1k, 10k, 100k, 1M).',
+    note: 'Google publishes CrUX in BigQuery only; Izanami reads the monthly export from github.com/zakird/crux-top-lists, which states no licence of its own (the data is Google’s, CC BY 4.0).',
   },
   {
     id: 'iana-rdap-bootstrap',

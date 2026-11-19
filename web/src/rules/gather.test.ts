@@ -69,7 +69,7 @@ describe('gatherFacts', () => {
     expect(v.mx).toEqual(known(['tudelft-nl.mail.protection.outlook.com']));
     expect(v.asns).toEqual(known([1128]));
     expect(v.firstCertDate).toEqual(known('2006-07-17T14:53:54Z'));
-    expect(v.inTranco).toBe(true);
+    expect(v.inPopularTop100k).toBe(true);
     expect(v.checkedAt).toBe('2026-11-17T12:00:00.000Z');
     expect(facts.officialFacts.domain).toBe('tudelft.nl');
     expect(facts.officialFacts.asns).toEqual(known([1128]));

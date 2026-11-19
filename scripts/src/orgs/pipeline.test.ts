@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { ranked } from '../lib/popularity-fixture';
 import { runOrgsPipeline, type OrgsSources } from './pipeline';
 import type { Org } from './select';
 import type { WikidataEntity } from './wikidata';
@@ -34,7 +35,12 @@ function sources(
   return {
     queried,
     ownedQueried,
-    trancoCsv: async () => '1,google.com\n2,www.google.com\n3,tudelft.nl\n4,youtube.com\n',
+    popularity: async () =>
+      ranked([
+        ['google.com', 1],
+        ['tudelft.nl', 3],
+        ['youtube.com', 20_000],
+      ]),
     queryEntities: async (domains) => {
       queried.push([...domains]);
       return new Map(ENTITIES.map((e) => [e.wikidataId, e]));
@@ -94,12 +100,13 @@ function sources(
         },
       ],
     }),
+    pinnedOrgs: async () => [],
     previousOrgs: async () => previous,
   };
 }
 
 const OPTIONS = {
-  candidateDomains: 2,
+  candidateBucket: 10_000 as const,
   limit: 500,
   batchSize: 1,
   classBatchSize: 100,
@@ -108,11 +115,11 @@ const OPTIONS = {
 };
 
 describe('runOrgsPipeline', () => {
-  it('queries Wikidata in batches of Tranco domains and keeps only Tranco-confirmed orgs plus extras', async () => {
+  it('queries Wikidata in batches of popular domains and keeps only popularity-confirmed orgs plus extras', async () => {
     const src = sources(null);
     const { orgs } = await runOrgsPipeline(src, OPTIONS);
     expect(src.queried).toEqual([['google.com'], ['tudelft.nl']]);
-    expect(orgs.map((o) => [o.slug, o.primaryDomain, o.trancoRank])).toEqual([
+    expect(orgs.map((o) => [o.slug, o.primaryDomain, o.popularity?.majesticRank])).toEqual([
       ['google', 'google.com', 1],
       ['tu-delft', 'tudelft.nl', 3],
     ]);

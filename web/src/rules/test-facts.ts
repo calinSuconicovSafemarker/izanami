@@ -35,7 +35,7 @@ export function variantFacts(overrides: Partial<VariantFacts> = {}): VariantFact
       tldSwap: false,
       kind: 'unrelated',
     },
-    inTranco: false,
+    inPopularTop100k: false,
     existence: known('resolving'),
     rdap: known('ok'),
     registrationDate: known('2010-01-01T00:00:00Z'),

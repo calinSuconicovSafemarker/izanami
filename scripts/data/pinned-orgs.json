@@ -1,0 +1,37 @@
+[
+  {
+    "wikidataId": "Q55627388",
+    "name": "Okta",
+    "reason": "Commonly phished identity provider (staff sign-in pages); just below the 1,000-org cap since the switch from Tranco (ticket 19)"
+  },
+  {
+    "wikidataId": "Q3511885",
+    "name": "T-Mobile US",
+    "reason": "Commonly phished mobile carrier; just below the 1,000-org cap since the switch from Tranco (ticket 19)"
+  },
+  {
+    "wikidataId": "Q267313",
+    "name": "McAfee",
+    "reason": "Brand commonly used in fake antivirus-renewal phishing; just below the 1,000-org cap since the switch from Tranco (ticket 19)"
+  },
+  {
+    "wikidataId": "Q205012",
+    "name": "Sberbank",
+    "reason": "Largest Russian bank, commonly phished; just below the 1,000-org cap since the switch from Tranco (ticket 19)"
+  },
+  {
+    "wikidataId": "Q43968444",
+    "name": "DeepL",
+    "reason": "Widely used translation service, impersonated by fake download sites; just below the 1,000-org cap since the switch from Tranco (ticket 19)"
+  },
+  {
+    "wikidataId": "Q16248637",
+    "name": "Datadog",
+    "reason": "Monitoring SaaS whose sign-in is a phishing target for engineering staff; just below the 1,000-org cap since the switch from Tranco (ticket 19)"
+  },
+  {
+    "wikidataId": "Q7858039",
+    "name": "Twilio",
+    "reason": "Communications SaaS targeted by staff-credential phishing (2022 breach); just below the 1,000-org cap since the switch from Tranco (ticket 19)"
+  }
+]

@@ -22,12 +22,30 @@ export interface Org {
    * `['gle', 'google']`: every domain under them is the organisation's (ticket 14).
    */
   brandTlds: readonly string[];
-  /** The Wikidata P856 domain confirmed by Tranco; null for curated extras. */
+  /** The Wikidata P856 domain confirmed by the popularity data; null for curated extras. */
   wikidataDomain: string | null;
-  /** Tranco rank of `primaryDomain`, or null when unranked (extras only). */
-  trancoRank: number | null;
+  /** Popularity of `primaryDomain`, or null when not listed (extras only). */
+  popularity: Popularity | null;
   /** Build date (YYYY-MM-DD) when both sources were last checked. */
   confirmedAt: string;
+}
+
+/** Popularity lists (ticket 19): the Chrome UX Report and the Majestic Million. */
+export type PopularitySource = 'crux' | 'majestic';
+
+/** "Among the top N registrable domains" of at least one popularity list. */
+export type PopularityBucket = 1_000 | 10_000 | 100_000 | 1_000_000;
+
+/** A domain's combined popularity across the lists (ticket 19, ADR-0002 Amendment 5). */
+export interface Popularity {
+  /** Best bucket across the lists. */
+  bucket: PopularityBucket;
+  /** Lists that name the domain within the top 1M, sorted. */
+  sources: readonly PopularitySource[];
+  /** Exact Majestic Million rank, or null when Majestic does not list it. */
+  majesticRank: number | null;
+  /** Chrome UX Report bucket, or null when CrUX does not list it. */
+  cruxBucket: PopularityBucket | null;
 }
 
 /**

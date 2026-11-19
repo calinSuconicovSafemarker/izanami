@@ -80,7 +80,7 @@ describe('verdict', () => {
         r('same-nameservers', 'unknown', -40),
         r('young-domain', 'unknown', 40),
         r('brand-lookalike', 'fired', 25),
-        r('not-in-tranco', 'fired', 10),
+        r('not-popular', 'fired', 10),
       ],
       expected: 'Insufficient data',
       score: 35,

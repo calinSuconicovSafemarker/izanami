@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { curatedDomains, curatedOwnership, mergeExtras, parseExtras } from './extras';
+import { majesticOnly, ranked } from '../lib/popularity-fixture';
 import type { Org } from './select';
 
 const NOW = '2026-11-17';
@@ -13,7 +14,7 @@ function org(partial: Partial<Org> & Pick<Org, 'wikidataId' | 'primaryDomain'>):
     relatedDomains: [],
     brandTlds: [],
     wikidataDomain: partial.primaryDomain,
-    trancoRank: 1,
+    popularity: majesticOnly(1),
     confirmedAt: NOW,
     ...partial,
   };
@@ -153,14 +154,14 @@ describe('mergeExtras', () => {
       relatedDomains: [],
       brandTlds: [],
       wikidataDomain: null,
-      trancoRank: null,
+      popularity: null,
       confirmedAt: NOW,
     });
   });
 
-  it('takes the Tranco rank of the extra primary domain when it has one', () => {
-    const [extra] = mergeExtras([], [TU_DELFT_EXTRA], new Map([['tudelft.nl', 25000]]), NOW);
-    expect(extra?.trancoRank).toBe(25000);
+  it('takes the popularity of the extra primary domain when it has one', () => {
+    const [extra] = mergeExtras([], [TU_DELFT_EXTRA], ranked([['tudelft.nl', 25000]]), NOW);
+    expect(extra?.popularity).toEqual(majesticOnly(25000));
   });
 
   it('overrides a generated entry for the same entity, keeping its other official domains', () => {
@@ -171,11 +172,11 @@ describe('mergeExtras', () => {
           slug: 'delft-university-of-technology',
           primaryDomain: 'tudelft.nl',
           officialDomains: ['tu-delft.com', 'tudelft.nl'],
-          trancoRank: 300,
+          popularity: majesticOnly(300),
         }),
       ],
       [TU_DELFT_EXTRA],
-      new Map([['tudelft.nl', 300]]),
+      ranked([['tudelft.nl', 300]]),
       NOW,
     );
     expect(orgs).toHaveLength(1);
@@ -183,7 +184,7 @@ describe('mergeExtras', () => {
       slug: 'tu-delft',
       officialDomains: ['tu-delft.com', 'tudelft.nl'],
       wikidataDomain: 'tudelft.nl',
-      trancoRank: 300,
+      popularity: majesticOnly(300),
     });
   });
 });

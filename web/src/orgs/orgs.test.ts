@@ -19,7 +19,12 @@ const BBC: Org = {
   relatedDomains: [],
   brandTlds: [],
   wikidataDomain: 'bbc.co.uk',
-  trancoRank: 100,
+  popularity: {
+    bucket: 1_000,
+    sources: ['crux', 'majestic'],
+    majesticRank: 100,
+    cruxBucket: 1_000,
+  },
   confirmedAt: '2026-11-17',
 };
 

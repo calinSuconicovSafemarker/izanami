@@ -24,7 +24,7 @@ export function caseFacts(c: VerdictCase): Facts {
       orgName: org.name,
       orgCountry: org.country,
       similarity: similarity(parsed, org.brandLabel, org.officialDomains),
-      inTranco: f.inTranco,
+      inPopularTop100k: f.inPopularTop100k,
       existence: fact(f.existence as Existence | '?'),
       // The cases record no RDAP failures separately; an unknown date counts as unpublished.
       rdap: known(f.existence === 'not-registered' ? 'not-found' : 'ok'),

@@ -2,75 +2,946 @@
 
 Review before committing (ADR-0002).
 
-## Added (5)
+## Added (603)
 
-- gov.uk (Q16982369): www.gov.uk
+- Public Library of Science (Q233358): plos.org
+- Federal Trade Commission (Q786713): ftc.gov
+- Information Commission's Office (Q1662473): ico.org.uk
+- American Psychological Association (Q466587): apa.org
+- Themeforest (Q128642056): themeforest.net
+- Yale University (Q49112): yale.edu
+- The Conversation (Q7727516): theconversation.com
+- PostgreSQL (Q192490): postgresql.org
+- WebMD (Q3536160): webmd.com
+- Business Wire (Q636192): businesswire.com
+- Kickstarter (Q34755): kickstarter.com
+- Electronic Frontier Foundation (Q624023): eff.org, iykpqm7jiradoeezzkhj7c4b33g4hbgfwelht2evxxeicbpjy44c7ead.onion
+- The Economist (Q180089): economist.com
+- Fortune (Q372989): fortune.com
+- BioMed Central (Q463494): biomedcentral.com
+- politics of Switzerland (Q688192): admin.ch, ch.ch
+- The BMJ (Q546003): bmj.com
+- Gartner (Q174198): gartner.com
+- Ultimate Wellness Game Changer (Q19766098): huffingtonpost.com
+- Better Business Bureau (Q1044785): bbb.org
+- Dribbble (Q7605173): dribbble.com
+- University of Pennsylvania (Q49117): upenn.edu
+- Food and Agriculture Organization of the United Nations (Q82151): fao.org
+- Penn State University Park (Q4534544): psu.edu
+- Typeform.com (Q24910393): typeform.com
+- Sun Microsystems (Q14647): sun.com
+- CBC.ca (Q5008982): cbc.ca
+- Pew Research Center (Q1635722): pewresearch.org
+- Jimdo (Q2735411): jimdo.com
+- Let's Encrypt (Q18786919): letsencrypt.org
+- Zhihu (Q15898172): zhihu.com
+- Moodle (Q190434): moodle.org
+- University of Cambridge (Q35794): cam.ac.uk
+- JSTOR (Q1420342): jstor.org
+- Psychology Today (Q7256412): psychologytoday.com
+- University of California, Irvine (Q868421): uci.edu
+- U.S. News & World Report (Q848629): usnews.com
+- ZDNET (Q2457578): zdnet.com, zdnet.fr
+- Australian Broadcasting Corporation (Q781365): abc.net.au
+- Akismet (Q419217): akismet.com
+- Science Daily (Q679509): sciencedaily.com
+- GoFundMe (Q5574625): gofundme.com
+- University of Minnesota System (Q14552696): umn.edu
+- Internal Revenue Service (Q973587): irs.gov
+- Linux kernel (Q14579): kernel.org
+- Association for Computing Machinery (Q127992): acm.org
+- Elsevier (Q746413): elsevier.com
+- Coursera (Q499962): coursera.org
+- Xinhua News Agency (Q204839): news.cn, xinhuanet.com
+- Ars Technica (Q584152): arstechnica.com
+- ORCID, Inc. (Q19861084): orcid.org
+- Scientific American (Q39379): scientificamerican.com
+- Git (Q186055): git-scm.com
+- The Lancet (Q939416): thelancet.com
+- National Park Service (Q308439): nps.gov
+- The New Yorker (Q217305): newyorker.com
+- O’Reilly Media (Q1065097): oreilly.com
+- Deutsche Welle (Q153770): dw.com
+- Vice (Q249838): vice.com
+- Newsweek (Q188413): newsweek.com
+- National Health Service (Q16251481): www.nhs.uk
+- The Journal of the American Medical Association (Q1470970): jamanetwork.com
+- Carnegie Mellon University (Q190080): cmu.edu
+- University of Chicago (Q131252): uchicago.cn, uchicago.edu, uchicago.hk, uchicago.in, urb-bd.org
+- United States Securities and Exchange Commission (Q953944): sec.gov
+- MITRE Corporation (Q627039): mitre.org
+- Bureau of Labor Statistics (Q2928428): bls.gov
+- Proceedings of the National Academy of Sciences of the United States of America (Q1146531): pnas.org
+- Fast Company (Q1346673): fastcompany.com
+- Stack Exchange (Q3495447): stackexchange.com
+- United States Geological Survey (Q193755): usgs.gov
+- Gizmodo (Q1528871): gizmodo.com
+- Wiktionary (Q151): wiktionary.org
+- American Chemical Society (Q247556): acs.org
+- University of California, Los Angeles (Q174710): ucla.edu
+- Al Jazeera (Q13477): aljazeera.com, aljazeera.com.tr, aljazeera.net
+- Euronews (Q8478): euronews.al, euronews.com
+- People's Daily (Q54340): haiwainet.cn, people.com.cn
+- GlobeNewswire (Q5570956): globenewswire.com
+- Tripod.com (Q3539553): tripod.com
+- International Telecommunication Union (Q376150): itu.int
+- TypePad (Q906372): typepad.com
+- Internet Assigned Numbers Authority (Q242540): iana.org
+- Smithsonian Institution (Q131626): si.edu
+- OpenSSL (Q1052790): openssl-library.org, openssl.org
+- Bootstrap (Q893195): getbootstrap.com
+- Science (Q192864): science.org
+- UNICEF (Q740308): unicef.org
+- Johns Hopkins University (Q193727): jhu.edu
+- United States Department of Health and Human Services (Q942326): hhs.gov
+- United States Department of Education (Q861556): ed.gov
+- TechTarget (Q7692144): techtarget.com
+- Social Science Research Network (Q7550801): ssrn.com
+- Social Security Administration (Q2824618): ssa.gov
+- NDTV (Q2985356): ndtv.com, ndtv.in
+- El Mundo (Q921217): elmundo.es
+- ABC (Q287076): abc.es
+- Marca (Q917580): marca.com
+- El Español (Q20652713): elespanol.com
+- GSMArena.com (Q47141541): gsmarena.com
+- La Nación (Q1507630): lanacion.com.ar
+- Tabelog (Q11666008): tabelog.com
+- El Confidencial (Q5821545): elconfidencial.com
+- Clarín (Q878108): clarin.com
+- TBS Television (Q6766400): tbs.co.jp, tbscontents.com
+- Dafont (Q12386916): dafont.com
+- iDNES.cz (Q12021344): idnes.cz
+- Algemeen Dagblad (Q290764): ad.nl
+- Aftonbladet (Q389458): aftonbladet.se
+- VnExpress (Q10832925): vnexpress.net
+- El Economista (Q2839040): eleconomista.es
+- Terra (Q1135120): terra.cl, terra.com, terra.com.br, terra.com.co, terra.com.mx, terra.com.pe, terra.us
+- NU.nl (Q2183577): nu.nl
+- L'Équipe (Q815748): lequipe.fr
+- APKPure (Q106483421): apkpure.com
+- La Razón (Q191433): larazon.es
+- La Dépêche du Midi (Q742587): ladepeche.fr
+- CNN Brazil (Q61037218): cnnbrasil.com.br
+- La Gazzetta dello Sport (Q651988): gazzetta.it
+- Excite Japan (Q11289700): excite-holdings.co.jp, excite.co.jp
+- Cookpad Inc. (Q5167165): cookpad.com
+- actu.fr (Q97368663): actu.fr
+- Hot Pepper Gourmet (Q126194306): hotpepper.jp
+- VG (Q1139355): vg.no
+- Lichess (Q19831807): lichess.org
+- Ultimate Guitar (Q2587057): ultimate-guitar.com
+- Il Fatto Quotidiano (Q1051087): ilfattoquotidiano.it
+- Aparat (Q16045816): aparat.com
+- Het Laatste Nieuws (Q1457499): hln.be
+- Il Messaggero (Q1658225): ilmessaggero.it
+- Mundo Deportivo (Q1458864): mundodeportivo.com
+- IndiaMART (Q6019234): indiamart.com
+- ILovePDF (Q130772808): ilovepdf.com
+- Jehovah's Witnesses (Q35269): jw.org
+- leboncoin (Q3228701): leboncoin.fr
+- Ynet (Q2738307): ynet.co.il, ynetespanol.com, ynetnews.com
+- FanFiction.Net (Q5433518): fanfiction.net
+- Rightmove (Q7333751): rightmove.co.uk
+- Namuwiki (Q19832999): namu.wiki
+- Dagbladet (Q1157193): dagbladet.no
+- Argos (Q4789707): argos.co.uk
+- Marktplaats.nl (Q2381841): marktplaats.nl
+- Istituto nazionale della previdenza sociale (Q1674860): inps.it
+- novinky.cz (Q7064916): novinky.cz
+- Jusbrasil (Q98915160): jusbrasil.com.br
+- Fur Affinity (Q108649834): furaffinity.net
+- Kicker (Q481190): kicker.de
+- Jalan (Q118233510): jalan.net
+- Okdiario (Q30901816): okdiario.com
+- Nikkan Sports News (Q11504942): nikkansports.com
+- Iltalehti (Q2421561): iltalehti.fi
+- vivo (Q18301787): vivo.com
+- Proto Thema (Q3564122): protothema.gr
+- Gismeteo (Q52587130): gismeteo.ru
+- Cdiscount (Q2943530): cdiscount.com
+- tenki.jp (Q11250596): tenki.jp
+- government of Turkey (Q15462156): detsis.gov.tr, turkiye.gov.tr
+- Poste Italiane (Q495026): poste.it
+- FINN.no (Q620275): finn.no
+- Government of Rajasthan (Q5589304): rajasthan.gov.in
+- Jutarnji list (Q1278377): jutarnji.hr
+- Justdial (Q28135582): justdial.com
+- Ekstra Bladet (Q1226253): ekstrabladet.dk
+- Action (Q2634111): action.com, action.eu
+- Ministry of National Education (Q1359675): meb.gov.tr
+- MakeMyTrip (Q3630923): makemytrip.com
+- index.hr (Q6017788): index.hr
+- IXL Learning (Q25025243): ixl.com
+- Dainik Jagran (Q1318465): jagran.com
+- Starfall (Q16951239): starfall.com
+- naukri.com (Q17012148): naukri.com
+- NAVITIME (Q11234504): navitime.co.jp
+- Leroy Merlin (Q889624): lemanapro.ru, leroymerlin.es, leroymerlin.fr, leroymerlin.it, leroymerlin.pt
+- Sözcü (Q4121023): sozcu.com.tr
+- Zalando (Q136570): zalando.de
+- OLX (Q1948478): olx.com, olx.com.br, olx.pl, olx.ro, olx.ua
+- B.T. (Q327821): bt.dk
+- iLMeteo (Q97369852): ilmeteo.it
+- LiveScore (Q11762199): livescore.com
+- Aadhaar (Q12052688): uidai.gov.in
+- ZOZOTOWN (Q111110643): zozo.jp
+- Half-Life TV (Q1294504): hltv.org
+- Filmweb (Q2090445): filmweb.pl
+- Sahibinden (Q7399617): sahibinden.com
+- Goods and Services Tax (Q27679782): gst.gov.in
+- DLsite (Q11196047): dlsite.com
+- Subito (Q86452434): subito.it
+- Fanza (Q56347583): dmm.co.jp
+- Myntra (Q6947830): myntra.com
+- FetLife (Q5445894): fetlife.com
+- ID.me (Q22909112): id.me
+- eMAG (Q23827008): emag.bg, emag.hu, emag.ro
+- Government Girls College, Bhind (Q90274486): mp.gov.in
+- Shōsetsuka ni Narō (Q3281156): syosetu.com
+- Télé-Loisirs (Q3546543): programme-tv.net
+- DC Inside (Q624345): dcinside.com
+- Government of Uttar Pradesh (Q5589328): up.gov.in
+- idealista (Q5908253): idealista.it
+- PTT Bulletin Board System (Q7121048): ptt.cc
+- Zedge, Inc (Q17091060): zedge.net
+- Cricbuzz (Q21150978): cricbuzz.com
+- Digikala (Q5678438): digikala.com
+- Inven (Q12613375): inven.co.kr
+- Uchi.ru (Q86681767): uchi.ru
+- Immobiliare.it (Q140533380): immobiliare.it
+- Center of Test Evaluation, Program Selection and Placement (Q3593688): osym.gov.tr
+- Aaj Tak (Q3396358): aajtak.in
+- Government of West Bengal (Q5589345): wb.gov.in
+- Groww (Q85764693): groww.in
+- Rajdhani Express (Q379605): indianrail.gov.in
+- Hindustan Dainik (Q5766803): livehindustan.com
+- Skroutz (Q18691850): skroutz.cy, skroutz.gr
+- Media Expert (Q11776794): mediaexpert.pl
+- Suruga-ya (Q11188604): suruga-ya.co.jp, suruga-ya.jp
+- Rakuten Securities (Q11541600): rakuten-sec.co.jp
+- Meesho (Q55622683): meesho.com
+- Toyhouse (Q135454653): toyhou.se
+- login.gov (Q48969410): login.gov
+- Ruliweb (Q12594217): ruliweb.com
+- Comic Solmare (Q97378270): cmoa.jp
+- GameWith (Q123516645): gamewith.jp
+- Granblue Fantasy (Q16267783): granbluefantasy.com, granbluefantasy.jp
+- Kakuyomu (Q24872561): kakuyomu.jp
+- netkeiba.com (Q11236491): netkeiba.com
+- Property24 (Q134730294): property24.com
+- Physics Wallah (Q111487437): pw.live
+- Kooora (Q25455377): kooora.com
+- redBus (Q7305523): redbus.in
+- GCash (Q107299057): gcash.com
+- E-Hentai (Q85872772): e-hentai.org
+- Ficbook (Q29896474): ficbook.net
+- Japan Racing Association (Q846298): jra.jp
+- Blooket (Q111739129): blooket.com
+- JOYclub (Q100268335): joyclub.de
+- Varzesh3 (Q16046863): varzesh3.com
+- Hameln (Q115896413): syosetu.org
+- Mobage (Q6886593): mbga.jp, mobage.com
+- عبد محمد قايد (Q61742594): absher.sa
+- Ministry of Education of Iran (Q2602122): medu.ir
+- BiWale (Q132124615): bikewale.com
+- Eenadu (Q3764157): eenadu.net
+- BingoPlus (Q138713220): bingoplus.com
+- Mecha Comic (Q24898315): mechacomic.com, mechacomic.jp
+- Hollywoodbets (Q46996031): hollywoodbets.net
+- Booknet (Q62069735): litnet.com
+- imgsrc.ru (Q117110960): imgsrc.ru
+- Joint Admissions and Matriculation Board (Q6269074): jamb.gov.ng
+- Divar (Q56359770): divar.ir
+- Bazos (Q73890019): bazos.at, bazos.cz, bazos.pl, bazos.sk
+- Arcalive (Q112659200): arca.live
+- Jockey Club of Turkey (Q3542318): tjk.org
+- Meteored Argentina (Q137367974): meteored.com.ar
+- SS (Q125121902): ss.com
+- Zearn (Q117012754): zearn.org
+- Bakusai.com (Q131275067): bakusai.com
+- Football.com (Q141644819): football.com
+- nesine.com (Q6050247): nesine.com
+- MissAV (Q137530977): missav.ws
+- Pornhub (Q936394): pornhub.net, pornhub.org
+- ExHentai (Q65965950): exhentai.org, exhentai55ld2wyap5juskbm67czulomrouspdacjamjeloj7ugjbsad.onion
+- Ministry of Education (Oman) (Q15253457): moe.gov.om
+- रमाबाई सरकार नगर मा ना पा हिंदी शाला (Q106482880): shaalaa.com
+- Odds Park (Q17222059): oddspark.com
+- Betika (Q55605275): betika.com
+- musicdel (Q123694521): musicdel.ir
+- FabSwingers (Q134577116): fabswingers.com
+- ANSES (Q830348): anses.gob.ar
+- ICICI Bank (Q1653258): icici.bank.in
+- Superior Electoral Court (Q3656204): tse.jus.br
+- Ministry of Social Affairs (Q11046702): kemensos.go.id
+- Ministry of Religious Affairs (Q12490738): kemenag.go.id
+- Ministry of Health of Indonesia (Q12490745): kemkes.go.id
+- Letras.mus.br (Q18276771): letras.com, letras.mus.br
+- Court of Justice of the State of São Paulo (Q125454187): tjsp.jus.br
+- FabGuys (Q134740418): fabguys.com
+- The Blowers (Q141164042): theblowers.com
+- University of Texas at Austin (Q49213): utexas.edu
+- Engadget (Q196105): engadget.com
+- State Council of the People's Republic of China (Q59261): www.gov.cn
+- npm (Q7067518): npmjs.com
+- United States Department of Justice (Q1553390): justice.gov
+- Node.js (Q756100): nodejs.org
+- United States House of Representatives (Q11701): house.gov
+- Meetup.com (Q1625371): meetup.com
+- W3Schools (Q7946200): w3schools.com
+- NamePros (Q18379110): namepros.com
+- Mashable (Q619899): mashable.com
+- United States Census Bureau (Q637413): census.gov
+- National Commission on Informatics and Liberty (Q1115586): cnil.fr
+- Fedora Project (Q109888): fedoraproject.org
+- Giphy (Q17054335): giphy.com
+- United States Department of Energy (Q217810): energy.gov
+- Automattic (Q2872634): automattic.com
+- Matterport (Q107520260): matterport.com
+- FreeBSD (Q34236): freebsd.org
+- PricewaterhouseCoopers (Q488048): pwc.com, pwc.com.cy
+- Cleveland Clinic (Q4117596): clevelandclinic.org
+- Siemens (Q81230): siemens.com
+- Open Source Initiative (Q845918): opensource.org
+- Laravel (Q13634357): laravel.com
+- Strato GmbH (Q2353933): strato.de
+- Ionos (Q882107): ionos.co.uk, ionos.com, ionos.de, ionos.es, ionos.eu, ionos.fr, ionos.it, ionos.mx, ionos.ro
+- Netscape Navigator (Q235419): netscape.com
+- Vox (Q20877087): vox.com
+- New York University (Q49210): nyu.edu
+- BuzzFeed (Q5003490): buzzfeed.com
+- International Monetary Fund (Q7804): imf.org
+- KDE (Q1431): kde.org
+- United States Congress (Q11268): congress.gov
+- Freepik (Q97573128): magnific.com
+- China Central Television (Q207936): cctv.com
+- United States Senate (Q66096): senate.gov
+- Gallup (Q65358): gallup.com
+- Variety (Q471728): variety.com
+- Telegraph (Q41137028): telegra.ph
+- Inc. (Q954455): inc.com
+- The New England Journal of Medicine (Q582728): nejm.org, nejmqianyan.cn
+- MarketWatch (Q17068426): marketwatch.com
+- FeedBurner (Q776845): feedburner.com
+- Purdue University (Q217741): purdue.edu
+- Medical News Today (Q6806391): medicalnewstoday.com
+- Digg (Q270478): digg.com
+- Matomo (Q34162): matomo.org
+- University of California, San Diego (Q622664): ucsandiego.edu, ucsd.edu
+- Perl (Q42478): perl.org
+- Barnes & Noble (Q795454): barnesandnoble.com
+- AMD (Q128896): amd.com
+- MIT Technology Review (Q796078): technologyreview.com
+- Common Vulnerabilities and Exposures (Q94950995): cve.org
+- Java (Q251): java.com
+- Constant Contact (Q5163620): constantcontact.com
+- iubenda (Q131066959): iubenda.com
+- Y Combinator (Q2616400): ycombinator.com
+- ICANN (Q485750): icann.org
+- Council of Europe (Q8908): coe.int
+- Hetzner (Q18349346): hetzner.com
+- Project Gutenberg (Q22673): gutenberg.org
+- China Daily (Q851422): chinadaily.com.cn
+- Politico (Q3109740): politico.com
+- XAMPP (Q324073): apachefriends.org
+- Drupal (Q170855): drupal.org
+- Photobucket (Q840895): photobucket.com
+- SAP (Q552581): sap.com
+- State of New York (Q5589272): ny.gov, state.ny.us
+- Hatena (Q848325): hatena.ne.jp
+- FlipHTML5 (Q139772478): fliphtml5.com
+- University of Florida (Q501758): ufl.edu
+- South China Morning Post (Q1198574): scmp.com
+- Quartz (Q7269379): qz.com
+- Axios (Q28230873): axios.com
+- VMware (Q11407): vmware.com
+- EarthLink (Q919511): earthlink.net
+- Slate (Q60497): slate.com
+- Chaos Computer Club (Q23138): ccc.de
+- Duke University (Q168751): duke.edu
+- Big Cartel (Q120733814): bigcartel.com
+- 360 Search (Q10846064): so.com
+- Phoenix Television (Q724186): ifeng.com, phoenixtv.com
+- University College London (Q193196): ucl.ac.uk
+- Trello (Q7838011): trello.com
+- University of Southern California (Q4614): usc.cn, usc.edu
+- Lippincott Williams & Wilkins (Q2407351): lww.com
+- University of Toronto (Q180865): utoronto.ca
+- Udemy (Q7877165): udemy.com
+- Ernst & Young (Q489097): ey.com
+- International Labour Organization (Q54129): ilo.org
+- Perforce Zend (Q189477): zend.com
+- Rolling Stone (Q33511): rollingstone.com
+- Semrush (Q48818116): semrush.com
+- University of Maryland (Q503415): umd.edu
+- Parallels Transporter (Q7135037): parallels.com
+- Time and Date AS (Q130244628): timeanddate.com, timeanddate.de, timeanddate.no
+- Shutterstock (Q3482689): shutterstock.com
+- PCMag (Q631830): pcmag.com
+- Semantic Scholar (Q22908627): semanticscholar.org
+- cos-python-sdk-v5 (Q120596891): qcloud.com
+- OWASP (Q379297): owasp.org, owasp.org.cn
+- mastodon.social (Q112059294): mastodon.social
+- Cell (Q655814): cell.com
+- University of Illinois Urbana-Champaign (Q457281): illinois.edu
+- WooCommerce (Q15855099): woocommerce.com
+- Slashdot (Q59083): slashdot.org
+- Python Package Index (Q2984686): pypi.org
+- International Energy Agency (Q826700): iea.org
+- New Scientist (Q525592): newscientist.com
+- curl (Q286306): curl.se
+- University of California, Davis (Q129421): ucdavis.edu
+- FIFA (Q253414): fifa.com
+- Live Science (Q6654574): livescience.com
+- University of North Carolina at Chapel Hill (Q192334): unc.edu
+- National Archives and Records Administration (Q518155): archives.gov
+- VentureBeat (Q4052640): venturebeat.com
+- Mixcloud (Q6883832): mixcloud.com
+- FC2 (Q865939): fc2.com
+- ETH Zurich (Q11942): ethz.ch
+- Sky UK (Q2033167): sky.com
+- Can I use... (Q105350215): caniuse.com
+- Smithsonian Magazine (Q3487014): smithsonianmag.com
+- Michigan State University (Q270222): msu.edu
+- SFGATE (Q113022507): sfgate.com
+- World Intellectual Property Organization (Q177773): wipo.int
+- The Sydney Morning Herald (Q390216): smh.com.au
+- Indiegogo (Q6024522): indiegogo.com
+- MedlinePlus (Q557919): medlineplus.gov
+- heise online (Q1601295): heise.de
+- Institute of Physics (Q513283): iop.org
+- United Nations Development Programme (Q161718): undp.org
+- University of British Columbia (Q391028): ubc.ca
+- Pocket (Q3916680): getpocket.com
+- Daily Mirror (Q217623): mirror.co.uk
+- Broadcom (Q555925): broadcom.com
+- AddThis (Q352773): addthis.com
+- The Hollywood Reporter (Q61503): hollywoodreporter.com, thr.com
+- The Sun (Q208875): thesun.co.uk
+- Phys.org (Q619096): phys.org
+- Proofpoint, Inc. (Q4047452): proofpoint.com
+- Légifrance (Q653899): legifrance.gouv.fr
+- HowStuffWorks (Q2720134): howstuffworks.com
+- Gesetze im Internet (Q108679668): gesetze-im-internet.de
+- CPAN (Q841507): cpan.org
+- Federal Communications Commission (Q128831): fcc.gov
+- KPMG (Q493751): kpmg.com, kpmg.fr
+- ImageMagick (Q1047199): imagemagick.org
+- CSDN (Q5014078): csdn.net
+- Office of the High Commissioner for Human Rights (Q656812): ohchr.org
+- The Hill (Q7739683): thehill.com
+- University of Colorado Boulder (Q736674): colorado.edu
+- DMOZ (Q41226): dmoz.org, dmoztools.net
+- Webs (Q1840596): webs.com
+- Tmall (Q2829108): tmall.com
+- History (Q1621107): history.com
+- IGN (Q207708): ign.com, ign.com.cn
+- The Times (Q50008): thetimes.co.uk, thetimes.com
+- StumbleUpon (Q911595): stumbleupon.com
+- OpenLDAP (Q682918): openldap.org
+- RT (Q22868): rt-english.com, rt.com
+- The Globe and Mail (Q604525): theglobeandmail.com
+- Federal Bureau of Investigation (Q8333): fbi.gov
+- Block, Inc. (Q110778747): block.xyz, square.site, squareup.com
+- Calaméo (Q2933562): calameo.com
+- Deezer (Q602243): deezer.com
+- Chicago Tribune (Q47596): chicagotribune.com
+- Le Figaro (Q216047): lefigaro.fr
+- Arizona State University (Q670897): asu.edu
+- France24.com (Q30097304): france24.com
+- American Heart Association (Q464880): heart.org
+- University of Arizona (Q503419): arizona.edu
+- Cygwin (Q216192): cygwin.com
+- Cybersecurity and Infrastructure Security Agency (Q5205058): cisa.gov
+- United States Patent and Trademark Office (Q1459541): uspto.gov
+- Nobel Prize (Q7191): nobelprize.org
+- Redis (Q2136322): redis.io
+- University of Virginia (Q213439): virginia.edu
+- Hostinger (Q55613975): hostinger.com
+- freedesktop.org (Q310917): freedesktop.org
+- National Cancer Institute (Q664846): cancer.gov
+- Mastercard (Q489921): mastercard.am, mastercard.at, mastercard.az, mastercard.ba, mastercard.bg, mastercard.by, mastercard.ca, mastercard.ch, mastercard.cl, mastercard.co.id, mastercard.co.il, mastercard.co.in, mastercard.co.jp, mastercard.co.kr, mastercard.co.nz, mastercard.co.th, mastercard.co.ve, mastercard.co.za, mastercard.com, mastercard.com.ar, mastercard.com.au, mastercard.com.br, mastercard.com.cn, mastercard.com.co, mastercard.com.cy, mastercard.com.ge, mastercard.com.hk, mastercard.com.mx, mastercard.com.my, mastercard.com.pe, mastercard.com.ph, mastercard.com.sg, mastercard.com.tr, mastercard.com.tw, mastercard.com.vn, mastercard.cz, mastercard.de, mastercard.dk, mastercard.es, mastercard.fi, mastercard.fr, mastercard.gr, mastercard.hr, mastercard.hu, mastercard.ie, mastercard.it, mastercard.kz, mastercard.lu, mastercard.md, mastercard.me, mastercard.nl, mastercard.no, mastercard.pl, mastercard.pt, mastercard.ro, mastercard.rs, mastercard.ru, mastercard.se, mastercard.si, mastercard.sk, mastercard.ua, mastercard.uz, mojmastercard.sk, mujmastercard.cz
+- Notion (Q89269703): notion.so
+- Podbean (Q61715187): podbean.com
+- Government of New South Wales (Q3112564): nsw.gov.au
+- IHG Hotels & Resorts (Q1424962): ichotelsgroup.com, ihg.com, ihgplc.com
+- United States Department of Homeland Security (Q11231): dhs.gov
+- Khan Academy (Q94887): khanacademy.org
+- Wikisource (Q263): wikisource.org
+- European Space Agency (Q42262): esa.int
+- Federal Register (Q5440362): federalregister.gov
+- Joomla (Q13167): joomla.org
+- United Nations Environment Programme (Q182016): unep.org
+- United States Department of Transportation (Q852211): dot.gov, transportation.gov
+- University of Edinburgh (Q160302): ed.ac.uk
+- United States Department of Veterans Affairs (Q592576): va.gov
+- Ahrefs (Q107533769): ahrefs.com
+- olympics.com (Q106684648): olympics.com
+- Max (Q135195814): max.ru
+- Spanish Data Protection Agency (Q392528): aepd.es
+- Brookings Institution (Q929154): brookings.edu
+- Accenture (Q338825): accenture.com
+- Texas A&M University (Q49212): tamu.edu
+- Wireshark (Q403539): wireshark.org
+- Novell (Q223407): novell.com
+- Moz (Q7389749): moz.com
+- Rutube (Q372827): rutube.ru
+- Go (Q37227): go.dev, golang.org
+- Bitbucket (Q2493781): bitbucket.org
+- Catholic Church (Q9592): vatican.va
+- Rutgers University (Q499451): rutgers.edu
+- United States Department of Labor (Q628807): dol.gov
+- amap (Q15927531): amap.com
+- investing.com (Q16849546): investing.com
+- Ohio State University (Q309331): osu.edu
+- Federal Government of the United States (Q48525): usa.gov
+- Waze (Q942327): waze.com
+- Boston University (Q49110): bu.edu
+- Occupational Safety and Health Administration (Q746186): osha.gov
+- United States Army (Q9212): army.mil, goarmy.com
+- Evernote (Q430526): evernote.com
+- MediaWiki (Q83): mediawiki.org
+- Crunchbase (Q10846831): crunchbase.com
+- Intergovernmental Panel on Climate Change (Q171183): ipcc.ch
+- about.me (Q3595053): about.me
+- Xbox 360 (Q48263): xbox.com
+- Bitnami (Q749851): bitnami.com
+- Instructables (Q3788533): instructables.com
+- Lua (Q207316): lua.org
+- The Register (Q1363733): theregister.com
+- City of New York (Q3112559): cityofnewyork.us, nyc.gov
+- legislation.gov.uk (Q7864956): legislation.gov.uk
+- ImageShack (Q50911): imageshack.us
+- Nasdaq (Q82059): nasdaq.com
+- GIMP (Q8038): gimp.org
+- Human Rights Watch (Q187052): hrw.org
+- University of Utah (Q168515): utah.edu
+- CentOS (Q207542): centos.org
+- Zapier (Q27150165): zapier.com
+- Tesla (Q478214): tesla.com
+- American Cancer Society (Q463665): cancer.org
+- WP Engine (Q19903819): wpengine.com
+- Toutiao (Q24835387): toutiao.com
+- National Weather Service (Q1066823): weather.gov
+- NHK (Q212128): nhk.or.jp
+- Daily Express (Q610190): express.co.uk
+- Internet Systems Consortium (Q1668008): isc.org
+- United States Navy (Q11220): navy.mil
+- Hyatt Hotels Corporation (Q1425063): hyatt.com, hyattinclusivecollection.com, hyattrestaurants.com
+- Panasonic Holdings Corporation (Q53247): holdings.panasonic, mei.co.jp, panasonic.com
+- North Carolina State University (Q1132346): ncsu.edu
+- Prezi (Q386957): prezi.com
+- Envato (Q5380906): envato.com
+- The Lego Group (Q1063455): lego.com
+- University of California, Santa Barbara (Q263064): ucsb.edu
+- Codeberg e.V. (Q106102217): codeberg.org
+- ISPConfig (Q2736600): ispconfig.org
+- last.fm (Q183718): last.fm
+- Libsyn (Q10561064): libsyn.com
+- Metropolitan Museum of Art (Q160236): metmuseum.org
+- SecurityFocus (Q3477586): securityfocus.com
+- Gumroad, Inc. (Q11221981): gumroad.com
+- Simon Fraser University (Q201603): sfu.ca
+- Ko-fi (Q77949925): ko-fi.com
+- Tom's Hardware (Q575769): tomshardware.com, tomshardware.fr
+- Wikibooks (Q367): wikibooks.org
+- Federal Reserve System (Q53536): federalreserve.gov
+- Douban (Q5299559): douban.com
+- California Institute of Technology (Q161562): caltech.edu
+- Justia (Q39048191): justia.com
+- ClinicalTrials.gov (Q5133746): clinicaltrials.gov
+- Our World in Data (Q23680080): ourworldindata.org
+- Zimbra (Q203485): zimbra.com
+- Amnesty International (Q42970): amnesty.eu, amnesty.org, amnestyl337aduwuvpf57irfl54ggtnuera45ygcxzuftwxjvvmpuzqd.onion
+- Consumer Reports (Q1957782): consumerreports.org
+- The Motley Fool (Q7752442): fool.com
+- Lifehacker (Q2407962): lifehacker.com
+- Hootsuite (Q2749075): hootsuite.com
+- news.com.au (Q16903296): news.com.au
+- American Express (Q194360): americanexpress.ae, americanexpress.ch, americanexpress.com, americanexpress.com.bh, americanexpress.com.qa, americanexpress.com.tr
+- xkcd (Q13915): xkcd.com
+- Die Zeit (Q157142): zeit.de
+- National Basketball Association (Q155223): nba.com
+- New York (Q1507987): nymag.com
+- DomainTools (Q5289796): domaintools.com
+- Politico Europe (Q991826): politico.eu
+- Ministry of Health, Labour and Welfare (Q1191238): mhlw.go.jp
+- Süddeutsche Zeitung (Q158870): sueddeutsche.de, sz.de
+- Nokia (Q1418): nokia.com
+- iHeartRadio (Q793699): iheart.com
+- Georgetown University (Q333886): georgetown.edu
+- Upwork (Q3344170): upwork.com
+- Digital Trends (Q5276019): digitaltrends.com
+- Indiana University (Q6608367): indiana.edu
+- TNW (Q2913725): thenextweb.com
+- Johns Hopkins Medicine (Q50363516): hopkinsmedicine.org
+- Zenodo (Q22661177): zenodo.org
+- AT&T (Q35476): att.com, attvip.mx
+- McGill University (Q201492): mcgill.ca
+- Harvard Business School (Q49126): hbs.edu
+- iQIYI (Q15913890): iq.com, iqiyi.com
+- École Centrale de Lyon (Q10177): ec-lyon.fr
+- EurekAlert! (Q115010192): eurekalert.org
+- MariaDB (Q787177): mariadb.com, mariadb.org
+- Metro (Q3307433): metro.co.uk
+- Flaticon (Q105283791): flaticon.com
+- Salon.com (Q1150423): salon.com
+- Today (Q130838): today.com
+- Medscape (Q4043898): medscape.com
+- Handle System (Q3126718): handle.net
+- Small Business Administration (Q495354): sba.gov
+- Routledge (Q1508259): routledge.com
+- Feedly (Q5441251): feedly.com
+- Vogue (Q154008): vogue.co.kr, vogue.co.th, vogue.com, vogue.de, vogue.es, vogue.fr
+- FedEx (Q459477): fedex.com
+- Central Intelligence Agency (Q37230): cia.gov, ciadotgov4sjwlzihbbgxnqg3xiyrg7so2r2o3lt5wz5ypk4sxyjstad.onion
+- VideoLAN (Q1282963): videolan.org
+- Verizon (Q467752): verizon.com, verizon.net
+- Royal Society of Chemistry (Q905549): rsc.org
+- National Bureau of Economic Research (Q475424): nber.org
+- PC World (Q707291): pcworld.com
+- The Daily Beast (Q1308139): thedailybeast.com
+- University of Pittsburgh (Q235034): pitt.edu
+- New York Daily News (Q627827): nydailynews.com
+- DEV Community (Q104835605): dev.to
+- London School of Economics and Political Science (Q174570): lse.ac.uk
+- Boston.com (Q4947705): boston.com
+- zlib (Q207240): zlib.net
+
+## Removed (96)
+
+- iCloud (Q283469): icloud.com
+- Gandi (Q3095097): gandi.net
+- DigiCert (Q3027764): digicert.com
+- Network Time Protocol (Q217491): ntp.org
+- Ubiquiti (Q7876533): ui.com
+- Microsoft Windows (Q1406): windows.com
+- Crashlytics (Q28446474): crashlytics.com
+- Cisco Meraki (Q2745629): meraki.com
+- Reg.ru (Q4047834): reg.ru, xn--c1ad6a.xn--p1ai
+- Forter (Q20988642): forter.com
+- Google Trust Services (Q140459892): pki.goog
+- hCaptcha (Q90832975): hcaptcha.com
+- Roku, Inc. (Q7360089): roku.com
+- Mobile TeleSystems (Q1368919): mts.ru
+- Criteo (Q2814507): criteo.com
+- Amplitude (Q81969219): amplitude.com
+- DNS Made Easy (Q27043898): dnsmadeeasy.com
+- AppLovin (Q27150212): applovin.com
+- Aruba Networks (Q2866017): arubanetworks.com
+- launchdarkly-server-sdk (Q107385185): launchdarkly.com
+- Grammarly (Q16840770): grammarly.com
+- MIUI (Q1187721): miui.com
+- Avast (Q136007681): avast.com
+- Palo Alto Networks (Q7128508): paloaltonetworks.com
+- Unisys (Q518016): unisys.com
+- Dynatrace (Q25048844): dynatrace.com
+- Branch Metrics (Q20800435): branch.io
+- TP-Link (Q1852050): tp-link.com
+- Check Point (Q176587): checkpoint.com
+- archive.today (Q13515725): archive.fo, archive.is, archive.li, archive.md, archive.ph, archive.today, archive.vn, archiveiya74codqgiixo33q62qlrqtkgmcitqx5u2oeqnmn5bpcbiyd.onion
+- Name.com (Q16954918): name.com
+- Amazon Trust Services (Q120979360): amazontrust.com
+- WPS Office (Q1629164): wps.cn, wps.com
+- AppsFlyer (Q20050673): appsflyer.com
+- OpenDNS (Q1121892): opendns.com
+- Telekom Deutschland (Q2401704): t.de, telekom.de
+- Bluehost (Q4930366): bluehost.com
+- Duolingo Inc (Q124637557): duolingo.com
+- Taboola (Q18154756): taboola.com
+- Braze (Q20880554): braze.com
+- MarkMonitor (Q892898): markmonitor.com
+- HostGator (Q3595393): hostgator.com
+- Selectel (Q16495806): selectel.ru
+- Klaviyo (Q106631196): klaviyo.com
+- InMobi (Q6008783): inmobi.com
+- Conviva (Q16241261): conviva.com
+- Sophos (Q1934568): sophos.com
 - government of Maricopa County (Q140234369): maricopa.gov
-- State of California (Q5589189): ca.gov
-- Federal Government of Brazil (Q5440531): www.gov.br
-- Archive of Our Own (Q27764876): archiveofourown.org
+- ESET (Q817209): eset.com
+- Media.net (Q24885109): media.net
+- MediaTek (Q699848): mediatek.com
+- Hotjar (Q141629150): hotjar.com
+- Optimizely (Q17073302): optimizely.com
+- OneTrust (Q96756948): onetrust.com
+- Ring (Q5297222): ring.com
+- mobile.de (Q1771581): mobile.de
+- Wildberries (Q24933714): wildberries.by, wildberries.ge, wildberries.ru
+- Gosuslugi (Q4373230): gosuslugi.ru
+- Ivi.ru (Q4041684): ivi.ru
+- Outbrain (Q17051632): outbrain.com
+- bugsnag (Q107384422): bugsnag.com
+- New Relic (Q7011152): newrelic.com
+- AnyDesk (Q27926810): anydesk.com
+- Linode (Q6554704): linode.com
+- Charter Communications (Q2961234): charter.com, spectrum.com
+- Qihoo 360 (Q7267707): 360.cn, 360.com
+- Auth0 (Q56072164): auth0.com
+- Life360 (Q17152633): life360.com
+- Viber (Q332707): viber.com
+- Cloudinary (Q27150151): cloudinary.com
+- Flurry (Q16838692): flurry.com
+- 33Across (Q85738240): 33across.com
+- Instructure (Q3019900): instructure.com
+- Mixpanel (Q25048114): mixpanel.com
+- Unruly Media (Q119585768): unruly.co
+- MobileMe (Q844446): me.com
+- Yieldmo (Q19882033): yieldmo.com
+- .mail (Q1188356): spamhaus.org
+- Tailscale Inc. (Q108766392): tailscale.com
+- Visual Studio App Center (Q84772389): appcenter.ms
+- Seedtag (Q140865485): seedtag.com
+- Telefónica Deutschland (Q2401561): o2online.de, telefonica.de
+- Playrix (Q4047081): playrix.com
+- RuStore (Q113393136): rustore.ru
+- The Movie Database (Q20828898): themoviedb.org
+- Kuaishou (Q47015540): kuaishou.com, kwai.com, snackvideo.com
+- Consultant Plus (Q4231593): consultant.ru
+- Pandora (Q1196431): pandora.com
+- Threema (Q13512316): threema.ch
+- Nextcloud (Q25874683): nextcloud.com
+- AT&T Internet Services (Q4654537): att.net
+- Intercom (Q48965215): intercom.com
+- Netgear (Q979690): netgear.co.uk, netgear.com, netgear.de, netgear.fr, netgear.it
+- DataDome (Q139974106): datadome.co
+- Rackspace Technology (Q2990586): rackspace.com
+- ipinfo (Q107386780): ipinfo.io
 
-## Removed (5)
+## Changed official domains (4)
 
-- United Kingdom (Q145): www.gov.uk
-- Maricopa County (Q58691): maricopa.gov
-- California (Q99): ca.gov
-- Brazil (Q155): www.gov.br
-- Germany (Q183): bund.de, deutschland.de
+- Discord (Q22907849): primary discord.gg → discord.com
+- NetEase (Q196259): primary netease.com → 163.com
+- Threads (Q120281745): primary threads.com → threads.net
+- Xiaomi (Q1636958): primary xiaomi.com → mi.com
 
-## Changed related domains (41)
+## Changed related domains (226)
 
-- Google (Q95): +abc.xyz (curated), +android.com (curated: Android), +ggpht.com (curated), +youtu.be (curated), -jaiku.com, -metaweb.com, -nothing.tech, -orkut.com, -panoramio.com, -webplatform.org
-- Facebook (Q355): -face.com, -friendfeed.com
-- Microsoft (Q2283): -aquantive.com, -dfki.de, -docs.com, -gamesforwindows.com, -lionhead.com, -microsoftstore.com, -mixer.com, -skype.com, -xandr.com
-- Apple Inc. (Q312): -claris.com
-- Amazon (Q3884): -alexa.com, -amazon.cn, -justin.tv, -yesnetwork.com
-- DigiCert (Q3027764): -geotrust.com
-- T-Online (Q590940): -iwiw.hu
-- Samsung Group (Q20716): -bang-olufsen.com
-- GoDaddy (Q1416215): -mediatemple.net
-- Oracle Corporation (Q19900): -bea.com, -java.net, -mysql.com, -netsuite.com, -sun.com
-- British Broadcasting Corporation (Q9531): -barb.co.uk, -bbcearth.com, -bbcworldwide.com, -freely.co.uk
-- Cisco (Q173395): -ironport.com, -sourcefire.com
-- IBM (Q37156): -softlayer.com
-- Hewlett-Packard (Q80978): -compaq.com, -eds.com, -palm.com
-- booking.com (Q4035313): -ebuddy.com
-- Springer Science+Business Media (Q176916): -birkhauser.com
-- ESPN (Q217776): -coolspotters.com, -grantland.com
-- Alibaba Group (Q1359568): -amblin.com
-- Etsy (Q1353939): -alittlemarket.com
-- Electronic Arts (Q173941): -bioware.com, -origin.com, -thesims.com, -westwood.com
-- Dell Inc. (Q30873): -emc.com, -wyse.com
-- United Nations (Q1065): -icty.org, -ungsc.org
-- AOL (Q27585): -dmoz.org, -joystiq.com, -nullsoft.com
-- State of California (Q5589189): +avc.edu (wikidata-owned: Antelope Valley College), +bakersfieldcollege.edu (wikidata-owned: Bakersfield College), +barstow.edu (wikidata-owned: Barstow Community College), +berkeley.edu (wikidata-owned: University of California, Berkeley), +butte.edu (wikidata-owned: Butte College), +cabrillo.edu (wikidata-owned: Cabrillo College), +calbright.edu (wikidata-owned: Calbright College), +calpoly.edu (wikidata-owned: California Polytechnic State University), +calstate.edu (wikidata-owned: California State University), +calstatela.edu (wikidata-owned: California State University, Los Angeles), +calstrs.com (wikidata-owned: CalSTRS), +canadacollege.edu (wikidata-owned: Cañada College), +canyons.edu (wikidata-owned: College of the Canyons), +capradio.org (wikidata-owned: KUOP), +cccco.edu (wikidata-owned: California Community Colleges), +ccsf.edu (wikidata-owned: City College of San Francisco), +cdlib.org (wikidata-owned: California Digital Library), +cerritos.edu (wikidata-owned: Cerritos College), +cerrocoso.edu (wikidata-owned: Cerro Coso Community College), +chabotcollege.edu (wikidata-owned: Chabot College), +chaffey.edu (wikidata-owned: Chaffey College), +citris-uc.org (wikidata-owned: Center for Information Technology Research in the Interest of Society), +citruscollege.edu (wikidata-owned: Citrus College), +cmccd.edu (wikidata-owned: Copper Mountain College), +coastline.edu (wikidata-owned: Coastline Community College), +collegeofsanmateo.edu (wikidata-owned: College of San Mateo), +collegeofthedesert.edu (wikidata-owned: College of the Desert), +compton.edu (wikidata-owned: Compton College), +contracosta.edu (wikidata-owned: Contra Costa College), +cos.edu (wikidata-owned: College of the Sequoias), +coveredca.com (wikidata-owned: Covered California), +cpp.edu (wikidata-owned: California State Polytechnic University, Pomona), +craftonhills.edu (wikidata-owned: Crafton Hills College), +csub.edu (wikidata-owned: California State University, Bakersfield), +csuchico.edu (wikidata-owned: California State University, Chico), +csuci.edu (wikidata-owned: California State University, Channel Islands), +csudh.edu (wikidata-owned: California State University, Dominguez Hills), +csueastbay.edu (wikidata-owned: California State University, East Bay), +csulb.edu (wikidata-owned: California State University, Long Beach), +csumb.edu (wikidata-owned: California State University, Monterey Bay), +csun.edu (wikidata-owned: California State University, Northridge), +csus.edu (wikidata-owned: California State University, Sacramento), +csusb.edu (wikidata-owned: California State University, San Bernardino), +csusm.edu (wikidata-owned: California State University San Marcos), +csustan.edu (wikidata-owned: California State University, Stanislaus), +cuesta.edu (wikidata-owned: Cuesta College), +cuyamaca.edu (wikidata-owned: Cuyamaca College), +cypresscollege.edu (wikidata-owned: Cypress College), +deanza.edu (wikidata-owned: De Anza College), +deltacollege.edu (wikidata-owned: San Joaquin Delta College), +dvc.edu (wikidata-owned: Diablo Valley College), +elac.edu (wikidata-owned: East Los Angeles College), +elcamino.edu (wikidata-owned: El Camino College), +evc.edu (wikidata-owned: Evergreen Valley College), +foothill.edu (wikidata-owned: Foothill College), +frc.edu (wikidata-owned: Feather River College), +fresnocitycollege.edu (wikidata-owned: Fresno City College), +fresnostate.edu (wikidata-owned: California State University, Fresno), +fullcoll.edu (wikidata-owned: Fullerton College), +fullerton.edu (wikidata-owned: California State University, Fullerton), +gavilan.edu (wikidata-owned: Gavilan College), +glendale.edu (wikidata-owned: Glendale Community College), +goldenwestcollege.edu (wikidata-owned: Golden West College), +grossmont.edu (wikidata-owned: Grossmont College), +hancockcollege.edu (wikidata-owned: Allan Hancock College), +hartnell.edu (wikidata-owned: Hartnell College), +humboldt.edu (wikidata-owned: California State Polytechnic University, Humboldt), +imperial.edu (wikidata-owned: Imperial Valley College), +ivc.edu (wikidata-owned: Irvine Valley College), +lacitycollege.edu (wikidata-owned: Los Angeles City College), +lahc.edu (wikidata-owned: Los Angeles Harbor College), +lamission.edu (wikidata-owned: Los Angeles Mission College), +laney.edu (wikidata-owned: Laney College), +lasc.edu (wikidata-owned: Los Angeles Southwest College), +laspositascollege.edu (wikidata-owned: Las Positas College), +lattc.edu (wikidata-owned: Los Angeles Trade–Technical College), +lavc.edu (wikidata-owned: Los Angeles Valley College), +lbcc.edu (wikidata-owned: Long Beach City College), +marin.edu (wikidata-owned: College of Marin), +mccd.edu (wikidata-owned: Merced College), +miracosta.edu (wikidata-owned: MiraCosta College), +missioncollege.edu (wikidata-owned: Mission College), +mjc.edu (wikidata-owned: Modesto Junior College), +mpc.edu (wikidata-owned: Monterey Peninsula College), +msjc.edu (wikidata-owned: Mt. San Jacinto College), +mtsac.edu (wikidata-owned: Mt. San Antonio College), +mvc.edu (wikidata-owned: Moreno Valley College), +napavalley.edu (wikidata-owned: Napa Valley College), +ohlone.edu (wikidata-owned: Ohlone College), +orangecoastcollege.edu (wikidata-owned: Orange Coast College), +palomar.edu (wikidata-owned: Palomar College), +pasadena.edu (wikidata-owned: Pasadena City College), +peralta.edu (wikidata-owned: College of Alameda), +portervillecollege.edu (wikidata-owned: Porterville College), +redwoods.edu (wikidata-owned: College of the Redwoods), +reedleycollege.edu (wikidata-owned: Reedley College), +riohondo.edu (wikidata-owned: Rio Hondo College), +rsccd.edu (wikidata-owned: Rancho Santiago Community College District), +sac.edu (wikidata-owned: Santa Ana College), +saddleback.edu (wikidata-owned: Saddleback College), +santarosa.edu (wikidata-owned: Santa Rosa Junior College), +sbcc.edu (wikidata-owned: Santa Barbara City College), +sdcity.edu (wikidata-owned: San Diego City College), +sdmesa.edu (wikidata-owned: San Diego Mesa College), +sdmiramar.edu (wikidata-owned: San Diego Miramar College), +sdsu.edu (wikidata-owned: San Diego State University), +sfsu.edu (wikidata-owned: San Francisco State University), +shastacollege.edu (wikidata-owned: Shasta College), +sierracollege.edu (wikidata-owned: Sierra College), +siskiyous.edu (wikidata-owned: College of the Siskiyous), +sjsu.edu (wikidata-owned: San José State University), +skylinecollege.edu (wikidata-owned: Skyline College), +smc.edu (wikidata-owned: Santa Monica College), +solano.edu (wikidata-owned: Solano Community College), +sonoma.edu (wikidata-owned: Sonoma State University), +swccd.edu (wikidata-owned: Southwestern College), +taftcollege.edu (wikidata-owned: Taft College), +ucanr.edu (wikidata-owned: University of California, Agriculture and Natural Resources), +ucdavis.edu (wikidata-owned: University of California, Davis), +uci.edu (wikidata-owned: University of California, Irvine), +ucla.edu (wikidata-owned: University of California, Los Angeles), +ucmerced.edu (wikidata-owned: University of California, Merced), +ucnrs.org (wikidata-owned: University of California Natural Reserve System), +ucop.edu (wikidata-owned: University of California Office of the President), +ucr.edu (wikidata-owned: University of California, Riverside), +ucsb.edu (wikidata-owned: University of California, Santa Barbara), +ucsc.edu (wikidata-owned: University of California, Santa Cruz), +ucsd.edu (wikidata-owned: University of California, San Diego), +ucsf.edu (wikidata-owned: University of California, San Francisco), +uctv.tv (wikidata-owned: University of California Television), +universityofcalifornia.edu (wikidata-owned: University of California), +valleycollege.edu (wikidata-owned: San Bernardino Valley College), +venturacollege.edu (wikidata-owned: Ventura College), +vvc.edu (wikidata-owned: Victor Valley College), +westvalley.edu (wikidata-owned: West Valley College), +wlac.edu (wikidata-owned: West Los Angeles College)
-- Rakuten Group, Inc. (Q973054): -mytolino.com, -mytolino.de
-- Tencent (Q860580): -ada-music.com, -atlanticrecords.com, -elektra.com, -hiphopdx.com, -islanddefjam.com, -musicchoice.com, -nonesuch.com, -rhino.com, -roadrunnerrecords.com, -sinatra.com, -spinninrecords.com, -subpop.com, -telltale.com, -umusic.com, -warnerchappell.com, -warnerclassics.com, -warnermusic.de, -warnermusic.it, -warnerrecords.com, -wmg.com, -wmg.jp
-- Red Hat (Q485593): -gluster.org
-- The Independent (Q11149): -exiledonline.com
-- Marriott International (Q1141173): -starwoodhotels.com
-- McKinsey & Company (Q310207): -gojek.com
-- Lenovo (Q14799): -zumodrive.com
-- Federal Government of Brazil (Q5440531): +anp.gov.br (wikidata-owned: National Agency of Petroleum, Natural Gas and Biofuels), +arquivonacional.gov.br (wikidata-owned: Brazilian National Archives), +bancoamazonia.com.br (wikidata-owned: Bank of Amazon), +bancopatagonia.com.ar (wikidata-owned: Patagonia Bank), +bb.com.br (wikidata-owned: Bank of Brazil), +bnb.gov.br (wikidata-owned: Bank of the Northeast), +bndes.gov.br (wikidata-owned: Brazilian Development Bank), +caixa.gov.br (wikidata-owned: Caixa), +casaruibarbosa.gov.br (wikidata-owned: Museu Casa de Rui Barbosa), +cbtu.gov.br (wikidata-owned: Companhia Brasileira de Trens Urbanos), +codevasf.gov.br (wikidata-owned: Companhia de Desenvolvimento dos Vales do São Francisco e do Parnaíba), +correios.com.br (wikidata-owned: Correios do Brasil), +cultura.gov.br (wikidata-owned: Ministry of Culture of Brazil), +defesa.gov.br (wikidata-owned: Ministry of Defense of Brazil), +desenvolvimento.gov.br (wikidata-owned: Ministry of Development, Industry, and Trade), +eb.mil.br (wikidata-owned: Brazilian Army), +ebc.com.br (wikidata-owned: Empresa Brasil de Comunicação), +eletronuclear.gov.br (wikidata-owned: Eletronuclear), +embratur.com.br (wikidata-owned: Embratur), +fiocruz.br (wikidata-owned: Oswaldo Cruz Foundation), +funasa.gov.br (wikidata-owned: Fundação Nacional de Saúde), +ibama.gov.br (wikidata-owned: Brazilian Institute of Environment and Renewable Natural Resources), +ibge.gov.br (wikidata-owned: Instituto Brasileiro de Geografia e Estatística), +icmbio.gov.br (wikidata-owned: Chico Mendes Institute for Biodiversity Conservation), +inb.gov.br (wikidata-owned: Indústrias Nucleares do Brasil), +inpi.gov.br (wikidata-owned: National Institute of Industrial Property), +itamaraty.gov.br (wikidata-owned: Itamaraty Palace), +jbrj.gov.br (wikidata-owned: Rio de Janeiro Botanical Garden), +mdic.gov.br (wikidata-owned: Ministry of Development, Industry, and Trade), +mma.gov.br (wikidata-owned: Ministry of the Environment), +mte.gov.br (wikidata-owned: Ministry of Labour and Employment), +planalto.gov.br (wikidata-owned: Palácio do Planalto), +portodesantos.com.br (wikidata-owned: Port of Santos), +suframa.gov.br (wikidata-owned: Superintendência da Zona Franca de Manaus), +trabalho.gov.br (wikidata-owned: Ministry of Labour and Employment), +turismo.gov.br (wikidata-owned: Ministry of Tourism)
-- Bank of America (Q487907): -earlywarning.com, -zellepay.com
-- Otto Group (Q466688): -mytoys.de, -neckermann.de, -quelle.de
-- onet.pl (Q495943): -zumi.pl
-- Telefónica Deutschland (Q2401561): -blau.de, -fonic.de
-- Lowe's (Q1373493): -renodepot.com
-- Caixa (Q835283): -elo.com.br
-- NTT DoCoMo (Q853958): -goo.ne.jp
-- Organization for Economic Cooperation and Development (Q41550): -oecd-ilibrary.org
-- T-Mobile US (Q3511885): -sprint.com
-
-## Changed brand TLDs (7)
-
-- YouTube (Q866): +.youtube
-- Microsoft Office (Q11255): +.office
-- Microsoft Bing (Q182496): +.bing
-- Skype (Q40984): +.skype
-- Microsoft Windows (Q1406): +.windows
-- Android (Q94): +.android
-- Gmail (Q9334): +.gmail
+- Google (Q95): +liftware.com (wikidata-owned: Lift Labs), +pyra.com (wikidata-owned: Pyra Labs), +solveforx.com (wikidata-owned: X Development), +stackdriver.com (wikidata-owned: Google Cloud's operations suite), +wdyl.com (wikidata-owned: WDYL), -rightsflow.com, -zyncrender.com
+- Apple Inc. (Q312): +drive.ai (wikidata-owned: drive.ai), +emagic.de (wikidata-owned: Emagic), +texture.com (wikidata-owned: Texture)
+- Microsoft (Q2283): +343industries.com (wikidata-owned: Halo Studios), +beenox.com (wikidata-owned: Beenox), +bethesdagamestudios.com (wikidata-owned: Bethesda Game Studios), +canesta.com (wikidata-owned: Canesta), +cyberx-labs.com (wikidata-owned: CyberX), +danger.com (wikidata-owned: Danger, Inc.), +highmoonstudios.com (wikidata-owned: High Moon Studios), +loquendo.com (wikidata-owned: Loquendo), +machinegames.com (wikidata-owned: Q6723623), +maluuba.com (wikidata-owned: Maluuba), +mlg.com (wikidata-owned: Major League Gaming), +msdewey.com (wikidata-owned: Ms. Dewey), +perceptivepixel.com (wikidata-owned: Perceptive Pixel), +tangogameworks.com (wikidata-owned: Tango Gameworks), +thecoalitionstudio.com (wikidata-owned: The Coalition), +turn10studios.com (wikidata-owned: Turn 10 Studios), +twistedpixelgames.com (wikidata-owned: Twisted Pixel Games), +zenimaxonline.com (wikidata-owned: ZeniMax Online Studios), -nic.bing, -xbox.com
+- F5, Inc. (Q3029296): -volterra.io
+- Amazon (Q3884): +amazonrobotics.com (wikidata-owned: Amazon Robotics), +brilliancepublishing.com (wikidata-owned: Brilliance Publishing), +junglee.com (wikidata-owned: junglee.com), +lab126.com (wikidata-owned: Amazon Lab126), +mooseroots.com (wikidata-owned: MooseRoots), +orionpictures.com (wikidata-owned: Orion Pictures), +reflexive.com (wikidata-owned: Reflexive Entertainment), +seattlespheres.com (wikidata-owned: Amazon Spheres), +universityesports.net (wikidata-owned: Amazon University Esports), -nic.free, -nic.zappos
+- United States National Institutes of Health (Q390551): +immunetolerance.org (wikidata-owned: Immune Tolerance Network), +phenxtoolkit.org (wikidata-owned: PhenX Toolkit)
+- Yahoo (Q37093): +opensocial.org (wikidata-owned: OpenSocial)
+- PayPal (Q483959): -paydiant.com
+- Shopify (Q7501150): +oberlo.fr (wikidata-owned: Oberlo)
+- Oracle Corporation (Q19900): +micros.com (wikidata-owned: Micros Systems), +wercker.com (wikidata-owned: Wercker)
+- GoDaddy (Q1416215): +outright.com (wikidata-owned: Outright), -localitymanagement.us
+- British Broadcasting Corporation (Q9531): +bbcnews.com (wikidata-owned: BBC News), +demonmusicgroup.co.uk (wikidata-owned: Demon Music Group Ltd.)
+- Massachusetts Institute of Technology (Q49108): +ragoninstitute.org (wikidata-owned: Phillip T. and Susan M. Ragon Institute)
+- Springer Science+Business Media (Q176916): +fuchsbriefe.de (wikidata-owned: Fuchsbriefe)
+- Wiley (Q1479654): +ernst-und-sohn.de (wikidata-owned: Ernst & Sohn)
+- Harvard University (Q13371): +sardisexpedition.org (wikidata-owned: Archaeological Exploration of Sardis)
+- United States Centers for Disease Control and Prevention (Q583725): +aahd.us (wikidata-owned: American Association on Health and Disability)
+- United Nations (Q1065): +geoc.jp (wikidata-owned: Global Environmental Outreach Centre), +imc-cim.org (wikidata-owned: International Music Council), +unstamps.org (wikidata-owned: United Nations Postal Administration), -accessiblebooksconsortium.org, -educationcannotwait.org, -ipbes.net, -ipcc.ch, -oneplanetnetwork.org, -resourcepanel.org, -unep-wcmc.org, -unicef.ca, -unicef.fr, -unicef.ie, -unicef.nl, -unicef.org.au, -unicef.org.uk, -unicef.pl, -unicef.se, -unicefusa.org, -ureport.in
+- Ministry of Industry and Information Technology of the People's Republic of China (Q1002010): +ccidgroup.com (wikidata-owned: China Electronic Information Industry Development), +crac.org.cn (wikidata-owned: Chinese Radio Amateurs Club)
+- Stanford University (Q41506): +centerforoceansolutions.org (wikidata-owned: Center for Ocean Solutions), +immigrationlab.org (wikidata-owned: Immigration Policy Lab)
+- National Aeronautics and Space Administration (Q23548): +observatorio.info (wikidata-owned: Astronomy Picture of the Day)
+- Cloudflare (Q4778915): +area1security.com (wikidata-owned: Area 1 Security)
+- Samsung Group (Q20716): +bluewings.kr (wikidata-owned: Suwon Samsung Bluewings FC), +infinitysystems.com (wikidata-owned: Infinity), +jblstore.it (wikidata-owned: JBL), +mckinney.com (wikidata-owned: McKinney), +revelspeakers.com (wikidata-owned: Revel Audio), +samsungengineering.com (wikidata-owned: Samsung Engineering)
+- Etsy (Q1353939): +depop.com (wikidata-owned: Depop)
+- eBay (Q58024): -depop.com
+- Library of Congress (Q131454): +ccb.gov (wikidata-owned: Copyright Claims Board)
+- State of California (Q5589189): +berkeleycitycollege.edu (wikidata-owned: Berkeley City College), +calstrawberry.com (wikidata-owned: California Strawberry Commission), +cowpalace.com (wikidata-owned: Cow Palace), +gocolumbia.edu (wikidata-owned: Columbia College), +lassencollege.edu (wikidata-owned: Lassen Community College), +losmedanos.edu (wikidata-owned: Los Medanos College), +ltcc.edu (wikidata-owned: Lake Tahoe Community College), +mendocino.edu (wikidata-owned: Mendocino College), +merritt.edu (wikidata-owned: Merritt College), +oxnardcollege.edu (wikidata-owned: Oxnard College), +paloverde.edu (wikidata-owned: Palo Verde College), +piercecollege.edu (wikidata-owned: Los Angeles Pierce College), +sjcc.edu (wikidata-owned: San José City College), +wedrawthelinesca.org (wikidata-owned: California Citizens Redistricting Commission)
+- University of California, Berkeley (Q168756): +inequalitylab.world (wikidata-owned: World Inequality Lab)
+- AOL (Q27585): +cambio.com (wikidata-owned: cambio.com)
+- CBS News (Q861764): -kcfj570.com
+- Red Hat (Q485593): +inktank.com (wikidata-owned: Inktank Storage)
+- Institute of Electrical and Electronics Engineers (Q131566): +emcs.org (wikidata-owned: IEEE Electromagnetic Compatibility Society), +ieee-aess.org (wikidata-owned: IEEE Aerospace and Electronic Systems Society), +ifets.info (wikidata-owned: Educational Technology & Society), +j-ets.net (wikidata-owned: Educational Technology & Society)
+- Nvidia (Q182477): +heavy.ai (wikidata-owned: HEAVY.AI), +mentalimages.com (wikidata-owned: Mental Images)
+- Huawei (Q160120): +hima.auto (wikidata-owned: Harmony Intelligent Mobility Alliance)
+- Ministry of Public Security (Q2346285): +cppu.edu.cn (wikidata-owned: Chinese People's Police University), +forestpolice.net (wikidata-owned: Nanjing Police University), +gdga.gov.cn (wikidata-owned: The Public Security Department of Guangdong Province), +hnga.gov.cn (wikidata-owned: Q15920490), +jxga.gov.cn (wikidata-owned: Q15449505), +rpc.edu.cn (wikidata-owned: Railway Police College)
+- Organization for Economic Cooperation and Development (Q41550): +biac.org (wikidata-owned: Business and Industry Advisory Committee to the OECD)
+- Netflix (Q907311): +scanlinevfx.com (wikidata-owned: Scanline VFX)
+- University of Washington (Q219563): +5thavenue.org (wikidata-owned: 5th Avenue Theatre), +simpsoncenter.org (wikidata-owned: Walter Chapin Simpson Center for the Humanities)
+- National Oceanic and Atmospheric Administration (Q214700): +elkhornslough.org (wikidata-owned: Elkhorn Slough National Estuarine Research Reserve), +iiseagrant.org (wikidata-owned: Illinois-Indiana Sea Grant), +laseagrant.org (wikidata-owned: Louisiana Sea Grant), +scseagrant.org (wikidata-owned: South Carolina Sea Grant Consortium)
+- University of Oxford (Q34433): +ocbs.org (wikidata-owned: Oxford Centre for Buddhist Studies), +oxford.co.za (wikidata-owned: Oxford University Press Southern Africa)
+- NBC News (Q2877626): +euronewsbulgaria.com (wikidata-owned: Euronews Bulgaria)
+- Marriott International (Q1141173): +ac-hotels.com (wikidata-owned: AC Hotels), +stregisnewyork.com (wikidata-owned: The St. Regis Hotel), +westinpalacemadrid.com (wikidata-owned: Hotel Palace)
+- Columbia University (Q49088): +councilforeuropeanstudies.org (wikidata-owned: Council for European Studies), +globalcmt.org (wikidata-owned: Global Centroid Moment Tensor), +tremorjournal.org (wikidata-owned: Tremor and other hyperkinetic movements)
+- Tencent (Q860580): +caroline.com (wikidata-owned: Caroline Records), +cashmoney-records.com (wikidata-owned: Cash Money Records), +cenega.pl (wikidata-owned: Cenega), +eaglerockent.com (wikidata-owned: Eagle Rock Entertainment), +forticheprod.com (wikidata-owned: Fortiche), +grindinggear.com (wikidata-owned: Grinding Gear Games), +mercuryrecords.com (wikidata-owned: Mercury Records), +millennium-media.net (wikidata-owned: Millennium Media), +nextstudios.com (wikidata-owned: NExT Studios), +shadyrecords.com (wikidata-owned: Shady Records), +sharkmob.com (wikidata-owned: Sharkmob), +spinefarmrecords.com (wikidata-owned: Spinefarm Records), +spinnup.com (wikidata-owned: Spinnup), +umg.com.hk (wikidata-owned: Universal Music Hong Kong), +umgnashville.com (wikidata-owned: Universal Music Group Nashville), +umusic.co.uk (wikidata-owned: Universal Music Operations Ltd.), +universalmusic.at (wikidata-owned: Universal Music GmbH), +universalmusic.es (wikidata-owned: Universal Music Spain, S.L.), +universalmusic.pl (wikidata-owned: Universal Music Polska), +universalmusica.com (wikidata-owned: Universal Music Latin Entertainment), +virginmusic.com (wikidata-owned: Virgin Records), +visual-arts.jp (wikidata-owned: Visual Arts), +wangyuan.com (wikidata-owned: Wangyuan Shengtang), +yager.de (wikidata-owned: Q17297596)
+- Intel (Q248): +nervanasys.com (wikidata-owned: Nervana Systems)
+- HuffPost (Q18049522): +huffpostarabi.com (wikidata-owned: HuffPost Arabi)
+- Yale University (Q49112): +paul-mellon-centre.ac.uk (wikidata-owned: Paul Mellon Centre for Studies in British Art)
+- University of Michigan (Q230492): +correlatesofwar.org (wikidata-owned: Correlates of War), +wcbn.org (wikidata-owned: WCBN-FM)
+- WebMD (Q3536160): +medicinenet.com (wikidata-owned: MedicineNet), +medscape.com (wikidata-owned: Medscape), +rxlist.com (wikidata-owned: RxList)
+- Gartner (Q174198): +capterra.com (wikidata-owned: Capterra), +capterra.es (wikidata-owned: Capterra), +capterra.fr (wikidata-owned: Capterra)
+- Dribbble (Q7605173): +creativemarket.com (wikidata-owned: Creative Market)
+- University of Pennsylvania (Q49117): +chestercountyhospital.org (wikidata-owned: Chester County Hospital), +chop.edu (wikidata-owned: Children's Hospital of Philadelphia), +lancastergeneralhealth.org (wikidata-owned: Lancaster General Hospital), +penn.museum (wikidata-owned: University of Pennsylvania Museum of Archaeology and Anthropology), +pennmedicine.org (wikidata-owned: University of Pennsylvania Health System), +xpn.org (wikidata-owned: WXPN)
+- Food and Agriculture Organization of the United Nations (Q82151): +faoswalim.org (wikidata-owned: Somalia Water and Land Information)
+- Sun Microsystems (Q14647): +mysql.com (wikidata-owned: MySQL AB)
+- Alibaba Group (Q1359568): +t-head.cn (wikidata-owned: T-Head)
+- University of Cambridge (Q35794): +adctheatre.com (wikidata-owned: ADC Theatre), +crukcambridgecentre.org.uk (wikidata-owned: Cancer Research UK Cambridge Institute), +doitpoms.ac.uk (wikidata-owned: DoITPoMS), +webarchive.org.uk (wikidata-owned: UK Web Archive)
+- Australian Broadcasting Corporation (Q781365): +australiaplus.com (wikidata-owned: ABC Australia), +gold1017.com.au (wikidata-owned: Gold 101.7), +hope1032.com.au (wikidata-owned: Hope 103.2), +kiis1065.com.au (wikidata-owned: KIIS 106.5), +radioaustralia.net.au (wikidata-owned: Radio Australia)
+- University of Minnesota System (Q14552696): +radiok.org (wikidata-owned: KUOM)
+- Association for Computing Machinery (Q127992): +jmlr.org (wikidata-owned: Journal of Machine Learning Research), +sigspatial.org (wikidata-owned: SIGSPATIAL)
+- Elsevier (Q746413): +bepress.com (wikidata-owned: Bepress), +interfolio.com (wikidata-owned: Interfolio by Elsevier), +keaipublishing.com (wikidata-owned: KeAi Publishing Communications), +mendeley.com (wikidata-owned: Mendeley), +sciencedirect.com (wikidata-owned: ScienceDirect), +scopus.com (wikidata-owned: Scopus), +ssrn.com (wikidata-owned: Social Science Research Network)
+- Xinhua News Agency (Q204839): +banyuetan.org (wikidata-owned: Banyuetan), +cankaoxiaoxi.com (wikidata-owned: Reference News), +ckxx.net (wikidata-owned: Reference News), +cnstock.com (wikidata-owned: Shanghai Securities News), +cs.com.cn (wikidata-owned: China Securities Journal), +jjckb.cn (wikidata-owned: Economic Information Daily)
+- National Park Service (Q308439): +everykidinapark.gov (wikidata-owned: Every Kid in a Park), +fords.org (wikidata-owned: Ford's Theatre), +navymemorial.org (wikidata-owned: United States Navy Memorial)
+- Deutsche Welle (Q153770): +qantara.de (wikidata-owned: qantara.de)
+- Newsweek (Q188413): +newsweek.ro (wikidata-owned: NewsWeek Romania)
+- National Health Service (Q16251481): +hyms.ac.uk (wikidata-owned: Hull York Medical School)
+- Carnegie Mellon University (Q190080): +dbdb.io (wikidata-owned: Database of Databases)
+- University of Chicago (Q131252): +anl.gov (wikidata-owned: Argonne National Laboratory)
+- Dell Inc. (Q30873): +force10networks.com (wikidata-owned: Force10)
+- Stack Exchange (Q3495447): +askubuntu.com (wikidata-owned: Ask Ubuntu)
+- University of Wisconsin–Madison (Q838330): +morgridge.org (wikidata-owned: Morgridge Institute for Research)
+- United States Geological Survey (Q193755): +sciencebase.gov (wikidata-owned: USGS ScienceBase)
+- American Chemical Society (Q247556): +cas.org (wikidata-owned: Chemical Abstracts Service)
+- University of California, Los Angeles (Q174710): +geffenplayhouse.org (wikidata-owned: Geffen Playhouse)
+- Al Jazeera (Q13477): +beinsports.com (wikidata-owned: BeIN Sports USA)
+- Euronews (Q8478): +africanews.com (wikidata-owned: Africanews)
+- People's Daily (Q54340): +people.cn (wikidata-owned: people.cn), +stcn.com (wikidata-owned: Securities Times)
+- International Telecommunication Union (Q376150): +giga.global (wikidata-owned: GIGA)
+- Hilton Hotels & Resorts (Q598884): +seelbachhilton.com (wikidata-owned: Seelbach Hotel)
+- Internet Assigned Numbers Authority (Q242540): +example.com (wikidata-owned: example.com), +example.edu (wikidata-owned: example.com), +example.net (wikidata-owned: example.com), +example.org (wikidata-owned: example.com)
+- Smithsonian Institution (Q131626): +airspacemag.com (wikidata-owned: Air & Space/Smithsonian), +barcodeoflife.org (wikidata-owned: Consortium for the Barcode of Life), +cooperhewitt.org (wikidata-owned: Cooper Hewitt, Smithsonian Design Museum), +smithsonianapa.org (wikidata-owned: Smithsonian Asian Pacific American Center), +smithsonianassociates.org (wikidata-owned: Smithsonian Associates), +smithsonianbooks.com (wikidata-owned: Smithsonian Books), +wilsoncenter.org (wikidata-owned: Woodrow Wilson International Center for Scholars)
+- UNICEF (Q740308): +educationcannotwait.org (wikidata-owned: Education Cannot Wait), +unicef.be (wikidata-owned: UNICEF Belgium), +unicef.ca (wikidata-owned: UNICEF Canada), +unicef.fr (wikidata-owned: UNICEF France), +unicef.ie (wikidata-owned: UNICEF Ireland), +unicef.in (wikidata-owned: UNICEF India), +unicef.nl (wikidata-owned: UNICEF Netherlands National Committee), +unicef.org.au (wikidata-owned: UNICEF Australia), +unicef.org.uk (wikidata-owned: UNICEF UK), +unicef.pl (wikidata-owned: Polish National Committee for UNICEF), +unicef.se (wikidata-owned: UNICEF Sweden), +unicefusa.org (wikidata-owned: UNICEF USA), +ureport.in (wikidata-owned: U-Report)
+- Johns Hopkins University (Q193727): +ghspjournal.org (wikidata-owned: Global health, science and practice), +hopkinspsychedelic.org (wikidata-owned: Center for Psychedelic and Consciousness Research), +jhah.com (wikidata-owned: Johns Hopkins Aramco Healthcare), +jhuapl.edu (wikidata-owned: Applied Physics Laboratory), +jhuccp.org (wikidata-owned: Johns Hopkins University Center for Communication Programs)
+- United States Department of Health and Human Services (Q942326): +988lifeline.org (wikidata-owned: 988 Suicide and Crisis Lifeline), +acf.gov (wikidata-owned: Administration for Children and Families), +acl.gov (wikidata-owned: Administration for Community Living), +ahrq.gov (wikidata-owned: United States Agency for Healthcare Research and Quality), +cdc.gov (wikidata-owned: United States Centers for Disease Control and Prevention), +cms.gov (wikidata-owned: Centers for Medicare and Medicaid Services), +cuidadodesalud.gov (wikidata-owned: healthcare.gov), +fda.gov (wikidata-owned: United States Food and Drug Administration), +healthcare.gov (wikidata-owned: healthcare.gov), +healthit.gov (wikidata-owned: Office of the National Coordinator for Health Information Technology), +hrsa.gov (wikidata-owned: Health Resources and Services Administration), +ihs.gov (wikidata-owned: Indian Health Service), +nih.gov (wikidata-owned: United States National Institutes of Health), +organdonor.gov (wikidata-owned: OrganDonor.gov), +psc.gov (wikidata-owned: Program Support Center), +publichealthreports.org (wikidata-owned: Public Health Reports), +samhsa.gov (wikidata-owned: Substance Abuse and Mental Health Services Administration), +usphs.gov (wikidata-owned: United States Public Health Service), +uspreventiveservicestaskforce.org (wikidata-owned: United States Preventive Services Task Force)
+- TechTarget (Q7692144): +computerweekly.com (wikidata-owned: Computer Weekly), +industrydive.com (wikidata-owned: Industry Dive)
+- Walmart (Q483551): +george.com (wikidata-owned: George), +walmartchile.cl (wikidata-owned: Q5283104), +walmex.mx (wikidata-owned: Walmart de México y Centroamérica), -nic.george
+- Rakuten Group, Inc. (Q973054): +aquafadas.com (wikidata-owned: Aquafadas), +pacificleague.jp (wikidata-owned: Pacific League Marketing), +rakuten-toushin.co.jp (wikidata-owned: Rakuten Investment Management, Inc.), +rakutentrade.my (wikidata-owned: Rakuten Trade)
+- Yandex (Q5281): -berizaryad.ru
+- ESPN (Q217776): +espndeportes.com (wikidata-owned: Q3046152)
+- Nike (Q483915): +nikesb.com (wikidata-owned: Nike Skateboarding), +nikevision.com (wikidata-owned: Nike Vision)
+- Federal Government of Brazil (Q5440531): +bbamericas.com (wikidata-owned: Banco do Brasil Americas), +casadamoeda.gov.br (wikidata-owned: Casa da Moeda do Brasil), +embrapii.org.br (wikidata-owned: Brazilian Company for Industrial Research and Innovation)
+- LG Group (Q136778): +hitachi-lg.com (wikidata-owned: Hitachi-LG Data Storage), +konjiamresort.co.kr (wikidata-owned: Konjiam Resort), +zenith.com (wikidata-owned: Zenith Electronics)
+- NDTV (Q2985356): +mojarto.com (wikidata-owned: Mojarto), +ndtvprofit.com (wikidata-owned: NDTV Profit)
+- Discogs (Q504063): +vinylhub.com (wikidata-owned: VinylHub)
+- SIPA - Ouest-France group (Q3117551): +chasse-maree.com (wikidata-owned: Chasse-Marée), +hitwest.com (wikidata-owned: Hit West), +larepublique77.fr (wikidata-owned: Q3212586), +normandie-actu.fr (wikidata-owned: Q3010744)
+- Bank of America (Q487907): +endeavour.com.au (wikidata-owned: Endeavour Foundation)
+- NTT DoCoMo (Q853958): +docomopacific.com (wikidata-owned: DoCoMo Pacific), +nttdocomo-v.com (wikidata-owned: NTT DOCOMO VENTURES)
+- Ancestry.com Inc. (Q4752572): +nwspprs.com (wikidata-owned: Newspapers.com), +progenealogists.com (wikidata-owned: ProGenealogists)
+- Ecosia (Q1282139): +eu-searchperspective.com (wikidata-owned: European Search Perspective)
+- VG (Q1139355): +onsk.no (wikidata-owned: Ønsk), +tek.no (wikidata-owned: Tek.no), +vgtv.no (wikidata-owned: VGTV)
+- Seznam.cz (Q3490485): +expresfm.cz (wikidata-owned: Expres FM)
+- Ynet (Q2738307): +mikmak.co.il (wikidata-owned: Mikmak)
+- Otto Group (Q466688): +crateandbarrel.co.cr (wikidata-owned: Crate & Barrel), +manufactum.at (wikidata-owned: Manufactum), +manufactum.nl (wikidata-owned: Manufactum), +schwab.de (wikidata-owned: Schwab Versand)
+- vivo (Q18301787): +iqoo.com (wikidata-owned: iQOO)
+- government of Turkey (Q15462156): +borsaistanbul.com (wikidata-owned: Borsa Istanbul), +cbddo.gov.tr (wikidata-owned: Digital Transformation Office), +cbiko.gov.tr (wikidata-owned: Presidency of The Republic of Turkey Human Resources Office), +devletarsivleri.gov.tr (wikidata-owned: Prime Ministry Republic Archives), +ditib.de (wikidata-owned: Turkish-Islamic Union for Religious Affairs), +diyanet.gov.tr (wikidata-owned: Directorate of Religious Affairs), +goc.gov.tr (wikidata-owned: Directorate General of Migration Management (Turkey)), +iletisim.gov.tr (wikidata-owned: Directorate of Communications), +invest.gov.tr (wikidata-owned: Q109419667), +millisaraylar.gov.tr (wikidata-owned: Directorate of National Palaces), +mit.gov.tr (wikidata-owned: National Intelligence Organization), +sbb.gov.tr (wikidata-owned: Directorate of Presidential Strategy and Budget), +ssm.gov.tr (wikidata-owned: Undersecretariat for Defense Industries (Turkey)), +turkiyesigorta.com.tr (wikidata-owned: Türkiye Sigorta), +ziraatbank.com.tr (wikidata-owned: Ziraat Bank)
+- Poste Italiane (Q495026): +ioapp.it (wikidata-owned: IO), +mcc.it (wikidata-owned: Mediocredito Centrale - Banca del Mezzogiorno), +pagopa.gov.it (wikidata-owned: PagoPA), +pagopa.it (wikidata-owned: PagoPA), +postemobile.it (wikidata-owned: PosteMobile), +sda.it (wikidata-owned: SDA Express Courier)
+- Ekstra Bladet (Q1226253): +feltet.dk (wikidata-owned: Feltet.dk)
+- Ministry of National Education (Q1359675): +eba.gov.tr (wikidata-owned: Eğitim Bilişim Ağı)
+- IXL Learning (Q25025243): +dictionary.com (wikidata-owned: Q16960686)
+- Zalando (Q136570): +aboutyou.at (wikidata-owned: About You), +aboutyou.be (wikidata-owned: About You), +aboutyou.bg (wikidata-owned: About You), +aboutyou.ch (wikidata-owned: About You), +aboutyou.com (wikidata-owned: About You), +aboutyou.com.cy (wikidata-owned: About You), +aboutyou.cz (wikidata-owned: About You), +aboutyou.de (wikidata-owned: About You), +aboutyou.dk (wikidata-owned: About You), +aboutyou.ee (wikidata-owned: About You), +aboutyou.es (wikidata-owned: About You), +aboutyou.fi (wikidata-owned: About You), +aboutyou.fr (wikidata-owned: About You), +aboutyou.gr (wikidata-owned: About You), +aboutyou.hr (wikidata-owned: About You), +aboutyou.hu (wikidata-owned: About You), +aboutyou.it (wikidata-owned: About You), +aboutyou.lt (wikidata-owned: About You), +aboutyou.lv (wikidata-owned: About You), +aboutyou.nl (wikidata-owned: About You), +aboutyou.pl (wikidata-owned: About You), +aboutyou.pt (wikidata-owned: About You), +aboutyou.ro (wikidata-owned: About You), +aboutyou.se (wikidata-owned: About You), +aboutyou.si (wikidata-owned: About You), +aboutyou.sk (wikidata-owned: About You)
+- eMAG (Q23827008): +pcgarage.ro (wikidata-owned: PC Garage)
+- Government of Uttar Pradesh (Q5589328): +lmrcl.com (wikidata-owned: Lucknow Metro), +upmetrorail.com (wikidata-owned: Uttar Pradesh Metro Rail Corporation)
+- idealista (Q5908253): +certicalia.com (wikidata-owned: Certicalia)
+- Zedge, Inc (Q17091060): +emojipedia.org (wikidata-owned: Emojipedia)
+- Digikala (Q5678438): +fidibo.com (wikidata-owned: Fidibo)
+- Government of West Bengal (Q5589345): +kolkatapolice.gov.in (wikidata-owned: Kolkata Police), +wbsedcl.in (wikidata-owned: West Bengal State Electricity Distribution Company), +wbsetcl.in (wikidata-owned: West Bengal State Electricity Transmission Company)
+- Meesho (Q55622683): +kirana.club (wikidata-owned: Kirana Club)
+- Mecha Comic (Q24898315): +estar.jp (wikidata-owned: Everystar)
+- ICICI Bank (Q1653258): +icicibank.ca (wikidata-owned: ICICI Bank Canada), +icicidirect.com (wikidata-owned: ICICIdirect), +icicilombard.com (wikidata-owned: ICICI Lombard), +icicipruamc.com (wikidata-owned: ICICI Prudential Mutual Fund), +iciciprulife.com (wikidata-owned: ICICI Prudential)
+- Ministry of Religious Affairs (Q12490738): +halal.go.id (wikidata-owned: Indonesian Halal Authority)
+- Ministry of Health of Indonesia (Q12490745): +pjnhk.go.id (wikidata-owned: National Cardiovascular Center Harapan Kita), +pkr.ac.id (wikidata-owned: Politeknik Kesehatan Kementerian Kesehatan Riau), +poltekkes-banjarmasin.ac.id (wikidata-owned: Politeknik Kesehatan Kementerian Kesehatan Banjarmasin), +poltekkes-denpasar.ac.id (wikidata-owned: Politeknik Kesehatan Kementerian Kesehatan Denpasar), +poltekkes-malang.ac.id (wikidata-owned: Politeknik Kesehatan Kementerian Kesehatan Malang), +poltekkes-mataram.ac.id (wikidata-owned: Politeknik Kesehatan Kementerian Kesehatan Mataram), +poltekkes-medan.ac.id (wikidata-owned: Politeknik Kesehatan Kementerian Kesehatan Medan), +poltekkes-mks.ac.id (wikidata-owned: Politeknik Kesehatan Kementerian Kesehatan Makassar), +poltekkes-pontianak.ac.id (wikidata-owned: Politeknik Kesehatan Kementerian Kesehatan Pontianak), +poltekkes-solo.ac.id (wikidata-owned: Politeknik Kesehatan Kementerian Kesehatan Surakarta), +poltekkes-tjk.ac.id (wikidata-owned: Politeknik Kesehatan Kementerian Kesehatan Tanjung Karang), +poltekkesaceh.ac.id (wikidata-owned: Politeknik Kesehatan Kementerian Kesehatan Aceh), +poltekkesbanten.ac.id (wikidata-owned: Politeknik Kesehatan Kementerian Kesehatan Banten), +poltekkesbengkulu.ac.id (wikidata-owned: Politeknik Kesehatan Kementerian Kesehatan Bengkulu), +poltekkesdepkes-sby.ac.id (wikidata-owned: Politeknik Kesehatan Kementerian Kesehatan Surabaya), +poltekkesjakarta1.ac.id (wikidata-owned: Politeknik Kesehatan Kementerian Kesehatan Jakarta I), +poltekkesjambi.ac.id (wikidata-owned: Politeknik Kesehatan Kementerian Kesehatan Jambi), +poltekkesjkt2.ac.id (wikidata-owned: Politeknik Kesehatan Kementerian Kesehatan Jakarta II), +poltekkesjogja.ac.id (wikidata-owned: Politeknik Kesehatan Kementerian Kesehatan Yogyakarta), +poltekkeskupang.ac.id (wikidata-owned: Politeknik Kesehatan Kementerian Kesehatan Kupang), +poltekkespalembang.ac.id (wikidata-owned: Politeknik Kesehatan Kementerian Kesehatan Palembang), +poltekkespalu.ac.id (wikidata-owned: Politeknik Kesehatan Kementerian Kesehatan Palu), +poltekkestasikmalaya.ac.id (wikidata-owned: Politeknik Kesehatan Kementerian Kesehatan Tasikmalaya), +profngoerahhospitalbali.com (wikidata-owned: Sanglah Hospital), +rscm.co.id (wikidata-owned: Dr. Cipto Mangunkusumo National General Hospital), +rshs.or.id (wikidata-owned: Dr. Hasan Sadikin Hospital)
+- University of Texas at Austin (Q49213): +blantonmuseum.org (wikidata-owned: Blanton Museum of Art), +dailytexanonline.com (wikidata-owned: The Daily Texan), +kut.org (wikidata-owned: KUT), +kutx.org (wikidata-owned: KUTX), +kvrx.org (wikidata-owned: KVRX), +thedailytexan.com (wikidata-owned: The Daily Texan), +uterwincenter.com (wikidata-owned: Frank Erwin Center), +wagnernoel.com (wikidata-owned: Wagner Noël Performing Arts Center), +wildflower.org (wikidata-owned: Lady Bird Johnson Wildflower Center)
+- State Council of the People's Republic of China (Q59261): +10086.cn (wikidata-owned: China Mobile), +189.cn (wikidata-owned: China Telecommunications Corporation), +21cn.com (wikidata-owned: Q10845994), +acla.org.cn (wikidata-owned: All China Lawyers Association), +adbc.com.cn (wikidata-owned: Agricultural Development Bank of China), +aecc.cn (wikidata-owned: Aero Engine Corporation of China), +avic.com.cn (wikidata-owned: Aviation Industry Corporation of China, Ltd.), +baowugroup.com (wikidata-owned: China Baowu Steel Group), +bfsu.edu.cn (wikidata-owned: Beijing Foreign Studies University), +bjfu.edu.cn (wikidata-owned: Beijing Forestry University), +bjhmoh.cn (wikidata-owned: Beijing Hospital), +bjtu.edu.cn (wikidata-owned: Beijing Jiaotong University), +blcu.edu.cn (wikidata-owned: Beijing Language and Culture University), +bnu.edu.cn (wikidata-owned: Beijing Normal University), +brightdairy.com (wikidata-owned: Bright Dairy), +bucm.edu.cn (wikidata-owned: Beijing University of Chinese Medicine), +buct.edu.cn (wikidata-owned: Beijing University of Chemical Technology), +bupt.edu.cn (wikidata-owned: Beijing University of Posts and Telecommunications), +caac.gov.cn (wikidata-owned: Civil Aviation Administration of China), +caas.cn (wikidata-owned: Chinese Academy of Agricultural Sciences), +caass.org.cn (wikidata-owned: China Association of Agricultural Science Societies), +cac.gov.cn (wikidata-owned: Cyberspace Administration of China), +cae.cn (wikidata-owned: Chinese Academy of Engineering), +cafa.edu.cn (wikidata-owned: Central Academy of Fine Arts), +cafs.ac.cn (wikidata-owned: Chinese Academy of Fishery Sciences), +cams.ac.cn (wikidata-owned: Chinese Academy of Medical Sciences), +cas.cn (wikidata-owned: Chinese Academy of Sciences), +casic.com.cn (wikidata-owned: China Aerospace Science and Industry Corporation Limited), +catas.cn (wikidata-owned: Chinese Academy of Tropical Agricultural Sciences), +cau.edu.cn (wikidata-owned: China Agricultural University), +ccccltd.cn (wikidata-owned: China Communications Construction Group Corporation Limited), +ccnu.edu.cn (wikidata-owned: Central China Normal University), +ccom.edu.cn (wikidata-owned: Central Conservatory of Music), +cdb.com.cn (wikidata-owned: China Development Bank), +cec.com.cn (wikidata-owned: China Electronics Corporation), +ceec.net.cn (wikidata-owned: China Energy Engineering), +ceic.com (wikidata-owned: CHN Energy), +centv.cn (wikidata-owned: China Education Television), +cert.org.cn (wikidata-owned: National Computer Network Emergency Response Technical Team/Coordination Center of China), +cetc.com.cn (wikidata-owned: China Electronics Technology Group Corporation), +cfau.edu.cn (wikidata-owned: China Foreign Affairs University), +cgnpc.com.cn (wikidata-owned: China General Nuclear Power Group), +cgs.gov.cn (wikidata-owned: China Geological Survey), +chd.com.cn (wikidata-owned: China Huadian Corporation Ltd.), +chd.edu.cn (wikidata-owned: Chang'an University), +china-cdt.com (wikidata-owned: China Datang Corporation Ltd.), +china-inv.cn (wikidata-owned: China Investment Corporation), +china-railway.com.cn (wikidata-owned: China State Railway Group), +chinabdh.com (wikidata-owned: Beidahuang Group of State Farms and Land Reclamation), +chinacoal.com (wikidata-owned: China National Coal Group), +chinacoop.gov.cn (wikidata-owned: China CO-OP), +chinamartyrs.gov.cn (wikidata-owned: Q111519182), +chinapost.com.cn (wikidata-owned: China Post), +chinasalt.com.cn (wikidata-owned: China National Salt Industry Group), +chinatax.gov.cn (wikidata-owned: State Taxation Administration), +chinatelecom-h.com (wikidata-owned: China Telecom), +chinatelecom.com.cn (wikidata-owned: China Telecommunications Corporation), +chinatelecomglobal.com (wikidata-owned: China Telecom), +chinaunicom.com (wikidata-owned: China Unicom), +chinese.cn (wikidata-owned: Center for Language Education and Cooperation), +chng.com.cn (wikidata-owned: China Huaneng Group Co., Ltd.), +chntheatre.edu.cn (wikidata-owned: Central Academy of Drama), +ciae.com.cn (wikidata-owned: National Agriculture Exhibition Center), +cicp.edu.cn (wikidata-owned: Central Institute for Correctional Police), +ciis.org.cn (wikidata-owned: China Institute of International Studies), +cinda.com.cn (wikidata-owned: China Cinda Asset Management Co., Ltd.), +citicbank.com (wikidata-owned: China CITIC Bank), +cjh.com.cn (wikidata-owned: Changjiang Water Resources Commission), +cjw.gov.cn (wikidata-owned: Changjiang Water Resources Commission), +cma.gov.cn (wikidata-owned: China Meteorological Administration), +cma.org.cn (wikidata-owned: Chinese Medical Association), +cmda.net (wikidata-owned: Chinese Medical Doctor Association), +cnca.gov.cn (wikidata-owned: National Certification and Accreditation Administration), +cncaprc.gov.cn (wikidata-owned: China National Committee on Ageing), +cndent.com (wikidata-owned: Chinese Stomatological Association), +cnipa.gov.cn (wikidata-owned: China National Intellectual Property Administration), +cnnc.com.cn (wikidata-owned: China National Nuclear Corporation), +cnooc.com.cn (wikidata-owned: China National Offshore Oil Corporation), +cnpc.com.cn (wikidata-owned: China National Petroleum Corporation), +cpifa.org (wikidata-owned: Chinese People's Institute of Foreign Affairs), +cpma.org.cn (wikidata-owned: Chinese Preventive Medicine Association), +cpu.edu.cn (wikidata-owned: China Pharmaceutical University), +cpwf.org.cn (wikidata-owned: China Population Welfare Foundation), +cqu.edu.cn (wikidata-owned: Chongqing University), +crecg.com (wikidata-owned: China Railway Engineering Corporation), +crrcgc.cc (wikidata-owned: CRRC Group Corporation), +crsc.cn (wikidata-owned: China Railway Signal & Communication Co., Ltd.), +csc.edu.cn (wikidata-owned: China Scholarship Council), +cscec.com.cn (wikidata-owned: China State Construction Engineering Group Co. Ltd.), +cscec1b.net (wikidata-owned: China Construction First Group Corporation Limited), +cscec3b.com.cn (wikidata-owned: Q10873751), +cscse.edu.cn (wikidata-owned: Chinese Service Center for Scholarly Exchange), +csg.cn (wikidata-owned: China Southern Power Grid), +csgc.com.cn (wikidata-owned: China South Industries Group), +csrc.gov.cn (wikidata-owned: China Securities Regulatory Commission), +cssc.net.cn (wikidata-owned: China State Shipbuilding Corporation Limited), +csu.edu.cn (wikidata-owned: Central South University), +ctexcel.ca (wikidata-owned: China Telecommunications Corporation), +ctg.cn (wikidata-owned: China Tourism Group), +ctg.com.cn (wikidata-owned: China Three Gorges Corporation), +cuc.edu.cn (wikidata-owned: Communication University of China), +cufe.edu.cn (wikidata-owned: Central University of Finance and Economics), +cug.edu.cn (wikidata-owned: China University of Geosciences, Wuhan), +cugb.edu.cn (wikidata-owned: China University of Geosciences, Beijing), +cumt.edu.cn (wikidata-owned: China University of Mining and Technology), +cumtb.edu.cn (wikidata-owned: China University of Mining and Technology, Beijing), +cup.edu.cn (wikidata-owned: China University of Petroleum (Beijing)), +cupl.edu.cn (wikidata-owned: China University of Political Science and Law), +customs.gov.cn (wikidata-owned: General Administration of Customs), +dfmc.com.cn (wikidata-owned: Dongfeng Motor Corporation), +dhu.edu.cn (wikidata-owned: Donghua University), +dlut.edu.cn (wikidata-owned: Dalian University of Technology), +drc.gov.cn (wikidata-owned: Development Research Center of the State Council), +ecnu.edu.cn (wikidata-owned: East China Normal University), +ecust.edu.cn (wikidata-owned: East China University of Science and Technology), +eximbank.gov.cn (wikidata-owned: Exim Bank of China), +farmer.com.cn (wikidata-owned: Farmer's Daily), +faw.com (wikidata-owned: FAW Group), +fio.org.cn (wikidata-owned: First Institute of Oceanography, Ministry of Natural Resources), +forestry.gov.cn (wikidata-owned: National Forestry and Grassland Administration), +fudan.edu.cn (wikidata-owned: Fudan University), +group.citic (wikidata-owned: CITIC Group), +guosen.com.cn (wikidata-owned: Guosen Securities), +gwytb.gov.cn (wikidata-owned: Taiwan Affairs Office), +hep.com.cn (wikidata-owned: Higher Education Press), +hfut.edu.cn (wikidata-owned: Hefei University of Technology), +hgtech.com.cn (wikidata-owned: Huagong Tech), +hhu.edu.cn (wikidata-owned: Hohai University), +hnu.edu.cn (wikidata-owned: Hunan University), +hust.edu.cn (wikidata-owned: Huazhong University of Science and Technology), +hwcc.gov.cn (wikidata-owned: Haihe River Water Conservancy Commission), +hzau.edu.cn (wikidata-owned: Huazhong Agricultural University), +ia.ac.cn (wikidata-owned: Institute of Automation, Chinese Academy of Sciences), +istic.ac.cn (wikidata-owned: Institute of Scientific and Technical Information of China), +iwhr.com (wikidata-owned: China Institute of Water Resources and Hydropower Research), +jiangnan.edu.cn (wikidata-owned: Jiangnan University), +jlqx.gov.cn (wikidata-owned: Jilin Meteorological Bureau), +jlu.edu.cn (wikidata-owned: Jilin University), +kiz.ac.cn (wikidata-owned: Kunming Institute of Zoology), +lawpress.com.cn (wikidata-owned: Law Press China), +legendholdings.com.cn (wikidata-owned: Legend Holdings), +lzu.edu.cn (wikidata-owned: Lanzhou University), +mca.gov.cn (wikidata-owned: Ministry of Civil Affairs of the People's Republic of China), +mfa.gov.cn (wikidata-owned: Ministry of Foreign Affairs of the People's Republic of China), +miit.gov.cn (wikidata-owned: Ministry of Industry and Information Technology of the People's Republic of China), +mnr.gov.cn (wikidata-owned: Ministry of Natural Resources of the People's Republic of China), +moa.gov.cn (wikidata-owned: Ministry of Agriculture and Rural Affairs of the People's Republic of China), +mod.gov.cn (wikidata-owned: Ministry of National Defense of the People's Republic of China), +moe.gov.cn (wikidata-owned: Ministry of Education of the People's Republic of China), +mof.gov.cn (wikidata-owned: Ministry of Finance of the People's Republic of China), +mohurd.gov.cn (wikidata-owned: Ministry of Housing and Urban-Rural Development of the People's Republic of China), +moj.gov.cn (wikidata-owned: Ministry of Justice of the People's Republic of China), +most.gov.cn (wikidata-owned: Ministry of Science and Technology of the People's Republic of China), +mot.gov.cn (wikidata-owned: Ministry of Transport of the People's Republic of China), +mps.gov.cn (wikidata-owned: Ministry of Public Security), +msa.gov.cn (wikidata-owned: China Maritime Safety Administration), +mva.gov.cn (wikidata-owned: Ministry of Veterans Affairs of the People's Republic of China), +mwr.gov.cn (wikidata-owned: Ministry of Water Resources of the People's Republic of China), +naea.edu.cn (wikidata-owned: National Academy of Education Administration), +nankai.edu.cn (wikidata-owned: Nankai University), +natcm.gov.cn (wikidata-owned: National Administration of Traditional Chinese Medicine), +nbpt.edu.cn (wikidata-owned: Ningbo Polytechnic), +ncc-cma.net (wikidata-owned: National Climate Center), +ncepu.edu.cn (wikidata-owned: North China Electric Power University), +ndcpa.gov.cn (wikidata-owned: National Administration of Disease Control and Prevention), +neea.edu.cn (wikidata-owned: National Education Examinations Authority), +nefu.edu.cn (wikidata-owned: Northeast Forestry University), +neigae.ac.cn (wikidata-owned: Northeast Institute of Geography and Agroecology), +neu.edu.cn (wikidata-owned: Northeastern University), +news.cn (wikidata-owned: Xinhua News Agency), +ngtc.com.cn (wikidata-owned: National Gems & Jewelry Technology Administrative Center), +nhc.gov.cn (wikidata-owned: National Health Commission of the People's Republic of China), +nibs.ac.cn (wikidata-owned: National Institute of Biological Sciences, Beijing), +njau.edu.cn (wikidata-owned: Nanjing Agricultural University), +nmec.org.cn (wikidata-owned: National Medical Examination Center), +norincogroup.com.cn (wikidata-owned: China North Industries Group Corporation Limited), +nra.gov.cn (wikidata-owned: National Railway Administration), +nrta.gov.cn (wikidata-owned: National Radio and Television Administration), +nsfc.gov.cn (wikidata-owned: National Natural Science Foundation of China), +nwsuaf.edu.cn (wikidata-owned: Northwest A&F University), +ouc.edu.cn (wikidata-owned: Ocean University of China), +ouchn.edu.cn (wikidata-owned: Open University of China), +pearlwater.gov.cn (wikidata-owned: Pearl River Water Resources Commission), +pep.com.cn (wikidata-owned: People's Education Press), +picc.com (wikidata-owned: The People's Insurance Company (Group) of China Limited), +pipechina.com.cn (wikidata-owned: PipeChina), +pku.edu.cn (wikidata-owned: Peking University), +pmph.com (wikidata-owned: People's Medical Publishing House), +powerchina.cn (wikidata-owned: Power China), +pumc.edu.cn (wikidata-owned: Peking Union Medical College), +pumch.cn (wikidata-owned: Peking Union Medical College Hospital), +qhqxj.gov.cn (wikidata-owned: Qinghai Meteorological Bureau), +ruc.edu.cn (wikidata-owned: Renmin University of China), +saac.gov.cn (wikidata-owned: National Archives Administration of China), +sac.gov.cn (wikidata-owned: National Standardization Administration), +samr.gov.cn (wikidata-owned: State Administration for Market Regulation), +sasac.gov.cn (wikidata-owned: State-owned Assets Supervision and Administration Commission of the State Council), +scopsr.gov.cn (wikidata-owned: State Commission Office of Public Sectors Reform), +scu.edu.cn (wikidata-owned: Sichuan University), +scut.edu.cn (wikidata-owned: South China University of Technology), +sdqx.gov.cn (wikidata-owned: Shandong Province Meteorological Bureau), +sdu.edu.cn (wikidata-owned: Shandong University), +seu.edu.cn (wikidata-owned: Southeast University), +sgcc.com.cn (wikidata-owned: State Grid Corporation of China), +shisu.edu.cn (wikidata-owned: Shanghai International Studies University), +sinopecgroup.com (wikidata-owned: China Petrochemical Corporation), +sinotruk.com (wikidata-owned: China National Heavy Duty Truck Group), +sio.org.cn (wikidata-owned: Second Institute of Oceanography), +sjtu.edu.cn (wikidata-owned: Shanghai Jiao Tong University), +snnu.edu.cn (wikidata-owned: Shaanxi Normal University), +soa.gov.cn (wikidata-owned: State Oceanic Administration), +spacechina.com (wikidata-owned: China Aerospace Science and Technology Corporation), +spb.gov.cn (wikidata-owned: State Post Bureau of the People's Republic of China), +spic.com.cn (wikidata-owned: State Power Investment Corporation), +ssf.gov.cn (wikidata-owned: National Council for Social Security Fund), +stats.gov.cn (wikidata-owned: National Bureau of Statistics of China), +sufe.edu.cn (wikidata-owned: Shanghai University of Finance and Economics), +swjtu.edu.cn (wikidata-owned: Southwest Jiaotong University), +swu.edu.cn (wikidata-owned: Southwest University), +swufe.edu.cn (wikidata-owned: Southwestern University of Finance and Economics), +sysu.edu.cn (wikidata-owned: Sun Yat-sen University), +taiwan.cn (wikidata-owned: Taiwan.cn), +tjqx.gov.cn (wikidata-owned: Tianjin Meteorological Bureau), +tju.edu.cn (wikidata-owned: Tianjin University), +tnuva.co.il (wikidata-owned: Tnuva), +tongji.edu.cn (wikidata-owned: Tongji University), +tsinghua.edu.cn (wikidata-owned: Tsinghua University), +uestc.edu.cn (wikidata-owned: University of Electronic Science and Technology of China), +uibe.edu.cn (wikidata-owned: University of International Business and Economics), +ustb.edu.cn (wikidata-owned: University of Science and Technology Beijing), +waterpub.com.cn (wikidata-owned: China Water & Power Press), +weather.com.cn (wikidata-owned: Weather China), +whu.edu.cn (wikidata-owned: Wuhan University), +whut.edu.cn (wikidata-owned: Wuhan University of Technology), +wingtech.com (wikidata-owned: Wingtech Technology), +xidian.edu.cn (wikidata-owned: Xidian University), +xinhuanet.com (wikidata-owned: Xinhua News Agency), +xjtu.edu.cn (wikidata-owned: Xi'an Jiaotong University), +xmu.edu.cn (wikidata-owned: Xiamen University), +xtbg.ac.cn (wikidata-owned: Xishuangbanna Tropical Botanical Garden), +zju.edu.cn (wikidata-owned: Zhejiang University), +znufe.edu.cn (wikidata-owned: Zhongnan University of Economics and Law), +zryhyy.com.cn (wikidata-owned: China-Japan Friendship Hospital), +zsu.edu.cn (wikidata-owned: Sun Yat-sen University)
+- United States Department of Justice (Q1553390): +atf.gov (wikidata-owned: Q434371), +bop.gov (wikidata-owned: Federal Bureau of Prisons), +dea.gov (wikidata-owned: Drug Enforcement Administration), +fbi.gov (wikidata-owned: Federal Bureau of Investigation), +ncjrs.gov (wikidata-owned: National Criminal Justice Reference Service), +nicic.gov (wikidata-owned: National Institute of Corrections), +ojp.gov (wikidata-owned: Office of Justice Programs), +unicor.gov (wikidata-owned: Federal Prison Industries), +usmarshals.gov (wikidata-owned: United States Marshals Service)
+- United States House of Representatives (Q11701): +aoc.gov (wikidata-owned: Architect of the Capitol), +cbo.gov (wikidata-owned: Congressional Budget Office), +openworld.gov (wikidata-owned: Congressional Office for International Leadership), +usbg.gov (wikidata-owned: United States Botanic Garden), +visitthecapitol.gov (wikidata-owned: United States Capitol Visitor Center)
+- United States Department of Energy (Q217810): +ameslab.gov (wikidata-owned: Ames National Laboratory), +bnl.gov (wikidata-owned: National Synchrotron Light Source II), +bpa.gov (wikidata-owned: Bonneville Power Administration), +eia.gov (wikidata-owned: Energy Information Administration), +fnal.gov (wikidata-owned: Fermilab), +glbrc.org (wikidata-owned: Great Lakes Bioenergy Research Center), +inl.gov (wikidata-owned: Idaho National Laboratory), +iphe.net (wikidata-owned: International Partnership for Hydrogen and Fuel Cells in the Economy), +jbei.org (wikidata-owned: Joint BioEnergy Institute), +jlab.org (wikidata-owned: Thomas Jefferson National Accelerator Facility), +lanl.gov (wikidata-owned: Los Alamos National Laboratory), +lbl.gov (wikidata-owned: Lawrence Berkeley National Laboratory), +llnl.gov (wikidata-owned: Lawrence Livermore National Laboratory), +nrel.gov (wikidata-owned: National Laboratory of the Rockies), +ornl.gov (wikidata-owned: Oak Ridge National Laboratory), +osti.gov (wikidata-owned: Office of Scientific and Technical Information), +pnnl.gov (wikidata-owned: Pacific Northwest National Laboratory), +pppl.gov (wikidata-owned: Princeton Plasma Physics Laboratory), +sandia.gov (wikidata-owned: Sandia National Laboratories)
+- Automattic (Q2872634): +akismet.com (wikidata-owned: Akismet), +beeper.com (wikidata-owned: Beeper), +dayoneapp.com (wikidata-owned: Day One), +gravatar.com (wikidata-owned: Gravatar), +intensedebate.com (wikidata-owned: IntenseDebate), +jetpack.com (wikidata-owned: Jetpack), +longreads.com (wikidata-owned: Longreads), +parsely.com (wikidata-owned: Parse.ly), +pocketcasts.com (wikidata-owned: Pocket Casts), +tumblr.com (wikidata-owned: Tumblr), +woocommerce.com (wikidata-owned: WooCommerce), +wordpress.com (wikidata-owned: WordPress.com)
+- PricewaterhouseCoopers (Q488048): +pwc.co.uk (wikidata-owned: PricewaterhouseCoopers (United Kingdom)), +pwc.de (wikidata-owned: PricewaterhouseCoopers (Deutschland))
+- Siemens (Q81230): +dresser-rand.com (wikidata-owned: Dresser-Rand Group), +electrifyamerica.com (wikidata-owned: Electrify America), +hackaday.com (wikidata-owned: HackADay), +hacon.de (wikidata-owned: HaCon (Germany)), +marineturbines.com (wikidata-owned: Marine Current Turbines), +oez.cz (wikidata-owned: OEZ), +siemens-healthineers.com (wikidata-owned: Siemens Healthineers), +siemens.at (wikidata-owned: Siemens Aktiengesellschaft Österreich), +siemens.ca (wikidata-owned: Siemens Canada), +siemens.cz (wikidata-owned: Siemens), +supplyframe.com (wikidata-owned: SupplyFrame)
+- Ionos (Q882107): +gmx.com (wikidata-owned: GMX), +gmx.es (wikidata-owned: GMX), +gmx.fr (wikidata-owned: GMX), +gmx.net (wikidata-owned: GMX), +home.pl (wikidata-owned: home.pl), +internetx.com (wikidata-owned: InterNetX), +web.de (wikidata-owned: web.de)
+- New York University (Q49210): +brennancenter.org (wikidata-owned: Brennan Center for Justice), +furmancenter.org (wikidata-owned: Furman Center for Real Estate and Urban Policy), +jordanrussiacenter.org (wikidata-owned: Jordan Center for the Advanced Study of Russia), +nyuengelberg.org (wikidata-owned: Engelberg Center on Innovation Law & Policy), +nyupress.org (wikidata-owned: New York University Press), +policyintegrity.org (wikidata-owned: Institute for Policy Integrity), +wnyu.org (wikidata-owned: WNYU-FM)
+- BuzzFeed (Q5003490): +buzzfeed.de (wikidata-owned: BuzzFeed Germany), +buzzfeednews.com (wikidata-owned: BuzzFeed News), +tasty.co (wikidata-owned: Tasty)
+- United States Congress (Q11268): +capitol.gov (wikidata-owned: United States Capitol), +gao.gov (wikidata-owned: United States Government Accountability Office), +gpo.gov (wikidata-owned: United States Government Publishing Office), +ocwr.gov (wikidata-owned: Office of Congressional Workplace Rights)
+- Freepik (Q97573128): +flaticon.com (wikidata-owned: Flaticon)
+- Purdue University (Q217741): +wbaa.org (wikidata-owned: WBAA)
+- Meta Platforms (Q380): +calibra.com (wikidata-owned: Novi Financial), +sanzaru.com (wikidata-owned: Sanzaru Games), +theeyetribe.com (wikidata-owned: The Eye Tribe)
+- Barnes & Noble (Q795454): +sparknotes.com (wikidata-owned: SparkNotes)
+- AMD (Q128896): +radeon.com (wikidata-owned: Radeon)
+- Council of Europe (Q8908): +edqm.eu (wikidata-owned: European Directorate for the Quality of Medicines & HealthCare)
+- Politico (Q3109740): +politico.eu (wikidata-owned: Politico Europe)
+- SAP (Q552581): +ariba.com (wikidata-owned: SAP Ariba), +concur.co.jp (wikidata-owned: SAP Concur), +concur.co.uk (wikidata-owned: SAP Concur), +concur.com (wikidata-owned: SAP Concur), +concur.de (wikidata-owned: SAP Concur), +fieldglass.com (wikidata-owned: Fieldglass), +gigya.com (wikidata-owned: Gigya), +priorlabs.ai (wikidata-owned: Prior Labs), +successfactors.com (wikidata-owned: SAP SuccessFactors), +walkme.com (wikidata-owned: WalkMe)
+- State of New York (Q5589272): +orda.org (wikidata-owned: Olympic Regional Development Authority)
+- University of Florida (Q501758): +nationalmaglab.org (wikidata-owned: National High Magnetic Field Laboratory), +wruf.com (wikidata-owned: WRUF), +wuft.org (wikidata-owned: WUFT-FM)
+- VMware (Q11407): +carbonblack.com (wikidata-owned: VMware Carbon Black)
+- EarthLink (Q919511): +almanasa.tv (wikidata-owned: Almanasa), +peoplepc.com (wikidata-owned: PeoplePC)
+- Chaos Computer Club (Q23138): +c3d2.de (wikidata-owned: Chaos Computer Club Dresden), +c3pb.de (wikidata-owned: Q134310357), +c3voc.de (wikidata-owned: Chaos Computer Club Video Operation Center), +cccv.de (wikidata-owned: Chaos Computer Club Veranstaltungsgesellschaft), +chaospott.de (wikidata-owned: Chaospott), +entropia.de (wikidata-owned: Q84769515)
+- Duke University (Q168751): +dcri.org (wikidata-owned: Duke Clinical Research Institute), +dukece.com (wikidata-owned: Duke Corporate Education), +dukemedicine.org (wikidata-owned: Duke University Hospital), +dukeupress.edu (wikidata-owned: Duke University Press), +goduke.com (wikidata-owned: Duke Blue Devils), +papyri.info (wikidata-owned: Duke Databank of Documentary Papyri), +wxdu.org (wikidata-owned: WXDU)
+- Phoenix Television (Q724186): +ifengweekly.com (wikidata-owned: Phoenix Weekly)
+- University College London (Q193196): +ioe.ac.uk (wikidata-owned: UCL Institute of Education), +thebloomsbury.com (wikidata-owned: Bloomsbury Theatre)
+- University of Southern California (Q4614): +huc.edu (wikidata-owned: Hebrew Union College – Jewish Institute of Religion – Los Angeles), +isi.edu (wikidata-owned: Information Sciences Institute), +kdfc.com (wikidata-owned: KDFG), +keckmedicine.org (wikidata-owned: Keck School of Medicine of USC), +kusc.org (wikidata-owned: KUSC), +uscpublicdiplomacy.org (wikidata-owned: USC Center on Public Diplomacy)
+- University of Toronto (Q180865): +bioline.org.br (wikidata-owned: Bioline International), +harthouse.ca (wikidata-owned: Hart House), +masseycollege.ca (wikidata-owned: Massey College), +utorontopress.com (wikidata-owned: University of Toronto Press), +utppublishing.com (wikidata-owned: University of Toronto Press), +webcitation.org (wikidata-owned: WebCite), +wycliffecollege.ca (wikidata-owned: Wycliffe College)
+- Ernst & Young (Q489097): +fabernovel.com (wikidata-owned: FABERNOVEL)
+- University of Maryland (Q503415): +publicconsultation.org (wikidata-owned: Program for Public Consultation)
+- Shutterstock (Q3482689): +bigstockphoto.com (wikidata-owned: Bigstock), +envato.com (wikidata-owned: Envato), +giphy.com (wikidata-owned: Giphy), +turbosquid.com (wikidata-owned: TurboSquid)
+- University of California, Davis (Q129421): +kdvs.org (wikidata-owned: KDVS)
+- FIFA (Q253414): +afa.com.ar (wikidata-owned: Argentine Football Association), +affa.az (wikidata-owned: Association of Football Federations of Azerbaijan), +apf.org.py (wikidata-owned: Paraguayan Football Association), +auf.org.uy (wikidata-owned: Uruguayan Football Association), +bff.by (wikidata-owned: Football Federation of Belarus), +bff.com.bd (wikidata-owned: Bangladesh Football Federation), +bfunion.bg (wikidata-owned: Bulgarian Football Union), +cafonline.com (wikidata-owned: Confederation of African Football), +canadasoccer.com (wikidata-owned: Canadian Soccer Association), +cbf.com.br (wikidata-owned: Brazilian Football Confederation), +cfa.com.cy (wikidata-owned: Cyprus Football Association), +concacaf.com (wikidata-owned: CONCACAF), +conmebol.com (wikidata-owned: CONMEBOL), +cosafa.com (wikidata-owned: Council of Southern Africa Football Associations), +ctfa.com.tw (wikidata-owned: Chinese Taipei Football Association), +dbu.dk (wikidata-owned: Danish Football Association), +dfb.de (wikidata-owned: German Football Association), +eaff.com (wikidata-owned: East Asian Football Federation), +efa.com.eg (wikidata-owned: Egyptian Football Association), +epo.gr (wikidata-owned: Hellenic Football Federation), +faf.ad (wikidata-owned: Andorran Football Federation), +faf.dz (wikidata-owned: Algerian Football Federation), +fai.ie (wikidata-owned: Football Association of Ireland), +fam.mw (wikidata-owned: Football Association of Malawi), +fam.org.my (wikidata-owned: Football Association of Malaysia), +fas.org.sg (wikidata-owned: Football Association of Singapore), +fathailand.org (wikidata-owned: Football Association of Thailand), +faw.cymru (wikidata-owned: Football Association of Wales), +fbf.com.bo (wikidata-owned: Bolivian Football Federation), +fcf.com.co (wikidata-owned: Colombian Football Federation), +fcf.cv (wikidata-owned: Federação Caboverdiana de Futebol), +fecafoot-officiel.com (wikidata-owned: Cameroonian Football Federation), +fecofa-rdc.com (wikidata-owned: Fédération Congolaise de Football-Association), +fedefutbol.com (wikidata-owned: Costa Rican Football Federation), +fef.ec (wikidata-owned: Ecuadorian Football Federation), +feguifoot.com (wikidata-owned: Guinean Football Federation), +fepafut.com (wikidata-owned: Panamanian Football Federation), +fesfut.org.sv (wikidata-owned: Salvadoran Football Federation), +ffa.am (wikidata-owned: Football Federation of Armenia), +fff.fr (wikidata-owned: French Football Federation), +ffiri.ir (wikidata-owned: Football Federation of Iran), +ffk-kosova.com (wikidata-owned: Football Federation of Kosovo), +ffk.cw (wikidata-owned: Curaçao Football Federation), +ffm.com.mk (wikidata-owned: Football Federation of Macedonia), +fft.tj (wikidata-owned: Tajikistan Football Federation), +fif-ci.com (wikidata-owned: Ivorian Football Federation), +fifamuseum.com (wikidata-owned: FIFA Museum), +figc.it (wikidata-owned: Italian Football Federation), +fmf.md (wikidata-owned: Football Association of Moldova), +fmf.mx (wikidata-owned: Mexican Football Federation), +football.ch (wikidata-owned: Swiss Football Association), +football.org.il (wikidata-owned: Israel Football Association), +footballaustralia.com.au (wikidata-owned: Football Australia), +footballkenya.org (wikidata-owned: Football Kenya Federation), +fotbal.cz (wikidata-owned: Football Association of the Czech Republic), +fotball.no (wikidata-owned: Norwegian Football Federation), +fpf.org.pe (wikidata-owned: Peruvian Football Federation), +fpf.pt (wikidata-owned: Portuguese Football Federation), +frf.ro (wikidata-owned: Romanian Football Federation), +frmf.ma (wikidata-owned: Moroccan Football Federation), +fscg.me (wikidata-owned: Football Association of Montenegro), +fsf.fo (wikidata-owned: Faroe Islands Football Association), +fsfoot.sn (wikidata-owned: Senegalese Football Federation), +fsgc.sm (wikidata-owned: San Marino Football Federation), +fshf.org (wikidata-owned: Albanian Football Federation), +fss.rs (wikidata-owned: Football Association of Serbia), +ftf.org.tn (wikidata-owned: Tunisian Football Federation), +ftf.pf (wikidata-owned: Tahitian Football Federation), +fufa.co.ug (wikidata-owned: Federation of Uganda Football Associations), +futbalsfz.sk (wikidata-owned: Slovak Football Association), +gff.ge (wikidata-owned: Georgian Football Federation), +ghanafa.org (wikidata-owned: Ghana Football Association), +gibraltarfa.com (wikidata-owned: Gibraltar Football Association), +hkfa.com (wikidata-owned: Football Association of Hong Kong, China), +hns-cff.hr (wikidata-owned: Croatian Football Federation), +ifa.iq (wikidata-owned: Iraq Football Association), +irishfa.com (wikidata-owned: Irish Football Association), +jalgpall.ee (wikidata-owned: Estonian Football Association), +jfa.com.jo (wikidata-owned: Jordan Football Association), +jfa.or.jp (wikidata-owned: Japan Football Association), +kfa.or.kr (wikidata-owned: Korea Football Association), +kfa.org.kw (wikidata-owned: Kuwait Football Association), +kff.kz (wikidata-owned: Football Federation of Kazakhstan), +knvb.nl (wikidata-owned: Royal Dutch Football Association), +ksi.is (wikidata-owned: Football Association of Iceland), +laczynaspilka.pl (wikidata-owned: Polish Football Association), +laroja.cl (wikidata-owned: Football Federation of Chile), +lff.lt (wikidata-owned: Lithuanian Football Federation), +lff.lv (wikidata-owned: Latvian Football Federation), +lfv.li (wikidata-owned: Liechtenstein Football Association), +mfa.com.mt (wikidata-owned: Malta Football Association), +mlsz.hu (wikidata-owned: Hungarian Football Federation), +nfsbih.ba (wikidata-owned: Football Federation of Bosnia and Herzegovina), +nzfootball.co.nz (wikidata-owned: New Zealand Football), +nzs.si (wikidata-owned: Football Association of Slovenia), +oceaniafootball.com (wikidata-owned: Oceania Football Confederation), +oefb.at (wikidata-owned: Austrian Football Association), +palloliitto.fi (wikidata-owned: Football Association of Finland), +pfa.ps (wikidata-owned: Palestinian Football Association), +pff.org.ph (wikidata-owned: Philippine Football Federation), +pfl.uz (wikidata-owned: Uzbekistan Football Association), +pssi.org (wikidata-owned: Football Association of Indonesia), +pzpn.pl (wikidata-owned: Polish Football Association), +qfa.qa (wikidata-owned: Qatar Football Association), +rbfa.be (wikidata-owned: Royal Belgian Football Association), +rfef.es (wikidata-owned: Royal Spanish Football Federation), +rfs.ru (wikidata-owned: Russian Football Union), +safa.net (wikidata-owned: South African Football Association), +saff.com.sa (wikidata-owned: Saudi Football Federation), +scottishfa.co.uk (wikidata-owned: Scottish Football Association), +somsoccer.com (wikidata-owned: Somali Football Federation), +svenskfotboll.se (wikidata-owned: Swedish Football Association), +tff.org (wikidata-owned: Turkish Football Federation), +the-afc.com (wikidata-owned: Asian Football Confederation), +the-aiff.com (wikidata-owned: All India Football Federation), +thecfa.cn (wikidata-owned: Chinese Football Association), +thefa.com (wikidata-owned: The Football Association), +uaefa.ae (wikidata-owned: United Arab Emirates Football Association), +uaf.ua (wikidata-owned: Ukrainian Association of Football), +uefa.com (wikidata-owned: Union of European Football Associations), +ufa.uz (wikidata-owned: Uzbekistan Football Association), +ussoccer.com (wikidata-owned: United States Soccer Federation), +vff.org.vn (wikidata-owned: Vietnam Football Federation)
+- University of North Carolina at Chapel Hill (Q192334): +ibiblio.org (wikidata-owned: ibiblio), +unckidneycenter.org (wikidata-owned: UNC Kidney Center), +unclineberger.org (wikidata-owned: UNC Lineberger Comprehensive Cancer Center), +wunc.org (wikidata-owned: WUNC), +zerotracker.net (wikidata-owned: Net Zero Tracker)
+- National Archives and Records Administration (Q518155): +bushcenter.org (wikidata-owned: George W. Bush Presidential Center), +eisenhowerlibrary.gov (wikidata-owned: Dwight D. Eisenhower Presidential Library, Museum and Boyhood Home), +fdrlibrary.org (wikidata-owned: Franklin D. Roosevelt Presidential Library and Museum), +fordlibrarymuseum.gov (wikidata-owned: Gerald R. Ford Presidential Library), +jfklibrary.org (wikidata-owned: John F. Kennedy Presidential Library and Museum), +jimmycarterlibrary.gov (wikidata-owned: Jimmy Carter Library and Museum), +lbjlibrary.org (wikidata-owned: Lyndon Baines Johnson Library and Museum), +nixonlibrary.gov (wikidata-owned: Richard Nixon Presidential Library and Museum), +reaganfoundation.org (wikidata-owned: Ronald Reagan Presidential Library), +reaganlibrary.gov (wikidata-owned: Ronald Reagan Presidential Library), +trumanlibrary.gov (wikidata-owned: Harry S. Truman Presidential Library and Museum)
+- Sky UK (Q2033167): +football365.com (wikidata-owned: Football365#France)
+- Michigan State University (Q270222): +impact89fm.org (wikidata-owned: WDBM), +wkar.org (wikidata-owned: WKAR-FM)
+- World Intellectual Property Organization (Q177773): +accessiblebooksconsortium.org (wikidata-owned: Accessible Books Consortium)
+- Institute of Physics (Q513283): +ioppublishing.org (wikidata-owned: IOP Publishing)
+- United Nations Development Programme (Q161718): +uncdf.org (wikidata-owned: United Nations Capital Development Fund), +unv.org (wikidata-owned: United Nations Volunteers)
+- University of British Columbia (Q391028): +bccdc.ca (wikidata-owned: BC Centre for Disease Control), +chancentre.com (wikidata-owned: Chan Centre for the Performing Arts), +citr.ca (wikidata-owned: CiTR 101.9 FM)
+- Broadcom (Q555925): +brocade.com (wikidata-owned: Brocade Communications Systems), +viewpoint.com (wikidata-owned: Viewpoint Datalabs International)
+- Proofpoint, Inc. (Q4047452): +hornetsecurity.com (wikidata-owned: Hornetsecurity by Proofpoint), +sendmail.com (wikidata-owned: Sendmail, Inc.)
+- Federal Communications Commission (Q128831): +broadband.gov (wikidata-owned: broadband.gov)
+- KPMG (Q493751): +kpmg.es (wikidata-owned: Q140660798)
+- University of Colorado Boulder (Q736674): +mediaarchaeologylab.com (wikidata-owned: Q138468477)
+- IGN (Q207708): +1up.com (wikidata-owned: 1Up Network), +dicebreaker.com (wikidata-owned: Dicebreaker), +eurogamer.de (wikidata-owned: Eurogamer Germany), +eurogamer.net (wikidata-owned: Q281243), +gamer.network (wikidata-owned: Q65089906), +gamesindustry.biz (wikidata-owned: Q61740436), +humblebundle.com (wikidata-owned: Humble Bundle, Inc.), +rockpapershotgun.com (wikidata-owned: Q844055), +vg247.com (wikidata-owned: VG247)
+- RT (Q22868): +ruptly.tv (wikidata-owned: Ruptly)
+- Federal Bureau of Investigation (Q8333): +raidforums.com (wikidata-owned: RaidForums)
+- Block, Inc. (Q110778747): +tidal.com (wikidata-owned: Tidal)
+- Arizona State University (Q670897): +asugammage.com (wikidata-owned: Gammage Memorial Auditorium), +asukarsten.com (wikidata-owned: Karsten Golf Course), +statepress.com (wikidata-owned: State Press), +thunderbird.edu (wikidata-owned: Thunderbird School of Global Management)
+- University of Arizona (Q503419): +biosphere2.org (wikidata-owned: Biosphere 2)
+- ASUS (Q152864): +asmedia.com.tw (wikidata-owned: ASMedia)
+- University of Virginia (Q213439): +coopercenter.org (wikidata-owned: Weldon Cooper Center for Public Service), +millercenter.org (wikidata-owned: Miller Center of Public Affairs), +wtju.net (wikidata-owned: WTJU)
+- Mastercard (Q489921): +dynamicyield.com (wikidata-owned: Dynamic Yield), +ekata.com (wikidata-owned: Ekata, Inc.), +transfast.com (wikidata-owned: Transfast)
+- Government of New South Wales (Q3112564): +accorstadium.com.au (wikidata-owned: Accor Stadium), +ausgrid.com.au (wikidata-owned: Ausgrid), +essentialenergy.com.au (wikidata-owned: Essential Energy), +forestrycorporation.com.au (wikidata-owned: Forestry Corporation), +hunterwater.com.au (wikidata-owned: Hunter Water Corporation), +iccsydney.com.au (wikidata-owned: International Convention Centre Sydney), +sydneycricketground.com.au (wikidata-owned: Sydney Cricket Ground), +sydneyoperahouse.com (wikidata-owned: Sydney Opera House), +sydneyshowground.com.au (wikidata-owned: Sydney Showground Stadium), +sydneytrains.info (wikidata-owned: Q141946678), +sydneywater.com.au (wikidata-owned: Sydney Water), +waternsw.com.au (wikidata-owned: WaterNSW)
+- IHG Hotels & Resorts (Q1424962): +crowneplaza.com (wikidata-owned: Crowne Plaza), +hiexpress.com (wikidata-owned: Holiday Inn Express), +holidayinn.com (wikidata-owned: Holiday Inn), +hotelindigo.com (wikidata-owned: Hotel Indigo), +regenthotels.com (wikidata-owned: Regent Hotels & Resorts), +sixsenses.com (wikidata-owned: Six Senses Hotels Resorts Spas), +staybridge.com (wikidata-owned: Staybridge Suites), +vignettecollectionhotels.com (wikidata-owned: Vignette Collection), +vocohotels.com (wikidata-owned: Voco)
+- United States Department of Homeland Security (Q11231): +cbp.gov (wikidata-owned: U.S. Customs and Border Protection), +cisa.gov (wikidata-owned: Cybersecurity and Infrastructure Security Agency), +fema.gov (wikidata-owned: Federal Emergency Management Agency), +fletc.gov (wikidata-owned: Federal Law Enforcement Training Center), +ice.gov (wikidata-owned: United States Immigration and Customs Enforcement), +secretservice.gov (wikidata-owned: United States Secret Service), +tsa.gov (wikidata-owned: Transportation Security Administration), +uscg.mil (wikidata-owned: United States Coast Guard), +uscis.gov (wikidata-owned: United States Citizenship and Immigration Services)
+- United Nations Environment Programme (Q182016): +ipbes.net (wikidata-owned: Intergovernmental Science-Policy Platform on Biodiversity and Ecosystem Services), +ipcc.ch (wikidata-owned: Intergovernmental Panel on Climate Change), +oneplanetnetwork.org (wikidata-owned: One Planet Network), +resourcepanel.org (wikidata-owned: International Resource Panel), +unep-wcmc.org (wikidata-owned: World Conservation Monitoring Centre), +unepccc.org (wikidata-owned: UNEP Copenhagen Climate Centre)
+- United States Department of Transportation (Q852211): +faa.gov (wikidata-owned: Federal Aviation Administration), +nhtsa.gov (wikidata-owned: National Highway Traffic Safety Administration), +unionstationdc.com (wikidata-owned: Washington Union Station)
+- University of Edinburgh (Q160302): +edinburghuniversitypress.com (wikidata-owned: Edinburgh University Press), +euppublishing.com (wikidata-owned: Edinburgh University Press), +pleasance.co.uk (wikidata-owned: The Pleasance)
+- Brookings Institution (Q929154): +hamiltonproject.org (wikidata-owned: Hamilton Project)
+- Accenture (Q338825): +droga5.com (wikidata-owned: Droga5), +navisite.com (wikidata-owned: NaviSite), +ookla.com (wikidata-owned: Ookla)
+- Texas A&M University (Q49212): +agrilife.org (wikidata-owned: Texas A&M AgriLife), +tamhsc.edu (wikidata-owned: Texas A&M Health Science Center), +tamug.edu (wikidata-owned: Texas A&M University at Galveston), +tamupress.com (wikidata-owned: Texas A&M University Press), +teex.org (wikidata-owned: Texas A&M Engineering Extension Service), +thebatt.com (wikidata-owned: The Battalion)
+- Catholic Church (Q9592): +agensir.it (wikidata-owned: Q12050678), +avvenire.it (wikidata-owned: Avvenire), +caritas.at (wikidata-owned: Caritas Austria), +caritas.org (wikidata-owned: Caritas Internationalis), +chiesacattolica.it (wikidata-owned: Italian Episcopal Conference), +comshalom.org (wikidata-owned: Shalom Catholic Community), +dekathedraal.be (wikidata-owned: Onze-Lieve-Vrouwekathedraal), +fondationcaritasfrance.org (wikidata-owned: Q3075399), +lunapark.com.ar (wikidata-owned: Luna Park Stadium), +migrantes.it (wikidata-owned: Fondazione Migrantes), +nanzan-u.ac.jp (wikidata-owned: Nanzan University), +omiworld.org (wikidata-owned: Missionary Oblates of Mary Immaculate), +tv2000.it (wikidata-owned: TV2000), +usc.edu.ph (wikidata-owned: University of San Carlos)
+- United States Department of Labor (Q628807): +benefits.gov (wikidata-owned: Benefits.Gov), +bls.gov (wikidata-owned: Bureau of Labor Statistics), +doleta.gov (wikidata-owned: Employment and Training Administration), +osha.gov (wikidata-owned: Occupational Safety and Health Administration)
+- Ohio State University (Q309331): +schottensteincenter.com (wikidata-owned: Value City Arena), +wexarts.org (wikidata-owned: Wexner Center for the Arts), +wosu.org (wikidata-owned: WOSU-FM)
+- Federal Government of the United States (Q48525): +abilityone.gov (wikidata-owned: U.S. AbilityOne Commission), +abmc.gov (wikidata-owned: American Battle Monuments Commission), +achp.gov (wikidata-owned: Advisory Council on Historic Preservation), +af.mil (wikidata-owned: United States Department of the Air Force), +afneurope.net (wikidata-owned: AFN Munich), +africom.mil (wikidata-owned: United States Africa Command), +alhurra.com (wikidata-owned: Alhurra), +amtrak.com (wikidata-owned: Q23239), +apcss.org (wikidata-owned: Asia-Pacific Center for Security Studies), +arc.gov (wikidata-owned: Appalachian Regional Commission), +archives.gov (wikidata-owned: National Archives and Records Administration), +arctic.gov (wikidata-owned: United States Arctic Research Commission), +azadliq.org (wikidata-owned: Radio Free Europe/Radio Liberty), +azattyk.org (wikidata-owned: Radio Free Europe/Radio Liberty), +azattyq.org (wikidata-owned: Radio Free Europe/Radio Liberty), +azatutyun.am (wikidata-owned: Radio Free Europe/Radio Liberty), +bea.gov (wikidata-owned: Bureau of Economic Analysis), +bep.gov (wikidata-owned: Bureau of Engraving and Printing), +bia.gov (wikidata-owned: Bureau of Indian Affairs), +blm.gov (wikidata-owned: United States Bureau of Land Management), +boem.gov (wikidata-owned: Bureau of Ocean Energy Management), +census.gov (wikidata-owned: United States Census Bureau), +centcom.mil (wikidata-owned: United States Central Command), +challenge.gov (wikidata-owned: challenge.gov), +cia.gov (wikidata-owned: Central Intelligence Agency), +commerce.gov (wikidata-owned: United States Department of Commerce), +commissaries.com (wikidata-owned: Defense Commissary Agency), +cpsc.gov (wikidata-owned: United States Consumer Product Safety Commission), +dc3.mil (wikidata-owned: Department of Defense Cyber Crime Center), +dcsa.mil (wikidata-owned: Defense Counterintelligence and Security Agency), +defense.gov (wikidata-owned: United States Department of Defense), +dhs.gov (wikidata-owned: United States Department of Homeland Security), +dia.mil (wikidata-owned: Defense Intelligence Agency), +disa.mil (wikidata-owned: Defense Information Systems Agency), +disability.gov (wikidata-owned: Disability.gov), +diu.mil (wikidata-owned: Defense Innovation Unit), +dla.mil (wikidata-owned: Defense Logistics Agency), +dodea.edu (wikidata-owned: Department of Defense Education Activity), +dodig.mil (wikidata-owned: Office of the Inspector General, U.S. Department of Defense), +doi.gov (wikidata-owned: United States Department of the Interior), +doioig.gov (wikidata-owned: Office of Inspector General, Department of the Interior), +dol.gov (wikidata-owned: United States Department of Labor), +dot.gov (wikidata-owned: United States Department of Transportation), +dsca.mil (wikidata-owned: Defense Security Cooperation Agency), +dtra.mil (wikidata-owned: Defense Threat Reduction Agency), +ed.gov (wikidata-owned: United States Department of Education), +eda.gov (wikidata-owned: U.S. Economic Development Administration), +energy.gov (wikidata-owned: United States Department of Energy), +epa.gov (wikidata-owned: United States Environmental Protection Agency), +eucom.mil (wikidata-owned: United States European Command), +evropaelire.org (wikidata-owned: Radio Free Europe/Radio Liberty), +fai.gov (wikidata-owned: Federal Acquisition Institute), +fanniemae.com (wikidata-owned: Fannie Mae), +fcc.gov (wikidata-owned: Federal Communications Commission), +fec.gov (wikidata-owned: Federal Election Commission), +financialresearch.gov (wikidata-owned: Office of Financial Research), +fincen.gov (wikidata-owned: Financial Crimes Enforcement Network), +ftc.gov (wikidata-owned: Federal Trade Commission), +fws.gov (wikidata-owned: United States Fish and Wildlife Service), +gsa.gov (wikidata-owned: General Services Administration), +gsaig.gov (wikidata-owned: Office of Inspector General, U.S. General Services Administration), +health.mil (wikidata-owned: Military Health System), +hhs.gov (wikidata-owned: United States Department of Health and Human Services), +hud.gov (wikidata-owned: United States Department of Housing and Urban Development), +hudoig.gov (wikidata-owned: Office of Inspector General, Department of Housing and Urban Development), +iarpa.gov (wikidata-owned: Intelligence Advanced Research Projects Activity), +intel.gov (wikidata-owned: United States Intelligence Community), +intelligence.gov (wikidata-owned: United States Intelligence Community), +irs.gov (wikidata-owned: Internal Revenue Service), +itcdc.com (wikidata-owned: Ronald Reagan Building and International Trade Center), +jcs.mil (wikidata-owned: Joint Chiefs of Staff), +justice.gov (wikidata-owned: United States Department of Justice), +kennedy-center.org (wikidata-owned: John F. Kennedy Center for the Performing Arts), +marines.mil (wikidata-owned: United States Marine Corps), +marshallcenter.org (wikidata-owned: George C. Marshall European Center for Security Studies), +martinoticias.com (wikidata-owned: Radio y Televisión Martí), +mbda.gov (wikidata-owned: Minority Business Development Agency), +nasa.gov (wikidata-owned: National Aeronautics and Space Administration), +nbm.org (wikidata-owned: National Building Museum), +nctc.gov (wikidata-owned: National Counterterrorism Center), +nga.mil (wikidata-owned: National Geospatial-Intelligence Agency), +nigc.gov (wikidata-owned: National Indian Gaming Commission), +nist.gov (wikidata-owned: National Institute of Standards and Technology), +nlrb.gov (wikidata-owned: National Labor Relations Board), +noaa.gov (wikidata-owned: National Oceanic and Atmospheric Administration), +northcom.mil (wikidata-owned: United States Northern Command), +nps.gov (wikidata-owned: National Park Service), +nro.gov (wikidata-owned: National Reconnaissance Office), +nsa.gov (wikidata-owned: National Security Agency), +ntis.gov (wikidata-owned: Q6978856), +ntsb.gov (wikidata-owned: National Transportation Safety Board), +odni.gov (wikidata-owned: Office of the Director of National Intelligence), +opentech.fund (wikidata-owned: Open Technology Fund), +osmre.gov (wikidata-owned: Office of Surface Mining Reclamation and Enforcement), +ostp.gov (wikidata-owned: Office of Science and Technology Policy), +ozodi.org (wikidata-owned: Radio Free Europe/Radio Liberty), +ozodlik.org (wikidata-owned: Radio Free Europe/Radio Liberty), +peacecorps.gov (wikidata-owned: Peace Corps), +pfpa.mil (wikidata-owned: Pentagon Force Protection Agency), +radiofarda.com (wikidata-owned: Radio Free Europe/Radio Liberty), +radiotavisupleba.ge (wikidata-owned: Radio Free Europe/Radio Liberty), +rfa.org (wikidata-owned: Radio Free Asia), +rferl.org (wikidata-owned: Radio Free Europe/Radio Liberty), +sam.gov (wikidata-owned: System for Award Management), +sba.gov (wikidata-owned: Small Business Administration), +science.gov (wikidata-owned: Q7433459), +sda.mil (wikidata-owned: Space Development Agency), +sec.gov (wikidata-owned: United States Securities and Exchange Commission), +shadesofgreen.org (wikidata-owned: Shades of Green), +si.edu (wikidata-owned: Smithsonian Institution), +sigtarp.gov (wikidata-owned: Special Inspector General for the Troubled Asset Relief Program), +slobodnaevropa.mk (wikidata-owned: Radio Free Europe/Radio Liberty), +slobodnaevropa.org (wikidata-owned: Radio Free Europe/Radio Liberty), +socom.mil (wikidata-owned: United States Special Operations Command), +spacecom.mil (wikidata-owned: United States Space Command), +ssa.gov (wikidata-owned: Social Security Administration), +state.gov (wikidata-owned: United States Department of State), +stripes.com (wikidata-owned: Stars and Stripes), +svaboda.org (wikidata-owned: Radio Free Europe/Radio Liberty), +svobodnaevropa.bg (wikidata-owned: Radio Free Europe/Radio Liberty), +trade.gov (wikidata-owned: International Trade Administration), +transportation.gov (wikidata-owned: United States Department of Transportation), +ttb.gov (wikidata-owned: Alcohol and Tobacco Tax and Trade Bureau), +usadf.gov (wikidata-owned: United States African Development Foundation), +usagm.gov (wikidata-owned: U.S. Agency for Global Media), +usbr.gov (wikidata-owned: United States Bureau of Reclamation), +usda.gov (wikidata-owned: United States Department of Agriculture), +usds.gov (wikidata-owned: United States Digital Service), +usgs.gov (wikidata-owned: United States Geological Survey), +usmint.gov (wikidata-owned: United States Mint), +uspto.gov (wikidata-owned: United States Patent and Trademark Office), +ustr.gov (wikidata-owned: Office of the United States Trade Representative), +va.gov (wikidata-owned: United States Department of Veterans Affairs), +voaafrique.com (wikidata-owned: Voice of America), +voaindonesia.com (wikidata-owned: Voice of America Indonesia), +voanews.com (wikidata-owned: Voice of America), +war.gov (wikidata-owned: United States Department of Defense), +whitehouse.gov (wikidata-owned: White House)
+- Boston University (Q49110): +agganisarena.com (wikidata-owned: Agganis Arena), +wbur.org (wikidata-owned: WBUR-FM)
+- United States Army (Q9212): +armywarcollege.edu (wikidata-owned: United States Army War College), +lacoast.gov (wikidata-owned: Coastal Wetlands Planning, Protection and Restoration Act), +usma.edu (wikidata-owned: United States Military Academy), +westpoint.edu (wikidata-owned: United States Military Academy)
+- City of New York (Q3112559): +nycgovparks.org (wikidata-owned: New York City Department of Parks and Recreation), +nychealthandhospitals.org (wikidata-owned: NYC Health + Hospitals), +ownit.nyc (wikidata-owned: .nyc)
+- Nasdaq (Q82059): +nasdaqtrader.com (wikidata-owned: Brut ECN), +phlx.com (wikidata-owned: NASDAQ OMX Phlx)
+- University of Utah (Q168515): +kuer.org (wikidata-owned: KUER-FM)
+- Tesla (Q478214): +terafab.ai (wikidata-owned: Terafab), +teslamotors.com (wikidata-owned: Tesla Fremont Factory)
+- American Cancer Society (Q463665): +relayforlife.org (wikidata-owned: Relay For Life)
+- National Weather Service (Q1066823): +aviationweather.gov (wikidata-owned: National Weather Service Aviation Weather Center)
+- NHK (Q212128): +b-cas.co.jp (wikidata-owned: BS Conditional Access Systems), +nhk-book.co.jp (wikidata-owned: NHK Publishing), +nhk-cul.co.jp (wikidata-owned: NHK Culture Center), +nhk-ed.co.jp (wikidata-owned: NHK Educational), +nhk-ep.co.jp (wikidata-owned: NHK Enterprises), +nhk-ondemand.jp (wikidata-owned: NHK On Demand), +nhk-osakahall.jp (wikidata-owned: NHK Osaka Hall), +nhkso.or.jp (wikidata-owned: NHK Symphony Orchestra, Tokyo), +web.nhk (wikidata-owned: NHK ONE)
+- Electronic Arts (Q173941): +criteriongames.com (wikidata-owned: Criterion Games)
+- Hyatt Hotels Corporation (Q1425063): +alilahotels.com (wikidata-owned: Alila Hotels and Resorts), +jdvhotels.com (wikidata-owned: Joie de Vivre Hospitality)
+- Panasonic Holdings Corporation (Q53247): +blueyonder.com (wikidata-owned: Blue Yonder), +emersonradio.com (wikidata-owned: Emerson Radio Corporation), +gamba-osaka.net (wikidata-owned: Gamba Osaka), +kmew.co.jp (wikidata-owned: KMEW), +panasonic.aero (wikidata-owned: Panasonic Avionics Corporation), +panasonic.co.jp (wikidata-owned: Panasonic Electric Works), +technics.com (wikidata-owned: Technics)
+- North Carolina State University (Q1132346): +wknc.org (wikidata-owned: WKNC-FM)
+- Envato (Q5380906): +mixkit.co (wikidata-owned: mixkit), +themeforest.net (wikidata-owned: Themeforest)
+- The Lego Group (Q1063455): +bricklink.com (wikidata-owned: BrickLink), +legolanddiscoverycentre.com (wikidata-owned: Legoland Discovery Centre), +rebrickable.com (wikidata-owned: Rebrickable)
+- Simon Fraser University (Q201603): +cjsf.ca (wikidata-owned: CJSF-FM)
+- Federal Reserve System (Q53536): +atlantafed.org (wikidata-owned: Federal Reserve Bank of Atlanta), +bostonfed.org (wikidata-owned: Federal Reserve Bank of Boston), +chicagofed.org (wikidata-owned: Federal Reserve Bank of Chicago), +clevelandfed.org (wikidata-owned: Federal Reserve Bank of Cleveland), +dallasfed.org (wikidata-owned: Federal Reserve Bank of Dallas), +frbsf.org (wikidata-owned: Federal Reserve Bank of San Francisco), +kansascityfed.org (wikidata-owned: Federal Reserve Bank of Kansas City), +minneapolisfed.org (wikidata-owned: Federal Reserve Bank of Minneapolis), +newyorkfed.org (wikidata-owned: Federal Reserve Bank of New York), +philadelphiafed.org (wikidata-owned: Federal Reserve Bank of Philadelphia), +richmondfed.org (wikidata-owned: Federal Reserve Bank of Richmond), +stlouisfed.org (wikidata-owned: Federal Reserve Bank of St. Louis)
+- Amnesty International (Q42970): +amnesty.at (wikidata-owned: Amnesty International Österreich), +amnesty.be (wikidata-owned: Amnesty International Vlaanderen), +amnesty.ca (wikidata-owned: Q137365772), +amnesty.ch (wikidata-owned: Amnesty International Swiss), +amnesty.de (wikidata-owned: Amnesty International Germany), +amnesty.dk (wikidata-owned: Q131171801), +amnesty.fi (wikidata-owned: Amnesty International Finland), +amnesty.fr (wikidata-owned: Amnesty International France), +amnesty.gr (wikidata-owned: Q131847911), +amnesty.hu (wikidata-owned: Amnesty International Hungary), +amnesty.id (wikidata-owned: Q137431348), +amnesty.ie (wikidata-owned: Amnesty International Ireland), +amnesty.it (wikidata-owned: Amnesty International Italy), +amnesty.nl (wikidata-owned: Amnesty International Nederland), +amnesty.no (wikidata-owned: Q137431332), +amnesty.or.jp (wikidata-owned: Amnesty International Japan), +amnesty.or.kr (wikidata-owned: Q137431330), +amnesty.org.in (wikidata-owned: Amnesty International India), +amnesty.org.nz (wikidata-owned: Amnesty International Aotearoa New Zealand), +amnesty.org.ph (wikidata-owned: Amnesty International Philippines), +amnesty.org.pl (wikidata-owned: Amnesty International Poland), +amnesty.org.tr (wikidata-owned: Q137431340), +amnesty.org.uk (wikidata-owned: Amnesty International UK), +amnesty.se (wikidata-owned: Amnesty International Sweden), +amnesty.sk (wikidata-owned: Amnesty Slovakia), +amnesty.tw (wikidata-owned: Amnesty International Taiwan), +amnestykenya.org (wikidata-owned: Q137431336), +amnestyusa.org (wikidata-owned: Amnesty International USA), +amnistia.cl (wikidata-owned: Q137431344), +amnistia.org (wikidata-owned: Q137431351), +amnistia.org.ar (wikidata-owned: Q137431327), +amnistia.org.mx (wikidata-owned: Amnesty International Mexico), +amnistia.org.pe (wikidata-owned: Q137431347), +amnistiacatalunya.org (wikidata-owned: Amnesty International Catalonia), +amnistie.ca (wikidata-owned: Q137431331), +anistia.org.br (wikidata-owned: Amnesty International Brazil), +transparency.cz (wikidata-owned: Transparency International Czech Republic)
+- Consumer Reports (Q1957782): +consumerist.com (wikidata-owned: Consumerist)
+- The Motley Fool (Q7752442): +fool.ca (wikidata-owned: The Motley Fool Canada), +fool.co.uk (wikidata-owned: The Motley Fool UK), +fool.com.au (wikidata-owned: The Motley Fool Australia)
+- Hootsuite (Q2749075): +adespresso.com (wikidata-owned: AdEspresso)
+- American Express (Q194360): +departures.com (wikidata-owned: Departures)
+- New York (Q1507987): +thecut.com (wikidata-owned: The Cut)
+- Ministry of Health, Labour and Welfare (Q1191238): +ncnp.go.jp (wikidata-owned: National Center of Neurology and Psychiatry), +niph.go.jp (wikidata-owned: National Institute of Public Health of Japan), +rehab.go.jp (wikidata-owned: National Rehabilitation Center for Persons with Disabilities)
+- Nokia (Q1418): +alcatelmobile.com (wikidata-owned: Alcatel), +asn.com (wikidata-owned: Alcatel Submarine Networks), +rapidapi.com (wikidata-owned: RapidAPI), +rfsworld.com (wikidata-owned: Radio Frequency Systems), +trapster.com (wikidata-owned: Trapster), +withings.com (wikidata-owned: Withings)
+- Indiana University (Q6608367): +iue.edu (wikidata-owned: Indiana University East), +iuk.edu (wikidata-owned: Indiana University Kokomo), +ius.edu (wikidata-owned: Indiana University Southeast)
+- Johns Hopkins Medicine (Q50363516): +hopkinsallchildrens.org (wikidata-owned: Johns Hopkins All Children's Hospital), +hopkinschildrens.org (wikidata-owned: Johns Hopkins Children's Center)
+- AT&T (Q35476): +appnexus.com (wikidata-owned: AppNexus), +att.com.mx (wikidata-owned: AT&T Mobility), +att.net (wikidata-owned: AT&T Internet Services), +bellsouth.com (wikidata-owned: BellSouth), +cricketwireless.com (wikidata-owned: Cricket Wireless), +directv.com (wikidata-owned: DirecTV), +directv.com.co (wikidata-owned: DirecTV Colombia), +directvla.com (wikidata-owned: Vrio), +directvsports.com (wikidata-owned: Q16554994), +gsntv.com (wikidata-owned: Game Show Network), +sky.com.br (wikidata-owned: Sky Brasil), +sky.com.mx (wikidata-owned: Sky México), +unefon.com.mx (wikidata-owned: Unefón ICR)
+- McGill University (Q201492): +brams.org (wikidata-owned: International Laboratory for Brain, Music and Sound Research), +gerad.ca (wikidata-owned: Group for Research in Decision Analysis)
+- École Centrale de Lyon (Q10177): +enise.fr (wikidata-owned: Ecole nationale d'ingénieurs de Saint-Etienne), +grenoble-inp.fr (wikidata-owned: Q51783932)
+- Routledge (Q1508259): +routledgehandbooks.com (wikidata-owned: Routledge Handbooks Online)
+- Trend Micro (Q700974): +vicone.com (wikidata-owned: VicOne)
+- Verizon (Q467752): +aol.com (wikidata-owned: AOL), +engadget.com (wikidata-owned: Engadget), +fios1news.com (wikidata-owned: FiOS1), +fleetmatics.com (wikidata-owned: Fleetmatics), +four11.com (wikidata-owned: Four11), +techcrunch.com (wikidata-owned: TechCrunch), +tracfone.com (wikidata-owned: TracFone WirelessICR), +verizonconnect.com (wikidata-owned: Verizon Connect), +visible.com (wikidata-owned: Visible by Verizon), +yahoo.com (wikidata-owned: Yahoo), +yahooinc.com (wikidata-owned: Yahoo Inc.)
+- Royal Society of Chemistry (Q905549): +chemspider.com (wikidata-owned: Q2311683)
+- University of Pittsburgh (Q235034): +upittpress.org (wikidata-owned: University of Pittsburgh Press)
+- Sberbank (Q205012): +volksbankwien.at (wikidata-owned: Volksbank), -2gis.cz
 
 ## Skipped related domains (2)
 

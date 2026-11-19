@@ -63,7 +63,7 @@ describe('toLookupExport', () => {
         editDistance: 0,
         similarityPercent: 100,
         homoglyphs: [],
-        inTrancoTop100k: false,
+        inPopularTop100k: false,
       },
       existence: 'resolving',
       registration: {
@@ -176,7 +176,8 @@ describe('toLookupExport', () => {
     const { sources } = toLookupExport({ org, variant, facts, exportedAt });
     expect(sources.map((s) => s.id)).toEqual([
       'wikidata',
-      'tranco',
+      'majestic-million',
+      'chrome-ux-report',
       'public-suffix-list',
       'unicode-confusables',
       'cloudflare-doh',
@@ -190,7 +191,10 @@ describe('toLookupExport', () => {
     expect(byId['unicode-confusables']?.attribution).toBe(
       'Copyright © 1991-2026 Unicode, Inc. Unicode License V3.',
     );
-    expect(byId.tranco?.attribution).toMatch(/Majestic Million \(CC BY 3\.0/);
+    expect(byId['majestic-million']?.attribution).toMatch(
+      /Majestic Million by Majestic .*CC BY 3\.0/,
+    );
+    expect(byId['chrome-ux-report']?.attribution).toMatch(/by Google .*CC BY 4\.0/);
     expect(byId.wikidata).not.toHaveProperty('attribution');
     // The official-domain export (no lookups) carries the same list.
     expect(officialExport(org, 'tudelft.nl').sources).toEqual(sources);

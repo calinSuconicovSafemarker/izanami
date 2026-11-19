@@ -201,21 +201,21 @@ const brandLookalike: Rule = (v) => {
   }
 };
 
-const notInTranco: Rule = (v) =>
-  v.inTranco
+const notPopular: Rule = (v) =>
+  v.inPopularTop100k
     ? result(
-        'not-in-tranco',
+        'not-popular',
         'not-fired',
-        WEIGHTS.notInTranco,
-        `${v.domain} is in the Tranco top 100k (heavily used).`,
-        'Popular domain (Tranco top 100k)',
+        WEIGHTS.notPopular,
+        `${v.domain} is in the top 100k of the popularity lists (heavily used).`,
+        'Popular domain (top 100k)',
       )
     : result(
-        'not-in-tranco',
+        'not-popular',
         'fired',
-        WEIGHTS.notInTranco,
-        `${v.domain} is not in the Tranco top 100k of popular domains.`,
-        'Not a popular domain (outside Tranco top 100k)',
+        WEIGHTS.notPopular,
+        `${v.domain} is not in the top 100k of the popularity lists.`,
+        'Not a popular domain (outside the top 100k)',
       );
 
 const oddTld: Rule = (v) => {
@@ -690,7 +690,7 @@ export const RULES: Record<RuleId, Rule> = {
   'young-domain': youngDomain,
   'much-newer': muchNewer,
   'brand-lookalike': brandLookalike,
-  'not-in-tranco': notInTranco,
+  'not-popular': notPopular,
   'same-nameservers': sameNameservers,
   'same-registrar': sameRegistrar,
   'same-mx': sameMx,
@@ -712,7 +712,7 @@ export const RULE_INPUTS: Record<RuleId, readonly LookupFact[]> = {
   'young-domain': ['existence', 'registrationDate'],
   'much-newer': ['existence', 'registrationDate'],
   'brand-lookalike': [],
-  'not-in-tranco': [],
+  'not-popular': [],
   'same-nameservers': ['nameservers'],
   'same-registrar': ['existence', 'registrar'],
   'same-mx': ['mx'],

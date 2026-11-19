@@ -36,5 +36,5 @@ Live `tudelft.com` is TU Delft's own defensive registration: it is delegated to 
 Domains Wikidata lists as owned by the organisation used to count as official ([ADR-0002](0002-build-time-resolution.md) Amendment 2) and short-circuited to *Official*. Wikidata keeps dead acquisitions and investments, so a lapsed domain re-registered by an attacker would have read as Official ([ADR-0002](0002-build-time-resolution.md) Amendment 4).
 
 - New rule `listed-related` (−30): fires when the variant is one of the org's Wikidata-listed related domains, with the summary "Listed by Wikidata as owned by Google (via YouTube)". It is an ordinary legit signal, never a short-circuit.
-- −30 pulls a long-standing listed domain without other risk signals to *Likely legit*, but does not hide a fresh registration: `young-domain` (+40) + `not-in-tranco` (+10) + `fresh-cert` (+20) still give *Likely fraud* (+40).
+- −30 pulls a long-standing listed domain without other risk signals to *Likely legit*, but does not hide a fresh registration: `young-domain` (+40) + `not-popular` (+10, named `not-in-tranco` before ticket 19) + `fresh-cert` (+20) still give *Likely fraud* (+40).
 - `official-match` now short-circuits only for the org's own sites, published-list and curated related domains, and brand TLDs.

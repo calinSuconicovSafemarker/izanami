@@ -71,7 +71,7 @@ describe('GET /api/check', () => {
       dns: { nameservers: expect.any(Array), spf: true },
       hosting: { asns: [1128] },
       official: { domain: 'google.com', asns: expect.arrayContaining([15169]) },
-      analysis: { technique: expect.any(String), inTrancoTop100k: true },
+      analysis: { technique: expect.any(String), inPopularTop100k: true },
       tld: { tld: 'nl' },
       dataSources: { lookups: ['DNS', 'RDAP', 'ASN', 'Certificate Transparency (crt.sh)'] },
     });

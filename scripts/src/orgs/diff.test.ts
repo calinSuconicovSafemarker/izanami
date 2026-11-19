@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { diffOrgs, renderDiff } from './diff';
+import { majesticOnly } from '../lib/popularity-fixture';
 import type { Org } from './select';
 
 function org(id: string, name: string, domains: string[], confirmedAt = '2026-11-17'): Org {
@@ -13,7 +14,7 @@ function org(id: string, name: string, domains: string[], confirmedAt = '2026-11
     relatedDomains: [],
     brandTlds: [],
     wikidataDomain: domains[0] ?? null,
-    trancoRank: 1,
+    popularity: majesticOnly(1),
     confirmedAt,
   };
 }

@@ -5,6 +5,7 @@ import {
   parseRootZoneDb,
   parseSpecification13,
 } from './brand-tlds';
+import { majesticOnly } from '../lib/popularity-fixture';
 import type { Org } from './select';
 
 /** Two rows in the shape of https://www.iana.org/domains/root/db (trimmed). */
@@ -97,7 +98,7 @@ const org = (wikidataId: string, name: string): Org => ({
   relatedDomains: [],
   brandTlds: [],
   wikidataDomain: `${name.toLowerCase()}.com`,
-  trancoRank: 1,
+  popularity: majesticOnly(1),
   confirmedAt: '2026-11-19',
 });
 

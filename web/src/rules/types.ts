@@ -83,8 +83,8 @@ export interface VariantFacts extends InfraFacts {
   orgCountry: string;
   /** Set when Wikidata lists the variant as owned by the organisation (`listed-related`). */
   listedRelated?: { via?: string };
-  /** Registrable domain is in the bundled Tranco top 100k. */
-  inTranco: boolean;
+  /** Registrable domain is in the bundled popular top-100k set (Majestic Million or CrUX). */
+  inPopularTop100k: boolean;
   existence: Fact<Existence>;
   /** A TXT record starting with `v=spf1` exists. */
   spf: Fact<boolean>;
@@ -112,7 +112,7 @@ export type RuleId =
   | 'young-domain'
   | 'much-newer'
   | 'brand-lookalike'
-  | 'not-in-tranco'
+  | 'not-popular'
   | 'same-nameservers'
   | 'same-registrar'
   | 'same-mx'

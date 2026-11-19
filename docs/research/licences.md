@@ -7,7 +7,7 @@
 ## Short answer
 
 - **Most sources are fine for commercial use:** Wikidata (CC0), IANA registries (CC0), Unicode (Unicode License V3, keep the notice), the Public Suffix List (MPL-2.0), all bundled npm libraries (MIT), and Google / Cloudflare public DNS.
-- **One blocker: the Tranco list.** Tranco states no licence of its own. It republishes notices for its five input lists, and one of them, Cloudflare Radar, is **CC BY-NC 4.0 (non-commercial)**. Two more (Cisco Umbrella and Farsight) state no licence at all. Treat the default Tranco list as **not cleared for commercial use** until Tranco or the upstreams say otherwise.
+- **Resolved (ticket 19): the Tranco list has been replaced** by the Majestic Million (CC BY 3.0) and the Chrome UX Report top origins (CC BY 4.0), both credited with the attribution their licences ask for. One small question remains about the CrUX mirror (see [Popularity lists](#popularity-lists-replace-tranco-ticket-19)). The original finding, kept for the record: **the Tranco list was a blocker.** Tranco states no licence of its own. It republishes notices for its five input lists, and one of them, Cloudflare Radar, is **CC BY-NC 4.0 (non-commercial)**. Two more (Cisco Umbrella and Farsight) state no licence at all. Treat the default Tranco list as **not cleared for commercial use** until Tranco or the upstreams say otherwise.
 - **Unclear, needs a question to the provider:** Team Cymru IP-to-ASN (free community service, no terms for commercial use), crt.sh (no published terms), rdap.org (one person's free service, no terms), and some registry RDAP terms (Google Registry forbids "repackage, disseminate", which matters for the server-side API).
 - **The API (ticket 18) changes the picture:** in the browser, each lookup comes from the visitor's own IP. From AWS Lambda, every lookup comes from a few shared AWS IPs on behalf of other people. That runs into per-IP rate limits (crt.sh, rdap.org) and into registry terms that ban "high volume, automated" querying and redistribution.
 
@@ -18,7 +18,9 @@
 | Source | Used for | Commercial use | Attribution needed | Action |
 | --- | --- | --- | --- | --- |
 | Wikidata (WDQS + Action API) | Org list, official websites, owned domains | **Yes** (CC0) | No (we credit anyway) | None |
-| Tranco top-1M list | "Popular site" signal (top 100k in the bundle); picks which orgs to list | **No / unclear**: includes Cloudflare Radar (CC BY-NC 4.0); Umbrella and Farsight state no licence | Yes: credit the CC BY upstream lists (Majestic, CrUX, Cloudflare Radar) with licence links; Tranco asks for nothing itself | **Human decision.** Replace with a commercial-safe ranking (Majestic Million, CC BY 3.0, and/or CrUX, CC BY 4.0), or ask Tranco for a list without Radar/Farsight/Umbrella, or keep Izanami non-commercial |
+| ~~Tranco top-1M list~~ | **Replaced in ticket 19** by the two rows below | No / unclear: includes Cloudflare Radar (CC BY-NC 4.0); Umbrella and Farsight state no licence | — | Done: no longer used |
+| Majestic Million | "Popular site" signal (top-100k set in the bundle); picks which orgs to list | **Yes** (CC BY 3.0) | Yes: name, link, licence link, note changes (credits page + export `sources`) | None |
+| Chrome UX Report top origins (via `zakird/crux-top-lists`) | Same, combined with Majestic into popularity buckets | **Yes** for the data (CC BY 4.0, Google). The mirror repo states no licence of its own | Yes: Google, CC BY 4.0 link, note changes and the mirror | Low risk; a human may confirm the mirror is acceptable or drop CrUX (Majestic alone works) |
 | IANA RDAP bootstrap (`dns.json`) | Which RDAP server answers each TLD | **Yes** (CC0, IANA protocol registry) | No | None |
 | IANA Root Zone Database | Who runs each TLD (brand TLDs) | **Unclear, low risk**: no licence named; ICANN site terms grant no licence to reuse IP. We only extract facts (TLD → operator) | Not stated | Keep; we store facts and link each IANA page. Ask IANA only if we ever ship the pages themselves |
 | ICANN gTLD list (`gtlds.json`, Spec 13 flag) | Which TLDs are .brand TLDs | **Unclear, low risk**: same ICANN terms, facts only | Not stated | Same as above |
@@ -43,7 +45,7 @@
 | Who sends the request | The visitor, from their own IP | Our Lambda, from shared AWS IPs, for anyone who calls the API |
 | Per-IP limits | Rarely reached | crt.sh (5 requests/minute per IP, 2023 maintainer post) and rdap.org (10 requests per 10 s) will be hit quickly; Google Public DNS throttles above about 1,500 QPS per IP (no issue at our scale) |
 | Registry RDAP terms | One lookup a person asked for | Arguably an "automated, electronic process"; output redistributes registry data. Caching (1 h, ticket 18) and low volume help |
-| Tranco / Unicode / PSL | Data shipped in the JS bundle | Same data in the API output (`inTrancoTop100k`, homoglyphs). Same licence questions; attribution goes in the `sources` field |
+| Popularity lists / Unicode / PSL | Data shipped in the JS bundle | Same data in the API output (`inPopularTop100k`, homoglyphs). Same licences; attribution goes in the `sources` field |
 | Team Cymru | DNS TXT query through the visitor's DoH resolver | Same query, from AWS. Still no terms; ask first |
 
 ## Details
@@ -56,7 +58,7 @@
 - **Usage policy:** Wikimedia asks for a descriptive User-Agent. We send one (`scripts/src/lib/net.ts`) and pace requests 1 per second, with `maxlag=5`.
 - **Server-side:** not affected (build time only).
 
-### Tranco and the lists it aggregates
+### Tranco and the lists it aggregates (historical: replaced in ticket 19)
 
 - **Used:** `scripts/src/lib/tranco.ts` downloads `https://tranco-list.eu/top-1m.csv.zip`. The top 100k domains ship in the bundle (`web/src/data/tranco-top100k.json`, the `in-tranco` rule and `inTrancoTop100k` in exports). The org generator also uses ranks to choose orgs.
 - **Tranco's own terms:** none found. [tranco-list.eu](https://tranco-list.eu/), the [methodology page](https://tranco-list.eu/methodology), the [API docs](https://tranco-list.eu/api_documentation) and the [GitHub repo](https://github.com/DistriNet/tranco-list) state no licence for the list. The site's only legal link is a privacy policy.
@@ -74,6 +76,17 @@
   1. **Replace** with a commercial-safe ranking: the Majestic Million (CC BY 3.0) alone, or Majestic plus CrUX (CC BY 4.0). Both need attribution, which the credits page already has a slot for. This is the cleanest option.
   2. **Ask Tranco** whether a custom list built only from Majestic and CrUX can be used commercially. Tranco offers custom lists, but its configurator needs a login and we could not read its terms.
   3. **Keep Tranco** and state that Izanami is for non-commercial use only.
+
+### Popularity lists (replace Tranco, ticket 19)
+
+Read on 2026-11-19.
+
+- **Used:** `scripts/src/lib/popularity.ts` downloads both lists once into `scripts/.cache/popularity/` and combines them per registrable domain: the best bucket across both lists (top 1k / 10k / 100k / 1M) and which lists name it. Domains in the top-100k bucket ship in the bundle (`web/src/data/popular-top100k.json`, the `not-popular` rule and `inPopularTop100k` in exports). The org generator uses the buckets (then the Majestic rank) to choose orgs.
+- **Majestic Million:** [majestic.com/reports/majestic-million](https://majestic.com/reports/majestic-million) says the list is "Licensed under a Creative Commons Attribution 3.0 Unported License" (links to [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)). Download: `https://downloads.majestic.com/majestic_million.csv` (about 80 MB, refreshed daily; columns `GlobalRank,TldRank,Domain,TLD,RefSubNets,RefIPs,…`). The page asks for no specific attribution wording, so we use the CC BY 3.0 elements: title, creator, source link, licence link, and a note of our changes.
+- **Chrome UX Report (CrUX):** Google's [CrUX methodology page](https://developer.chrome.com/docs/crux/methodology): "CrUX datasets by Google are licensed under a Creative Commons Attribution 4.0 International License." No specific wording requested; we use the CC BY 4.0 elements. Google publishes the rank buckets (`experimental.popularity.rank`) only in BigQuery, which needs a Google account.
+- **CrUX mirror:** [github.com/zakird/crux-top-lists](https://github.com/zakird/crux-top-lists) publishes the global list each month as `data/global/YYYYMM.csv.gz` (`origin,rank`, rank = bucket bound 1000 / 5000 / 10000 / … / 1000000), exported unmodified from the public BigQuery dataset. The repo has **no LICENSE file** (GitHub API: `license: null`) and its README states no licence or terms. The data in it is Google's (CC BY 4.0); the export adds no creative content of its own. We credit Google, link the licence, and name the mirror. Treat as low risk; a human may decide to drop CrUX (Majestic alone covers the flagship orgs) or to query BigQuery directly.
+- **Rate limits:** none stated for either download. We download each file once and cache it; the CrUX month is pinned (`CRUX_MONTH`) so rebuilds reuse the cache.
+- **Server-side:** no new questions (build-time data); the API carries the derived fact `inPopularTop100k` and both attributions in `sources`.
 
 ### IANA: RDAP bootstrap and Root Zone Database
 
@@ -174,7 +187,7 @@ Dev-only tools (Vite, Vitest, ESLint, TypeScript, axe-core, jsdom …) do not sh
 
 ## Open questions for a human
 
-1. **Tranco:** replace it (Majestic Million / CrUX), ask Tranco, or declare Izanami non-commercial? Until that is decided, commercial use of the "popular site" signal is not cleared.
+1. ~~**Tranco:** replace it, ask Tranco, or declare Izanami non-commercial?~~ Decided: replaced by the Majestic Million and CrUX (ticket 19). Remaining question: is the unlicensed CrUX mirror (`zakird/crux-top-lists`, an unmodified export of Google's CC BY 4.0 BigQuery dataset) acceptable, or should Izanami use Majestic alone (or query BigQuery itself)?
 2. **Team Cymru, crt.sh, rdap.org:** send three short emails asking whether company use and a public API are fine.
 3. **API and registry RDAP terms:** accept the risk with caching and low volume, or drop RDAP facts from the API output for registries that forbid redistribution (Google Registry).
 4. **Izanami's own licence:** the repo has no LICENSE file. Pick one before others reuse the code or the API.

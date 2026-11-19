@@ -14,7 +14,7 @@ const EXPECTED: Record<string, string[]> = {
     'same-nameservers', // −40
     'brand-lookalike', // +25 tld-swap
     'much-newer', // +15 (2001 vs 1987)
-    'same-asn', // −15 (not-in-tranco +10 drops off)
+    'same-asn', // −15 (not-popular +10 drops off)
   ],
   'defensive typo registration': [
     'same-nameservers', // −40
@@ -23,15 +23,15 @@ const EXPECTED: Record<string, string[]> = {
     'same-asn', // −15
   ],
   'fresh combo-squat': ['young-domain', 'brand-lookalike', 'fresh-cert', 'mail-ready'],
-  'parked typo-squat': ['brand-lookalike', 'much-newer', 'not-in-tranco', 'no-mx'],
-  'homoglyph (Cyrillic e)': ['young-domain', 'brand-lookalike', 'not-in-tranco', 'no-mx'],
+  'parked typo-squat': ['brand-lookalike', 'much-newer', 'not-popular', 'no-mx'],
+  'homoglyph (Cyrillic e)': ['young-domain', 'brand-lookalike', 'not-popular', 'no-mx'],
   'registered but not resolving': [
     'brand-lookalike',
     'registered-not-resolving',
     'much-newer',
-    'not-in-tranco',
+    'not-popular',
   ],
-  'old student-team combo site': ['brand-lookalike', 'not-in-tranco'],
+  'old student-team combo site': ['brand-lookalike', 'not-popular'],
   // Insufficient data: what couldn't be checked, by |weight|.
   'all lookups unavailable': ['young-domain', 'same-nameservers', 'same-registrar', 'fresh-cert'],
 };

@@ -1,4 +1,5 @@
 import { officialDomainOf } from './domains';
+import { comparePopularity, type PopularityMap } from '../lib/popularity';
 import type { Org } from '../lib/web';
 import type { WikidataEntity } from './wikidata';
 
@@ -6,8 +7,11 @@ export type { Org };
 
 export interface SelectInput {
   entities: ReadonlyMap<string, WikidataEntity>;
-  tranco: ReadonlyMap<string, number>;
+  /** Candidate domains (the top 10k bucket) and their popularity. */
+  popularity: PopularityMap;
   limit: number;
+  /** Q-ids kept even beyond `limit` (`scripts/data/pinned-orgs.json`), when they qualify. */
+  pinned?: ReadonlySet<string>;
   confirmedAt: string;
 }
 
@@ -28,12 +32,19 @@ function preference(e: WikidataEntity): number {
 }
 
 /**
- * ADR-0002: keep entities whose P856 registrable domain has a Tranco rank, top `limit` by rank,
- * with stable slugs. Entities are taken in order of preference; each claims all its official
+ * ADR-0002: keep entities whose P856 registrable domain is in the popularity data, top `limit` by
+ * popularity (best position in either list), plus pinned entities beyond the limit, with stable
+ * slugs. Entities are taken in order of preference; each claims all its official
  * domains, and an entity whose ranked domains are all claimed already is skipped, so a domain
  * belongs to one organisation only.
  */
-export function selectOrgs({ entities, tranco, limit, confirmedAt }: SelectInput): Org[] {
+export function selectOrgs({
+  entities,
+  popularity,
+  limit,
+  pinned = new Set(),
+  confirmedAt,
+}: SelectInput): Org[] {
   const ordered = [...entities.values()].sort(
     (a, b) => preference(b) - preference(a) || qNumber(a.wikidataId) - qNumber(b.wikidataId),
   );
@@ -44,8 +55,8 @@ export function selectOrgs({ entities, tranco, limit, confirmedAt }: SelectInput
       .filter((d): d is string => d !== null && !claimed.has(d))
       .sort();
     const primary = domains
-      .filter((d) => tranco.has(d))
-      .sort((a, b) => (tranco.get(a) ?? 0) - (tranco.get(b) ?? 0))[0];
+      .filter((d) => popularity.has(d))
+      .sort((a, b) => comparePopularity(popularity.get(a), popularity.get(b)))[0];
     if (!primary) continue;
     domains.forEach((d) => claimed.add(d));
     orgs.push({
@@ -58,23 +69,45 @@ export function selectOrgs({ entities, tranco, limit, confirmedAt }: SelectInput
       relatedDomains: [],
       brandTlds: [],
       wikidataDomain: primary,
-      trancoRank: tranco.get(primary) ?? null,
+      popularity: popularity.get(primary) ?? null,
       confirmedAt,
     });
   }
-  return assignSlugs(orgs.sort(compareOrgs).slice(0, limit));
+  const kept = orgs.sort(compareOrgs).filter((o, i) => i < limit || pinned.has(o.wikidataId));
+  return assignSlugs(kept);
+}
+
+/**
+ * A notable organisation kept even when it falls below the cap (ticket 19): the popularity lists
+ * rank some commonly phished brands just under the cut. It still has to qualify (P856 domain in
+ * the candidate bucket).
+ */
+export interface PinnedOrg {
+  wikidataId: string;
+  name: string;
+  /** Why it is pinned, for the human reader. */
+  reason: string;
+}
+
+/** Validates the parsed `pinned-orgs.json` content. */
+export function parsePinnedOrgs(json: unknown): PinnedOrg[] {
+  if (!Array.isArray(json)) throw new Error('pinned-orgs.json must be an array');
+  return json.map((raw: Partial<PinnedOrg>, i) => {
+    if (!raw.wikidataId || !/^Q\d+$/.test(raw.wikidataId) || !raw.name || !raw.reason)
+      throw new Error(`pinned-orgs.json[${i}]: wikidataId (Q-id), name and reason are required`);
+    return { wikidataId: raw.wikidataId, name: raw.name, reason: raw.reason };
+  });
 }
 
 function qNumber(id: string): number {
   return Number(id.slice(1));
 }
 
-/** Best Tranco rank first (unranked last), then by Q-number for determinism. */
+/** Most popular first (not listed last), then by Q-number for determinism. */
 export function compareOrgs(a: Org, b: Org): number {
-  const ra = a.trancoRank ?? Number.POSITIVE_INFINITY;
-  const rb = b.trancoRank ?? Number.POSITIVE_INFINITY;
-  if (ra !== rb) return ra - rb;
-  return qNumber(a.wikidataId) - qNumber(b.wikidataId);
+  return (
+    comparePopularity(a.popularity, b.popularity) || qNumber(a.wikidataId) - qNumber(b.wikidataId)
+  );
 }
 
 export function slugify(name: string): string {
@@ -88,7 +121,7 @@ export function slugify(name: string): string {
 }
 
 /**
- * Fills empty slugs from the name. Orgs are processed in list order (best rank first) and
+ * Fills empty slugs from the name. Orgs are processed in list order (most popular first) and
  * pre-set slugs are reserved first, so a colliding later org gets `-<qid>` appended.
  */
 export function assignSlugs(orgs: Org[]): Org[] {

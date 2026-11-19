@@ -14,7 +14,9 @@
 
 **Wikidata confirmation** — The domain appears in the organisation's Wikidata "official website" (P856). Means "listed as official", not proven ownership.
 
-**Tranco confirmation** — The domain has a Tranco rank. Means "heavily used", not ownership.
+**Popularity** — How heavily a registrable domain is used, from two lists: the Majestic Million and the Chrome UX Report (CrUX) top origins. Expressed as the best *bucket* across both (top 1k / 10k / 100k / 1M) plus which lists name it. Replaced the Tranco list (ticket 19).
+
+**Popularity confirmation** — The domain is in the popularity data (for an organisation's primary domain: the top-10k bucket). Means "heavily used", not ownership.
 
 **Variant** — The domain the user types into the lookup terminal.
 
