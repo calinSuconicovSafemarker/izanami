@@ -112,6 +112,40 @@ describe('certs timeout', () => {
   });
 });
 
+describe('request timeout and overall deadline (API)', () => {
+  const hang: FetchLike = () => new Promise(() => {});
+
+  it('fails a slow DoH or RDAP request after requestTimeoutMs, trying the next resolver', async () => {
+    const fetch: FetchLike = (input, init) =>
+      /cloudflare-dns/.test(input) ? hang(input, init) : tudelft(input, init);
+    const client = new LiveLookupClient({ fetch, requestTimeoutMs: 20 });
+    expect(await client.dns('tudelft.nl', 'A')).toMatchObject({
+      status: 'ok',
+      records: ['130.161.128.82'],
+    });
+    expect(await client.rdap('tudelft.nl')).toMatchObject({ status: 'unavailable' });
+  });
+
+  it('fails every lookup once the client signal aborts, even a fetch that ignores it', async () => {
+    const deadline = new AbortController();
+    const client = new LiveLookupClient({ fetch: hang, signal: deadline.signal });
+    const pending = Promise.all([
+      client.dns('tudelft.nl', 'A'),
+      client.rdap('tudelft.nl'),
+      client.certs('tudelft.nl'),
+    ]);
+    deadline.abort();
+    const [dns, rdap, certs] = await pending;
+    expect([dns.status, rdap.status, certs.status]).toEqual([
+      'unavailable',
+      'unavailable',
+      'unavailable',
+    ]);
+    // Lookups started after the deadline fail at once.
+    expect((await client.asn('130.161.128.82')).status).toBe('unavailable');
+  });
+});
+
 describe('request hygiene (CORS-simple requests)', () => {
   it('sends no credentials and no headers other than accept', async () => {
     const inits: (RequestInit | undefined)[] = [];

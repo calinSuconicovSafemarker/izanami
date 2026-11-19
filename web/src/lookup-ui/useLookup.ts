@@ -1,15 +1,10 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import {
-  InvalidVariantError,
-  parseVariant,
-  similarity,
-  type ParsedVariant,
-  type Similarity,
-} from '../domain';
+import { startCheck } from '../check';
+import type { ParsedVariant, Similarity } from '../domain';
 import type { LookupClient } from '../lookup';
 import type { Org } from '../orgs';
 import { toOrgInput } from '../orgs';
-import { gatherFacts, type Existence, type Fact, type Facts } from '../rules';
+import type { Existence, Fact, Facts } from '../rules';
 import { useLookupClient } from './client-context';
 import { tapLookups, type TerminalLine } from './lines';
 
@@ -49,7 +44,10 @@ export interface Lookup {
   run: (input: string) => void;
 }
 
-/** Drives one organisation's lookup terminal: parse → official check → gatherFacts with progress. */
+/**
+ * Drives one organisation's lookup terminal: `startCheck` (parse → official check →
+ * gatherFacts, shared with the JSON API) plus progress and raw result lines for the UI.
+ */
 export function useLookup(org: Org, clientOverride?: LookupClient): Lookup {
   const contextClient = useLookupClient();
   const client = clientOverride ?? contextClient;
@@ -61,46 +59,33 @@ export function useLookup(org: Org, clientOverride?: LookupClient): Lookup {
     (input: string) => {
       const id = ++runId.current;
       const current = () => id === runId.current;
-      let variant: ParsedVariant;
-      try {
-        variant = parseVariant(input);
-      } catch (e) {
-        if (!(e instanceof InvalidVariantError)) throw e;
-        setState({ phase: 'invalid', input, message: e.message });
-        return;
-      }
-      const sim = similarity(
-        variant,
-        orgInput.brandLabel,
-        orgInput.officialDomains,
-        orgInput.brandTlds,
-      );
-      if (sim.isOfficial) {
-        setState({
-          phase: 'official',
-          variant,
-          similarity: sim,
-          ...(sim.brandTld ? { brandTld: sim.brandTld } : {}),
-        });
-        return;
-      }
-
       let lines: TerminalLine[] = [];
       let facts: Facts | undefined;
+      let variant: ParsedVariant | undefined;
       const publish = (phase: 'running' | 'done') => {
-        if (!current() || !facts) return;
+        if (!current() || !facts || !variant) return;
         setState({ phase, variant, lines, facts, existence: facts.variantFacts.existence });
       };
-      const tapped = tapLookups(client, variant.registrableDomain, (line) => {
-        lines = [...lines, line];
-        publish('running');
-      });
-      void gatherFacts(variant, orgInput, tapped, {
+
+      const check = startCheck(input, orgInput, client, {
+        // Called once, before any lookup or progress report.
+        clientFor: (v, c) => {
+          variant = v;
+          return tapLookups(c, v.registrableDomain, (line) => {
+            lines = [...lines, line];
+            publish('running');
+          });
+        },
         onProgress: (f) => {
           facts = f;
           publish('running');
         },
-      }).then((f) => {
+      });
+      if (check.phase !== 'lookup') {
+        setState(check);
+        return;
+      }
+      void check.facts.then((f) => {
         facts = f;
         publish('done');
       });

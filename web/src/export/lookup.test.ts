@@ -98,6 +98,20 @@ describe('toLookupExport', () => {
       .reduce((s, r) => s + r.weight, 0);
     expect(out.verdict?.score).toBe(firedSum);
     expect(out.why[0]).toMatchObject({ id: 'young-domain', kind: 'risk', weight: 40 });
+    // A lookalike on a generic TLD rates generic, never official (only brand TLDs would).
+    expect(out.tld).toMatchObject({ tld: 'com', category: 'generic' });
+    expect(out.dataSources).toEqual({
+      lookups: ['DNS', 'RDAP', 'ASN', 'Certificate Transparency (crt.sh)'],
+      unknown: ['RDAP'], // registrar not published
+      dataVersion: expect.stringMatching(/^\d{4}-\d{2}-\d{2}$/),
+    });
+  });
+
+  it('rates the TLD of an official domain against the full official context, with no lookups', () => {
+    const out = officialExport(org, 'tudelft.nl');
+    expect(out.tld).toMatchObject({ tld: 'nl', category: 'official' });
+    expect(out.dataSources.lookups).toEqual([]);
+    expect(out.dataSources.unknown).toEqual([]);
   });
 
   it('lists homoglyph swaps with the character they imitate', () => {

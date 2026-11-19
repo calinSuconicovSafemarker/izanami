@@ -1,10 +1,12 @@
 // Export of one lookup (SPEC "Export"). Pure: no DOM, no I/O.
 import { techniqueLabel, type LookalikeKind, type ParsedVariant, type Similarity } from '../domain';
 import { homoglyphSegments, similarityPercent } from '../domain/analysis';
-import { officialContext, type Org } from '../orgs';
+import { dataVersion, officialContext, type Org } from '../orgs';
 import {
   evaluate,
+  FACT_SOURCES,
   isNotRegistered,
+  unknownSources,
   verdict,
   whyList,
   type Existence,
@@ -16,6 +18,7 @@ import {
   type VerdictLabel,
   type WhyItem,
 } from '../rules';
+import { rateTld, type TldRating } from '../tld/rating';
 import { toCsv } from './csv';
 import { EXPORT_SCHEMA_VERSION, exportOrg, type ExportOrg } from './common';
 
@@ -53,6 +56,20 @@ export interface LookupExport {
     homoglyphs: { text: string; looksLike: string; codePoints: string }[];
     /** `null` for an official domain (not checked). */
     inTrancoTop100k: boolean | null;
+  };
+  /**
+   * The variant's TLD rating, as on the website. For a looked-up variant only the org's brand
+   * TLDs rate `official` (a lookalike on the org's own .com must not). Additive (ticket 18).
+   */
+  tld: TldRating;
+  /** Where the facts came from. Additive (ticket 18). */
+  dataSources: {
+    /** Lookups run, in a stable order; `[]` for an official domain (none run). */
+    lookups: string[];
+    /** Lookups with at least one unknown fact (failed, timed out or not published). */
+    unknown: string[];
+    /** Build date of the bundled organisation data (`orgs.json`, Tranco set). */
+    dataVersion: string;
   };
   /** `null`: not checked (official domain) or unknown. */
   existence: Existence | null;
@@ -102,7 +119,8 @@ const infra = (f: InfraFacts): ExportInfra => ({
 /** Build the export document for a finished lookup. */
 export function toLookupExport(input: LookupExportInput): LookupExport {
   const { org, variant, facts, exportedAt } = input;
-  const { brandLabel } = officialContext(org);
+  const ctx = officialContext(org);
+  const { brandLabel } = ctx;
   const sim = facts ? facts.variantFacts.similarity : input.similarity;
   const vf = facts?.variantFacts;
   const results = facts ? evaluate(facts) : [];
@@ -132,6 +150,19 @@ export function toLookupExport(input: LookupExportInput): LookupExport {
         s.swapped ? [{ text: s.text, looksLike: s.looksLike, codePoints: s.codePoints }] : [],
       ),
       inTrancoTop100k: vf ? vf.inTranco : null,
+    },
+    tld: rateTld(variant.tld, facts ? { brandTlds: ctx.brandTlds } : ctx),
+    dataSources: {
+      lookups: facts ? [...new Set(Object.values(FACT_SOURCES))] : [],
+      unknown: facts
+        ? [
+            ...new Set([
+              ...unknownSources(facts.variantFacts),
+              ...unknownSources(facts.officialFacts),
+            ]),
+          ]
+        : [],
+      dataVersion,
     },
     existence: vf ? value(vf.existence) : null,
     registration: vf

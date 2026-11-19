@@ -29,6 +29,12 @@ export const allOrgs: readonly Org[] = orgsJson.map((org) => ({
 
 const bySlug = new Map(allOrgs.map((org) => [org.slug, org]));
 
+/** Build date (YYYY-MM-DD) of the bundled data: the latest `confirmedAt` in `orgs.json`. */
+export const dataVersion: string = allOrgs.reduce(
+  (latest, org) => (org.confirmedAt > latest ? org.confirmedAt : latest),
+  '',
+);
+
 export function getOrg(slug: string): Org | undefined {
   return bySlug.get(slug);
 }
