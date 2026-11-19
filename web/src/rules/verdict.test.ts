@@ -7,6 +7,7 @@ const r = (id: RuleId, status: RuleStatus, weight: number): RuleResult => ({
   status,
   weight,
   explanation: `${id} ${status}`,
+  summary: `${id}`,
 });
 
 describe('verdict', () => {

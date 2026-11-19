@@ -107,6 +107,8 @@ export interface RuleResult {
   weight: number;
   /** Plain English, with concrete values. */
   explanation: string;
+  /** Short phrase with the concrete value, e.g. `Registered 12 days ago` (the "Why" list). */
+  summary: string;
 }
 
 export type Rule = (variant: VariantFacts, official: OfficialFacts) => RuleResult;

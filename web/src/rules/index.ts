@@ -5,4 +5,5 @@ export { RULE_INPUTS, RULES } from './rules';
 export type * from './types';
 export { isNotRegistered, known, PENDING, UNKNOWN } from './types';
 export { verdict, type Verdict, type VerdictLabel } from './verdict';
+export { WHY_MAX, whyList, type WhyItem } from './why';
 export * from './weights';

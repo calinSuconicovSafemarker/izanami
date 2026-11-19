@@ -46,7 +46,7 @@ All network access goes through one `LookupClient` interface so rules and UI are
 
 ## Rules engine
 
-Each rule is a pure function `(variant: VariantFacts, official: OfficialFacts) → { id, status: 'fired'|'not-fired'|'unknown', weight, explanation }`. Weights live in one config file (`web/src/rules/weights.ts`). Positive = riskier, negative = more legit. Full rationale in [ADR-0003](adr/0003-scoring-model.md).
+Each rule is a pure function `(variant: VariantFacts, official: OfficialFacts) → { id, status: 'fired'|'not-fired'|'unknown'|'not-applicable', weight, explanation, summary }`. `summary` is a short phrase with the concrete value ("Registered 12 days ago"); `whyList(facts)` picks the top fired rules by |weight| (max 4; for Insufficient data, what couldn't be checked; none for Official / Not registered) for the "Why" list under the verdict. Weights live in one config file (`web/src/rules/weights.ts`). Positive = riskier, negative = more legit. Full rationale in [ADR-0003](adr/0003-scoring-model.md).
 
 | Rule | Fires when | Weight |
 |---|---|---|

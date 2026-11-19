@@ -4,11 +4,13 @@ import {
   isAwaitingLookup,
   unknownSources,
   verdict,
+  whyList,
   type Facts,
   type RuleId,
   type RuleResult,
   type Verdict,
   type VerdictLabel,
+  type WhyItem,
 } from '../rules';
 
 export interface VerdictCardProps {
@@ -99,6 +101,34 @@ function VerdictHeader({ v, text }: { v: Verdict; text: string }) {
   );
 }
 
+const WHY_STYLE: Record<WhyItem['kind'], string> = {
+  risk: 'text-amber-300',
+  legit: 'text-emerald-300',
+  unknown: 'text-zinc-400',
+};
+
+/** The top reasons for the verdict, read right after it. */
+function WhyList({ items }: { items: WhyItem[] }) {
+  const id = useId();
+  return (
+    <div className="pl-4">
+      <h3 id={id} className="sr-only">
+        Why
+      </h3>
+      <ul aria-labelledby={id} className="flex flex-col gap-0.5">
+        {items.map((w) => (
+          <li key={w.id} className="grid grid-cols-[5ch_1fr] gap-x-3">
+            <span className={`text-right tabular-nums ${WHY_STYLE[w.kind]}`}>
+              {w.kind === 'unknown' ? '?' : formatWeight(w.weight)}
+            </span>{' '}
+            <span className="text-zinc-200">{w.summary}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 /** `+40`, `−25` (true minus sign), `0`. */
 const formatWeight = (w: number) => (w > 0 ? `+${w}` : w < 0 ? `−${-w}` : '0');
 
@@ -138,10 +168,17 @@ function RuleList({
   );
 }
 
+/** e.g. `Verdict: Likely fraud. Why: Registered 12 days ago; Contains "tudelft".` */
+const announce = (v: Verdict, why: WhyItem[]) =>
+  why.length
+    ? `Verdict: ${v.verdict}. Why: ${why.map((w) => w.summary).join('; ')}.`
+    : `Verdict: ${v.verdict}`;
+
 /** Verdict and every rule's outcome for one lookup. */
 export function VerdictCard({ facts, done }: VerdictCardProps) {
   const results = evaluate(facts);
   const final = done ? verdict(results) : undefined;
+  const why = final ? whyList(facts, results) : [];
   const risk = results.filter((r) => r.status === 'fired' && r.weight > 0);
   const legit = results.filter((r) => r.status === 'fired' && r.weight < 0);
   const checking = results.filter((r) => !done && isAwaitingLookup(r, facts));
@@ -154,9 +191,12 @@ export function VerdictCard({ facts, done }: VerdictCardProps) {
   );
 
   return (
-    <CardFrame announcement={final && `Verdict: ${final.verdict}`}>
+    <CardFrame announcement={final && announce(final, why)}>
       {final ? (
-        <VerdictHeader v={final} text={summary(final, facts)} />
+        <>
+          <VerdictHeader v={final} text={summary(final, facts)} />
+          {why.length > 0 && <WhyList items={why} />}
+        </>
       ) : (
         <p className="animate-pulse text-zinc-400">Verdict: still checking…</p>
       )}
