@@ -103,10 +103,10 @@ describe('single lookup export', () => {
   });
 });
 
-/** tudelft.com is delegated; every other NS query is NXDOMAIN. */
+/** tudelft.net is delegated; every other NS query is NXDOMAIN. */
 class ScanClient extends FixtureLookupClient {
   override async dns(name: string, type: DnsType): Promise<DnsResult> {
-    if (type === 'NS' && name === 'tudelft.com')
+    if (type === 'NS' && name === 'tudelft.net')
       return { status: 'ok', name, type, records: ['ns1.example.net'] };
     if (type === 'NS') return { status: 'not-found', name, type, records: [] };
     return super.dns(name, type);
@@ -128,8 +128,8 @@ describe('lookalike scan export', () => {
     expect(csv?.name).toBe('izanami-scan-tu-delft-20261119-0805.csv');
     const lines = (await csv!.text()).trimEnd().split('\r\n');
     expect(lines[0]).toBe('candidate,domain,technique,tld,tld_rating,exists,checked_at');
-    expect(lines.find((l) => l.startsWith('tudelft.com,'))).toMatch(
-      /^tudelft\.com,tudelft\.com,tld-swap,com,[^,]+,yes,2026-11-19T08:\d\d:\d\d\.\d{3}Z$/,
+    expect(lines.find((l) => l.startsWith('tudelft.net,'))).toMatch(
+      /^tudelft\.net,tudelft\.net,tld-swap,net,[^,]+,yes,2026-11-19T08:\d\d:\d\d\.\d{3}Z$/,
     );
     expect(json?.name).toBe('izanami-scan-tu-delft-20261119-0805.json');
     const doc = JSON.parse(await json!.text());

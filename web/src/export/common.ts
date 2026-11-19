@@ -1,4 +1,4 @@
-import type { Org } from '../orgs';
+import type { Org, RelatedDomain } from '../orgs';
 
 /** Bumped on any breaking change to an export document's shape. */
 export const EXPORT_SCHEMA_VERSION = 1;
@@ -8,6 +8,8 @@ export interface ExportOrg {
   name: string;
   primaryDomain: string;
   officialDomains: string[];
+  /** Related official domains (ticket 15); additive, so the schema version is unchanged. */
+  relatedDomains: RelatedDomain[];
 }
 
 export const exportOrg = (org: Org): ExportOrg => ({
@@ -15,4 +17,5 @@ export const exportOrg = (org: Org): ExportOrg => ({
   name: org.name,
   primaryDomain: org.primaryDomain,
   officialDomains: [...org.officialDomains],
+  relatedDomains: org.relatedDomains.map((r) => ({ ...r })),
 });

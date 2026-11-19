@@ -8,12 +8,12 @@ import { getOrg } from '../orgs';
 import { renderRoute } from '../test/render-route';
 import { LookalikeScan } from './LookalikeScan';
 
-/** tudelft.com and tudelft.xyz are delegated; every other NS query is NXDOMAIN. */
+/** tudelft.net and tudelft.xyz are delegated; every other NS query is NXDOMAIN. */
 class ScanClient extends FixtureLookupClient {
   queried: string[] = [];
   override async dns(name: string, type: DnsType): Promise<DnsResult> {
     this.queried.push(`${type} ${name}`);
-    if (name === 'tudelft.com' || name === 'tudelft.xyz')
+    if (name === 'tudelft.net' || name === 'tudelft.xyz')
       return { status: 'ok', name, type, records: ['ns1.example.net'] };
     return { status: 'not-found', name, type, records: [] };
   }
@@ -60,7 +60,7 @@ describe('lookalike scan', () => {
     fireEvent.click(within(scan()).getByRole('button', { name: /scan lookalikes/i }));
     expect(await within(scan()).findByText(/scan complete/i)).toBeInTheDocument();
 
-    const com = rowFor('tudelft.com');
+    const com = rowFor('tudelft.net');
     expect(com).toHaveTextContent('tld-swap');
     expect(com).toHaveTextContent('generic');
     expect(com).toHaveTextContent('registered');
@@ -79,8 +79,8 @@ describe('lookalike scan', () => {
     const { router } = renderScan(new ScanClient());
     fireEvent.click(within(scan()).getByRole('button', { name: /scan lookalikes/i }));
     await within(scan()).findByText(/scan complete/i);
-    fireEvent.click(within(rowFor('tudelft.com')).getByRole('link', { name: /check/i }));
-    expect(router.state.location.search).toBe('?d=tudelft.com');
+    fireEvent.click(within(rowFor('tudelft.net')).getByRole('link', { name: /check/i }));
+    expect(router.state.location.search).toBe('?d=tudelft.net');
   });
 
   it('can be cancelled while running', async () => {

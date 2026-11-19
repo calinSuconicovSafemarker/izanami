@@ -2529,10 +2529,22 @@
         "url": "https://www.wikidata.org/wiki/Q5449851"
       },
       {
+        "domain": "igdb.com",
+        "source": "wikidata-owned",
+        "via": "Q20056333",
+        "url": "https://www.wikidata.org/wiki/Q20056333"
+      },
+      {
         "domain": "imdb.com",
         "source": "wikidata-owned",
         "via": "IMDb",
         "url": "https://www.wikidata.org/wiki/Q37312"
+      },
+      {
+        "domain": "justin.tv",
+        "source": "wikidata-owned",
+        "via": "Justin.tv",
+        "url": "https://www.wikidata.org/wiki/Q2369313"
       },
       {
         "domain": "mgm.com",
@@ -2599,6 +2611,12 @@
         "source": "wikidata-owned",
         "via": "Souq.com",
         "url": "https://www.wikidata.org/wiki/Q22688437"
+      },
+      {
+        "domain": "twitch.tv",
+        "source": "wikidata-owned",
+        "via": "Twitch",
+        "url": "https://www.wikidata.org/wiki/Q4555537"
       },
       {
         "domain": "wholefoodsmarket.com",
@@ -10822,6 +10840,12 @@
         "source": "wikidata-owned",
         "via": "Q934853",
         "url": "https://www.wikidata.org/wiki/Q934853"
+      },
+      {
+        "domain": "zumodrive.com",
+        "source": "wikidata-owned",
+        "via": "ZumoDrive",
+        "url": "https://www.wikidata.org/wiki/Q4053619"
       }
     ],
     "wikidataDomain": "lenovo.com",
@@ -11971,6 +11995,30 @@
     "officialDomains": ["bund.de", "deutschland.de"],
     "relatedDomains": [
       {
+        "domain": "arriva.co.uk",
+        "source": "wikidata-owned",
+        "via": "Arriva",
+        "url": "https://www.wikidata.org/wiki/Q680991"
+      },
+      {
+        "domain": "arriva.cz",
+        "source": "wikidata-owned",
+        "via": "Arriva",
+        "url": "https://www.wikidata.org/wiki/Q680991"
+      },
+      {
+        "domain": "arriva.it",
+        "source": "wikidata-owned",
+        "via": "Arriva",
+        "url": "https://www.wikidata.org/wiki/Q680991"
+      },
+      {
+        "domain": "arriva.nl",
+        "source": "wikidata-owned",
+        "via": "Arriva",
+        "url": "https://www.wikidata.org/wiki/Q680991"
+      },
+      {
         "domain": "autobahn.de",
         "source": "wikidata-owned",
         "via": "Die Autobahn GmbH des Bundes",
@@ -11981,6 +12029,12 @@
         "source": "wikidata-owned",
         "via": "Deutsche Bahn",
         "url": "https://www.wikidata.org/wiki/Q9322"
+      },
+      {
+        "domain": "bahnhof.de",
+        "source": "wikidata-owned",
+        "via": "Essen Central Station",
+        "url": "https://www.wikidata.org/wiki/Q135607"
       },
       {
         "domain": "bge.de",
@@ -12019,10 +12073,28 @@
         "url": "https://www.wikidata.org/wiki/Q55436361"
       },
       {
+        "domain": "dbcargo.com",
+        "source": "wikidata-owned",
+        "via": "DB Cargo",
+        "url": "https://www.wikidata.org/wiki/Q44353"
+      },
+      {
         "domain": "dbfz.de",
         "source": "wikidata-owned",
         "via": "Deutsches Biomasseforschungszentrum",
         "url": "https://www.wikidata.org/wiki/Q1205569"
+      },
+      {
+        "domain": "dbregio.de",
+        "source": "wikidata-owned",
+        "via": "DB Regio",
+        "url": "https://www.wikidata.org/wiki/Q18853"
+      },
+      {
+        "domain": "dbschenker.com",
+        "source": "wikidata-owned",
+        "via": "DB Schenker Logistics",
+        "url": "https://www.wikidata.org/wiki/Q31341"
       },
       {
         "domain": "dena.de",
@@ -12205,6 +12277,12 @@
         "url": "https://www.wikidata.org/wiki/Q19965692"
       },
       {
+        "domain": "stiftungsfamilie.de",
+        "source": "wikidata-owned",
+        "via": "Stiftung Bahn-Sozialwerk",
+        "url": "https://www.wikidata.org/wiki/Q1560325"
+      },
+      {
         "domain": "toll-collect.de",
         "source": "wikidata-owned",
         "via": "Toll Collect",
@@ -12239,6 +12317,12 @@
         "source": "wikidata-owned",
         "via": "Vebeg GmbH",
         "url": "https://www.wikidata.org/wiki/Q1670690"
+      },
+      {
+        "domain": "verkehrsverbund-warnow.de",
+        "source": "wikidata-owned",
+        "via": "Verkehrsverbund Warnow",
+        "url": "https://www.wikidata.org/wiki/Q2516492"
       },
       {
         "domain": "wik.org",

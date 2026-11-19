@@ -67,7 +67,8 @@ export function lookalikeCandidates(org: Org, brandTlds?: readonly string[]): Ca
     brandLabel,
     primaryTld: parseVariant(org.primaryDomain).tld,
     tlds,
-    officialDomains: org.officialDomains,
+    // Related domains (youtube.com for Google) are official too: never report them as lookalikes.
+    officialDomains: toOrgInput(org).officialDomains,
   });
 }
 

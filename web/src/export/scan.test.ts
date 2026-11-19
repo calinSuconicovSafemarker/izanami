@@ -46,6 +46,10 @@ describe('toScanExport', () => {
         name: 'Delft University of Technology',
         primaryDomain: 'tudelft.nl',
         officialDomains: ['tudelft.nl'],
+        relatedDomains: [
+          { domain: 'tudelft.com', source: 'curated', url: 'https://crt.sh/?id=28188220425' },
+          { domain: 'tudelft.eu', source: 'curated', url: 'https://crt.sh/?id=29352240987' },
+        ],
       },
       scan: { status: 'done', total: 2, checked: 2, registered: 1 },
       candidates: [
