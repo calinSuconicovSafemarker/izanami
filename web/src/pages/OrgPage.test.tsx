@@ -32,6 +32,23 @@ describe('organisation page', () => {
     ).toBeInTheDocument();
   });
 
+  it('lists the brand TLDs the org operates, each linked to its IANA record', () => {
+    renderRoute('/org/google');
+    const tlds = within(card()).getByRole('list', { name: /operates the tlds/i });
+    expect(card()).toHaveTextContent(/Operates the TLDs/);
+    const gle = within(tlds).getByRole('link', { name: '.gle' });
+    expect(gle).toHaveAttribute('href', 'https://www.iana.org/domains/root/db/gle.html');
+    expect(within(tlds).getByRole('link', { name: '.google' })).toBeInTheDocument();
+    expect(within(tlds).getByRole('link', { name: '.youtube' })).toBeInTheDocument();
+    // IDN TLDs are shown in Unicode (xn--flw351e).
+    expect(within(tlds).getByRole('link', { name: '.谷歌' })).toBeInTheDocument();
+  });
+
+  it('shows no brand TLDs for an org without any', () => {
+    renderRoute('/org/tu-delft');
+    expect(within(card()).queryByRole('list', { name: /operates the tlds/i })).toBeNull();
+  });
+
   it('collapses a long group behind a disclosure', () => {
     renderRoute('/org/google');
     const published = within(card()).getByRole('list', { name: /published by the company/i });

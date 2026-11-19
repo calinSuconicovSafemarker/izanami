@@ -18,7 +18,12 @@ import { tapLookups, type TerminalLine } from './lines';
 export type LookupState =
   | { phase: 'idle' }
   | { phase: 'invalid'; input: string; message: string }
-  | { phase: 'official'; variant: ParsedVariant }
+  | {
+      phase: 'official';
+      variant: ParsedVariant;
+      /** Set when official because the org operates the variant's TLD (punycode). */
+      brandTld?: string;
+    }
   | {
       phase: 'running' | 'done';
       variant: ParsedVariant;
@@ -56,8 +61,18 @@ export function useLookup(org: Org, clientOverride?: LookupClient): Lookup {
         setState({ phase: 'invalid', input, message: e.message });
         return;
       }
-      if (similarity(variant, orgInput.brandLabel, orgInput.officialDomains).isOfficial) {
-        setState({ phase: 'official', variant });
+      const sim = similarity(
+        variant,
+        orgInput.brandLabel,
+        orgInput.officialDomains,
+        orgInput.brandTlds,
+      );
+      if (sim.isOfficial) {
+        setState({
+          phase: 'official',
+          variant,
+          ...(sim.brandTld ? { brandTld: sim.brandTld } : {}),
+        });
         return;
       }
 

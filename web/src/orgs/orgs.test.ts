@@ -9,6 +9,7 @@ const BBC: Org = {
   primaryDomain: 'bbc.co.uk',
   officialDomains: ['bbc.co.uk'],
   relatedDomains: [],
+  brandTlds: [],
   wikidataDomain: 'bbc.co.uk',
   trancoRank: 100,
   confirmedAt: '2026-11-17',

@@ -11,6 +11,7 @@ Terms are defined in [GLOSSARY.md](GLOSSARY.md).
 1. **Landing page** — searchable grid of ~500 organisations (search by name or domain).
 2. **Organisation page** (`/#/org/<slug>`) — an *official-domain card*:
    - primary domain + all known official domains;
+   - brand TLDs the organisation operates ("Operates the TLDs .google, .gle …"), each linked to its IANA record;
    - evidence: "Wikidata lists this as the official website (P856)" + "Tranco rank N (heavily used)" + `confirmedAt` date.
    - Honest wording: Wikidata says official + Tranco says heavily used. This is **not** proof of ownership.
 3. **Lookup terminal** — monospace panel, brand label prefilled (`tudelft.`), TLD quick-pick chips, free editing allowed (typos, combo-squats, IDN). Deep link `/#/org/<slug>?d=<variant>` auto-runs the lookup.
@@ -20,7 +21,7 @@ Terms are defined in [GLOSSARY.md](GLOSSARY.md).
 
 - Always normalise to the **registrable domain** via the Public Suffix List (`tudelft.nl.evil.com` → `evil.com`, flagged as subdomain trick).
 - Show the variant in both Unicode and punycode.
-- If the variant matches any **known official domain** → verdict **Official**, no further scoring.
+- If the variant matches any **known official domain**, or sits under a **brand TLD** the organisation operates (`c.gle` for Google) → verdict **Official**, no further scoring.
 - If the variant bears no similarity to the brand → "not a lookalike of <Org>" (lookup still allowed, scored without the `brand-lookalike` rule: it is reported *not applicable* and left out of the score and the unknown share).
 
 ## Lookup pipeline (all from the browser)
@@ -50,7 +51,7 @@ Each rule is a pure function `(variant: VariantFacts, official: OfficialFacts) �
 
 | Rule | Fires when | Weight |
 |---|---|---|
-| `official-match` | variant ∈ known official domains | short-circuit → **Official** |
+| `official-match` | variant ∈ known official domains, or its TLD ∈ the org's brand TLDs ("Google operates the .gle top-level domain") | short-circuit → **Official** |
 | `young-domain` | registered < 90 days ago | +40 |
 | `much-newer` | registered > 5 years after official (and not `young-domain`) | +15 |
 | `brand-lookalike` | edit distance ≤ 2 / contains brand label | +25 |
@@ -74,12 +75,12 @@ Owner (registrant) is displayed only when RDAP returns it unredacted; it is not 
 
 Outputs committed to `web/src/data/`:
 
-- `orgs.json` — ~500 orgs: `{ slug, name, wikidataId, country, primaryDomain, officialDomains[], wikidataDomain, trancoRank, confirmedAt }`. Generated from Wikidata entities with P856 whose registrable domain is in Tranco top ~10k; top 500 by rank. An org is included only when **both** sources agree ([ADR-0002](adr/0002-build-time-resolution.md)).
+- `orgs.json` — ~500 orgs: `{ slug, name, wikidataId, country, primaryDomain, officialDomains[], relatedDomains[], brandTlds[], wikidataDomain, trancoRank, confirmedAt }`. Generated from Wikidata entities with P856 whose registrable domain is in Tranco top ~10k; top 500 by rank. An org is included only when **both** sources agree ([ADR-0002](adr/0002-build-time-resolution.md)).
 - `extras.json` (hand-curated input, e.g. TU Delft `Q752663`) — exempt from the Tranco check, each entry must cite a source.
 - `tranco-top100k` — compact set: sorted 32-bit FNV-1a hashes, Golomb-Rice coded (~207 KB gzipped). No false negatives; false-positive rate ≈ n/2³² ≈ 2.3e-5.
 - `confusables.json` — Latin/Cyrillic/Greek subset of Unicode `confusables.txt`.
 - `rdap-hosts.json` — RDAP server hosts from the IANA bootstrap, used for the CSP `connect-src` allowlist.
-- `data-diff.md` — human-reviewed report of official domains that changed since the last build.
+- `data-diff.md` — human-reviewed report of official domains, related domains and brand TLDs that changed since the last build.
 
 ## Hosting & security ([ADR-0004](adr/0004-security-headers.md))
 
@@ -107,7 +108,7 @@ Client-side downloads only (Blob + `a[download]`, no network, CSP unchanged); bu
 | Key | Content |
 | --- | --- |
 | `schemaVersion`, `tool` (`"izanami"`), `kind` (`"lookup"`), `exportedAt`, `checkedAt` | ISO 8601 times; `checkedAt` is `null` for an official domain (no lookups) |
-| `org` | `{slug, name, primaryDomain, officialDomains}` |
+| `org` | `{slug, name, primaryDomain, officialDomains, relatedDomains, brandTlds}` |
 | `variant` | `{input, unicode, punycode, registrableDomain}` |
 | `analysis` | `{technique, editDistance, similarityPercent (0–100), homoglyphs: [{text, looksLike, codePoints}], inTrancoTop100k}` |
 | `existence` | `not-registered` \| `registered-not-resolving` \| `resolving` \| `null` |

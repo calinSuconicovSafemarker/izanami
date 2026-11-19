@@ -37,7 +37,8 @@ export function wikidataUrl(org: Org): string {
 
 /**
  * Rules-engine input; the brand label is the primary domain's registrable label. Related domains
- * (products, subsidiaries, vendor lists) count as official for matching (ticket 15).
+ * (products, subsidiaries, vendor lists) count as official for matching (ticket 15), and so does
+ * every domain under one of the org's brand TLDs (ticket 14).
  */
 export function toOrgInput(org: Org): OrgInput {
   return {
@@ -46,6 +47,7 @@ export function toOrgInput(org: Org): OrgInput {
     country: org.country ?? '',
     primaryDomain: org.primaryDomain,
     officialDomains: [...org.officialDomains, ...org.relatedDomains.map((r) => r.domain)],
+    brandTlds: org.brandTlds,
     brandLabel: parseVariant(org.primaryDomain).label,
   };
 }

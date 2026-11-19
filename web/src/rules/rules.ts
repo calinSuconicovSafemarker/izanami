@@ -11,6 +11,8 @@ import type {
 } from './types';
 import { isNotRegistered as notRegistered } from './types';
 import { getDomain } from 'tldts';
+import { toUnicode } from 'punycode/';
+import { officialExplanation } from './official';
 import { ABUSE_HEAVY_TLDS, AGES, BRAND_REGISTRARS, COMMON_GTLDS, WEIGHTS } from './weights';
 
 const DAY_MS = 86_400_000;
@@ -251,21 +253,29 @@ const oddTld: Rule = (v) => {
 };
 
 const officialMatch: Rule = (v) =>
-  v.similarity.isOfficial
+  v.similarity.brandTld
     ? result(
         'official-match',
         'fired',
         0,
-        `${v.unicode} is a known official domain of ${v.orgName}.`,
-        `Known official domain of ${v.orgName}`,
+        officialExplanation(v.unicode, v.orgName, v.similarity.brandTld),
+        `${v.orgName} operates the .${toUnicode(v.similarity.brandTld)} top-level domain`,
       )
-    : result(
-        'official-match',
-        'not-fired',
-        0,
-        `${v.unicode} is not one of ${v.orgName}'s known official domains.`,
-        'Not a known official domain',
-      );
+    : v.similarity.isOfficial
+      ? result(
+          'official-match',
+          'fired',
+          0,
+          officialExplanation(v.unicode, v.orgName),
+          `Known official domain of ${v.orgName}`,
+        )
+      : result(
+          'official-match',
+          'not-fired',
+          0,
+          `${v.unicode} is not one of ${v.orgName}'s known official domains.`,
+          'Not a known official domain',
+        );
 
 // --- Infrastructure overlap -------------------------------------------------
 

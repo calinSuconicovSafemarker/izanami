@@ -179,6 +179,18 @@ table('official-match', [
     weight: 0,
     says: ['official'],
   },
+  {
+    name: 'under a brand TLD the org operates',
+    variant: {
+      ...sim('official', { brandTld: 'gle' }),
+      unicode: 'c.gle',
+      tld: 'gle',
+      orgName: 'Google',
+    },
+    status: 'fired',
+    weight: 0,
+    says: ['Google operates the .gle top-level domain'],
+  },
   { name: 'lookalike', variant: sim('typo'), status: 'not-fired', weight: 0 },
 ]);
 

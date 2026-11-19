@@ -17,6 +17,7 @@ function org(id: string, name: string, domains: string[], rank: number): Org {
     primaryDomain: domains[0]!,
     officialDomains: domains,
     relatedDomains: [],
+    brandTlds: [],
     wikidataDomain: domains[0]!,
     trancoRank: rank,
     confirmedAt: '2026-11-19',

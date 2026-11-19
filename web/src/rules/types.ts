@@ -25,6 +25,8 @@ export interface OrgInput {
   country: string;
   primaryDomain: string;
   officialDomains: readonly string[];
+  /** TLDs the organisation operates (punycode, no dot): every domain under them is official. */
+  brandTlds?: readonly string[];
   /** e.g. `tudelft`. */
   brandLabel: string;
 }

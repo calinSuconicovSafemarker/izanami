@@ -31,7 +31,7 @@ function Status({ state }: { state: ScanState }) {
 
 export interface LookalikeScanProps {
   org: Org;
-  /** Single-owner TLDs to rate as `brand` (optional until brand-TLD data exists). */
+  /** Single-owner TLDs to rate as `brand`; defaults to the org's own brand TLDs. */
   brandTlds?: readonly string[];
   /** Pause between DoH queries per worker (tests pass 0). */
   delayMs?: number;

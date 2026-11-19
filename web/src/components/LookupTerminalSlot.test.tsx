@@ -203,3 +203,30 @@ describe('TLD ratings', () => {
     expect(await within(output()).findByText('TLD .guide: other gTLD')).toBeInTheDocument();
   });
 });
+
+describe('brand TLDs (ticket 14)', () => {
+  const verdictCard = () => screen.findByRole('region', { name: /^verdict$/i });
+
+  it.each(['c.gle', 'about.google'])(
+    '%s is Official on Google’s page, without lookups',
+    async (d) => {
+      renderRoute(`/org/google?d=${d}`, new FixtureLookupClient([]));
+      const card = await verdictCard();
+      expect(within(card).getByRole('status')).toHaveTextContent('Verdict: Official');
+      expect(within(output()).queryByRole('list')).not.toBeInTheDocument();
+    },
+  );
+
+  it('explains that Google operates the TLD', async () => {
+    renderRoute('/org/google?d=c.gle', new FixtureLookupClient([]));
+    expect(await verdictCard()).toHaveTextContent('Google operates the .gle top-level domain');
+    expect(output()).toHaveTextContent('Google operates the .gle top-level domain');
+  });
+
+  it('c.gle is not official on another org’s page', async () => {
+    renderRoute('/org/microsoft?d=c.gle');
+    const card = await verdictCard();
+    expect(within(card).getByRole('status')).not.toHaveTextContent('Verdict: Official');
+    expect(card).not.toHaveTextContent('operates the .gle');
+  });
+});

@@ -6,8 +6,10 @@ export type LookalikeKind =
   'official' | 'tld-swap' | 'typo' | 'homoglyph' | 'combo' | 'subdomain-trick' | 'unrelated';
 
 export interface Similarity {
-  /** Registrable domain is one of the known official domains. */
+  /** Registrable domain is one of the known official domains, or under one of the org's brand TLDs. */
   isOfficial: boolean;
+  /** Set when official because the variant's TLD (punycode) is one the org operates (ticket 14). */
+  brandTld?: string;
   /** Optimal-string-alignment distance between the variant label and the brand label. */
   editDistance: number;
   /** Variant label differs from the brand but has the same confusables skeleton. */
@@ -48,12 +50,14 @@ const labelOf = (domain: string) => domain.split('.')[0] ?? '';
 
 /**
  * Measure how close a variant is to an organisation's brand.
- * `officialDomains` are registrable domains in Unicode or punycode form.
+ * `officialDomains` are registrable domains in Unicode or punycode form; `brandTlds` are TLDs
+ * the organisation operates (punycode, no dot), under which every domain is official.
  */
 export function similarity(
   variant: ParsedVariant,
   brandLabel: string,
   officialDomains: readonly string[],
+  brandTlds: readonly string[] = [],
 ): Similarity {
   const brand = brandLabel.toLowerCase();
   const brandSkel = skeleton(brand);
@@ -61,7 +65,12 @@ export function similarity(
   const labelSkel = skeleton(label);
   const officials = officialDomains.map((d) => toASCII(d.toLowerCase()));
 
-  const isOfficial = officials.includes(variant.registrableDomain);
+  const officialDomain = officials.includes(variant.registrableDomain);
+  const brandTld =
+    !officialDomain && brandTlds.some((t) => toASCII(t.toLowerCase()) === variant.tld)
+      ? variant.tld
+      : undefined;
+  const isOfficial = officialDomain || brandTld !== undefined;
   const distance = editDistance(label, brand);
   const homoglyph = label !== brand && labelSkel === brandSkel;
   const containsBrand = labelSkel !== brandSkel && labelSkel.includes(brandSkel);
@@ -84,5 +93,13 @@ export function similarity(
               ? 'combo'
               : 'unrelated';
 
-  return { isOfficial, editDistance: distance, homoglyph, containsBrand, tldSwap, kind };
+  return {
+    isOfficial,
+    ...(brandTld ? { brandTld } : {}),
+    editDistance: distance,
+    homoglyph,
+    containsBrand,
+    tldSwap,
+    kind,
+  };
 }

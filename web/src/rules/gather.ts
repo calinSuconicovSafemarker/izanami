@@ -210,7 +210,7 @@ export async function gatherFacts(
     brandLabel: org.brandLabel,
     orgName: org.name,
     orgCountry: org.country,
-    similarity: similarity(variant, org.brandLabel, org.officialDomains),
+    similarity: similarity(variant, org.brandLabel, org.officialDomains, org.brandTlds),
     inTranco: inTrancoTop100k(domain),
     checkedAt: (options.now ?? new Date()).toISOString(),
   };

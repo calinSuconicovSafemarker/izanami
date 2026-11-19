@@ -2,7 +2,7 @@ import { useId, useState, type FormEvent } from 'react';
 import { toUnicode } from 'punycode/';
 import type { Org } from '../orgs';
 import { toOrgInput } from '../orgs';
-import type { Existence, Fact } from '../rules';
+import { officialExplanation, type Existence, type Fact } from '../rules';
 import type { TerminalLine } from './lines';
 import { quickPickTlds, rateTld, TldBadge, type TldContext } from '../tld';
 import { EXISTENCE_WORDING, withTld } from './wording';
@@ -36,7 +36,15 @@ function ExistenceLine({ existence, done }: { existence: Fact<Existence>; done: 
   );
 }
 
-function Output({ state, tldContext }: { state: LookupState; tldContext: TldContext }) {
+function Output({
+  state,
+  tldContext,
+  orgName,
+}: {
+  state: LookupState;
+  tldContext: TldContext;
+  orgName: string;
+}) {
   switch (state.phase) {
     case 'idle':
       return null;
@@ -45,7 +53,10 @@ function Output({ state, tldContext }: { state: LookupState; tldContext: TldCont
     case 'official':
       return (
         <p data-existence="official" className="font-semibold text-emerald-400">
-          Official domain — {state.variant.unicode} is a known official domain.
+          Official domain —{' '}
+          {state.brandTld
+            ? officialExplanation(state.variant.unicode, orgName, state.brandTld)
+            : `${state.variant.unicode} is a known official domain.`}
         </p>
       );
     case 'running':
@@ -105,7 +116,7 @@ export interface LookupTerminalProps {
   /** Prefill (e.g. from a deep link); defaults to `<brandLabel>.`. Read on mount only. */
   initialInput?: string | null;
   onSubmit: (input: string) => void;
-  /** Single-owner TLDs to rate as `brand` (optional until brand-TLD data exists). */
+  /** Single-owner TLDs to rate as `brand`; defaults to the org's own brand TLDs. */
   brandTlds?: readonly string[];
 }
 
@@ -115,7 +126,7 @@ export function LookupTerminal({
   lookup,
   initialInput,
   onSubmit,
-  brandTlds,
+  brandTlds = org.brandTlds,
 }: LookupTerminalProps) {
   const { brandLabel } = toOrgInput(org);
   const tldContext: TldContext = { officialDomains: org.officialDomains, brandTlds };
@@ -173,7 +184,7 @@ export function LookupTerminal({
         ))}
       </ul>
       <div role="log" aria-label="Lookup output" aria-live="polite" className="flex flex-col gap-1">
-        <Output state={lookup.state} tldContext={tldContext} />
+        <Output state={lookup.state} tldContext={tldContext} orgName={org.name} />
       </div>
     </section>
   );

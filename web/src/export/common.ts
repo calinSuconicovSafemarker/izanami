@@ -10,6 +10,8 @@ export interface ExportOrg {
   officialDomains: string[];
   /** Related official domains (ticket 15); additive, so the schema version is unchanged. */
   relatedDomains: RelatedDomain[];
+  /** TLDs the org operates (ticket 14, punycode); additive, so the schema version is unchanged. */
+  brandTlds: string[];
 }
 
 export const exportOrg = (org: Org): ExportOrg => ({
@@ -18,4 +20,5 @@ export const exportOrg = (org: Org): ExportOrg => ({
   primaryDomain: org.primaryDomain,
   officialDomains: [...org.officialDomains],
   relatedDomains: org.relatedDomains.map((r) => ({ ...r })),
+  brandTlds: [...org.brandTlds],
 });

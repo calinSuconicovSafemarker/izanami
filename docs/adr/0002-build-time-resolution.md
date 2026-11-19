@@ -49,3 +49,12 @@ Rules:
 - Another org's official domain is skipped, unless this org owns that org per Wikidata or a curated `owns` link (youtube.com is YouTube's own entry and also Google's related domain, credited via YouTube). This is the only overlap.
 - Domains whose subdomains anyone can rent (the domain itself is a Public Suffix List private suffix: appspot.com, googleapis.com, azureedge.net) are never added from Wikidata or published lists: they would make a lookalike hosted there "Official". Curated entries may override this (withgoogle.com is on the PSL, but only Google uses it).
 - `data-diff.md` lists related-domain changes and the curated/published domains that were skipped.
+
+## Amendment 3 — 2026-11-19: brand TLDs
+
+Some organisations run their own top-level domain (Google: `.google`, `.gle`, `.youtube`; Microsoft: `.microsoft`, `.xbox`). Ticket 14 adds `brandTlds: string[]` (punycode, no dot) to each org; every domain under one of them counts as official.
+
+- **Operator**: the IANA Root Zone Database index (`https://www.iana.org/domains/root/db`, one cached page) names each TLD's manager.
+- **Closed, not open**: a TLD counts when ICANN's gTLD list (`gtlds.json`, cached) marks it Specification 13 (.brand: only the operator and its affiliates may hold names) in a live agreement. Brand registries also run open TLDs (Charleston Road Registry: `.app`, `.dev`), which never count. Closed brand TLDs without Specification 13 (`.gle`, `.goog`, `.baidu`) are listed by hand.
+- **Mapping**: `scripts/data/brand-tlds.json` maps the manager name exactly as IANA spells it to one org (Charleston Road Registry Inc. → Google), with a source URL per entry and per hand-listed TLD. A TLD goes to that one org only (`.youtube` → Google, not the YouTube entry).
+- `data-diff.md` lists brand-TLD changes, and notes mapped operators IANA lists for no TLD and hand-listed TLDs IANA attributes to another manager.

@@ -89,3 +89,26 @@ describe('similarity: signals', () => {
     ).toBe(true);
   });
 });
+
+describe('similarity: brand TLDs (ticket 14)', () => {
+  const google = (input: string, brandTlds?: readonly string[]) =>
+    similarity(parseVariant(input), 'google', ['google.com'], brandTlds);
+
+  it('treats any domain under a TLD the org operates as official', () => {
+    expect(google('c.gle', ['gle', 'google'])).toMatchObject({
+      isOfficial: true,
+      kind: 'official',
+      brandTld: 'gle',
+    });
+    expect(google('about.google', ['gle', 'google'])).toMatchObject({
+      isOfficial: true,
+      brandTld: 'google',
+    });
+  });
+
+  it('does not without the brand TLD', () => {
+    expect(google('c.gle')).toMatchObject({ isOfficial: false });
+    expect(google('c.gle').brandTld).toBeUndefined();
+    expect(google('google.com', ['gle']).brandTld).toBeUndefined();
+  });
+});

@@ -128,6 +128,16 @@ describe('toLookupExport', () => {
     });
   });
 
+  it('exports a domain under a brand TLD as official and lists the brand TLDs in the org block', () => {
+    const google = getOrg('google')!;
+    const out = toLookupExport({ org: google, variant: parseVariant('c.gle'), exportedAt });
+    expect(out.org.brandTlds).toEqual(expect.arrayContaining(['gle', 'goog', 'google', 'youtube']));
+    expect(out).toMatchObject({
+      analysis: { technique: 'official' },
+      verdict: { label: 'Official' },
+    });
+  });
+
   it('tells "no certificate ever logged" apart from "CT lookup failed"', () => {
     const { variant, facts } = youngTldSwap();
     facts.variantFacts.firstCertDate = known(null);

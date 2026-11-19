@@ -2,6 +2,7 @@ import { useId, type ReactNode } from 'react';
 import {
   evaluate,
   isAwaitingLookup,
+  officialExplanation,
   unknownSources,
   verdict,
   whyList,
@@ -223,16 +224,19 @@ export function VerdictCard({ facts, done, actions }: VerdictCardProps) {
 export function OfficialVerdictCard({
   domain,
   orgName,
+  brandTld,
   actions,
 }: {
   domain: string;
   orgName: string;
+  /** Set when official because the org operates the domain's TLD (punycode). */
+  brandTld?: string;
   actions?: ReactNode;
 }) {
   const v: Verdict = { verdict: 'Official', score: 0, unknownShare: 0 };
   return (
     <CardFrame announcement="Verdict: Official">
-      <VerdictHeader v={v} text={`${domain} is a known official domain of ${orgName}.`} />
+      <VerdictHeader v={v} text={officialExplanation(domain, orgName, brandTld)} />
       {actions}
     </CardFrame>
   );

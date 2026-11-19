@@ -1,3 +1,4 @@
+import { toUnicode } from 'punycode/';
 import type { Org, RelatedDomain, RelatedDomainGroup } from '../orgs';
 import { isCurated, relatedDomainGroups, wikidataUrl } from '../orgs';
 
@@ -40,6 +41,31 @@ export function OfficialDomainCard({ org }: { org: Org }) {
               </li>
             ))}
           </ul>
+        </div>
+      )}
+
+      {org.brandTlds.length > 0 && (
+        <div className="flex flex-col gap-2">
+          <h3 id="brand-tlds-heading" className="text-sm text-zinc-400">
+            Operates the TLDs
+          </h3>
+          <ul aria-labelledby="brand-tlds-heading" className="flex flex-wrap gap-2">
+            {org.brandTlds.map((tld) => (
+              <li key={tld} className="font-mono text-sm">
+                <a
+                  href={`https://www.iana.org/domains/root/db/${tld}.html`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={linkClass}
+                >
+                  .{toUnicode(tld)}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p className="text-xs text-zinc-400">
+            Every domain under these top-level domains belongs to {org.name}.
+          </p>
         </div>
       )}
 

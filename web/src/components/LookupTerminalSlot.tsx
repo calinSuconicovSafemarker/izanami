@@ -48,6 +48,7 @@ function Verdict({ state, org }: { state: LookupState; org: Org }) {
         <OfficialVerdictCard
           domain={state.variant.unicode}
           orgName={org.name}
+          brandTld={state.brandTld}
           actions={exportButtons}
         />
       );

@@ -102,8 +102,9 @@ export function toLookupExport({
   facts,
   exportedAt,
 }: LookupExportInput): LookupExport {
-  const { brandLabel, officialDomains } = toOrgInput(org);
-  const sim = facts?.variantFacts.similarity ?? similarity(variant, brandLabel, officialDomains);
+  const { brandLabel, officialDomains, brandTlds } = toOrgInput(org);
+  const sim =
+    facts?.variantFacts.similarity ?? similarity(variant, brandLabel, officialDomains, brandTlds);
   const vf = facts?.variantFacts;
   const results = facts ? evaluate(facts) : [];
   const unregistered = vf ? isNotRegistered(vf.existence) : false;

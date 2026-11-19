@@ -22,6 +22,8 @@
 
 **Existence state** — One of *Not registered*, *Registered, not resolving*, *Resolving*.
 
+**Brand TLD** — A top-level domain an organisation runs for itself (`.google`, `.gle`): every domain under it is the organisation's, so any of them → verdict *Official*. Generated from the IANA Root Zone Database (TLD manager) and ICANN's Specification 13 (.brand) flag through a curated operator → organisation mapping ([ADR-0002](adr/0002-build-time-resolution.md) Amendment 3).
+
 **Defensive registration** — A lookalike registered by the organisation itself to keep it away from attackers. Typically shares nameservers/registrar with the official domain.
 
 **Infrastructure overlap** — Shared nameservers, registrar, MX provider or hosting ASN between variant and official domain. Points toward legit.

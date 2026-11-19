@@ -54,7 +54,10 @@ export interface LookalikeScanHook {
 }
 
 /** The bounded candidate set for an org (brand × TLDs plus typos on the primary TLD). */
-export function lookalikeCandidates(org: Org, brandTlds?: readonly string[]): Candidate[] {
+export function lookalikeCandidates(
+  org: Org,
+  brandTlds: readonly string[] = org.brandTlds,
+): Candidate[] {
   const { brandLabel } = toOrgInput(org);
   const tlds = [
     ...new Set([
@@ -74,7 +77,7 @@ export function lookalikeCandidates(org: Org, brandTlds?: readonly string[]): Ca
 
 /** Runs the lookalike scan for one org; cancel or unmount stops dispatching queries. */
 export function useLookalikeScan(org: Org, options: LookalikeScanOptions = {}): LookalikeScanHook {
-  const { brandTlds, delayMs } = options;
+  const { brandTlds = org.brandTlds, delayMs } = options;
   const contextClient = useLookupClient();
   const client = options.client ?? contextClient;
   const candidates = useMemo(() => lookalikeCandidates(org, brandTlds), [org, brandTlds]);
