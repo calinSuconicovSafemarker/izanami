@@ -27,6 +27,8 @@ Run one at a time (e.g. with `/implement`). Each ticket lists its dependencies; 
 | 15 | [Related official domains](15-related-official-domains.md) | — |
 | 16 | [TLD risk rating and lookalike scan](16-tld-risk-and-lookalike-scan.md) | — |
 
+Round 2 status: all done, plus B3 (export) and the code-review fixes (db1b102). Deployed to GitHub Pages and AWS CloudFront on 2026-11-19.
+
 Suggested order: 00 → 01 → 02 → 03 → 04 → 05 → 06 → 07 → 08 → 09 → 10 → 11.
 First runnable slice (no scoring): after 06.
 
