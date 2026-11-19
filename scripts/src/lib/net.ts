@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import { existsSync } from 'node:fs';
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { setTimeout as sleep } from 'node:timers/promises';
 import { fileURLToPath } from 'node:url';
@@ -31,7 +31,9 @@ export async function cached(name: string, produce: () => Promise<Buffer>): Prom
   await mkdir(dirname(path), { recursive: true });
   if (!REFRESH && existsSync(path)) return readFile(path);
   const data = await produce();
-  await writeFile(path, data);
+  // Write-then-rename, so an interrupted run never leaves a truncated file in the cache.
+  await writeFile(`${path}.part`, data);
+  await rename(`${path}.part`, path);
   return data;
 }
 
@@ -68,8 +70,10 @@ export function sha256(text: string): string {
   return createHash('sha256').update(text).digest('hex');
 }
 
-/** GET `url` once, cached under its file name. */
-export function cachedDownload(url: string): Promise<Buffer> {
-  const name = new URL(url).pathname.split('/').pop() || 'download';
+/** GET `url` once, cached as `name` (default: the URL's file name). */
+export function cachedDownload(
+  url: string,
+  name = new URL(url).pathname.split('/').pop() || 'download',
+): Promise<Buffer> {
   return cached(name, () => fetchWithRetry(url));
 }

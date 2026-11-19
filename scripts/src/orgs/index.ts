@@ -6,10 +6,11 @@ import { fileURLToPath } from 'node:url';
 import { format, resolveConfig } from 'prettier';
 import { parseBrandTldsConfig, parseRootZoneDb, parseSpecification13 } from './brand-tlds';
 import { parseExtras } from './extras';
+import { parsePinnedOrgs } from './select';
 import { queryOwnedViaApi } from './ownership';
 import { parsePublishedList, parsePublishedListsConfig } from './related';
 import { CACHE_DIR, cached, fetchWithRetry, sha256 } from '../lib/net';
-import { trancoCsv } from '../lib/tranco';
+import { loadPopularity } from '../lib/popularity';
 import { runOrgsPipeline, type OrgsSources } from './pipeline';
 import type { Org } from './select';
 import {
@@ -24,6 +25,7 @@ const REPO = join(HERE, '../../..');
 const ORGS_JSON = join(REPO, 'web/src/data/orgs.json');
 const DIFF_MD = join(REPO, 'web/src/data/data-diff.md');
 const EXTRAS_JSON = join(REPO, 'scripts/data/extras.json');
+const PINNED_ORGS_JSON = join(REPO, 'scripts/data/pinned-orgs.json');
 const PUBLISHED_LISTS_JSON = join(REPO, 'scripts/data/published-lists.json');
 const BRAND_TLDS_JSON = join(REPO, 'scripts/data/brand-tlds.json');
 
@@ -98,7 +100,7 @@ const RETRYABLE_API_ERRORS = new Set(['maxlag', 'cirrussearch-too-busy-error']);
 
 /** Real (network + filesystem) sources; downloads are cached under `scripts/.cache`. */
 const liveSources: OrgsSources = {
-  trancoCsv: () => trancoCsv(),
+  popularity: () => loadPopularity(),
   async queryEntities(domains) {
     return parseEntityBindings(await sparql(buildEntityQuery(domains)));
   },
@@ -107,6 +109,9 @@ const liveSources: OrgsSources = {
   },
   async extras() {
     return parseExtras(JSON.parse(await readFile(EXTRAS_JSON, 'utf8')));
+  },
+  async pinnedOrgs() {
+    return parsePinnedOrgs(JSON.parse(await readFile(PINNED_ORGS_JSON, 'utf8')));
   },
   async queryOwned(parentIds) {
     return queryOwnedViaApi(parentIds, wikidataApi);
@@ -151,10 +156,12 @@ const liveSources: OrgsSources = {
 
 /** Generates `web/src/data/orgs.json` and `data-diff.md` (ticket 01, ADR-0002). */
 export async function buildOrgs(): Promise<void> {
-  console.log('orgs: resolving official domains from Wikidata P856 + Tranco, related domains');
+  console.log(
+    'orgs: resolving official domains from Wikidata P856 + popularity lists, related domains',
+  );
   const { orgs, diffMarkdown } = await runOrgsPipeline(liveSources, {
-    candidateDomains: 10_000,
-    limit: 500,
+    candidateBucket: 10_000,
+    limit: 1000,
     batchSize: 500,
     classBatchSize: 200,
     ownedBatchSize: 200,

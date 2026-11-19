@@ -1,4 +1,5 @@
 import { registrableDomain } from '../lib/domain';
+import type { PopularityMap } from '../lib/popularity';
 import type { CuratedDomain, OwnedEntity } from './related';
 import { assignSlugs, compareOrgs, type Org } from './select';
 
@@ -18,7 +19,7 @@ export interface CuratedOwnership {
   source: string;
 }
 
-/** A hand-curated organisation of `scripts/data/extras.json`; exempt from the Tranco check (ADR-0002). */
+/** A hand-curated organisation of `scripts/data/extras.json`; exempt from the popularity check (ADR-0002). */
 export interface OrgExtra {
   wikidataId: string;
   slug?: string;
@@ -86,7 +87,7 @@ export function parseExtras(json: unknown): Extra[] {
 export function mergeExtras(
   generated: readonly Org[],
   extras: readonly Extra[],
-  tranco: ReadonlyMap<string, number>,
+  popularity: PopularityMap,
   confirmedAt: string,
 ): Org[] {
   let orgs = generated.map((o) => ({ ...o, slug: '' }));
@@ -109,7 +110,7 @@ export function mergeExtras(
       relatedDomains: [],
       brandTlds: [],
       wikidataDomain: match?.wikidataDomain ?? null,
-      trancoRank: tranco.get(extra.primaryDomain) ?? null,
+      popularity: popularity.get(extra.primaryDomain) ?? null,
       confirmedAt,
     });
   }

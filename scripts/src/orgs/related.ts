@@ -1,5 +1,6 @@
 import { parse } from 'tldts';
 import { registrableDomain } from '../lib/domain';
+import type { PopularityMap } from '../lib/popularity';
 import type { RelatedDomain, RelatedSource } from '../lib/web';
 import { officialDomainOf } from './domains';
 import type { Org } from './select';
@@ -83,8 +84,8 @@ interface Candidate extends RelatedDomain {
 /**
  * Sets `relatedDomains` on every org. Rules:
  * - Wikidata: P856 of entities owned one or two levels below the org; the P856 must be a site
- *   root (as for official domains) and the domain must have a Tranco rank (ADR-0002: Wikidata alone
- *   is not enough).
+ *   root (as for official domains) and the domain must be listed in the popularity data (ADR-0002:
+ *   Wikidata alone is not enough).
  * - Published lists and curated entries are taken as they are.
  * - A domain that is another org's official domain is kept only when that org is itself owned by
  *   this one (YouTube under Google); otherwise it is skipped.
@@ -93,7 +94,7 @@ interface Candidate extends RelatedDomain {
  */
 export function addRelatedDomains(
   orgs: readonly Org[],
-  tranco: ReadonlyMap<string, number>,
+  popularity: PopularityMap,
   inputs: RelatedInputs,
 ): { orgs: Org[]; skipped: SkippedDomain[] } {
   const orgIndex = new Map(orgs.map((o, i) => [o.wikidataId, i]));
@@ -103,7 +104,7 @@ export function addRelatedDomains(
   const { candidates: ownedCandidates, descendants } = ownershipCandidates(
     orgs,
     inputs.owned ?? [],
-    tranco,
+    popularity,
   );
   const candidates: Candidate[] = [
     ...(inputs.curated ?? []).map((c) => ({
@@ -206,7 +207,7 @@ export function addRelatedDomains(
 function ownershipCandidates(
   orgs: readonly Org[],
   owned: readonly OwnedEntity[],
-  tranco: ReadonlyMap<string, number>,
+  popularity: PopularityMap,
 ): {
   candidates: Candidate[];
   /** org → every entity reached below it → the curated link's source URL, if curated. */
@@ -230,7 +231,7 @@ function ownershipCandidates(
           next.push(entity.wikidataId);
           const domains = new Set(entity.websites.map(officialDomainOf));
           for (const domain of domains) {
-            if (!domain || !tranco.has(domain)) continue;
+            if (!domain || !popularity.has(domain)) continue;
             candidates.push({
               orgId: org.wikidataId,
               domain,

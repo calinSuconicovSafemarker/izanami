@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { majesticOnly, ranked } from '../lib/popularity-fixture';
 import { selectOrgs } from './select';
 import type { WikidataEntity } from './wikidata';
 
@@ -23,13 +24,13 @@ function entities(...list: WikidataEntity[]): Map<string, WikidataEntity> {
 }
 
 describe('selectOrgs', () => {
-  it('excludes an entity whose official domain has no Tranco rank', () => {
+  it('excludes an entity whose official domain is not in the popularity data', () => {
     const orgs = selectOrgs({
       entities: entities(
         entity('Q1', 'Ranked Corp', ['https://ranked.com/']),
         entity('Q2', 'Obscure Society', ['https://obscure-society.org/']),
       ),
-      tranco: new Map([['ranked.com', 42]]),
+      popularity: ranked([['ranked.com', 42]]),
       limit: 500,
       confirmedAt: NOW,
     });
@@ -52,7 +53,7 @@ describe('selectOrgs', () => {
           { countries: ['NL'] },
         ),
       ),
-      tranco: new Map([
+      popularity: ranked([
         ['github.com', 1],
         ['tu-delft.com', 900],
         ['tudelft.nl', 300],
@@ -70,19 +71,19 @@ describe('selectOrgs', () => {
       relatedDomains: [],
       brandTlds: [],
       wikidataDomain: 'tudelft.nl',
-      trancoRank: 300,
+      popularity: majesticOnly(300),
       confirmedAt: NOW,
     });
   });
 
-  it('keeps the top N by Tranco rank, best first', () => {
+  it('keeps the top N by popularity, best first', () => {
     const orgs = selectOrgs({
       entities: entities(
         entity('Q1', 'C', ['https://c.com/']),
         entity('Q2', 'A', ['https://a.com/']),
         entity('Q3', 'B', ['https://b.com/']),
       ),
-      tranco: new Map([
+      popularity: ranked([
         ['a.com', 1],
         ['b.com', 2],
         ['c.com', 3],
@@ -93,13 +94,52 @@ describe('selectOrgs', () => {
     expect(orgs.map((o) => o.name)).toEqual(['A', 'B']);
   });
 
+  it('keeps pinned organisations beyond the limit, in popularity order', () => {
+    const orgs = selectOrgs({
+      entities: entities(
+        entity('Q1', 'C', ['https://c.com/']),
+        entity('Q2', 'A', ['https://a.com/']),
+        entity('Q3', 'B', ['https://b.com/']),
+        entity('Q4', 'Unlisted', ['https://unlisted.com/']),
+      ),
+      popularity: ranked([
+        ['a.com', 1],
+        ['b.com', 2],
+        ['c.com', 3],
+      ]),
+      limit: 1,
+      pinned: new Set(['Q1', 'Q4']),
+      confirmedAt: NOW,
+    });
+    expect(orgs.map((o) => o.name)).toEqual(['A', 'C']);
+  });
+
+  it('ranks by best position in either list: CrUX top 1k (≈ rank 500) beats Majestic 600', () => {
+    const orgs = selectOrgs({
+      entities: entities(
+        entity('Q1', 'Majestic', ['https://m.com/']),
+        entity('Q2', 'CrUX', ['https://c.com/']),
+      ),
+      popularity: new Map([
+        ['m.com', majesticOnly(600)],
+        ['c.com', { bucket: 1_000, sources: ['crux'], majesticRank: null, cruxBucket: 1_000 }],
+      ]),
+      limit: 500,
+      confirmedAt: NOW,
+    });
+    expect(orgs.map((o) => [o.name, o.popularity?.bucket])).toEqual([
+      ['CrUX', 1_000],
+      ['Majestic', 1_000],
+    ]);
+  });
+
   it('keeps one organisation per primary domain, preferring the most sitelinks', () => {
     const orgs = selectOrgs({
       entities: entities(
         entity('Q9366', 'Google Search', ['https://www.google.com/'], { sitelinks: 90 }),
         entity('Q95', 'Google', ['https://www.google.com/'], { sitelinks: 150 }),
       ),
-      tranco: new Map([['google.com', 1]]),
+      popularity: ranked([['google.com', 1]]),
       limit: 500,
       confirmedAt: NOW,
     });
@@ -115,7 +155,7 @@ describe('selectOrgs', () => {
         }),
         entity('Q95', 'Google', ['https://www.google.com/'], { sitelinks: 90 }),
       ),
-      tranco: new Map([['google.com', 1]]),
+      popularity: ranked([['google.com', 1]]),
       limit: 500,
       confirmedAt: NOW,
     });
@@ -131,7 +171,7 @@ describe('selectOrgs', () => {
         }),
         entity('Q140386630', 'JKL Dolphins Kampala', ['https://instagram.com'], { sitelinks: 0 }),
       ),
-      tranco: new Map([['instagram.com', 5]]),
+      popularity: ranked([['instagram.com', 5]]),
       limit: 500,
       confirmedAt: NOW,
     });
@@ -147,7 +187,7 @@ describe('selectOrgs', () => {
         }),
         entity('Q30686532', 'X.com', ['https://x.com/'], { sitelinks: 27 }),
       ),
-      tranco: new Map([
+      popularity: ranked([
         ['twitter.com', 7],
         ['x.com', 48],
       ]),
@@ -170,7 +210,7 @@ describe('selectOrgs', () => {
         }),
         entity('Q918', 'X', ['https://twitter.com'], { sitelinks: 60, isOrganisation: false }),
       ),
-      tranco: new Map([['twitter.com', 7]]),
+      popularity: ranked([['twitter.com', 7]]),
       limit: 500,
       confirmedAt: NOW,
     });
@@ -183,7 +223,7 @@ describe('selectOrgs', () => {
         entity('Q20', 'Café Nero', ['https://nero.com/']),
         entity('Q10', 'Cafe Nero', ['https://cafenero.org/']),
       ),
-      tranco: new Map([
+      popularity: ranked([
         ['nero.com', 5],
         ['cafenero.org', 7],
       ]),
