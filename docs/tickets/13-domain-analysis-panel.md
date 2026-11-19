@@ -1,5 +1,7 @@
 # 13 — Domain analysis panel
 
+**Status:** Done (4f1035e)
+
 **Depends on:** 12 (same card area)
 
 ## Goal
