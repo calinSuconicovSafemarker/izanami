@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { LookupTerminalSlot } from '../components/LookupTerminalSlot';
 import { OfficialDomainCard } from '../components/OfficialDomainCard';
 import { getOrg } from '../orgs';
+import { LookalikeScan } from '../scan';
 import { NotFoundPage } from './NotFoundPage';
 
 export function OrgPage() {
@@ -18,6 +19,7 @@ export function OrgPage() {
       </p>
       <OfficialDomainCard org={org} />
       <LookupTerminalSlot org={org} />
+      <LookalikeScan org={org} />
     </main>
   );
 }
