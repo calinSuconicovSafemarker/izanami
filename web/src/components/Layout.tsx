@@ -35,8 +35,16 @@ export function Layout() {
       <footer className="border-t border-zinc-800 px-4 py-4 text-xs text-zinc-400">
         <div className="mx-auto flex max-w-5xl flex-col items-center gap-2 text-center sm:flex-row sm:justify-between sm:text-left">
           <p>No backend, no analytics. Passive public lookups only.</p>
-          {/* Re-keyed per route so an open dialog closes when the route changes. */}
-          <PrivacyPanel key={location.key} />
+          <div className="flex items-center gap-4">
+            <Link
+              to="/credits"
+              className={`rounded text-emerald-400 hover:text-emerald-300 ${focusRing}`}
+            >
+              Credits and licences
+            </Link>
+            {/* Re-keyed per route so an open dialog closes when the route changes. */}
+            <PrivacyPanel key={location.key} />
+          </div>
         </div>
       </footer>
     </div>

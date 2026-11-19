@@ -14,10 +14,13 @@ async function violations() {
 }
 
 describe('accessibility (axe)', () => {
-  it.each(['/', '/org/tu-delft', '/org/google', '/nope'])('%s has no violations', async (path) => {
-    renderRoute(path);
-    expect(await violations()).toEqual([]);
-  });
+  it.each(['/', '/org/tu-delft', '/org/google', '/credits', '/nope'])(
+    '%s has no violations',
+    async (path) => {
+      renderRoute(path);
+      expect(await violations()).toEqual([]);
+    },
+  );
 
   it('the privacy dialog has no violations', async () => {
     renderRoute('/org/tu-delft');
