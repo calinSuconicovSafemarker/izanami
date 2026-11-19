@@ -34,3 +34,18 @@ Several Wikidata entities often list the same domain (Google Search, Snowflake I
 - falls back to the country of origin (P495) when there is no country or HQ country.
 
 Google's organisation item (Q95) lists only `about.google`, so Google is a curated extra (source: Google Search's P856).
+
+## Amendment 2 — 2026-11-19: related official domains
+
+Organisations use more domains than their own P856 sites (Google: youtube.com, gmail.com, g.co, gstatic.com). Ticket 15 adds `relatedDomains: { domain, source, via?, url? }[]` to each org, from three passive sources, and the checker treats them as official:
+
+- **`wikidata-owned`**: P856 of entities linked to the org by owned by (P127), parent organization (P749) or subsidiary (P355), two levels deep. Ended (P582), deprecated and minority (P1107 < 0.5) links are ignored. As for official domains, the P856 must be a site root and the domain must have a Tranco rank (top 1M): Wikidata alone is not enough. The graph is read through the Action API (CirrusSearch `haswbstatement` + `wbgetentities`, cached), not WDQS, whose reverse P127/P749 lookups time out; only children that list a P856 are followed. `BUILD_DATA_OWNERSHIP=cache-only` builds from cached responses when Wikidata is overloaded, and `data-diff.md` then says the crawl is partial.
+- **`published-list`**: lists the company publishes for machines (`scripts/data/published-lists.json`, cached): Google's supported domains, the Microsoft 365 endpoints web service. Third-party and tenant-hosting domains in a list are excluded by hand.
+- **`curated`**: `relatedDomains` in `extras.json`, each with a source URL. `owns` entries add curated ownership links where Wikidata has none (Google owns the g.co item; Microsoft makes Windows and Office).
+
+Rules:
+
+- A domain belongs to one organisation. Curated beats published beats Wikidata, then the nearer owner, then the better-ranked org.
+- Another org's official domain is skipped, unless this org owns that org per Wikidata or a curated `owns` link (youtube.com is YouTube's own entry and also Google's related domain, credited via YouTube). This is the only overlap.
+- Domains whose subdomains anyone can rent (the domain itself is a Public Suffix List private suffix: appspot.com, googleapis.com, azureedge.net) are never added from Wikidata or published lists: they would make a lookalike hosted there "Official". Curated entries may override this (withgoogle.com is on the PSL, but only Google uses it).
+- `data-diff.md` lists related-domain changes and the curated/published domains that were skipped.

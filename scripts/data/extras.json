@@ -22,7 +22,49 @@
       "google.it",
       "google.nl"
     ],
-    "source": "https://www.wikidata.org/wiki/Q9366#P856"
+    "source": "https://www.wikidata.org/wiki/Q9366#P856",
+    "relatedDomains": [
+      {
+        "domain": "g.co",
+        "source": "https://support.google.com/legal-help-center/answer/16673757"
+      },
+      {
+        "domain": "goo.gl",
+        "source": "https://blog.google/technology/developers/googl-link-shortening-update/"
+      },
+      {
+        "domain": "withgoogle.com",
+        "source": "https://publicsuffix.org/list/public_suffix_list.dat"
+      },
+      {
+        "domain": "gstatic.com",
+        "source": "https://knowledge.workspace.google.com/admin/getting-started/set-up-a-google-workspace-host-name-allowlist"
+      },
+      {
+        "domain": "googlevideo.com",
+        "source": "https://knowledge.workspace.google.com/admin/getting-started/set-up-a-google-workspace-host-name-allowlist"
+      },
+      {
+        "domain": "ytimg.com",
+        "source": "https://knowledge.workspace.google.com/admin/getting-started/set-up-a-google-workspace-host-name-allowlist"
+      },
+      {
+        "domain": "youtube-nocookie.com",
+        "source": "https://knowledge.workspace.google.com/admin/getting-started/set-up-a-google-workspace-host-name-allowlist"
+      }
+    ],
+    "owns": [
+      {
+        "wikidataId": "Q5512639",
+        "name": "g.co",
+        "source": "https://support.google.com/legal-help-center/answer/16673757"
+      },
+      {
+        "wikidataId": "Q10847352",
+        "name": "Google Hong Kong",
+        "source": "https://www.google.com/supported_domains"
+      }
+    ]
   },
   {
     "wikidataId": "Q752663",
@@ -31,6 +73,124 @@
     "country": "NL",
     "primaryDomain": "tudelft.nl",
     "officialDomains": ["tudelft.nl"],
-    "source": "https://www.wikidata.org/wiki/Q752663#P856"
+    "source": "https://www.wikidata.org/wiki/Q752663#P856",
+    "relatedDomains": [
+      {
+        "domain": "tudelft.com",
+        "source": "https://crt.sh/?id=28188220425"
+      },
+      {
+        "domain": "tudelft.eu",
+        "source": "https://crt.sh/?id=29352240987"
+      }
+    ]
+  },
+  {
+    "wikidataId": "Q2283",
+    "name": "Microsoft",
+    "relatedDomains": [
+      {
+        "domain": "msftconnecttest.com",
+        "source": "https://learn.microsoft.com/en-us/windows/privacy/manage-windows-11-endpoints"
+      },
+      {
+        "domain": "windowsupdate.com",
+        "source": "https://learn.microsoft.com/en-us/windows/privacy/manage-windows-11-endpoints"
+      },
+      {
+        "domain": "xboxlive.com",
+        "source": "https://learn.microsoft.com/en-us/windows/privacy/manage-windows-11-endpoints"
+      },
+      {
+        "domain": "xboxservices.com",
+        "source": "https://learn.microsoft.com/en-us/windows/privacy/manage-windows-11-endpoints"
+      }
+    ],
+    "owns": [
+      {
+        "wikidataId": "Q11255",
+        "name": "Microsoft Office",
+        "source": "https://learn.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-ip-web-service"
+      },
+      {
+        "wikidataId": "Q1406",
+        "name": "Microsoft Windows",
+        "source": "https://learn.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-ip-web-service"
+      },
+      {
+        "wikidataId": "Q775811",
+        "name": "Microsoft 365",
+        "source": "https://learn.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-ip-web-service"
+      },
+      {
+        "wikidataId": "Q6840254",
+        "name": "Microsoft Web Services",
+        "source": "https://learn.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-ip-web-service"
+      },
+      {
+        "wikidataId": "Q213660",
+        "name": "LinkedIn",
+        "source": "https://learn.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-ip-web-service"
+      }
+    ]
+  },
+  {
+    "wikidataId": "Q312",
+    "name": "Apple Inc.",
+    "relatedDomains": [
+      {
+        "domain": "apple-cloudkit.com",
+        "source": "https://support.apple.com/en-us/101555"
+      },
+      {
+        "domain": "apple-dns.net",
+        "source": "https://support.apple.com/en-us/101555"
+      },
+      {
+        "domain": "apple-mapkit.com",
+        "source": "https://support.apple.com/en-us/101555"
+      },
+      {
+        "domain": "cdn-apple.com",
+        "source": "https://support.apple.com/en-us/101555"
+      },
+      {
+        "domain": "icloud-content.com",
+        "source": "https://support.apple.com/en-us/101555"
+      },
+      {
+        "domain": "icloud.com",
+        "source": "https://support.apple.com/en-us/101555"
+      },
+      {
+        "domain": "icloud.com.cn",
+        "source": "https://support.apple.com/en-us/101555"
+      },
+      {
+        "domain": "itunes.com",
+        "source": "https://support.apple.com/en-us/101555"
+      },
+      {
+        "domain": "mzstatic.com",
+        "source": "https://support.apple.com/en-us/101555"
+      }
+    ],
+    "owns": [
+      {
+        "wikidataId": "Q283469",
+        "name": "iCloud",
+        "source": "https://support.apple.com/en-us/101555"
+      }
+    ]
+  },
+  {
+    "wikidataId": "Q483959",
+    "name": "PayPal",
+    "relatedDomains": [
+      {
+        "domain": "paypal.me",
+        "source": "https://www.paypal.com/paypalme/"
+      }
+    ]
   }
 ]

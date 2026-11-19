@@ -26,11 +26,15 @@ const ENTITIES: WikidataEntity[] = [
   },
 ];
 
-function sources(previous: Org[] | null): OrgsSources & { queried: string[][] } {
+function sources(
+  previous: Org[] | null,
+): OrgsSources & { queried: string[][]; ownedQueried: string[][] } {
   const queried: string[][] = [];
+  const ownedQueried: string[][] = [];
   return {
     queried,
-    trancoCsv: async () => '1,google.com\n2,www.google.com\n3,tudelft.nl\n',
+    ownedQueried,
+    trancoCsv: async () => '1,google.com\n2,www.google.com\n3,tudelft.nl\n4,youtube.com\n',
     queryEntities: async (domains) => {
       queried.push([...domains]);
       return new Map(ENTITIES.map((e) => [e.wikidataId, e]));
@@ -47,16 +51,43 @@ function sources(previous: Org[] | null): OrgsSources & { queried: string[][] } 
         officialDomains: ['tudelft.nl'],
         source: 'https://www.wikidata.org/wiki/Q752663#P856',
       },
+      {
+        wikidataId: 'Q95',
+        name: 'Google',
+        relatedDomains: [{ domain: 'g.co', source: 'https://example.org/g.co' }],
+      },
+    ],
+    queryOwned: async (parents) => {
+      ownedQueried.push([...parents]);
+      return parents.includes('Q95')
+        ? [{ parentId: 'Q95', wikidataId: 'Q10', name: 'Google Products', websites: [] }]
+        : [
+            {
+              parentId: 'Q10',
+              wikidataId: 'Q866',
+              name: 'YouTube',
+              websites: ['https://www.youtube.com/'],
+            },
+          ];
+    },
+    publishedLists: async () => [
+      {
+        wikidataId: 'Q95',
+        name: 'Google supported domains',
+        url: 'https://www.google.com/supported_domains',
+        domains: ['google.ad', 'google.com'],
+      },
     ],
     previousOrgs: async () => previous,
   };
 }
 
 const OPTIONS = {
-  candidateDomains: 10,
+  candidateDomains: 2,
   limit: 500,
   batchSize: 1,
   classBatchSize: 100,
+  ownedBatchSize: 100,
   confirmedAt: '2026-11-17',
 };
 
@@ -79,5 +110,27 @@ describe('runOrgsPipeline', () => {
       confirmedAt: '2026-12-01',
     });
     expect(second.diffMarkdown).toBe('# Data diff\n\nNo changes since the previous `orgs.json`.\n');
+  });
+
+  it('adds related domains from two ownership levels, published lists and curated extras', async () => {
+    const src = sources(null);
+    const { orgs, diffMarkdown } = await runOrgsPipeline(src, OPTIONS);
+    expect(src.ownedQueried).toEqual([['Q95', 'Q752663'], ['Q10']]);
+    expect(orgs[0]?.relatedDomains.map((r) => [r.domain, r.source])).toEqual([
+      ['g.co', 'curated'],
+      ['google.ad', 'published-list'],
+      ['youtube.com', 'wikidata-owned'],
+    ]);
+    expect(diffMarkdown).toContain('+youtube.com (wikidata-owned: YouTube)');
+  });
+});
+
+describe('runOrgsPipeline with a partial ownership crawl', () => {
+  it('says so in the data diff', async () => {
+    const src = { ...sources(null), ownershipGaps: () => 3 };
+    const { diffMarkdown } = await runOrgsPipeline(src, OPTIONS);
+    expect(diffMarkdown).toContain(
+      'Ownership crawl partial: 3 Wikidata API responses were unavailable',
+    );
   });
 });

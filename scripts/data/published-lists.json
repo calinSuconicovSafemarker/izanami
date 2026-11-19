@@ -1,0 +1,28 @@
+[
+  {
+    "wikidataId": "Q95",
+    "name": "Google supported domains",
+    "url": "https://www.google.com/supported_domains",
+    "parser": "domain-lines"
+  },
+  {
+    "wikidataId": "Q2283",
+    "name": "Microsoft 365 URLs and IP address ranges",
+    "url": "https://endpoints.office.com/endpoints/worldwide?clientrequestid=3309c11a-a7f4-424c-865f-4214406e36f2",
+    "docs": "https://learn.microsoft.com/en-us/microsoft-365/enterprise/microsoft-365-ip-web-service",
+    "parser": "microsoft-365-endpoints",
+    "excludeEndpointIds": [125],
+    "excludeDomains": [
+      "akamaihd.net",
+      "azure-apim.net",
+      "azure.com",
+      "microsoftusercontent.com",
+      "onmicrosoft.com",
+      "sharepoint.com",
+      "sharepointonline.com",
+      "usercontent.microsoft",
+      "windows.net",
+      "yammerusercontent.com"
+    ]
+  }
+]

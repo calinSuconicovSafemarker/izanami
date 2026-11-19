@@ -1,12 +1,16 @@
-import type { Org } from '../orgs';
-import { isCurated, wikidataUrl } from '../orgs';
+import type { Org, RelatedDomain, RelatedDomainGroup } from '../orgs';
+import { isCurated, relatedDomainGroups, wikidataUrl } from '../orgs';
 
 const linkClass =
   'text-emerald-400 underline decoration-emerald-400/40 underline-offset-2 hover:text-emerald-300 focus-visible:outline-2 focus-visible:outline-emerald-400';
 
+/** Groups longer than this start collapsed. */
+const COLLAPSE_AFTER = 12;
+
 /** Official-domain card. Wording stays honest: listed as official + heavily used, not ownership. */
 export function OfficialDomainCard({ org }: { org: Org }) {
   const others = org.officialDomains.filter((domain) => domain !== org.primaryDomain);
+  const groups = relatedDomainGroups(org);
   return (
     <section
       aria-labelledby="official-domains-heading"
@@ -23,10 +27,10 @@ export function OfficialDomainCard({ org }: { org: Org }) {
 
       {others.length > 0 && (
         <div className="flex flex-col gap-2">
-          <h3 id="other-domains-heading" className="text-sm text-zinc-400">
-            Other known official domains
+          <h3 id="own-sites-heading" className="text-sm text-zinc-400">
+            Own sites
           </h3>
-          <ul aria-labelledby="other-domains-heading" className="flex flex-wrap gap-2">
+          <ul aria-labelledby="own-sites-heading" className="flex flex-wrap gap-2">
             {others.map((domain) => (
               <li
                 key={domain}
@@ -37,6 +41,15 @@ export function OfficialDomainCard({ org }: { org: Org }) {
             ))}
           </ul>
         </div>
+      )}
+
+      {groups.map((group) => (
+        <RelatedGroup key={group.source} group={group} />
+      ))}
+      {groups.length > 0 && (
+        <p className="text-xs text-zinc-400">
+          Related domains count as official when you check a lookalike on this page.
+        </p>
       )}
 
       <div className="flex flex-col gap-2">
@@ -72,5 +85,57 @@ export function OfficialDomainCard({ org }: { org: Org }) {
         </p>
       </div>
     </section>
+  );
+}
+
+function RelatedGroup({ group }: { group: RelatedDomainGroup }) {
+  const headingId = `related-${group.source}-heading`;
+  const list = (
+    <ul aria-labelledby={headingId} className="flex flex-col gap-1">
+      {group.domains.map((related) => (
+        <li key={related.domain} className="flex flex-wrap items-baseline gap-x-2 text-sm">
+          <span className="font-mono break-all text-zinc-200">{related.domain}</span>
+          <SourceNote related={related} />
+        </li>
+      ))}
+    </ul>
+  );
+  return (
+    <div className="flex flex-col gap-2">
+      <h3 id={headingId} className="text-sm text-zinc-400">
+        {group.title} <span className="text-zinc-400">({group.domains.length})</span>
+      </h3>
+      {group.domains.length > COLLAPSE_AFTER ? (
+        <details className="flex flex-col gap-2">
+          <summary className="cursor-pointer text-sm text-emerald-400 focus-visible:outline-2 focus-visible:outline-emerald-400">
+            Show all {group.domains.length} domains
+          </summary>
+          {list}
+        </details>
+      ) : (
+        list
+      )}
+    </div>
+  );
+}
+
+/** Where a related domain comes from, linked to its evidence. */
+function SourceNote({ related }: { related: RelatedDomain }) {
+  const label =
+    related.source === 'wikidata-owned'
+      ? `Wikidata: ${related.via ?? 'owned entity'}`
+      : related.source === 'published-list'
+        ? (related.via ?? 'published list')
+        : 'curated — source';
+  return (
+    <span className="text-xs text-zinc-400">
+      {related.url ? (
+        <a href={related.url} target="_blank" rel="noreferrer" className={linkClass}>
+          {label}
+        </a>
+      ) : (
+        label
+      )}
+    </span>
   );
 }

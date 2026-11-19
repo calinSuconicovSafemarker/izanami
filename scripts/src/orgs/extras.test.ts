@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { mergeExtras, parseExtras } from './extras';
+import { curatedDomains, curatedOwnership, mergeExtras, parseExtras } from './extras';
 import type { Org } from './select';
 
 const NOW = '2026-11-17';
@@ -10,6 +10,7 @@ function org(partial: Partial<Org> & Pick<Org, 'wikidataId' | 'primaryDomain'>):
     name: partial.wikidataId,
     country: null,
     officialDomains: [partial.primaryDomain],
+    relatedDomains: [],
     wikidataDomain: partial.primaryDomain,
     trancoRank: 1,
     confirmedAt: NOW,
@@ -41,6 +42,95 @@ describe('parseExtras', () => {
       /primaryDomain/,
     );
   });
+  it('accepts a related-only entry that adds curated domains to a generated org', () => {
+    const entry = {
+      wikidataId: 'Q2283',
+      name: 'Microsoft',
+      relatedDomains: [{ domain: 'xbox.com', source: 'https://example.org/xbox' }],
+    };
+    expect(parseExtras([entry])).toEqual([entry]);
+  });
+
+  it('rejects a related domain that is not a registrable domain or lacks a source', () => {
+    const entry = (domain: string, source: string) => ({
+      wikidataId: 'Q2283',
+      name: 'Microsoft',
+      relatedDomains: [{ domain, source }],
+    });
+    expect(() => parseExtras([entry('www.xbox.com', 'https://example.org')])).toThrow(/domain/);
+    expect(() => parseExtras([entry('xbox.com', 'not a url')])).toThrow(/source/);
+  });
+
+  it('rejects an entry with neither a primary domain nor related domains', () => {
+    expect(() => parseExtras([{ wikidataId: 'Q2283', name: 'Microsoft' }])).toThrow(
+      /source|primaryDomain/,
+    );
+  });
+});
+
+describe('curatedDomains', () => {
+  it('lists the related domains of every extra with their source', () => {
+    const extras = parseExtras([
+      {
+        ...TU_DELFT_EXTRA,
+        relatedDomains: [{ domain: 'tudelft.com', source: 'https://example.org/a' }],
+      },
+      {
+        wikidataId: 'Q2283',
+        name: 'Microsoft',
+        relatedDomains: [{ domain: 'xbox.com', source: 'https://example.org/b' }],
+      },
+    ]);
+    expect(curatedDomains(extras)).toEqual([
+      { wikidataId: 'Q752663', domain: 'tudelft.com', url: 'https://example.org/a' },
+      { wikidataId: 'Q2283', domain: 'xbox.com', url: 'https://example.org/b' },
+    ]);
+  });
+
+  it('ignores related-only entries when merging extras into the org list', () => {
+    const orgs = mergeExtras(
+      [org({ wikidataId: 'Q2283', primaryDomain: 'microsoft.com' })],
+      parseExtras([
+        {
+          wikidataId: 'Q2283',
+          name: 'Microsoft',
+          relatedDomains: [{ domain: 'xbox.com', source: 'https://example.org/b' }],
+        },
+      ]),
+      new Map(),
+      NOW,
+    );
+    expect(orgs.map((o) => [o.wikidataId, o.name])).toEqual([['Q2283', 'Q2283']]);
+  });
+});
+
+describe('curatedOwnership', () => {
+  it('turns owns entries into ownership links with their source', () => {
+    const extras = parseExtras([
+      {
+        wikidataId: 'Q2283',
+        name: 'Microsoft',
+        owns: [{ wikidataId: 'Q1406', name: 'Microsoft Windows', source: 'https://example.org/w' }],
+      },
+    ]);
+    expect(curatedOwnership(extras)).toEqual([
+      {
+        parentId: 'Q2283',
+        wikidataId: 'Q1406',
+        name: 'Microsoft Windows',
+        websites: [],
+        source: 'https://example.org/w',
+      },
+    ]);
+  });
+
+  it('rejects an owns entry without a Q-id or source', () => {
+    const entry = (owns: unknown) => ({ wikidataId: 'Q2283', name: 'Microsoft', owns: [owns] });
+    expect(() =>
+      parseExtras([entry({ wikidataId: 'x', name: 'W', source: 'https://e.org' })]),
+    ).toThrow(/owns/);
+    expect(() => parseExtras([entry({ wikidataId: 'Q1', name: 'W', source: '' })])).toThrow(/owns/);
+  });
 });
 
 describe('mergeExtras', () => {
@@ -59,6 +149,7 @@ describe('mergeExtras', () => {
       country: 'NL',
       primaryDomain: 'tudelft.nl',
       officialDomains: ['tudelft.nl'],
+      relatedDomains: [],
       wikidataDomain: null,
       trancoRank: null,
       confirmedAt: NOW,

@@ -10,6 +10,7 @@ function org(id: string, name: string, domains: string[], confirmedAt = '2026-11
     country: null,
     primaryDomain: domains[0] ?? '',
     officialDomains: domains,
+    relatedDomains: [],
     wikidataDomain: domains[0] ?? null,
     trancoRank: 1,
     confirmedAt,
@@ -61,5 +62,50 @@ describe('diffOrgs', () => {
     expect(renderDiff(diffOrgs([before], [after]))).toContain(
       '- Acme (Q1): primary acme.com → acme.org',
     );
+  });
+
+  it('reports related-domain changes, including those of added organisations', () => {
+    const before = org('Q1', 'Acme', ['acme.com']);
+    before.relatedDomains = [
+      { domain: 'old.com', source: 'curated' },
+      { domain: 'kept.com', source: 'curated' },
+    ];
+    const after = {
+      ...before,
+      relatedDomains: [
+        { domain: 'kept.com', source: 'curated' as const },
+        { domain: 'acme-tube.com', source: 'wikidata-owned' as const, via: 'AcmeTube' },
+      ],
+    };
+    const added = {
+      ...org('Q3', 'New', ['new.com']),
+      relatedDomains: [{ domain: 'new.net', source: 'published-list' as const, via: 'New list' }],
+    };
+    const text = renderDiff(diffOrgs([before], [after, added]));
+    expect(text).toContain(
+      [
+        '## Changed related domains (2)',
+        '',
+        '- Acme (Q1): +acme-tube.com (wikidata-owned: AcmeTube), -old.com',
+        '- New (Q3): +new.net (published-list: New list)',
+      ].join('\n'),
+    );
+    expect(text).not.toContain('Changed official domains');
+  });
+
+  it('lists curated or published domains skipped because another org has them', () => {
+    const text = renderDiff({
+      ...diffOrgs([], []),
+      skipped: [
+        {
+          orgId: 'Q1',
+          domain: 'acme.com',
+          source: 'curated',
+          reason: 'official domain of Acme (Q1)',
+        },
+      ],
+    });
+    expect(text).toContain('## Skipped related domains (1)');
+    expect(text).toContain('- Q1: acme.com (curated) — official domain of Acme (Q1)');
   });
 });

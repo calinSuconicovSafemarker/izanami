@@ -38,11 +38,20 @@ export async function cached(name: string, produce: () => Promise<Buffer>): Prom
 /** GET with retries on 429/5xx, honouring Retry-After. */
 export async function fetchWithRetry(url: string, init: RequestInit = {}): Promise<Buffer> {
   for (let attempt = 1; ; attempt++) {
-    const res = await fetch(url, {
-      ...init,
-      headers: { 'User-Agent': USER_AGENT, ...init.headers },
-      redirect: 'follow',
-    });
+    let res: Response;
+    try {
+      res = await fetch(url, {
+        ...init,
+        headers: { 'User-Agent': USER_AGENT, ...init.headers },
+        redirect: 'follow',
+      });
+    } catch (err) {
+      // Dropped connections happen when WDQS is overloaded; retry like a 5xx.
+      if (attempt >= 6) throw err;
+      console.warn(`  network error from ${new URL(url).host}; retrying in ${15 * attempt}s`);
+      await sleep(15 * attempt * 1000);
+      continue;
+    }
     if (res.ok) return Buffer.from(await res.arrayBuffer());
     const retryable = res.status === 429 || res.status >= 500;
     if (!retryable || attempt >= 6) {

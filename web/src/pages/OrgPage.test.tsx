@@ -1,5 +1,6 @@
 import { fireEvent, screen, within } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
+import { FixtureLookupClient } from '../lookup/fixture-client';
 import { renderRoute } from '../test/render-route';
 
 const card = () => screen.getByRole('region', { name: /official domains/i });
@@ -9,9 +10,40 @@ describe('organisation page', () => {
     renderRoute('/org/google');
     expect(screen.getByRole('heading', { level: 1, name: 'Google' })).toBeInTheDocument();
     expect(within(card()).getByText('google.com', { selector: '[data-primary]' })).toBeVisible();
-    const others = within(card()).getByRole('list', { name: /other known official domains/i });
+    const others = within(card()).getByRole('list', { name: /own sites/i });
     expect(within(others).getByText('google.nl')).toBeInTheDocument();
     expect(within(others).queryByText('google.com')).not.toBeInTheDocument();
+  });
+
+  it('lists related domains grouped by source, each with its source', () => {
+    renderRoute('/org/google');
+    const products = within(card()).getByRole('list', { name: /products & subsidiaries/i });
+    const youtube = within(products).getByText('youtube.com').closest('li')!;
+    expect(youtube).toHaveTextContent(/Wikidata: YouTube/);
+    expect(within(youtube).getByRole('link')).toHaveAttribute(
+      'href',
+      'https://www.wikidata.org/wiki/Q866',
+    );
+    expect(within(products).getByText('gmail.com')).toBeInTheDocument();
+    const curated = within(card()).getByRole('list', { name: /^curated/i });
+    expect(within(curated).getByText('g.co').closest('li')).toHaveTextContent(/source/i);
+    expect(
+      within(card()).getByRole('list', { name: /published by the company/i }),
+    ).toBeInTheDocument();
+  });
+
+  it('collapses a long group behind a disclosure', () => {
+    renderRoute('/org/google');
+    const published = within(card()).getByRole('list', { name: /published by the company/i });
+    const details = published.closest('details')!;
+    expect(details).not.toHaveAttribute('open');
+    expect(within(details).getByText(/show all \d+/i)).toBeInTheDocument();
+  });
+
+  it('treats a related domain typed on the page as Official', async () => {
+    renderRoute('/org/google?d=youtube.com', new FixtureLookupClient([]));
+    const verdict = await screen.findByRole('region', { name: /^verdict$/i });
+    expect(within(verdict).getByRole('status')).toHaveTextContent('Verdict: Official');
   });
 
   it('cites Wikidata P856 with a link to the item, the Tranco rank and the confirmation date', () => {
@@ -21,7 +53,7 @@ describe('organisation page', () => {
     expect(wikidata).toHaveAttribute('href', 'https://www.wikidata.org/wiki/Q2283');
     expect(evidence).toHaveTextContent('Wikidata lists this as the official website (P856)');
     expect(evidence).toHaveTextContent('Tranco rank 8 — heavily used');
-    expect(evidence).toHaveTextContent('Confirmed at 2026-11-17');
+    expect(evidence).toHaveTextContent('Confirmed at 2026-11-19');
   });
 
   it('marks curated extras with their source instead of the Wikidata P856 line', () => {
@@ -33,7 +65,7 @@ describe('organisation page', () => {
       'href',
       'https://www.wikidata.org/wiki/Q752663',
     );
-    expect(evidence).toHaveTextContent('Tranco rank 5,405 — heavily used');
+    expect(evidence).toHaveTextContent('Tranco rank 5,431 — heavily used');
   });
 
   it('carries the disclaimer in the page content', () => {
