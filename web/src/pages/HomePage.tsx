@@ -1,6 +1,36 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { searchOrgs } from '../orgs';
+import { allOrgs, searchOrgs, type Org } from '../orgs';
+
+/** Column layout shared by the header and every row: rank, name, domain, country, tier, count. */
+const ROW_GRID =
+  'grid grid-cols-[3rem_1fr] gap-x-4 px-4 sm:grid-cols-[3rem_1.4fr_1fr_7rem] md:grid-cols-[3rem_1.4fr_1fr_4rem_6rem_7rem]';
+const HEADER_CELLS =
+  'border-b border-zinc-800 bg-zinc-900/80 py-2 font-mono text-[11px] tracking-[0.2em] text-zinc-400 uppercase';
+
+/** Position in the full list (most popular first), stable while filtering. */
+const rank = new Map(allOrgs.map((org, i) => [org.slug, i + 1]));
+
+const TIER_LABEL: Record<number, string> = {
+  1_000: 'TOP 1K',
+  10_000: 'TOP 10K',
+  100_000: 'TOP 100K',
+  1_000_000: 'TOP 1M',
+};
+
+function PopularityTag({ org }: { org: Org }) {
+  if (!org.popularity) return <span className="font-mono text-xs text-zinc-400">CURATED</span>;
+  const top = org.popularity.bucket === 1_000;
+  return (
+    <span
+      className={`rounded-sm border px-1.5 py-0.5 font-mono text-[11px] tracking-wider ${
+        top ? 'border-emerald-800 text-emerald-400' : 'border-zinc-700 text-zinc-300'
+      }`}
+    >
+      {TIER_LABEL[org.popularity.bucket]}
+    </span>
+  );
+}
 
 function isTypingTarget(target: EventTarget | null): boolean {
   return (
@@ -71,24 +101,67 @@ export function HomePage() {
       {results.length === 0 ? (
         <p className="text-zinc-400">No organisation matches “{query.trim()}”.</p>
       ) : (
-        <ul
-          aria-label="Organisations"
-          className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3"
-        >
-          {results.map((org) => (
-            <li key={org.slug}>
-              <Link
-                to={`/org/${org.slug}`}
-                className="flex h-full flex-col gap-1 rounded-lg border border-zinc-800 bg-zinc-900/60 p-4 hover:border-emerald-600 focus-visible:border-emerald-500 focus-visible:outline-2 focus-visible:outline-emerald-500"
-              >
-                <span className="font-medium break-words text-zinc-100">{org.name}</span>
-                <span className="font-mono text-sm break-all text-zinc-400">
-                  {org.primaryDomain}
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <div className="overflow-hidden rounded-sm border border-zinc-800">
+          <div aria-hidden="true" className={`${ROW_GRID} ${HEADER_CELLS}`}>
+            <span>#</span>
+            <span>Organisation</span>
+            <span className="hidden sm:block">Primary domain</span>
+            <span className="hidden md:block">Country</span>
+            <span className="hidden md:block">Popularity</span>
+            <span className="hidden text-right sm:block">Domains</span>
+          </div>
+          <ul aria-label="Organisations" className="divide-y divide-zinc-800/80">
+            {results.map((org) => (
+              <li key={org.slug}>
+                <Link
+                  to={`/org/${org.slug}`}
+                  className={`${ROW_GRID} group items-center py-2.5 text-sm hover:bg-emerald-500/5 focus-visible:bg-emerald-500/10 focus-visible:outline-none`}
+                >
+                  <span className="font-mono text-xs text-zinc-400 tabular-nums">
+                    {String(rank.get(org.slug)).padStart(4, '0')}
+                  </span>
+                  <span className="flex min-w-0 flex-col">
+                    <span className="truncate font-medium text-zinc-100 group-hover:text-emerald-400">
+                      {org.name}
+                    </span>
+                    <span className="truncate font-mono text-xs text-zinc-400 sm:hidden">
+                      {org.primaryDomain}
+                    </span>
+                  </span>
+                  <span className="hidden truncate font-mono text-zinc-300 sm:block">
+                    {org.primaryDomain}
+                  </span>
+                  <span className="hidden font-mono text-xs text-zinc-400 md:block">
+                    {org.country ?? '—'}
+                  </span>
+                  <span className="hidden md:block">
+                    <PopularityTag org={org} />
+                  </span>
+                  <span className="hidden text-right font-mono text-xs text-zinc-400 tabular-nums sm:block">
+                    {org.officialDomains.length + org.relatedDomains.length}
+                    {/* Fixed-width slot so the counts stay aligned with or without the badge. */}
+                    <span className="ml-2 inline-block w-9 text-center">
+                      {org.brandTlds.length > 0 && (
+                        <span
+                          title="Runs its own top-level domain"
+                          className="rounded-sm border border-emerald-800 px-1 text-emerald-400"
+                        >
+                          TLD
+                        </span>
+                      )}
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="ml-3 text-zinc-400 group-hover:text-emerald-400"
+                    >
+                      ›
+                    </span>
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </main>
   );

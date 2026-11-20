@@ -13,7 +13,8 @@ async function violations() {
   return result.violations.map((v) => `${v.id}: ${v.nodes.map((n) => n.html).join(' | ')}`);
 }
 
-describe('accessibility (axe)', () => {
+// axe walks every node; the full 1,008-row organisation table takes several seconds in jsdom.
+describe('accessibility (axe)', { timeout: 30_000 }, () => {
   it.each(['/', '/orgs', '/org/tu-delft', '/org/google', '/credits', '/nope'])(
     '%s has no violations',
     async (path) => {
