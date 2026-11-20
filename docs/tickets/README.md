@@ -50,6 +50,8 @@ Findings: [../security/2026-11-20-security-scan.md](../security/2026-11-20-secur
 | 22 | [CI/CD hardening](22-ci-hardening.md) | 10 |
 | 23 | [Infra hygiene (headers, runtime, logs, cdk-nag in CI)](23-infra-hygiene.md) | 09, 18 |
 
+Round 4 status: 21, 22, 23 done; 20 done except two owner decisions (WAF rate limit, Lambda concurrency quota). Deployed to GitHub Pages and AWS CloudFront on 2026-11-20.
+
 Suggested order: 00 → 01 → 02 → 03 → 04 → 05 → 06 → 07 → 08 → 09 → 10 → 11.
 First runnable slice (no scoring): after 06.
 
