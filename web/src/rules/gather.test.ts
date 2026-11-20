@@ -3,7 +3,7 @@ import { parseVariant } from '../domain';
 import { FixtureLookupClient } from '../lookup/fixture-client';
 import type { DnsType, LookupClient, RdapResult } from '../lookup';
 import { evaluate } from './evaluate';
-import { gatherFacts } from './gather';
+import { gatherFacts, gatherOutcome } from './gather';
 import type { Facts, OrgInput } from './types';
 import { known, UNKNOWN } from './types';
 import { verdict } from './verdict';
@@ -203,5 +203,38 @@ describe('gatherFacts', () => {
     const facts = await gatherFacts(parseVariant('www.tudelft.de'), org, stub({}), { now });
     expect(facts.variantFacts.listedRelated).toEqual({ via: 'TU Delft Germany' });
     expect(facts.variantFacts.similarity.isOfficial).toBe(false);
+  });
+});
+
+describe('gatherOutcome (transient failures, ticket 21)', () => {
+  const org = { ...TU_DELFT, slug: 'example', primaryDomain: 'example.de' };
+  const answered = {
+    'tudelft.de': { dns: { NS: ['ns1.tudelft.de'], A: ['192.0.2.2'] } },
+    'example.de': { dns: { NS: ['ns1.example.de'], A: ['192.0.2.1'] } },
+  };
+
+  it('reports no transient failure when every lookup answered', async () => {
+    const outcome = await gatherOutcome(parseVariant('tudelft.de'), org, stub(answered), { now });
+    expect(outcome.transientFailure).toBe(false);
+  });
+
+  it('reports a failed crt.sh lookup on the variant', async () => {
+    const client: LookupClient = {
+      ...stub(answered),
+      certs: async (domain) => ({ status: 'unavailable', domain, certs: [] }),
+    };
+    const outcome = await gatherOutcome(parseVariant('tudelft.de'), org, client, { now });
+    expect(outcome.transientFailure).toBe(true);
+    expect(outcome.facts.variantFacts.firstCertDate).toEqual(UNKNOWN);
+  });
+
+  it('reports a failed lookup on the official domain', async () => {
+    const outcome = await gatherOutcome(
+      parseVariant('tudelft.de'),
+      org,
+      stub({ 'tudelft.de': answered['tudelft.de'] }),
+      { now },
+    );
+    expect(outcome.transientFailure).toBe(true);
   });
 });

@@ -99,11 +99,22 @@ async function asns(
   return known([...new Set(found)]);
 }
 
-interface Collection {
-  facts: Collected;
+interface Collection<F = Collected> {
+  facts: F;
   /**
-   * Some DNS/RDAP/ASN lookup failed transiently (`unavailable`). Facts that are unknown because
-   * the registry does not publish them (e.g. no registration event) do not count.
+   * Some DNS/RDAP/ASN/crt.sh lookup failed transiently (`unavailable`). Facts that are unknown
+   * because the registry does not publish them (e.g. no registration event) do not count.
+   */
+  transientFailure: boolean;
+}
+
+/** `gatherFacts` plus whether the answer is degraded by a failed lookup. */
+export interface GatherOutcome {
+  facts: Facts;
+  /**
+   * Some lookup (variant or official domain) came back `unavailable`: a timeout, 429/5xx,
+   * network error, or an answer we rejected (oversized, malformed, bad redirect). Asking again
+   * later may give more facts, so callers must not cache this answer (the API sends no-store).
    */
   transientFailure: boolean;
 }
@@ -161,7 +172,7 @@ async function collect(
   ];
   if (withCerts) {
     tasks.push(
-      client.certs(domain).then((r) =>
+      watch(client.certs(domain)).then((r) =>
         set({
           firstCertDate:
             r.status === 'unavailable' ? UNKNOWN : known(r.certs[0]?.notBefore ?? null),
@@ -194,19 +205,25 @@ const infraOnly = ({
 });
 
 /** Official facts per client and domain, so each official domain is looked up once per session. */
-const officialCache = new WeakMap<LookupClient, Map<string, Promise<OfficialFacts>>>();
+const officialCache = new WeakMap<LookupClient, Map<string, Promise<Collection<OfficialFacts>>>>();
 
-function officialFacts(domain: string, client: LookupClient, emit: Emit): Promise<OfficialFacts> {
+function officialFacts(
+  domain: string,
+  client: LookupClient,
+  emit: Emit,
+): Promise<Collection<OfficialFacts>> {
   let perClient = officialCache.get(client);
   if (!perClient) officialCache.set(client, (perClient = new Map()));
   const cached = perClient.get(domain);
   if (cached) return cached;
-  const collection = collect(domain, client, emit, false);
-  const p = collection.then((c) => infraOnly(c.facts));
+  const p = collect(domain, client, emit, false).then((c) => ({
+    facts: infraOnly(c.facts),
+    transientFailure: c.transientFailure,
+  }));
   perClient.set(domain, p);
   // Do not pin a transient failure for the whole session; retry on the next variant. Facts the
   // registry simply does not publish stay cached: asking again would not change them.
-  void collection.then((c) => {
+  void p.then((c) => {
     if (c.transientFailure) perClient.delete(domain);
   });
   return p;
@@ -222,6 +239,16 @@ export async function gatherFacts(
   client: LookupClient,
   options: GatherOptions = {},
 ): Promise<Facts> {
+  return (await gatherOutcome(variant, org, client, options)).facts;
+}
+
+/** `gatherFacts`, also reporting whether any lookup failed transiently. Never throws. */
+export async function gatherOutcome(
+  variant: ParsedVariant,
+  org: OrgInput,
+  client: LookupClient,
+  options: GatherOptions = {},
+): Promise<GatherOutcome> {
   const domain = variant.registrableDomain;
   const base = {
     unicode: toUnicode(domain),
@@ -239,16 +266,19 @@ export async function gatherFacts(
   const report = () => options.onProgress?.({ variantFacts: v, officialFacts: o });
   report();
 
-  const [{ facts: variantInfra }, official] = await Promise.all([
+  const [variantCollection, official] = await Promise.all([
     collect(domain, client, (p) => ((v = { ...v, ...p }), report()), true),
     officialFacts(org.primaryDomain, client, (p) => {
       o = { ...o, ...infraOnly({ ...pendingInfra(o.domain), ...o, ...p }) };
       report();
     }),
   ]);
-  v = { ...base, ...variantInfra };
-  o = official;
+  v = { ...base, ...variantCollection.facts };
+  o = official.facts;
   const facts = { variantFacts: v, officialFacts: o };
   options.onProgress?.(facts);
-  return facts;
+  return {
+    facts,
+    transientFailure: variantCollection.transientFailure || official.transientFailure,
+  };
 }
