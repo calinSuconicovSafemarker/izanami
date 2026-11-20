@@ -1,4 +1,11 @@
-import { CfnOutput, Duration, RemovalPolicy, Stack, type StackProps } from 'aws-cdk-lib';
+import {
+  CfnOutput,
+  Duration,
+  RemovalPolicy,
+  Stack,
+  Validations,
+  type StackProps,
+} from 'aws-cdk-lib';
 import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
 import * as origins from 'aws-cdk-lib/aws-cloudfront-origins';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
@@ -21,6 +28,10 @@ export interface InfraStackProps extends StackProps {
 }
 
 /** The query strings `/api/check` reads; the only ones in the cache key and sent to Lambda. */
+/** How cdk-nag names the AWS managed policy every Lambda in this stack uses for logging. */
+const BASIC_EXECUTION_POLICY =
+  'Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole';
+
 export const API_QUERY_STRINGS = ['org', 'domain'] as const;
 
 /**
@@ -31,11 +42,29 @@ export class InfraStack extends Stack {
   constructor(scope: Construct, id: string, props: InfraStackProps) {
     super(scope, id, props);
 
+    // Access logs for the site bucket and CloudFront (ticket 23): private, encrypted, 30 days.
+    const logBucket = new s3.Bucket(this, 'LogBucket', {
+      blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
+      encryption: s3.BucketEncryption.S3_MANAGED,
+      enforceSSL: true,
+      // CloudFront standard logging writes with ACLs, so they can't be disabled on this bucket.
+      objectOwnership: s3.ObjectOwnership.BUCKET_OWNER_PREFERRED,
+      lifecycleRules: [{ expiration: Duration.days(30) }],
+      removalPolicy: RemovalPolicy.DESTROY,
+      autoDeleteObjects: true,
+    });
+    Validations.of(logBucket).acknowledge({
+      id: 'AwsSolutions-S1',
+      reason: 'This is the access-log bucket; logging it into itself would loop.',
+    });
+
     const bucket = new s3.Bucket(this, 'SiteBucket', {
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
       encryption: s3.BucketEncryption.S3_MANAGED,
       enforceSSL: true,
       objectOwnership: s3.ObjectOwnership.BUCKET_OWNER_ENFORCED,
+      serverAccessLogsBucket: logBucket,
+      serverAccessLogsPrefix: 's3/',
       removalPolicy: RemovalPolicy.DESTROY,
       autoDeleteObjects: true,
     });
@@ -63,6 +92,8 @@ export class InfraStack extends Stack {
         },
         frameOptions: { frameOption: cloudfront.HeadersFrameOption.DENY, override: true },
       },
+      // Lambda adds these to /api/* responses; they only reveal AWS internals (ticket 23).
+      removeHeaders: ['x-amzn-requestid', 'x-amzn-trace-id'],
     });
 
     // Vite content-hashes everything under assets/, so it can be cached for a year.
@@ -107,7 +138,7 @@ export class InfraStack extends Stack {
       handler: 'handler',
       projectRoot: props.repoRoot,
       depsLockFilePath: join(props.repoRoot, 'package-lock.json'),
-      runtime: lambda.Runtime.NODEJS_22_X,
+      runtime: lambda.Runtime.NODEJS_24_X,
       architecture: lambda.Architecture.ARM_64,
       memorySize: 512,
       timeout: Duration.seconds(15),
@@ -116,12 +147,22 @@ export class InfraStack extends Stack {
         // Local esbuild (devDependency); no Docker.
         forceDockerBundling: false,
         format: nodejs.OutputFormat.CJS,
-        target: 'node22',
+        target: 'node24',
         minify: true,
         sourceMap: false,
       },
     });
     // AWS_IAM: only CloudFront, signing with Origin Access Control, may invoke it.
+    Validations.of(apiFunction).acknowledge(
+      {
+        id: `AwsSolutions-IAM4[${BASIC_EXECUTION_POLICY}]`,
+        reason: 'AWSLambdaBasicExecutionRole only allows writing its own CloudWatch logs.',
+      },
+      {
+        id: 'AwsSolutions-L1',
+        reason: 'Node.js 24 is the newest GA Lambda runtime; nodejs26.x is a preview without SLA.',
+      },
+    );
     const apiUrl = apiFunction.addFunctionUrl({ authType: lambda.FunctionUrlAuthType.AWS_IAM });
     const apiOrigin = origins.FunctionUrlOrigin.withOriginAccessControl(apiUrl, {
       readTimeout: Duration.seconds(15),
@@ -157,6 +198,9 @@ export class InfraStack extends Stack {
     const distribution = new cloudfront.Distribution(this, 'Distribution', {
       defaultRootObject: 'index.html',
       httpVersion: cloudfront.HttpVersion.HTTP2_AND_3,
+      enableLogging: true,
+      logBucket,
+      logFilePrefix: 'cloudfront/',
       defaultBehavior: { ...common, cachePolicy: shortLived },
       additionalBehaviors: {
         'assets/*': { ...common, cachePolicy: immutableAssets },
@@ -177,6 +221,19 @@ export class InfraStack extends Stack {
       },
     });
 
+    Validations.of(distribution).acknowledge(
+      { id: 'AwsSolutions-CFR1', reason: 'A lookalike checker is useful worldwide; no geo block.' },
+      {
+        id: 'AwsSolutions-CFR2',
+        reason: 'WAF costs money; open decision in ADR-0006 Amendment 1 (ticket 20).',
+      },
+      {
+        id: 'AwsSolutions-CFR4',
+        reason:
+          'The default *.cloudfront.net certificate does not allow a TLS minimum; needs a custom domain.',
+      },
+    );
+
     new s3deploy.BucketDeployment(this, 'DeploySite', {
       sources: [s3deploy.Source.asset(props.siteDir)],
       destinationBucket: bucket,
@@ -184,6 +241,29 @@ export class InfraStack extends Stack {
       distribution,
       distributionPaths: ['/*'],
     });
+    // CDK's own singleton function behind BucketDeployment: runtime, role and policy are CDK's.
+    const deployHandler = this.node.children.find((c) =>
+      c.node.id.startsWith('Custom::CDKBucketDeployment'),
+    );
+    if (deployHandler) {
+      const reason =
+        'CDK-managed BucketDeployment handler (runtime and IAM chosen by aws-cdk-lib).';
+      const iam5 = [
+        'Action::s3:GetObject*',
+        'Action::s3:GetBucket*',
+        'Action::s3:List*',
+        'Action::s3:DeleteObject*',
+        'Action::s3:Abort*',
+        'Resource::*',
+        'Resource::arn:<AWS::Partition>:s3:::cdk-hnb659fds-assets-<AWS::AccountId>-<AWS::Region>/*',
+        `Resource::<${this.getLogicalId(bucket.node.defaultChild as s3.CfnBucket)}.Arn>/*`,
+      ];
+      Validations.of(deployHandler).acknowledge(
+        { id: `AwsSolutions-IAM4[${BASIC_EXECUTION_POLICY}]`, reason },
+        { id: 'AwsSolutions-L1', reason },
+        ...iam5.map((finding) => ({ id: `AwsSolutions-IAM5[${finding}]`, reason })),
+      );
+    }
 
     new CfnOutput(this, 'DistributionUrl', {
       value: `https://${distribution.distributionDomainName}`,

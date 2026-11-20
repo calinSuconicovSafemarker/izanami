@@ -1,6 +1,6 @@
 # 23 — Infra hygiene (headers, runtime, logs, cdk-nag in CI)
 
-**Status:** Open
+**Status:** Done — minimatch advisory accepted: aws-cdk-lib 2.277.0 is the latest and still bundles it (build-time only)
 
 **Depends on:** 09, 18 · Security scan F6–F10
 

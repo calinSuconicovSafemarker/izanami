@@ -173,9 +173,9 @@ describe('JSON API (ADR-0006)', () => {
       Properties: Record<string, never>;
     };
 
-  it('runs Node 22 on arm64 with 512 MB, a 15 s timeout and no reserved concurrency', () => {
+  it('runs Node 24 on arm64 with 512 MB, a 15 s timeout and no reserved concurrency', () => {
     template.hasResourceProperties('AWS::Lambda::Function', {
-      Runtime: 'nodejs22.x',
+      Runtime: 'nodejs24.x',
       Architectures: ['arm64'],
       MemorySize: 512,
       Timeout: 15,
@@ -186,8 +186,8 @@ describe('JSON API (ADR-0006)', () => {
 
   it('keeps its logs for one week', () => {
     template.hasResourceProperties('AWS::Logs::LogGroup', { RetentionInDays: 7 });
-    const fn = resources('AWS::Lambda::Function').find(
-      (f) => f.Properties.Runtime === 'nodejs22.x',
+    const fn = resources('AWS::Lambda::Function').find((f) =>
+      String(f.Properties.Description).includes('JSON API'),
     )!;
     expect(fn.Properties.LoggingConfig.LogGroup).toEqual({ Ref: expect.stringMatching(/ApiLogs/) });
   });
@@ -332,5 +332,46 @@ describe('deployment and outputs', () => {
       ]),
     );
     expect(JSON.stringify(outputs.DistributionUrl!.Value)).toContain('https://');
+  });
+});
+
+describe('logging and response hygiene (ticket 23)', () => {
+  it('writes CloudFront and S3 access logs to a private, encrypted bucket that expires them', () => {
+    const buckets = Object.entries(template.findResources('AWS::S3::Bucket'));
+    const [logId, log] = buckets.find(([id]) => id.startsWith('LogBucket'))!;
+    expect(log.Properties).toMatchObject({
+      PublicAccessBlockConfiguration: {
+        BlockPublicAcls: true,
+        BlockPublicPolicy: true,
+        IgnorePublicAcls: true,
+        RestrictPublicBuckets: true,
+      },
+      BucketEncryption: {
+        ServerSideEncryptionConfiguration: [
+          { ServerSideEncryptionByDefault: { SSEAlgorithm: 'AES256' } },
+        ],
+      },
+      LifecycleConfiguration: { Rules: [expect.objectContaining({ ExpirationInDays: 30 })] },
+    });
+    const [, site] = buckets.find(([id]) => id.startsWith('SiteBucket'))!;
+    expect(site.Properties.LoggingConfiguration).toEqual({
+      DestinationBucketName: { Ref: logId },
+      LogFilePrefix: 's3/',
+    });
+    const dist = Object.values(template.findResources('AWS::CloudFront::Distribution'))[0]!;
+    expect(dist.Properties.DistributionConfig.Logging).toMatchObject({
+      Bucket: { 'Fn::GetAtt': [logId, 'RegionalDomainName'] },
+      Prefix: 'cloudfront/',
+    });
+  });
+
+  it('strips AWS request-id headers from responses', () => {
+    template.hasResourceProperties('AWS::CloudFront::ResponseHeadersPolicy', {
+      ResponseHeadersPolicyConfig: Match.objectLike({
+        RemoveHeadersConfig: {
+          Items: [{ Header: 'x-amzn-requestid' }, { Header: 'x-amzn-trace-id' }],
+        },
+      }),
+    });
   });
 });
