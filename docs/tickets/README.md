@@ -39,6 +39,17 @@ Round 2 status: all done, plus B3 (export) and the code-review fixes (db1b102). 
 
 Round 3 status: all done (f658df9). Deployed to GitHub Pages and AWS CloudFront on 2026-11-19; API live at `/api/` on the CloudFront site only.
 
+### Round 4 (security scan, 2026-11-20)
+
+Findings: [../security/2026-11-20-security-scan.md](../security/2026-11-20-security-scan.md)
+
+| # | Ticket | Depends on |
+|---|---|---|
+| 20 | [API abuse protection (cache key + rate limit)](20-api-abuse-protection.md) | 18 |
+| 21 | [Lookup hardening: no caching of failures, size caps, redirects](21-lookup-hardening.md) | 18 |
+| 22 | [CI/CD hardening](22-ci-hardening.md) | 10 |
+| 23 | [Infra hygiene (headers, runtime, logs, cdk-nag in CI)](23-infra-hygiene.md) | 09, 18 |
+
 Suggested order: 00 → 01 → 02 → 03 → 04 → 05 → 06 → 07 → 08 → 09 → 10 → 11.
 First runnable slice (no scoring): after 06.
 
