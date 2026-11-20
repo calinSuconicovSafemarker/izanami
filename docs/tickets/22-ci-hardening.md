@@ -1,6 +1,6 @@
 # 22 — CI/CD hardening
 
-**Status:** Open
+**Status:** Done (8130ec3)
 
 **Depends on:** 10 · Security scan F3, F4
 
