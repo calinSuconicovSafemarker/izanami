@@ -1,5 +1,5 @@
 export { evaluate } from './evaluate';
-export { gatherFacts, type GatherOptions } from './gather';
+export { gatherFacts, gatherOutcome, type GatherOptions, type GatherOutcome } from './gather';
 export { FACT_SOURCES, isAwaitingLookup, unknownSources } from './inputs';
 export { officialExplanation } from './official';
 export { RULE_INPUTS, RULES } from './rules';

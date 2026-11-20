@@ -9,12 +9,14 @@ import {
   type Similarity,
 } from '../domain';
 import type { LookupClient } from '../lookup';
-import { gatherFacts, type Facts, type GatherOptions, type OrgInput } from '../rules';
+import { gatherOutcome, type Facts, type GatherOptions, type OrgInput } from '../rules';
 
 /**
  * - `invalid`   input could not be parsed as a domain; nothing was looked up
  * - `official`  one of the org's known official domains (or under its brand TLD); no lookups run
- * - `lookup`    lookups started; `facts` settles with the final facts (it never rejects)
+ * - `lookup`    lookups started; `facts` settles with the final facts and `transientFailure`
+ *               with whether any lookup failed transiently, i.e. the answer is degraded and must
+ *               not be cached (both settle together and never reject)
  */
 export type Check =
   | { phase: 'invalid'; input: string; message: string }
@@ -26,7 +28,12 @@ export type Check =
       /** Set when official because the org operates the variant's TLD (punycode). */
       brandTld?: string;
     }
-  | { phase: 'lookup'; variant: ParsedVariant; facts: Promise<Facts> };
+  | {
+      phase: 'lookup';
+      variant: ParsedVariant;
+      facts: Promise<Facts>;
+      transientFailure: Promise<boolean>;
+    };
 
 export interface CheckOptions extends GatherOptions {
   /** Wrap the client for this variant's lookups (the terminal taps raw results as they arrive). */
@@ -61,5 +68,11 @@ export function startCheck(
   }
   const { clientFor, ...gather } = options;
   const lookups = clientFor ? clientFor(variant, client) : client;
-  return { phase: 'lookup', variant, facts: gatherFacts(variant, org, lookups, gather) };
+  const outcome = gatherOutcome(variant, org, lookups, gather);
+  return {
+    phase: 'lookup',
+    variant,
+    facts: outcome.then((o) => o.facts),
+    transientFailure: outcome.then((o) => o.transientFailure),
+  };
 }

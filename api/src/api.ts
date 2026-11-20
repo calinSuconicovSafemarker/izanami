@@ -188,11 +188,15 @@ export function createApi(deps: ApiDeps): (request: ApiRequest) => Promise<ApiRe
       const timedOut = new Promise<never>((_resolve, reject) => {
         hardTimer = setTimeout(() => reject(new CheckTimeout()), hardTimeoutMs);
       });
-      const facts = await Promise.race([result.facts, timedOut]);
+      const [facts, transientFailure] = await Promise.race([
+        Promise.all([result.facts, result.transientFailure]),
+        timedOut,
+      ]);
       const body = toLookupExport({ org, variant: result.variant, facts, exportedAt: now() });
-      // Lookups cut off by the budget are unknown only because we stopped waiting: don't let
-      // CloudFront serve that for an hour.
-      return json(200, body, deadline.signal.aborted ? CACHE_NONE : CACHE_SUCCESS);
+      // Facts unknown only because a lookup failed (timeout, 429/5xx, network) or was cut off by
+      // the budget are not the domain's state: don't let CloudFront serve that for an hour.
+      const degraded = transientFailure || deadline.signal.aborted;
+      return json(200, body, degraded ? CACHE_NONE : CACHE_SUCCESS);
     } finally {
       clearTimeout(budget);
       clearTimeout(hardTimer);

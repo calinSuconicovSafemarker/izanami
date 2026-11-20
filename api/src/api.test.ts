@@ -155,6 +155,70 @@ describe('GET /api/check', () => {
     );
   });
 
+  describe('caching (ticket 21)', () => {
+    /** The recorded fixtures, with one kind of lookup failing transiently. */
+    const failing = (method: 'certs' | 'rdap' | 'dns'): ApiDeps => ({
+      ...fixtures,
+      createClient: () => {
+        const inner = new FixtureLookupClient();
+        return {
+          dns: (name, type) =>
+            method === 'dns' && name === 'google.com'
+              ? Promise.resolve({ status: 'unavailable', name, type, records: [] })
+              : inner.dns(name, type),
+          rdap: (domain) =>
+            method === 'rdap'
+              ? Promise.resolve({ status: 'unavailable', domain, nameservers: [] })
+              : inner.rdap(domain),
+          asn: (ip) => inner.asn(ip),
+          certs: (domain) =>
+            method === 'certs'
+              ? Promise.resolve({ status: 'unavailable', domain, certs: [] })
+              : inner.certs(domain),
+        };
+      },
+    });
+
+    it('lets CloudFront cache a clean lookup for an hour', async () => {
+      const { res } = await check('google', 'tudelft.nl');
+      expect(res.status).toBe(200);
+      expect(res.headers['cache-control']).toBe('public, max-age=3600');
+    });
+
+    it.each([
+      ['crt.sh on the variant', 'certs'],
+      ['RDAP', 'rdap'],
+      ['DNS on the official domain', 'dns'],
+    ] as const)('sends no-store when %s failed transiently', async (_name, method) => {
+      const { res, json } = await check('google', 'tudelft.nl', failing(method));
+      expect(res.status).toBe(200);
+      expect(res.headers['cache-control']).toBe('no-store');
+      expect(json.schemaVersion).toBe(1);
+    });
+
+    it('sends no-store when every upstream answer is oversized', async () => {
+      const huge: FetchLike = () =>
+        Promise.resolve(new Response(`"${' '.repeat(6 * 1024 * 1024)}"`));
+      const { res, json } = await check('google', 'tudelft.nl', {
+        ...fixtures,
+        createClient: (signal) => new LiveLookupClient({ fetch: huge, signal }),
+      });
+      expect(res.status).toBe(200);
+      expect(res.headers['cache-control']).toBe('no-store');
+      expect(json.verdict?.label).toBe('Insufficient data');
+    });
+
+    it('answers 200 (not 500) when resolvers return malformed DoH JSON', async () => {
+      const malformed: FetchLike = () => Promise.resolve(new Response('{"Status":"bad"'));
+      const { res } = await check('google', 'tudelft.nl', {
+        ...fixtures,
+        createClient: (signal) => new LiveLookupClient({ fetch: malformed, signal }),
+      });
+      expect(res.status).toBe(200);
+      expect(res.headers['cache-control']).toBe('no-store');
+    });
+  });
+
   describe('time budget', () => {
     const hang: FetchLike = () => new Promise(() => {});
 

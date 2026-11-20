@@ -1,6 +1,6 @@
 # 21 — Lookup hardening: no caching of failures, size caps, redirects
 
-**Status:** Open
+**Status:** Done (15459c6)
 
 **Depends on:** 18 · Security scan F2, F5
 
