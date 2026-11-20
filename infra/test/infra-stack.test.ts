@@ -5,11 +5,17 @@ import { fileURLToPath } from 'node:url';
 import { App } from 'aws-cdk-lib';
 import { Match, Template } from 'aws-cdk-lib/assertions';
 import { beforeAll, describe, expect, it } from 'vitest';
+import { API_QUERY_FUNCTION_CODE } from '../lib/api-query';
 import { InfraStack } from '../lib/infra-stack';
 
 const repoRoot = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 
 let template: Template;
+
+const cspFunctionResource = () =>
+  Object.values(template.findResources('AWS::CloudFront::Function')).find((f) =>
+    String(f.Properties.FunctionCode).includes('content-security-policy'),
+  )!;
 
 beforeAll(() => {
   const siteDir = mkdtempSync(join(tmpdir(), 'site-'));
@@ -120,9 +126,9 @@ describe('security headers', () => {
   });
 
   it('attaches the generated CSP via a viewer-response function on every behavior', () => {
-    const fns = Object.values(template.findResources('AWS::CloudFront::Function'));
-    expect(fns).toHaveLength(1);
-    const fn = fns[0]!;
+    // Two functions: this CSP one, and the /api/* cache-key one (ticket 20).
+    expect(Object.values(template.findResources('AWS::CloudFront::Function'))).toHaveLength(2);
+    const fn = cspFunctionResource();
     expect(fn.Properties.FunctionConfig.Runtime).toBe('cloudfront-js-2.0');
     expect(fn.Properties.AutoPublish).toBe(true);
     const code: string = fn.Properties.FunctionCode;
@@ -134,13 +140,15 @@ describe('security headers', () => {
     const dist = Object.values(template.findResources('AWS::CloudFront::Distribution'))[0]!;
     const cfg = dist.Properties.DistributionConfig;
     for (const b of [cfg.DefaultCacheBehavior, ...(cfg.CacheBehaviors ?? [])]) {
-      expect(b.FunctionAssociations).toHaveLength(1);
-      expect(b.FunctionAssociations[0].EventType).toBe('viewer-response');
+      const responseFns = (b.FunctionAssociations as { EventType: string }[]).filter(
+        (f) => f.EventType === 'viewer-response',
+      );
+      expect(responseFns).toHaveLength(1);
     }
   });
 
   it('leaves JSON API responses intact apart from adding the CSP', () => {
-    const fn = Object.values(template.findResources('AWS::CloudFront::Function'))[0]!;
+    const fn = cspFunctionResource();
     const handler = new Function(`${fn.Properties.FunctionCode}\nreturn handler;`)();
     const headers = {
       'content-type': { value: 'application/json; charset=utf-8' },
@@ -222,7 +230,18 @@ describe('JSON API (ADR-0006)', () => {
       AllowedMethods: ['GET', 'HEAD'],
       CachedMethods: ['GET', 'HEAD'],
       ResponseHeadersPolicyId: config().DefaultCacheBehavior.ResponseHeadersPolicyId,
-      FunctionAssociations: config().DefaultCacheBehavior.FunctionAssociations,
+    });
+    const events = (b.FunctionAssociations as { EventType: string }[]).map((f) => f.EventType);
+    expect(events.sort()).toEqual(['viewer-request', 'viewer-response']);
+    expect(b.FunctionAssociations).toEqual(
+      expect.arrayContaining(config().DefaultCacheBehavior.FunctionAssociations),
+    );
+  });
+
+  it('canonicalises the query string on /api/* before the cache key (ticket 20)', () => {
+    template.hasResourceProperties('AWS::CloudFront::Function', {
+      FunctionConfig: Match.objectLike({ Runtime: 'cloudfront-js-2.0' }),
+      FunctionCode: API_QUERY_FUNCTION_CODE,
     });
   });
 

@@ -8,6 +8,7 @@ import * as s3 from 'aws-cdk-lib/aws-s3';
 import * as s3deploy from 'aws-cdk-lib/aws-s3-deployment';
 import type { Construct } from 'constructs';
 import { join } from 'node:path';
+import { API_QUERY_FUNCTION_CODE } from './api-query';
 import { buildCsp, cspFunctionCode } from './csp';
 
 export interface InfraStackProps extends StackProps {
@@ -137,6 +138,12 @@ export class InfraStack extends Stack {
       enableAcceptEncodingGzip: true,
       enableAcceptEncodingBrotli: true,
     });
+    // Canonicalises org/domain before the cache key is computed (ticket 20).
+    const apiQueryFunction = new cloudfront.Function(this, 'ApiQueryFunction', {
+      runtime: cloudfront.FunctionRuntime.JS_2_0,
+      comment: 'Canonical cache key for /api/* (ADR-0006)',
+      code: cloudfront.FunctionCode.fromInline(API_QUERY_FUNCTION_CODE),
+    });
     // No headers: forwarding Host would break the SigV4 signature OAC adds for the function URL.
     const apiOriginRequest = new cloudfront.OriginRequestPolicy(this, 'ApiOriginRequest', {
       comment: 'JSON API: forward org and domain only',
@@ -162,6 +169,10 @@ export class InfraStack extends Stack {
           cachedMethods: cloudfront.CachedMethods.CACHE_GET_HEAD,
           cachePolicy: apiCache,
           originRequestPolicy: apiOriginRequest,
+          functionAssociations: [
+            ...common.functionAssociations,
+            { function: apiQueryFunction, eventType: cloudfront.FunctionEventType.VIEWER_REQUEST },
+          ],
         },
       },
     });

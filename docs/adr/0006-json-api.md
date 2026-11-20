@@ -67,3 +67,21 @@ account concurrency limit of 10 (checked 2026-11-19). The site's CloudFront dist
 - `HEAD` returns the `GET` headers with an empty body; other methods get 403 from CloudFront
   (allowed methods GET/HEAD) or 405 from the handler if they reach it.
 - Deploying is still a manual `cdk deploy IzanamiStack` (ADR-0005); GitHub Pages hosts no API.
+
+## Amendment 1 — Abuse limits (2026-11-20, ticket 20)
+
+The security scan (`docs/security/2026-11-20-security-scan.md`, F1) showed that about ten
+parallel slow checks can use every concurrent execution in the account, and that spelling
+variants of one check (`GOOGLE.com`, `google.com.`, ` google.com`) each missed the cache.
+
+- **Canonical cache key:** a viewer-request CloudFront Function on `/api/*`
+  (`infra/lib/api-query.ts`) keeps only `org` and `domain`, decodes, trims, lowercases and strips
+  trailing dots before the cache key is computed. Repeated or undecodable parameters pass through
+  unchanged so the handler still rejects them. Subdomains and IDNs are not folded.
+- **Rate limiting — open decision:** unique domains still reach the Lambda. AWS WAF with a
+  rate-based rule would cap them per IP, but costs about $5/month + $1/rule + $0.60/M requests
+  (CloudFront's flat-rate Free plan bundles WAF; whether it covers rate-based rules and whether
+  this account can join a plan is unchecked). Not added without the owner's approval.
+- **Concurrency — open decision:** a free Service Quotas increase of Lambda concurrent executions
+  would allow `reservedConcurrentExecutions` on the API, so a flood can't starve CDK's deploy
+  Lambda. Needs the account owner.

@@ -1,6 +1,6 @@
 # 20 — API abuse protection (cache key + rate limit)
 
-**Status:** Open
+**Status:** Partly done — canonical cache key done; WAF and concurrency quota are open decisions (ADR-0006 Amendment 1)
 
 **Depends on:** 18 · Security scan F1 (`docs/security/2026-11-20-security-scan.md`)
 
