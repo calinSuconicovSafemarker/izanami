@@ -364,14 +364,4 @@ describe('logging and response hygiene (ticket 23)', () => {
       Prefix: 'cloudfront/',
     });
   });
-
-  it('strips AWS request-id headers from responses', () => {
-    template.hasResourceProperties('AWS::CloudFront::ResponseHeadersPolicy', {
-      ResponseHeadersPolicyConfig: Match.objectLike({
-        RemoveHeadersConfig: {
-          Items: [{ Header: 'x-amzn-requestid' }, { Header: 'x-amzn-trace-id' }],
-        },
-      }),
-    });
-  });
 });

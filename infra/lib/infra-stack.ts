@@ -92,8 +92,8 @@ export class InfraStack extends Stack {
         },
         frameOptions: { frameOption: cloudfront.HeadersFrameOption.DENY, override: true },
       },
-      // Lambda adds these to /api/* responses; they only reveal AWS internals (ticket 23).
-      removeHeaders: ['x-amzn-requestid', 'x-amzn-trace-id'],
+      // Not removing x-amzn-requestid / x-amzn-trace-id: CloudFront rejects removeHeaders for
+      // X-Amzn-* (deploy failed 2026-11-20). Info-level only; accepted in the security report.
     });
 
     // Vite content-hashes everything under assets/, so it can be cached for a year.

@@ -24,7 +24,7 @@ Scope: the whole repo at `a4f1d9b` (web app, build scripts, JSON API, AWS CDK st
 | F4 | Low | CI actions pinned to tags, not commit SHAs (Semgrep ×7). | Ticket 22 |
 | F5 | Low | Upstream responses read without a size cap; `fetch` follows redirects to any scheme/host; DoH JSON shape not validated (a malformed answer gives a 500). Needs a misbehaving upstream, not user input. | Ticket 21 |
 | F6 | Low | GitHub Pages copy can be framed (Pages can't send `X-Frame-Options`; meta CSP can't carry `frame-ancestors`). No state-changing actions, so impact is small. | [Ticket 23](../tickets/23-infra-hygiene.md) |
-| F7 | Info | `x-amzn-requestid` / `x-amzn-trace-id` exposed on `/api/*`. | Ticket 23 |
+| F7 | Info | `x-amzn-requestid` / `x-amzn-trace-id` exposed on `/api/*`. | Accepted: CloudFront can't remove `X-Amzn-*` headers |
 | F8 | Info | No CloudFront/S3 access logs (cdk-nag S1, CFR3), so abuse can't be investigated. | Ticket 23 |
 | F9 | Info | Lambda on Node 22, not latest (cdk-nag L1). | Ticket 23 |
 | F10 | Info | `minimatch` advisory in `aws-cdk-lib` (build-time). | Ticket 23 |
