@@ -40,7 +40,7 @@ describe('GitHub OIDC provider', () => {
 });
 
 describe('deploy role trust policy', () => {
-  it('only trusts web identities from the main branch of the configured repo', () => {
+  it('only trusts web identities from the aws-deploy environment of the configured repo', () => {
     const t = synth();
     t.hasResourceProperties('AWS::IAM::Role', {
       AssumeRolePolicyDocument: {
@@ -53,7 +53,7 @@ describe('deploy role trust policy', () => {
               StringEquals: {
                 'token.actions.githubusercontent.com:aud': 'sts.amazonaws.com',
                 'token.actions.githubusercontent.com:sub':
-                  'repo:example-owner/example-repo:ref:refs/heads/main',
+                  'repo:example-owner/example-repo:environment:aws-deploy',
               },
             },
           },
@@ -71,23 +71,31 @@ describe('deploy role trust policy', () => {
     expect(trust).not.toContain('StringLike');
     expect(trust).not.toContain('*');
     expect(trust).not.toContain('pull_request');
+    // a branch-ref subject would let any job on main (e.g. an npm build) assume the role
+    expect(trust).not.toContain(':ref:');
   });
 
-  it('honours a custom branch', () => {
-    synth({ branch: 'release' }).hasResourceProperties('AWS::IAM::Role', {
+  it('honours a custom environment', () => {
+    synth({ environment: 'production' }).hasResourceProperties('AWS::IAM::Role', {
       AssumeRolePolicyDocument: {
         Statement: [
           Match.objectLike({
             Condition: {
               StringEquals: Match.objectLike({
                 'token.actions.githubusercontent.com:sub':
-                  'repo:example-owner/example-repo:ref:refs/heads/release',
+                  'repo:example-owner/example-repo:environment:production',
               }),
             },
           }),
         ],
       },
     });
+  });
+
+  it('rejects a malformed environment', () => {
+    expect(() => synth({ environment: '*' })).toThrow(/environment/);
+    expect(() => synth({ environment: 'a:b' })).toThrow(/environment/);
+    expect(() => synth({ environment: '' })).toThrow(/environment/);
   });
 
   it('rejects a malformed repository', () => {

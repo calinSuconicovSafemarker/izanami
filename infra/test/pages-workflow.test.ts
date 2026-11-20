@@ -23,7 +23,10 @@ interface Step {
 interface Workflow {
   on: Record<string, unknown>;
   permissions: Record<string, string>;
-  jobs: Record<string, { steps: Step[]; needs?: string | string[] }>;
+  jobs: Record<
+    string,
+    { steps: Step[]; needs?: string | string[]; permissions?: Record<string, string> }
+  >;
 }
 const wf = parse(raw, { strict: true, uniqueKeys: true }) as Workflow;
 const build = wf.jobs.build!.steps;
@@ -36,8 +39,20 @@ describe('pages.yml', () => {
   });
 
   it('has only the permissions Pages needs and uses no secrets', () => {
-    expect(wf.permissions).toEqual({ contents: 'read', pages: 'write', 'id-token': 'write' });
+    expect(wf.permissions).toEqual({ contents: 'read' });
     expect(raw).not.toMatch(/secrets\./);
+  });
+
+  it('grants pages/id-token write only to the deploy job, never to the npm build', () => {
+    expect(wf.jobs.build!.permissions).toBeUndefined();
+    expect(wf.jobs.deploy!.permissions).toEqual({ pages: 'write', 'id-token': 'write' });
+    expect(wf.jobs.deploy!.steps.some((s) => s.run)).toBe(false);
+  });
+
+  it('pins every action to a full commit SHA', () => {
+    const uses = Object.values(wf.jobs).flatMap((j) => j.steps.flatMap((s) => s.uses ?? []));
+    expect(uses.length).toBeGreaterThan(0);
+    for (const u of uses) expect(u).toMatch(/^[\w.-]+\/[\w.-]+@[0-9a-f]{40}$/);
   });
 
   it('lints, tests and builds before uploading the site, and never swallows failures', () => {
