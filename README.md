@@ -125,7 +125,14 @@ time, and `web/check-dist-csp.mjs` fails the build if it's missing or if any inl
 style appears.
 
 One-time setup: in the repository, Settings → Pages → Build and deployment → Source:
-**GitHub Actions**.
+**GitHub Actions**. Then (manual step) restrict the `github-pages` environment to `main`:
+Settings → Environments → `github-pages` → Deployment branches and tags → **Selected branches
+and tags** → add `main`, so no other branch can publish.
+
+CI hardening: both workflows default to `permissions: contents: read`; only the Pages `deploy`
+job (which runs no npm code) gets `pages: write` and `id-token: write`. Every action is pinned to
+a full commit SHA (version in a comment), and `.github/dependabot.yml` proposes weekly grouped
+updates for GitHub Actions and npm.
 
 ### Optional: AWS hosting
 
@@ -135,3 +142,23 @@ bundled locally with esbuild, no Docker needed) and a GitHub OIDC deploy role (`
 `IzanamiGitHubDeploy`). It is deployed manually from a laptop (`aws login`, then `npm run build && cd infra && npx cdk deploy IzanamiStack`), not from GitHub, because the AWS account's organisation blocks GitHub OIDC; see
 [ADR-0004](docs/adr/0004-security-headers.md). To use it: `npm run build`, then
 `cd infra && npx cdk bootstrap aws://<account-id>/<region>` and `npx cdk deploy IzanamiStack`.
+
+If GitHub OIDC is ever enabled, `IzanamiGitHubDeploy` (`-c githubRepo=<owner>/<name>`, optional
+`-c githubEnvironment=<env>`, default `aws-deploy`) creates a role that trusts only the subject
+`repo:<owner>/<name>:environment:<env>`, not a branch ref, so an ordinary build job can't assume
+it. A deploy workflow must therefore run the AWS step in a separate job that declares the
+environment and is the only job with `id-token: write`:
+
+```yaml
+deploy-aws:
+  runs-on: ubuntu-latest
+  environment: aws-deploy # protect it: Settings → Environments → deployment branches: main
+  permissions:
+    contents: read
+    id-token: write
+  steps:
+    - uses: aws-actions/configure-aws-credentials@<commit-sha> # vX.Y.Z
+      with:
+        role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+        aws-region: <region>
+```

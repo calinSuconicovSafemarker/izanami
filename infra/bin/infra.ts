@@ -20,15 +20,16 @@ new InfraStack(app, 'IzanamiStack', { siteDir, rdapHosts: hosts, repoRoot: root 
 
 // One-time CI/CD stack, only synthesised when a repo is configured:
 //   npx cdk deploy IzanamiGitHubDeploy -c githubRepo=<owner>/<name>
-// (or set GITHUB_DEPLOY_REPO). Optional: -c githubBranch=main,
-// -c githubOidcProviderArn=<arn> to reuse an existing provider.
+// (or set GITHUB_DEPLOY_REPO). Optional: -c githubEnvironment=aws-deploy (the
+// GitHub environment the deploy job must declare), -c githubOidcProviderArn=<arn>
+// to reuse an existing provider.
 const ctx = (key: string) => app.node.tryGetContext(key) as string | undefined;
 const repository = ctx('githubRepo') ?? process.env.GITHUB_DEPLOY_REPO;
 if (repository) {
   new GitHubDeployStack(app, 'IzanamiGitHubDeploy', {
     env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: process.env.CDK_DEFAULT_REGION },
     repository,
-    branch: ctx('githubBranch'),
+    environment: ctx('githubEnvironment'),
     bootstrapQualifier: ctx('@aws-cdk/core:bootstrapQualifier'),
     existingOidcProviderArn: ctx('githubOidcProviderArn'),
   });
