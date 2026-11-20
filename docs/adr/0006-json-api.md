@@ -31,11 +31,12 @@ account concurrency limit of 10 (checked 2026-11-19). The site's CloudFront dist
   cookies), default and max TTL 1 h; the origin request policy forwards just those two (and no
   `Host`, which would break the OAC signature). Success responses send
   `Cache-Control: public, max-age=3600`, errors `no-store`. Repeat checks are served from the edge
-  and never reach DoH/RDAP/crt.sh. Three exceptions send `no-store` on a 200: `/api/health` (a
-  cached health check proves nothing), a check whose lookups were cut off by the time budget, and
-  (ticket 21) a check where any lookup came back `unavailable` (timeout, 429/5xx, network error,
-  or an answer rejected for size, shape or redirect): those unknown facts are a failed lookup,
-  not the domain's state, so an hour-long edge copy would serve a degraded answer.
+  and never reach DoH/RDAP/crt.sh. `/api/health` sends `no-store` (a cached health check proves
+  nothing). A check whose lookups were cut off by the time budget, or (ticket 21) where any lookup
+  came back `unavailable` (timeout, 429/5xx, network error, or an answer rejected for size, shape
+  or redirect), sends `public, max-age=300`: those unknown facts are a failed lookup, not the
+  domain's state, so an hour-long copy would serve a degraded answer, while `no-store` would let a
+  flood of one slow check reach the Lambda every time (ticket 20).
 - **Time budget:** each DoH/RDAP request gives up after 3 s (a DNS question with its fallback
   resolver: ≤ 6 s), crt.sh after 5 s (optional: on failure its fact is `unknown` and the verdict
   still returns), every lookup still running at 9 s is aborted, and 11 s is the hard 504 limit —

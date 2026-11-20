@@ -189,14 +189,14 @@ describe('GET /api/check', () => {
       ['crt.sh on the variant', 'certs'],
       ['RDAP', 'rdap'],
       ['DNS on the official domain', 'dns'],
-    ] as const)('sends no-store when %s failed transiently', async (_name, method) => {
+    ] as const)('caches briefly when %s failed transiently', async (_name, method) => {
       const { res, json } = await check('google', 'tudelft.nl', failing(method));
       expect(res.status).toBe(200);
-      expect(res.headers['cache-control']).toBe('no-store');
+      expect(res.headers['cache-control']).toBe('public, max-age=300');
       expect(json.schemaVersion).toBe(1);
     });
 
-    it('sends no-store when every upstream answer is oversized', async () => {
+    it('caches briefly when every upstream answer is oversized', async () => {
       const huge: FetchLike = () =>
         Promise.resolve(new Response(`"${' '.repeat(6 * 1024 * 1024)}"`));
       const { res, json } = await check('google', 'tudelft.nl', {
@@ -204,7 +204,7 @@ describe('GET /api/check', () => {
         createClient: (signal) => new LiveLookupClient({ fetch: huge, signal }),
       });
       expect(res.status).toBe(200);
-      expect(res.headers['cache-control']).toBe('no-store');
+      expect(res.headers['cache-control']).toBe('public, max-age=300');
       expect(json.verdict?.label).toBe('Insufficient data');
     });
 
@@ -215,21 +215,21 @@ describe('GET /api/check', () => {
         createClient: (signal) => new LiveLookupClient({ fetch: malformed, signal }),
       });
       expect(res.status).toBe(200);
-      expect(res.headers['cache-control']).toBe('no-store');
+      expect(res.headers['cache-control']).toBe('public, max-age=300');
     });
   });
 
   describe('time budget', () => {
     const hang: FetchLike = () => new Promise(() => {});
 
-    it('cuts off slow lookups at the budget: unknown facts, still a verdict, not cached', async () => {
+    it('cuts off slow lookups at the budget: unknown facts, still a verdict, cached only briefly', async () => {
       const { res, json } = await check('google', 'tudelft.nl', {
         ...fixtures,
         createClient: (signal) => new LiveLookupClient({ fetch: hang, signal }),
         lookupBudgetMs: 30,
       });
       expect(res.status).toBe(200);
-      expect(res.headers['cache-control']).toBe('no-store');
+      expect(res.headers['cache-control']).toBe('public, max-age=300');
       expect(json.existence).toBeNull();
       expect(json.verdict?.label).toBe('Insufficient data');
       expect(json.dataSources.unknown).toEqual(

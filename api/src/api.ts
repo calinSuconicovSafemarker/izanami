@@ -44,6 +44,11 @@ export interface ApiDeps {
 /** CloudFront caches successful answers for an hour (ADR-0006). */
 export const CACHE_SUCCESS = 'public, max-age=3600';
 export const CACHE_NONE = 'no-store';
+/**
+ * A check with a failed or cut-off lookup: short enough that a retry soon gets fresh facts,
+ * long enough that a flood of the same slow check still hits the edge (tickets 20, 21).
+ */
+export const CACHE_DEGRADED = 'public, max-age=300';
 
 /** RFC 1035 limit on a domain name; also enforced by the parser on the punycode form. */
 export const MAX_DOMAIN_LENGTH = 253;
@@ -194,9 +199,9 @@ export function createApi(deps: ApiDeps): (request: ApiRequest) => Promise<ApiRe
       ]);
       const body = toLookupExport({ org, variant: result.variant, facts, exportedAt: now() });
       // Facts unknown only because a lookup failed (timeout, 429/5xx, network) or was cut off by
-      // the budget are not the domain's state: don't let CloudFront serve that for an hour.
+      // the budget are not the domain's state: cache that for minutes, not an hour.
       const degraded = transientFailure || deadline.signal.aborted;
-      return json(200, body, degraded ? CACHE_NONE : CACHE_SUCCESS);
+      return json(200, body, degraded ? CACHE_DEGRADED : CACHE_SUCCESS);
     } finally {
       clearTimeout(budget);
       clearTimeout(hardTimer);
