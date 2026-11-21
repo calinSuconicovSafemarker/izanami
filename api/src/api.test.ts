@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { startCheck } from '../../web/src/check';
+import { domainsToCsv } from '../../web/src/export/domains';
 import { toLookupExport, type LookupExport } from '../../web/src/export/lookup';
 import { LiveLookupClient, type FetchLike, type LookupClient } from '../../web/src/lookup';
 import { FixtureLookupClient } from '../../web/src/lookup/fixture-client';
@@ -365,6 +366,28 @@ describe('routing and methods', () => {
     const res = await createApi(fixtures)({ method: 'HEAD', path: '/api/orgs', query: '' });
     expect(res.status).toBe(200);
     expect(res.headers['content-type']).toMatch(/json/);
+    expect(res.body).toBe('');
+  });
+});
+
+describe('GET /api/domains.csv', () => {
+  it('serves the same CSV as the site’s download button, as a cached attachment', async () => {
+    const res = await get('/api/domains.csv');
+    expect(res.status).toBe(200);
+    expect(res.headers).toMatchObject({
+      'content-type': 'text/csv; charset=utf-8',
+      'cache-control': 'public, max-age=3600',
+      'access-control-allow-origin': '*',
+    });
+    expect(res.headers['content-disposition']).toMatch(
+      /^attachment; filename="izanami-all-domains-\d{4}-\d{2}-\d{2}\.csv"$/,
+    );
+    expect(res.body).toBe('﻿' + domainsToCsv(allOrgs));
+  });
+
+  it('answers HEAD with the headers and no body', async () => {
+    const res = await createApi(fixtures)({ method: 'HEAD', path: '/api/domains.csv', query: '' });
+    expect(res.status).toBe(200);
     expect(res.body).toBe('');
   });
 });

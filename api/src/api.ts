@@ -2,6 +2,7 @@
 // URL events to `ApiRequest`. Every result comes from the website's own modules (startCheck,
 // toLookupExport, officialContext), so the API and "Export JSON" give the same document.
 import { startCheck } from '../../web/src/check';
+import { domainsToCsv } from '../../web/src/export/domains';
 import { toLookupExport } from '../../web/src/export/lookup';
 import type { LookupClient } from '../../web/src/lookup';
 import {
@@ -83,6 +84,23 @@ function json(status: number, body: unknown, cache: string, extra: Record<string
     },
     body: JSON.stringify(body),
   } satisfies ApiResponse;
+}
+
+/** Same file as the site's "Download all domains (CSV)" button; built once per container. */
+let domainsCsv: string | undefined;
+function domainsCsvResponse(): ApiResponse {
+  // BOM: Excel only detects UTF-8 in a CSV that starts with one.
+  domainsCsv ??= '﻿' + domainsToCsv(allOrgs);
+  return {
+    status: 200,
+    headers: {
+      'content-type': 'text/csv; charset=utf-8',
+      'content-disposition': `attachment; filename="izanami-all-domains-${dataVersion}.csv"`,
+      'access-control-allow-origin': '*',
+      'cache-control': CACHE_SUCCESS,
+    },
+    body: domainsCsv,
+  };
 }
 
 /** Creates the real client on the first lookup, so invalid or official input never builds one. */
@@ -221,10 +239,11 @@ export function createApi(deps: ApiDeps): (request: ApiRequest) => Promise<ApiRe
     const orgPath = /^\/api\/orgs\/([^/]+)$/.exec(path);
     if (orgPath) return json(200, orgDetail(findOrg(orgPath[1]!)), CACHE_SUCCESS);
     if (path === '/api/check') return check(new URLSearchParams(request.query));
+    if (path === '/api/domains.csv') return domainsCsvResponse();
     throw new ApiError(
       404,
       'not-found',
-      'No such endpoint. Try /api/check, /api/orgs, /api/orgs/<id> or /api/health.',
+      'No such endpoint. Try /api/check, /api/orgs, /api/orgs/<id>, /api/domains.csv or /api/health.',
     );
   }
 

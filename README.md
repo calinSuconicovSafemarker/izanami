@@ -86,6 +86,7 @@ curl -s "$API/check?org=tu-delft&domain=tudeIft.nl" | jq '{verdict, why}'
 curl "$API/orgs"          # [{ "id": "google", "name": "Google", "primaryDomain": "google.com" }, ...]
 curl "$API/orgs/google"   # official domains (trust level), Wikidata-listed related domains, brand TLDs
 curl "$API/health"        # { "ok": true, "dataVersion": "2026-11-19" }
+curl -o domains.csv "$API/domains.csv"   # every org's legitimate domains (official / verify), same as the site's download button
 ```
 
 - `org` is an id from `/api/orgs` (the slug in `/#/org/<slug>`); `domain` is a bare domain

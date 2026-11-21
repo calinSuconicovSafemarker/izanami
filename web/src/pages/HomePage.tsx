@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { domainsToCsv } from '../export/domains';
+import { downloadCsv } from '../export/download';
+import { exportFilename } from '../export/filename';
 import { allOrgs, searchOrgs, type Org } from '../orgs';
 
 /** Column layout shared by the header and every row: rank, name, domain, country, tier, count. */
@@ -96,6 +99,27 @@ export function HomePage() {
           <kbd className="rounded border border-zinc-700 px-1 font-mono">Enter</kbd> to open the
           first result. {results.length} shown.
         </p>
+      </div>
+
+      <div className="flex flex-col gap-2 border-y border-zinc-800 py-3 sm:flex-row sm:items-center sm:justify-between">
+        <p id="all-domains-hint" className="text-xs text-zinc-400">
+          Every organisation’s legitimate domains in one file: official ones and Wikidata-listed
+          ones to verify. Sources:{' '}
+          <Link to="/credits" className="text-emerald-400 hover:text-emerald-300">
+            credits
+          </Link>
+          .
+        </p>
+        <button
+          type="button"
+          aria-describedby="all-domains-hint"
+          onClick={() =>
+            downloadCsv(exportFilename('all-domains', new Date(), 'csv'), domainsToCsv(allOrgs))
+          }
+          className="shrink-0 self-start rounded-sm border border-emerald-600 px-3 py-1.5 font-mono text-xs tracking-[0.15em] text-emerald-400 uppercase hover:bg-emerald-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 sm:self-auto"
+        >
+          ↓ Download all domains (CSV)
+        </button>
       </div>
 
       {results.length === 0 ? (
